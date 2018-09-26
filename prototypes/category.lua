@@ -80,7 +80,7 @@ data:extend(
   },
   {
     type = "fuel-category",
-    name = "landfill",	
+    name = "humus",	 -- changed by Oceanel
   },
 	{
     type = "autoplace-control",

@@ -22,7 +22,7 @@ data:extend(
     order = "w-b-b",
     stack_size = 200,
 	fuel_category = "plant",
-	fuel_value = "0.05J",
+	fuel_value = "0.5J",
   }, 
   {
     type = "item",
@@ -45,6 +45,8 @@ data:extend(
     icon = "__FoodIndustry__/graphics/icons/items/compost.png",
     icon_size = 32,
     flags = {"goes-to-main-inventory"},
+    fuel_category = "humus", -- changed by Oceanel
+    fuel_value = "2500J", 
     subgroup = "food-items",
     order = "w-b-d",
     stack_size = 200

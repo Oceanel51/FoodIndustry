@@ -69,7 +69,7 @@ end
 
 table.insert(data.raw.technology["automation"].effects,{recipe = "compressed-straw", type = "unlock-recipe"})
 data.raw.item["landfill"].fuel_value = "500kJ"
-data.raw.item["landfill"].fuel_category = "landfill"
+data.raw.item["landfill"].fuel_category = "humus"
 
 if data.raw.armor["light-armor"] then
 	data.raw.armor["light-armor"].durability = 2000
