@@ -1,0 +1,13 @@
+require("changes")
+require("prototypes.item")
+require("prototypes.fluid")
+require("prototypes.recipe")
+require("prototypes.food")
+require("prototypes.auto-composting")
+require("prototypes.crop")
+require("prototypes.entity")
+require("prototypes.technology")
+require("prototypes.category")
+require("prototypes.achievements")
+require("prototypes.plants")
+

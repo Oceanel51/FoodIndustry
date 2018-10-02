@@ -1,0 +1,11 @@
+{
+    "name": "FoodIndustry",
+    "version": "0.16.27",
+    "title": "Food Industry",
+    "author": "Villfuk02",
+    "contact": "",
+    "homepage": "",
+    "factorio_version": "0.16",
+    "dependencies": ["base >= 0.16", "?omnimatter_wood", "?alien-biomes"],
+    "description": "This mod adds hunger and ways to produce food. Graphics for composter and basic farm by darkfrei."
+}
