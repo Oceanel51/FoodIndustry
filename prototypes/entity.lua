@@ -3,8 +3,8 @@ data:extend(
 
   {
     type = "assembling-machine",
-    name = "basic-farmland",
-    icon = "__FoodIndustry__/graphics/icons/entities/basic-farmland.png",
+    name = "fi-basic-farmland",
+    icon = "__FoodIndustry__/graphics/icons/entities/fi-basic-farmland.png",
     icon_size = 32,
     flags = {"placeable-neutral", "placeable-player", "player-creation", "not-repairable"},
     minable = {hardness = 0.2, mining_time = 0.5},
@@ -24,7 +24,7 @@ data:extend(
       layers =
       {
         {
-			filename = "__FoodIndustry__/graphics/entity/farms/basic-farmland.png",
+			filename = "__FoodIndustry__/graphics/entity/farms/fi-basic-farmland.png",
 			priority = "high",
 			width = 559,
 			height = 467,
@@ -75,11 +75,11 @@ data:extend(
 
 	{
     type = "assembling-machine",
-    name = "greenhouse",
-    icon = "__FoodIndustry__/graphics/icons/entities/greenhouse.png",
+    name = "fi-greenhouse",
+    icon = "__FoodIndustry__/graphics/icons/entities/fi-greenhouse.png",
     icon_size = 32,    
 	flags = {"placeable-neutral", "placeable-player", "player-creation"},
-    minable = {hardness = 0.5, mining_time = 3, result = "greenhouse"},
+    minable = {hardness = 0.5, mining_time = 3, result = "fi-greenhouse"},
     max_health = 400,
     resistances =
     {
@@ -112,7 +112,7 @@ data:extend(
       layers =
       {
         {
-			filename = "__FoodIndustry__/graphics/entity/farms/greenhouse.png",
+			filename = "__FoodIndustry__/graphics/entity/farms/fi-greenhouse.png",
 			priority = "high",
 			width = 480,
 			height = 380,
@@ -157,11 +157,11 @@ data:extend(
   
   {
     type = "assembling-machine",
-    name = "big-greenhouse",
-    icon = "__FoodIndustry__/graphics/icons/entities/big-greenhouse.png",
+    name = "fi-big-greenhouse",
+    icon = "__FoodIndustry__/graphics/icons/entities/fi-big-greenhouse.png",
     icon_size = 32,    
 	flags = {"placeable-neutral", "placeable-player", "player-creation"},
-    minable = {hardness = 0.5, mining_time = 4, result = "big-greenhouse"},
+    minable = {hardness = 0.5, mining_time = 4, result = "fi-big-greenhouse"},
     max_health = 600,
     resistances =
     {
@@ -194,7 +194,7 @@ data:extend(
       layers =
       {
         {
-			filename = "__FoodIndustry__/graphics/entity/farms/big-greenhouse.png",
+			filename = "__FoodIndustry__/graphics/entity/farms/fi-big-greenhouse.png",
 			priority = "high",
 			width = 768,
 			height = 608,
@@ -240,11 +240,11 @@ data:extend(
   
   {
     type = "assembling-machine",
-    name = "incubator",
-    icon = "__FoodIndustry__/graphics/icons/entities/incubator.png",
+    name = "fi-incubator",
+    icon = "__FoodIndustry__/graphics/icons/entities/fi-incubator.png",
     icon_size = 32,    
 	flags = {"placeable-neutral", "placeable-player", "player-creation"},
-    minable = {hardness = 0.6, mining_time = 3, result = "incubator"},
+    minable = {hardness = 0.6, mining_time = 3, result = "fi-incubator"},
     max_health = 700,
     resistances =
     {
@@ -277,7 +277,7 @@ data:extend(
       layers =
       {
         {
-			filename = "__FoodIndustry__/graphics/entity/farms/incubator.png",
+			filename = "__FoodIndustry__/graphics/entity/farms/fi-incubator.png",
 			priority = "high",
 			width = 672,
 			height = 532,

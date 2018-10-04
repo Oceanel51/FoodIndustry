@@ -326,9 +326,9 @@ data:extend(
 	
 	{
     type = "recipe",
-    name = "basic-farmland",
+    name = "fi-basic-farmland",
     enabled = true,
-	icon = "__FoodIndustry__/graphics/icons/entities/basic-farmland.png",
+	icon = "__FoodIndustry__/graphics/icons/entities/fi-basic-farmland.png",
 	icon_size = 32,
 	category = "crafting",
 	subgroup = "food-machines",
@@ -340,7 +340,7 @@ data:extend(
     },
       results = 
 	{
-		{"basic-farmland", 2}
+		{"fi-basic-farmland", 2}
 	}
     },
 	{
@@ -387,9 +387,9 @@ data:extend(
     },
 	{
     type = "recipe",
-    name = "greenhouse",
+    name = "fi-greenhouse",
     enabled = false,
-	icon = "__FoodIndustry__/graphics/icons/entities/greenhouse.png",
+	icon = "__FoodIndustry__/graphics/icons/entities/fi-greenhouse.png",
 	icon_size = 32,
 	category = "crafting",
 	subgroup = "food-machines",
@@ -403,42 +403,42 @@ data:extend(
     },
       results = 
 	{
-		{"greenhouse", 1}
+		{"fi-greenhouse", 1}
 	}
     },
 	{
     type = "recipe",
-    name = "big-greenhouse",
+    name = "fi-big-greenhouse",
     enabled = false,
-	icon = "__FoodIndustry__/graphics/icons/entities/big-greenhouse.png",
+	icon = "__FoodIndustry__/graphics/icons/entities/fi-big-greenhouse.png",
 	icon_size = 32,
 	category = "crafting",
 	subgroup = "food-machines",
 	energy_required = 15.0,
     ingredients =
     {
-		{"greenhouse", 4},
+		{"fi-greenhouse", 4},
 		{"advanced-circuit", 8},
 		{"stone-brick", 20},		
 		{"crystal", 12},
     },
       results = 
 	{
-		{"big-greenhouse", 1}
+		{"fi-big-greenhouse", 1}
 	}
     },
 	{
     type = "recipe",
-    name = "incubator",
+    name = "fi-incubator",
     enabled = false,
-	icon = "__FoodIndustry__/graphics/icons/entities/incubator.png",
+	icon = "__FoodIndustry__/graphics/icons/entities/fi-incubator.png",
 	icon_size = 32,
 	category = "crafting-with-fluid",
 	subgroup = "food-machines",
 	energy_required = 30.0,
     ingredients =
     {
-		{"big-greenhouse", 1},
+		{"fi-big-greenhouse", 1},
 		{"productivity-module-3", 1},
 		{"electric-furnace", 8},
 		{"fertilizer", 40},
@@ -446,7 +446,7 @@ data:extend(
     },
       results = 
 	{
-		{"incubator", 1}
+		{"fi-incubator", 1}
 	}
     },	
 	{

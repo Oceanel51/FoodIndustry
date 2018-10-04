@@ -283,7 +283,7 @@ end)
 
 script.on_event(defines.events.on_built_entity, function(event)
 	local entity = event.created_entity
-		if (entity.name == "basic-farmland") and entity.burner and entity.burner.remaining_burning_fuel then 
+		if (entity.name == "fi-basic-farmland") and entity.burner and entity.burner.remaining_burning_fuel then 
 			event.created_entity.burner.currently_burning="wood"
 			event.created_entity.burner.remaining_burning_fuel=2000000				
 		end

@@ -536,7 +536,7 @@ data:extend({
     prerequisites = {"landfill", "electronics", "logistics", "potato-growth", "corn-growth", "soy-growth", "rapeseed-growth"},
     effects =
     {  
-		{type = "unlock-recipe", recipe = "greenhouse"},
+		{type = "unlock-recipe", recipe = "fi-greenhouse"},
 		{type = "unlock-recipe", recipe = "lettuce-growth-w"},
 		{type = "unlock-recipe", recipe = "cucumber-growth-w"},
 		{type = "unlock-recipe", recipe = "tomato-growth-w"},
@@ -566,7 +566,7 @@ data:extend({
     prerequisites = {"advanced-farming", "advanced-electronics"},
     effects =
     {  
-		{type = "unlock-recipe", recipe = "big-greenhouse"},
+		{type = "unlock-recipe", recipe = "fi-big-greenhouse"},
     },
     unit =
     {
@@ -590,7 +590,7 @@ data:extend({
     prerequisites = {"advanced-farming-2", "productivity-module-3", "fertilization-2", "advanced-material-processing-2"},
     effects =
     {  
-		{type = "unlock-recipe", recipe = "incubator"},
+		{type = "unlock-recipe", recipe = "fi-incubator"},
     },
     unit =
     {
