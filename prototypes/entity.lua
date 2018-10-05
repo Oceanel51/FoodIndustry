@@ -421,11 +421,11 @@ data:extend(
 	animation = {
         layers = {
           {
-            filename = "__base__/graphics/entity/electric-furnace/electric-furnace-base.png",
+            filename = "__FoodIndustry__/graphics/entity/machines/fi-electric-composter.png",
             frame_count = 1,
             height = 100,
             hr_version = {
-              filename = "__base__/graphics/entity/electric-furnace/hr-electric-furnace.png",
+              filename = "__FoodIndustry__/graphics/entity/machines/hr-fi-electric-composter.png",
               frame_count = 1,
               height = 219,
               priority = "high",
@@ -435,7 +435,7 @@ data:extend(
                 0.1796875
               },
               width = 239,
-			  tint = {r=0.5,g=0.8,b=1,a=0.5}
+			  --tint = {r=0.5,g=0.8,b=1,a=0.5}
             },
             priority = "high",
             shift = {
@@ -444,16 +444,16 @@ data:extend(
             },			 
 			scale = 1.2,
             width = 129,
-			tint = {r=0.5,g=0.8,b=1,a=0.5}
+			--tint = {r=0.5,g=0.8,b=1,a=0.5}
           },
           {
             draw_as_shadow = true,
-            filename = "__base__/graphics/entity/electric-furnace/electric-furnace-shadow.png",
+            filename = "__FoodIndustry__/graphics/entity/machines/fi-electric-composter-shadow.png",
             frame_count = 1,
             height = 100,
             hr_version = {
               draw_as_shadow = true,
-              filename = "__base__/graphics/entity/electric-furnace/hr-electric-furnace-shadow.png",
+              filename = "__FoodIndustry__/graphics/entity/machines/hr-fi-electric-composter-shadow.png",
               frame_count = 1,
               height = 171,
               priority = "high",
