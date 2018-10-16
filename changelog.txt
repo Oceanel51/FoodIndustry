@@ -1,3 +1,11 @@
+0.16.29
+	New FI logo (comments and suggestions are welcome in https://github.com/Oceanel51/Food-Industry/issues)
+	Added new graphics for entity: fi-greenhouse, fi-big-greenhouse, fi-incubator, fi-electric-composter
+	Changed technology name electric-composter to electric-composting
+	-Changed technologies icons: electric-composting
+	Added new item: FI Logo Table (fi-logo-table, fi-logo-table-light)
+	-Fixed some bugs
+	-Little ballance
 0.16.28
 	Add compost as fuel to fi-basic-farmland
 	Fix names: fi-basic-farmland, fi-greenhouse, fi-big-greenhouse, fi-incubator

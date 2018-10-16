@@ -744,13 +744,13 @@ data:extend({
   },
   {
     type = "technology",
-    name = "electric-composter",
-    icon = "__FoodIndustry__/graphics/technology/electric-composter.png",
+    name = "electric-composting",
+    icon = "__FoodIndustry__/graphics/technology/electric-composting.png",
     icon_size = 128,
     prerequisites = {"fertilization-2", "advanced-material-processing-2", "speed-module-2"},
     effects =
     {  
-		{type = "unlock-recipe", recipe = "electric-composter"},
+		{type = "unlock-recipe", recipe = "fi-electric-composter"},
 		{type = "unlock-recipe", recipe = "compost-raw-straw"},
 		{type = "unlock-recipe", recipe = "compost-straw"},
 		{type = "unlock-recipe", recipe = "compost-compressed-straw"},

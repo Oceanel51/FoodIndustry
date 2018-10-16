@@ -364,9 +364,9 @@ data:extend(
     },
 	{
     type = "recipe",
-    name = "electric-composter",
+    name = "fi-electric-composter",
     enabled = false,
-	icon = "__FoodIndustry__/graphics/icons/entities/electric-composter.png",
+	icon = "__FoodIndustry__/graphics/icons/entities/fi-electric-composter.png",
 	icon_size = 32,
 	category = "crafting-with-fluid",
 	subgroup = "food-machines",
@@ -382,7 +382,7 @@ data:extend(
     },
       results = 
 	{
-		{"electric-composter", 1}
+		{"fi-electric-composter", 1}
 	}
     },
 	{

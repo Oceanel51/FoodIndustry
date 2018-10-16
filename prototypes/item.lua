@@ -138,13 +138,13 @@ data:extend(
   },
   {
     type = "item",
-    name = "electric-composter",
-    icon = "__FoodIndustry__/graphics/icons/entities/electric-composter.png",
+    name = "fi-electric-composter",
+    icon = "__FoodIndustry__/graphics/icons/entities/fi-electric-composter.png",
     icon_size = 32,
     flags = {"goes-to-quickbar"},
     subgroup = "food-machines",
     order = "w-a-f",
-	place_result = "electric-composter",
+	place_result = "fi-electric-composter",
     stack_size = 20
   },
   

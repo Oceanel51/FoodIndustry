@@ -394,11 +394,11 @@ data:extend(
   },
   {
     type = "furnace",
-    name = "electric-composter",
-    icon = "__FoodIndustry__/graphics/icons/entities/electric-composter.png",
+    name = "fi-electric-composter",
+    icon = "__FoodIndustry__/graphics/icons/entities/fi-electric-composter.png",
     icon_size = 32,
     flags = {"placeable-neutral", "placeable-player", "player-creation"},
-    minable = {hardness = 0.3, mining_time = 3, result = "electric-composter"},
+    minable = {hardness = 0.3, mining_time = 3, result = "fi-electric-composter"},
     max_health = 500,
     resistances =
     {      
@@ -422,58 +422,122 @@ data:extend(
         layers = {
           {
             filename = "__FoodIndustry__/graphics/entity/machines/fi-electric-composter.png",
+            priority = "high",
+            width = 129,
+            height = 371,
             frame_count = 1,
-            height = 100,
+            shift = {0.421875,0},
             hr_version = {
-              filename = "__FoodIndustry__/graphics/entity/machines/hr-fi-electric-composter.png",
+              filename = "__FoodIndustry__/graphics/entity/machines/fi-electric-composter.png",
               frame_count = 1,
-              height = 219,
+              width = 502,
+              height = 371,
               priority = "high",
               scale = 0.6,
-              shift = {
-                0.0234375,
-                0.1796875
-              },
-              width = 239,
+              shift = {0.0234375,0.1796875},
 			  --tint = {r=0.5,g=0.8,b=1,a=0.5}
             },
-            priority = "high",
-            shift = {
-              0.421875,
-              0
-            },			 
-			scale = 1.2,
-            width = 129,
+			scale = 1.0,
 			--tint = {r=0.5,g=0.8,b=1,a=0.5}
           },
           {
             draw_as_shadow = true,
             filename = "__FoodIndustry__/graphics/entity/machines/fi-electric-composter-shadow.png",
+            priority = "high",
+            width = 502
+            height = 371,
             frame_count = 1,
-            height = 100,
+            shift = {0.421875,0},
+			scale = 1.0,
             hr_version = {
               draw_as_shadow = true,
-              filename = "__FoodIndustry__/graphics/entity/machines/hr-fi-electric-composter-shadow.png",
-              frame_count = 1,
-              height = 171,
+              filename = "__FoodIndustry__/graphics/entity/machines/fi-electric-composter-shadow.png",
               priority = "high",
+              width = 502
+              height = 371,
+              frame_count = 1,
               scale = 0.6,
-              shift = {
-                0.3515625,
-                0.2421875
-              },
-              width = 227
+              shift = {0.3515625,0.2421875},
             },
-            priority = "high",
-            shift = {
-              0.421875,
-              0
-            },
-			scale = 1.2,
-            width = 129			
           }
         }
       },
+	  
+-----------------
+    working_visualisations =
+    {
+      {
+        animation =
+        {
+          filename = "__base__/graphics/entity/electric-furnace/electric-furnace-heater.png",
+          priority = "high",
+          width = 25,
+          height = 15,
+          frame_count = 12,
+          animation_speed = 0.5,
+          shift = {0.015625, 0.890625},
+          hr_version =
+          {
+            filename = "__base__/graphics/entity/electric-furnace/hr-electric-furnace-heater.png",
+            priority = "high",
+            width = 60,
+            height = 56,
+            frame_count = 12,
+            animation_speed = 0.5,
+            shift = util.by_pixel(1.75, 32.75),
+            scale = 0.5
+          }
+        },
+        light = {intensity = 0.4, size = 6, shift = {0.0, 1.0}, color = {r = 1.0, g = 1.0, b = 1.0}}
+      },
+      {
+        animation =
+        {
+          filename = "__base__/graphics/entity/electric-furnace/electric-furnace-propeller-1.png",
+          priority = "high",
+          width = 19,
+          height = 13,
+          frame_count = 4,
+          animation_speed = 0.5,
+          shift = {-0.671875, -0.640625},
+          hr_version =
+          {
+            filename = "__base__/graphics/entity/electric-furnace/hr-electric-furnace-propeller-1.png",
+            priority = "high",
+            width = 37,
+            height = 25,
+            frame_count = 4,
+            animation_speed = 0.5,
+            shift = util.by_pixel(-20.5, -18.5),
+            scale = 0.5
+          }
+        }
+      },
+      {
+        animation =
+        {
+          filename = "__base__/graphics/entity/electric-furnace/electric-furnace-propeller-2.png",
+          priority = "high",
+          width = 12,
+          height = 9,
+          frame_count = 4,
+          animation_speed = 0.5,
+          shift = {0.0625, -1.234375},
+          hr_version =
+          {
+            filename = "__base__/graphics/entity/electric-furnace/hr-electric-furnace-propeller-2.png",
+            priority = "high",
+            width = 23,
+            height = 15,
+            frame_count = 4,
+            animation_speed = 0.5,
+            shift = util.by_pixel(3.5, -38),
+            scale = 0.5
+          }
+        }
+      }
+    },
+-----------------
     open_sound = { filename = "__base__/sound/machine-open.ogg", volume = 0.85 },
     close_sound = { filename = "__base__/sound/machine-close.ogg", volume = 0.75 },
     working_sound =
@@ -511,7 +575,7 @@ data:extend(
   
   
   
-
+  ---- Cookers
   {
     type = "assembling-machine",
     name = "burner-cooker",
