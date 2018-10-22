@@ -5,7 +5,7 @@ data:extend(
     name = "food-industry",
     order = "e-a",
     inventory_order = "c-a",
-    icon = "__FoodIndustry__/graphics/icons/corn-cob-hd.png",
+    icon = "__FoodIndustry__/graphics/icons/fi-logo-icon.png",
     icon_size = 128,
   },
   {

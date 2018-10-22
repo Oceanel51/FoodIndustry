@@ -754,7 +754,7 @@ data:extend({
 		{type = "unlock-recipe", recipe = "compost-raw-straw"},
 		{type = "unlock-recipe", recipe = "compost-straw"},
 		{type = "unlock-recipe", recipe = "compost-compressed-straw"},
-		{type = "unlock-recipe", recipe = "compost-lettuce"},		
+		{type = "unlock-recipe", recipe = "compost-lettuce"},
 		{type = "unlock-recipe", recipe = "compost-cucumber"},
 		{type = "unlock-recipe", recipe = "compost-tomato"},
 		{type = "unlock-recipe", recipe = "compost-potato"},
