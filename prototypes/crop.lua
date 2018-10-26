@@ -23,13 +23,13 @@ for index, crop in pairs(crops) do
 				icon_size = 32,
 				flags = {"goes-to-main-inventory"},
 				subgroup = crop[1],
-				order = "w-c-"..index.."-y",
+				order = "w-d-"..index.."-y",
 				stack_size = 10
 			},
 			{
 				type = "recipe",
 				name = crop[1],
-				order = "w-c-b-x",
+				order = "w-d-b-x",
 				enabled = true,
 				icon = "__FoodIndustry__/graphics/icons/items/"..crop[1]..".png",
 				icon_size = 32,
@@ -59,13 +59,13 @@ for index, crop in pairs(crops) do
 				icon_size = 32,
 				flags = {"goes-to-main-inventory"},
 				subgroup = crop[1],
-				order = "w-c-"..index.."-z",
+				order = "w-d-"..index.."-z",
 				stack_size = 100
 			},
 			{
 				type = "recipe",
 				name = crop[1].."-seeds",
-				order = "w-c-b-y",
+				order = "w-d-b-y",
 				enabled = true,
 				icon = "__FoodIndustry__/graphics/icons/items/"..crop[1].."-seeds.png",
 				icon_size = 32,
@@ -94,7 +94,7 @@ for index, crop in pairs(crops) do
 				icon_size = 32,
 				flags = {"goes-to-main-inventory"},
 				subgroup = crop[1],
-				order = "w-c-"..index.."-x",
+				order = "w-d-"..index.."-x",
 				stack_size = crop[7],
 				capsule_action = {
 					attack_parameters = {
@@ -135,7 +135,7 @@ for index, crop in pairs(crops) do
 				icon_size = 32,
 				flags = {"goes-to-main-inventory"},
 				subgroup = crop[1],
-				order = "w-c-"..index.."-x",
+				order = "w-d-"..index.."-x",
 				stack_size = crop[7],
 				fuel_category = "plant",
 				fuel_value = crop[12],
@@ -152,12 +152,12 @@ for index, crop in pairs(crops) do
 			type = "item-subgroup",
 			name = crop[1],
 			group = "food-industry",
-			order = "w-c-"..index,
+			order = "w-d-"..index,
 		},
 		{
 			type = "recipe",
 			name = crop[1].."-growth",
-			order = "w-c-a-a",
+			order = "w-d-a-a",
 			enabled = false,
 			icon = "__FoodIndustry__/graphics/icons/items/"..crop[1]..str..".png",
 			icon_size = 32,
@@ -180,7 +180,7 @@ for index, crop in pairs(crops) do
 		{
 			type = "recipe",
 			name = crop[1].."-growth-w",
-			order = "w-c-a-b",
+			order = "w-d-a-b",
 			enabled = false,
 			icon = "__FoodIndustry__/graphics/icons/items/"..crop[1]..str..".png",
 			icon_size = 32,
@@ -203,7 +203,7 @@ for index, crop in pairs(crops) do
 		{
 			type = "recipe",
 			name = crop[1].."-growth-c",
-			order = "w-c-a-c",
+			order = "w-d-a-c",
 			enabled = false,
 			icon = "__FoodIndustry__/graphics/icons/items/"..crop[1]..str..".png",
 			icon_size = 32,
@@ -226,7 +226,7 @@ for index, crop in pairs(crops) do
 		{
 			type = "recipe",
 			name = crop[1].."-growth-f",
-			order = "w-c-a-d",
+			order = "w-d-a-d",
 			enabled = false,
 			icon = "__FoodIndustry__/graphics/icons/items/"..crop[1]..str..".png",
 			icon_size = 32,

@@ -1,15 +1,25 @@
+---------------------------------------------------------------------------------------------------
 0.16.29
-	New FI logo (comments and suggestions are welcome in https://github.com/Oceanel51/Food-Industry/issues)
-	Added new graphics for entity: fi-greenhouse, fi-big-greenhouse, fi-incubator, fi-electric-composter
+	New FI logo (discussions and suggestions are welcome in https://mods.factorio.com/mod/FoodIndustry/discussion or in https://github.com/Oceanel51/Food-Industry/issues)
+	Added new graphics for entity: fi-electric-composter, fi-greenhouse, fi-big-greenhouse, fi-incubator (prototype)
+	Added simple animation to fi-basic-farmland
+	Added new item:
+	- FI Logo Table (fi-logo-table), just decor
+	- FI Logo Lamp (fi-logo-table-lamp), decor and light, support vanila colors
+	Added fi-table-wood1 of "FI logo" on fi-composter and fi-basic-farmland
+	Added smoke and stone-furnace-fire animations for burner-cooker
+	Added electric-furnace-heater scale 0.7 and light glowing for electric-cooker
 	Changed technology name electric-composter to electric-composting
-	-Changed technologies icons: electric-composting
-	Added new item: FI Logo Table (fi-logo-table, fi-logo-table-light)
-	-Fixed some bugs
-	-Little ballance
+	Drain energy ballance for farms
+	Added emissions: fi-greenhouse -6PU, fi-big-greenhouse -14PU, fi-incubator -20PU
+	Fixed some bugs
+	Added changelog into mod directory
+---------------------------------------------------------------------------------------------------
 0.16.28
 	Add compost as fuel to fi-basic-farmland
 	Fix names: fi-basic-farmland, fi-greenhouse, fi-big-greenhouse, fi-incubator
 	More green
+---------------------------------------------------------------------------------------------------
 0.16.27
 	Added RU localisation by Oceanello
 	Decreased power consumption for greenhouses

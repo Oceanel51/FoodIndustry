@@ -11,3 +11,7 @@ require("prototypes.category")
 require("prototypes.achievements")
 require("prototypes.plants")
 
+require("prototypes.decor.tables-entity")
+require("prototypes.decor.tables-recipe")
+require("prototypes.decor.tables-item")
+require("prototypes.decor.tables-category")
