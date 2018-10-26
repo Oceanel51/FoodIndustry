@@ -1,0 +1,101 @@
+---------------------------------------------------------------------------------------------------
+0.16.29
+	New FI logo (discussions and suggestions are welcome in https://mods.factorio.com/mod/FoodIndustry/discussion or in https://github.com/Oceanel51/Food-Industry/issues)
+	Added new graphics for entity: fi-electric-composter, fi-greenhouse, fi-big-greenhouse, fi-incubator (prototype)
+	Added simple animation to fi-basic-farmland
+	Added new item:
+	- FI Logo Table (fi-logo-table), just decor
+	- FI Logo Lamp (fi-logo-table-lamp), decor and light, support vanila colors
+	Added fi-table-wood1 of "FI logo" on fi-composter and fi-basic-farmland
+	Added smoke and stone-furnace-fire animations for burner-cooker
+	Added electric-furnace-heater scale 0.7 and light glowing for electric-cooker
+	Changed technology name electric-composter to electric-composting
+	Drain energy ballance for farms
+	Added emissions: fi-greenhouse -6PU, fi-big-greenhouse -14PU, fi-incubator -20PU
+	Fixed some bugs
+	Added changelog into mod directory
+---------------------------------------------------------------------------------------------------
+0.16.28
+	Add compost as fuel to fi-basic-farmland
+	Fix names: fi-basic-farmland, fi-greenhouse, fi-big-greenhouse, fi-incubator
+	More green
+---------------------------------------------------------------------------------------------------
+0.16.27
+	Added RU localisation by Oceanello
+	Decreased power consumption for greenhouses
+0.16.26
+	Fixed compatability with angel's bio industries composter
+0.16.25
+	Fixed some bugs
+0.16.24
+	Fixed some bugs
+	Made canola oil cheaper
+0.16.23
+	Food consumption balancing -> 2.5x less when standing and running, 1.47x more when running with full power armor mk2
+	Added settings for armor and slot energy increase
+	Changed durability of light armor from 1000 to 2000
+0.16.22
+	Removed slowness and suicide capsules
+	More bugfixing
+0.16.21
+	More bugfixing (I hope)
+0.16.20
+	Now compatible with alien-biomes-hr-terrain
+0.16.19
+	Fixed some multiplayer bugs
+	Rebalanced capsules
+0.16.18
+	Tons of small fixes
+	Now it's possible to refuel basic farms with landfill
+	Added 10 effect capsules
+	Redone GUI
+0.16.17
+	Removad productivity from plant growing to prevent inconsistencies
+0.16.16
+	Changed farm/greenhouse/incubator entity type from furnace to assembliong-machine to fix a lot issues
+	Nerfed fertilizer oil cracking
+0.16.15
+	Fixed burgers and food capsules not being craftable
+0.16.14
+	Fixed Omniwood replacing wild plant drops with omniwood
+0.16.13
+	Redone plant generation so it no longer depends on biome and should be more reliable
+	Fixed world generation settings
+0.16.12
+	~ADDED RAPESEED~
+	Few achievement tweaks and added 2 more
+0.16.11
+	Fixed some potential compatability issues
+	Changed infinite research cycle count formula
+0.16.10
+	Fixed food energy efficiency research
+	Rebalanced food energy efficiency research
+0.16.9
+	Fixed a bug that computing the energy usage crashed the game when in multiplayer
+0.16.8
+	Fixed the bug
+0.16.7
+	Redone energy and fullness calculation
+	Added increased food consumption when running
+	Contains a bug which makes the game unplayable
+0.16.6
+	Fixed some issues in lang file
+	Fixed a bug causing the GUI values to be rendered for the wrong player in multiplayer
+0.16.5
+	Fixed a bug, which caused productivity modules to be unusable for oil refining and sulfuric acid
+	Added wild plant generation settings when creating a new world
+	Wild plants are now visible on map
+	Balancing
+0.16.4
+	Added experimental biter flesh removal
+0.16.3
+	Minor food balancing
+	Fixed crafting recipe for food science pack
+0.16.2
+	Some fixes
+0.16.1
+	reworked biter meat drops
+	GUI is on deault at the top
+	added fish back into world, but made them not edible
+0.16.0
+	initial upload

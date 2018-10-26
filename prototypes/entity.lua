@@ -1,6 +1,8 @@
 data:extend(
 {
 
+-------------------------------------- Farms ----------------------------------------
+
   {
     type = "assembling-machine",
     name = "fi-basic-farmland",
@@ -21,8 +23,7 @@ data:extend(
 	collision_mask = {"item-layer", "object-layer", "water-tile", "resource-layer", "player-layer"},
 	animation =
 	{
-      layers =
-      {
+      layers = {
         {
 			filename = "__FoodIndustry__/graphics/entity/farms/fi-basic-farmland.png",
 			priority = "high",
@@ -32,8 +33,80 @@ data:extend(
 			frame_count = 1,
 			line_length = 1,
 			shift = {0.45, 0.0},
+        },
+        {
+			filename = "__FoodIndustry__/graphics/entity/fi-table-wood1.png",
+			priority = "high",
+			width = 168,
+			height = 138,
+			scale = 0.16,
+			frame_count = 1,
+			shift = {-2.03, 2.11},
+        },
+        {
+			draw_as_shadow = true,
+            filename = "__FoodIndustry__/graphics/entity/fi-table-wood1-shadow.png",
+			priority = "high",
+			width = 398,
+			height = 201,
+			scale = 0.16,
+			frame_count = 1,
+			shift = {-1.40, 2.24},
         }
       }
+    },
+    working_visualisations =
+    {
+      {
+        animation =
+        {
+            filename = "__FoodIndustry__/graphics/entity/farms/fi-basic-farmland-working2.png",
+            priority = "high",
+            width = 481,
+            height = 337,
+            line_length = 4,
+            frame_count = 12,
+            animation_speed = 0.14,
+            shift = {0.722, -0.426},
+            scale = 0.4,
+			run_mode = "forward-then-backward",
+        }
+        --[[animation =
+        {
+            filename = "__FoodIndustry__/graphics/entity/farms/fi-basic-farmland-working.png",
+            priority = "high",
+            width = 481,
+            height = 337,
+            frame_count = 24,
+            line_length = 4,
+            animation_speed = 0.08,
+            shift = {0.722, -0.426},
+            scale = 0.4,
+			--repeat_count = 1,
+        }]]
+      },
+      {
+        animation =
+        {
+			filename = "__FoodIndustry__/graphics/entity/fi-table-wood1.png",
+			priority = "high",
+			width = 168,
+			height = 138,
+			scale = 0.16,
+			frame_count = 1,
+			shift = {-2.03, 2.11},
+        },
+        {
+			draw_as_shadow = true,
+            filename = "__FoodIndustry__/graphics/entity/fi-table-wood1-shadow.png",
+			priority = "high",
+			width = 398,
+			height = 201,
+			scale = 0.16,
+			frame_count = 1,
+			shift = {-1.40, 2.24},
+        }
+      },
     },
     open_sound = { filename = "__base__/sound/machine-open.ogg", volume = 0.85 },
     close_sound = { filename = "__base__/sound/machine-close.ogg", volume = 0.75 },
@@ -70,14 +143,14 @@ data:extend(
     order = "d-a",
     allowed_effects = {}
   },  
-  
 
+---------------------- fi-greenhouse
 
 	{
     type = "assembling-machine",
     name = "fi-greenhouse",
-    icon = "__FoodIndustry__/graphics/icons/entities/fi-greenhouse.png",
-    icon_size = 32,    
+    icon = "__FoodIndustry__/graphics/icons/entities/fi-greenhouse-icon.png",
+    icon_size = 64,
 	flags = {"placeable-neutral", "placeable-player", "player-creation"},
     minable = {hardness = 0.5, mining_time = 3, result = "fi-greenhouse"},
     max_health = 400,
@@ -104,8 +177,8 @@ data:extend(
       },
       off_when_no_fluid_recipe = false
     },
-    selection_box = {{-2.25, -2.25}, {2.25, 2.25}}, 
-    collision_box = {{-2.25, -2.25}, {2.25, 2.25}},    
+    selection_box = {{-2.25, -2.25}, {2.25, 2.25}},
+    collision_box = {{-2.25, -2.25}, {2.25, 2.25}},
 	collision_mask = {"item-layer", "object-layer", "water-tile", "player-layer"},
 	animation =
 	{
@@ -114,14 +187,114 @@ data:extend(
         {
 			filename = "__FoodIndustry__/graphics/entity/farms/fi-greenhouse.png",
 			priority = "high",
-			width = 480,
-			height = 380,
-			scale = 0.5,
+			width = 426/2,
+			height = 438/2,
+			scale = 0.351*2,
 			frame_count = 1,
-			line_length = 1,
-			shift = {0.0, 0.0},
+			shift = {-0.022, -0.008},
+            hr_version = {
+			  filename = "__FoodIndustry__/graphics/entity/farms/hr-fi-greenhouse.png",
+			  priority = "high",
+			  width = 426,
+			  height = 438,
+			  scale = 0.351,
+			  frame_count = 1,
+			  shift = {-0.022, -0.008},
+            }
+        },
+        {
+            filename = "__FoodIndustry__/graphics/entity/fi-mashines-propeller1.png",
+            priority = "high",
+            width = 97,
+            height = 71,
+            frame_count = 1,
+            shift = {-1.14, 0.28},
+            scale = 0.32,
+            hr_version = {
+              filename = "__FoodIndustry__/graphics/entity/hr-fi-mashines-propeller1.png",
+              frame_count = 1,
+              width = 192,
+              height = 138,
+              priority = "high",
+              scale = 0.32/2,
+              shift = {-1.14, 0.28},
+            }
+        },
+        {
+			draw_as_shadow = true,
+            filename = "__FoodIndustry__/graphics/entity/farms/fi-greenhouse-shadow.png",
+			priority = "high",
+			width = 610/2,
+			height = 442/2,
+			scale = 0.351*2,
+			frame_count = 1,
+			shift = {0.992, 0.012},
+            hr_version = {
+			  draw_as_shadow = true,
+			  filename = "__FoodIndustry__/graphics/entity/farms/hr-fi-greenhouse-shadow.png",
+			  priority = "high",
+			  width = 610,
+			  height = 442,
+			  scale = 0.351,
+			  frame_count = 1,
+			  shift = {0.992, 0.012},
+            }
         }
       }
+    },
+    working_visualisations = {
+      {
+        animation =
+        {
+            filename = "__FoodIndustry__/graphics/entity/farms/fi-greenhouse-working.png",
+            priority = "high",
+            width = 426/2,
+            height = 438/2,
+            line_length = 4,
+            frame_count = 8,
+            animation_speed = 0.06,
+            shift = {-0.022, -0.008},
+            scale = 0.351*2,
+            hr_version =
+            {
+              filename = "__FoodIndustry__/graphics/entity/farms/hr-fi-greenhouse-working.png",
+              priority = "high",
+              width = 426,
+              height = 438,
+              line_length = 4,
+              frame_count = 8,
+              animation_speed = 0.06,
+              shift = {-0.022, -0.008},
+              scale = 0.351
+            }
+        }
+      },
+      {
+        animation =
+        {
+          filename = "__FoodIndustry__/graphics/entity/fi-mashines-propeller1-working.png",
+          priority = "high",
+          width = 97,
+          height = 71,
+          line_length = 5,
+          frame_count = 17,
+          animation_speed = 0.4,
+          shift = {-1.14, 0.28},
+          scale = 0.32,
+          hr_version =
+          {
+            filename = "__FoodIndustry__/graphics/entity/hr-fi-mashines-propeller1-working.png",
+            priority = "high",
+            width = 192,
+            height = 138,
+            line_length = 5,
+            frame_count = 17,
+            animation_speed = 0.4,
+            shift = {-1.14, 0.28},
+            scale = 0.32/2
+          }
+        }
+      },
     },
     open_sound = { filename = "__base__/sound/machine-open.ogg", volume = 0.85 },
     close_sound = { filename = "__base__/sound/machine-close.ogg", volume = 0.75 },
@@ -141,7 +314,9 @@ data:extend(
 	energy_source =
     {
 		type = "electric",
-		usage_priority = "secondary-input"
+		usage_priority = "secondary-input",
+        drain = "25kW",
+        emissions = -0.06, -- the "-" means it eats pollution. Absorbs about 6 PU
     },
     energy_usage = "150kW", 
 	ingredient_count = 1,
@@ -154,11 +329,13 @@ data:extend(
     order = "d-b",
     allowed_effects = {"consumption"}
   },
-  
+
+---------------------- fi-big-greenhouse
+
   {
     type = "assembling-machine",
     name = "fi-big-greenhouse",
-    icon = "__FoodIndustry__/graphics/icons/entities/fi-big-greenhouse.png",
+    icon = "__FoodIndustry__/graphics/icons/entities/fi-big-greenhouse-icon.png",
     icon_size = 32,    
 	flags = {"placeable-neutral", "placeable-player", "player-creation"},
     minable = {hardness = 0.5, mining_time = 4, result = "fi-big-greenhouse"},
@@ -193,17 +370,163 @@ data:extend(
 	{
       layers =
       {
-        {
+          {
 			filename = "__FoodIndustry__/graphics/entity/farms/fi-big-greenhouse.png",
 			priority = "high",
-			width = 768,
-			height = 608,
-			scale = 0.5,
+			width = 572/2,
+			height = 292,
+			scale = 0.43*2,
 			frame_count = 1,
 			line_length = 1,
-			shift = {0.0, 0.0},
-        }
+			shift = {0.0, 0.05},
+			hr_version = {
+			  filename = "__FoodIndustry__/graphics/entity/farms/hr-fi-big-greenhouse.png",
+			  priority = "high",
+			  width = 572,
+			  height = 583,
+			  scale = 0.43,
+			  frame_count = 1,
+			  line_length = 1,
+			  shift = {0.0, 0.05},
+			}
+          },
+          {
+            filename = "__FoodIndustry__/graphics/entity/fi-mashines-propeller1.png",
+            priority = "high",
+            width = 97,
+            height = 71,
+            frame_count = 1,
+            shift = {-2.27, 0.30},
+            scale = 0.32,
+			hr_version = {
+			  filename = "__FoodIndustry__/graphics/entity/hr-fi-mashines-propeller1.png",
+			  priority = "high",
+			  width = 192,
+			  height = 138,
+			  frame_count = 1,
+			  shift = {-2.27, 0.30},
+			  scale = 0.32/2,
+			}
+          },
+          {
+            filename = "__FoodIndustry__/graphics/entity/fi-mashines-propeller1.png",
+            priority = "high",
+            width = 97,
+            height = 71,
+            frame_count = 1,
+            shift = {-2.27, 1.20},
+            scale = 0.32,
+			hr_version = {
+			  filename = "__FoodIndustry__/graphics/entity/hr-fi-mashines-propeller1.png",
+			  priority = "high",
+			  width = 192,
+			  height = 138,
+			  frame_count = 1,
+			  shift = {-2.27, 1.20},
+			  scale = 0.32/2,
+			}
+          },
+          {
+            draw_as_shadow = true,
+            filename = "__FoodIndustry__/graphics/entity/farms/fi-big-greenhouse-shadow.png",
+            priority = "high",
+            width = 654/2,
+            height = 294,
+            frame_count = 1,
+            shift = {0.55, 0.074},
+            scale = 0.43*2,
+			hr_version = {
+              draw_as_shadow = true,
+              filename = "__FoodIndustry__/graphics/entity/farms/hr-fi-big-greenhouse-shadow.png",
+              priority = "high",
+              width = 654,
+              height = 587,
+              frame_count = 1,
+              shift = {0.55, 0.074},
+              scale = 0.43,
+			}
+          }
       }
+    },
+    working_visualisations = {
+      {
+        animation =
+        {
+            filename = "__FoodIndustry__/graphics/entity/farms/fi-big-greenhouse-working.png",
+            priority = "high",
+            width = 572/2,
+            height = 292,
+            line_length = 3,
+            frame_count = 8,
+            animation_speed = 0.06,
+            shift = {0, 0.05},
+            scale = 0.43*2,
+            hr_version =
+            {
+              filename = "__FoodIndustry__/graphics/entity/farms/hr-fi-big-greenhouse-working.png",
+              priority = "high",
+              width = 572,
+              height = 583,
+              line_length = 3,
+              frame_count = 8,
+              animation_speed = 0.06,
+              shift = {0, 0.05},
+              scale = 0.43
+            }
+        }
+      },
+      {
+        animation =
+        {
+          filename = "__FoodIndustry__/graphics/entity/fi-mashines-propeller1-working.png",
+          priority = "high",
+          width = 97,
+          height = 71,
+          line_length = 5,
+          frame_count = 17,
+          animation_speed = 0.43,
+          shift = {-2.27, 0.30},
+          scale = 0.32,
+          hr_version =
+          {
+            filename = "__FoodIndustry__/graphics/entity/hr-fi-mashines-propeller1-working.png",
+            priority = "high",
+            width = 192,
+            height = 138,
+            line_length = 5,
+            frame_count = 17,
+            animation_speed = 0.43,
+            shift = {-2.27, 0.30},
+            scale = 0.32/2
+          }
+        }
+      },
+      {
+        animation =
+        {
+          filename = "__FoodIndustry__/graphics/entity/fi-mashines-propeller1-working.png",
+          priority = "high",
+          width = 97,
+          height = 71,
+          line_length = 5,
+          frame_count = 17,
+          animation_speed = 0.43,
+          shift = {-2.27, 1.20},
+          scale = 0.32,
+          hr_version =
+          {
+            filename = "__FoodIndustry__/graphics/entity/hr-fi-mashines-propeller1-working.png",
+            priority = "high",
+            width = 192,
+            height = 138,
+            line_length = 5,
+            frame_count = 17,
+            animation_speed = 0.43,
+            shift = {-2.27, 1.20},
+            scale = 0.32/2
+          }
+        }
+      },
     },
     open_sound = { filename = "__base__/sound/machine-open.ogg", volume = 0.85 },
     close_sound = { filename = "__base__/sound/machine-close.ogg", volume = 0.75 },
@@ -223,7 +546,9 @@ data:extend(
 	energy_source =
     {
 		type = "electric",
-		usage_priority = "secondary-input"
+		usage_priority = "secondary-input",
+        drain = "50kW",
+        emissions = -0.14, -- the "-" means it eats pollution. Absorbs about 14 PU
     },
     energy_usage = "360kW", 
 	ingredient_count = 1,
@@ -236,12 +561,13 @@ data:extend(
     order = "d-c",
     allowed_effects = {"consumption"}
   },
-  
-  
+
+---------------------- fi-incubator
+
   {
     type = "assembling-machine",
     name = "fi-incubator",
-    icon = "__FoodIndustry__/graphics/icons/entities/fi-incubator.png",
+    icon = "__FoodIndustry__/graphics/icons/entities/fi-incubator-icon.png",
     icon_size = 32,    
 	flags = {"placeable-neutral", "placeable-player", "player-creation"},
     minable = {hardness = 0.6, mining_time = 3, result = "fi-incubator"},
@@ -274,19 +600,208 @@ data:extend(
 	collision_mask = {"item-layer", "object-layer", "water-tile", "player-layer"},
 	animation =
 	{
-      layers =
-      {
+      layers = {
         {
 			filename = "__FoodIndustry__/graphics/entity/farms/fi-incubator.png",
 			priority = "high",
-			width = 672,
-			height = 532,
-			scale = 0.5,
+			width = 248,
+			height = 257,
+			scale = 0.43*2,
 			frame_count = 1,
 			line_length = 1,
-			shift = {0.0, 0.0},
-        }
+			shift = {0.0, -0.21},
+			hr_version = {
+				filename = "__FoodIndustry__/graphics/entity/farms/hr-fi-incubator.png",
+				priority = "high",
+				width = 496,
+				height = 513,
+				scale = 0.43,
+				frame_count = 1,
+				line_length = 1,
+				shift = {0.0, -0.21},
+			}
+        },
+        {
+			draw_as_shadow = true,
+			filename = "__FoodIndustry__/graphics/entity/farms/fi-incubator-shadow.png",
+			priority = "high",
+			width = 669/2,
+			height = 513/2,
+			scale = 0.43*2,
+			frame_count = 1,
+			line_length = 1,
+			shift = {1.16, -0.30},
+			hr_version = {
+				draw_as_shadow = true,
+				filename = "__FoodIndustry__/graphics/entity/farms/hr-fi-incubator-shadow.png",
+				priority = "high",
+				width = 669,
+				height = 513,
+				scale = 0.43,
+				frame_count = 1,
+				line_length = 1,
+				shift = {1.16, -0.30},
+			}
+        },
+-------------
+          {
+            filename = "__FoodIndustry__/graphics/entity/fi-mashines-propeller1.png",
+            priority = "high",
+            width = 97,
+            height = 71,
+            frame_count = 1,
+            shift = {-1.82, -2.62},
+            scale = 0.32,
+			hr_version = {
+			  filename = "__FoodIndustry__/graphics/entity/hr-fi-mashines-propeller1.png",
+			  priority = "high",
+			  width = 192,
+			  height = 138,
+			  frame_count = 1,
+			  shift = {-1.82, -2.62},
+			  scale = 0.32/2,
+			}
+          },
+          {
+            filename = "__FoodIndustry__/graphics/entity/fi-mashines-propeller1.png",
+            priority = "high",
+            width = 97,
+            height = 71,
+            frame_count = 1,
+            shift = {-1.82, -1.67},
+            scale = 0.32,
+			hr_version = {
+			  filename = "__FoodIndustry__/graphics/entity/hr-fi-mashines-propeller1.png",
+			  priority = "high",
+			  width = 192,
+			  height = 138,
+			  frame_count = 1,
+			  shift = {-1.82, -1.67},
+			  scale = 0.32/2,
+			}
+          },
+          {
+            filename = "__FoodIndustry__/graphics/entity/fi-mashines-propeller1.png",
+            priority = "high",
+            width = 97,
+            height = 71,
+            frame_count = 1,
+            shift = {-1.82, -0.72},
+            scale = 0.32,
+			hr_version = {
+			  filename = "__FoodIndustry__/graphics/entity/hr-fi-mashines-propeller1.png",
+			  priority = "high",
+			  width = 192,
+			  height = 138,
+			  frame_count = 1,
+			  shift = {-1.82, -0.72},
+			  scale = 0.32/2,
+			}
+          }
       }
+    },
+    working_visualisations = {
+      {
+        animation =
+        {
+			filename = "__FoodIndustry__/graphics/entity/farms/fi-incubator.png",
+			priority = "high",
+			width = 248,
+			height = 257,
+			scale = 0.43*2,
+			frame_count = 1,
+			line_length = 1,
+			shift = {0.0, -0.21},
+			hr_version = {
+				filename = "__FoodIndustry__/graphics/entity/farms/hr-fi-incubator.png",
+				priority = "high",
+				width = 496,
+				height = 513,
+				scale = 0.43,
+				frame_count = 1,
+				line_length = 1,
+				shift = {0.0, -0.21},
+			}
+        }
+      },
+      {
+        animation =
+        {
+          filename = "__FoodIndustry__/graphics/entity/fi-mashines-propeller1-working.png",
+          priority = "high",
+          width = 97,
+          height = 71,
+          line_length = 5,
+          frame_count = 17,
+          animation_speed = 0.53,
+          shift = {-1.82, -2.62},
+          scale = 0.32,
+          hr_version =
+          {
+            filename = "__FoodIndustry__/graphics/entity/hr-fi-mashines-propeller1-working.png",
+            priority = "high",
+            width = 192,
+            height = 138,
+            line_length = 5,
+            frame_count = 17,
+            animation_speed = 0.53,
+            shift = {-1.82, -2.62},
+            scale = 0.32/2
+          }
+        }
+      },
+      {
+        animation =
+        {
+          filename = "__FoodIndustry__/graphics/entity/fi-mashines-propeller1-working.png",
+          priority = "high",
+          width = 97,
+          height = 71,
+          line_length = 5,
+          frame_count = 17,
+          animation_speed = 0.53,
+          shift = {-1.82, -1.67},
+          scale = 0.32,
+          hr_version =
+          {
+            filename = "__FoodIndustry__/graphics/entity/hr-fi-mashines-propeller1-working.png",
+            priority = "high",
+            width = 192,
+            height = 138,
+            line_length = 5,
+            frame_count = 17,
+            animation_speed = 0.53,
+            shift = {-1.82, -1.67},
+            scale = 0.32/2
+          }
+        }
+      },
+      {
+        animation =
+        {
+          filename = "__FoodIndustry__/graphics/entity/fi-mashines-propeller1-working.png",
+          priority = "high",
+          width = 97,
+          height = 71,
+          line_length = 5,
+          frame_count = 17,
+          animation_speed = 0.48,
+          shift = {-1.82, -0.72},
+          scale = 0.32,
+          hr_version =
+          {
+            filename = "__FoodIndustry__/graphics/entity/hr-fi-mashines-propeller1-working.png",
+            priority = "high",
+            width = 192,
+            height = 138,
+            line_length = 5,
+            frame_count = 17,
+            animation_speed = 0.48,
+            shift = {-1.82, -0.72},
+            scale = 0.32/2
+          }
+        }
+      },
     },
     open_sound = { filename = "__base__/sound/machine-open.ogg", volume = 0.85 },
     close_sound = { filename = "__base__/sound/machine-close.ogg", volume = 0.75 },
@@ -306,7 +821,9 @@ data:extend(
 	energy_source =
     {
 		type = "electric",
-		usage_priority = "secondary-input"
+		usage_priority = "secondary-input",
+        drain = "100kW",
+        emissions = -0.2, -- the "-" means it eats pollution. Absorbs about 20PU
     },
     energy_usage = "1MW", 
 	ingredient_count = 1,
@@ -319,15 +836,17 @@ data:extend(
     order = "d-c",
     allowed_effects = {"consumption", "speed", "productivity", "pollution"}
   },
-  
-  
-  
-  
+
+
+-------------------------------- Composters -----------------------------------------
+
+---------------------- fi-composter
+
   {
     type = "furnace",
     name = "fi-composter",
-    icon = "__FoodIndustry__/graphics/icons/entities/composter.png",
-    icon_size = 32,
+    icon = "__FoodIndustry__/graphics/icons/entities/fi-composter-icon.png",
+    icon_size = 64,
     flags = {"placeable-neutral", "placeable-player", "player-creation"},
     minable = {hardness = 0.3, mining_time = 1, result = "fi-composter"},
     max_health = 200,
@@ -346,7 +865,60 @@ data:extend(
       layers =
       {
         {
-			filename = "__FoodIndustry__/graphics/entity/machines/composter.png",
+			filename = "__FoodIndustry__/graphics/entity/machines/fi-composter.png",
+			priority = "high",
+			width = 130,
+			height = 95,
+			scale = 0.5,
+			frame_count = 1,
+			--line_length = 8,
+			shift = {18/64, 0.0},
+        },
+        {
+			filename = "__FoodIndustry__/graphics/entity/fi-table-wood1.png",
+			priority = "high",
+			width = 168,
+			height = 138,
+			scale = 0.1,
+			frame_count = 1,
+			shift = {0.01, 0.41},
+            hr_version = {
+			  filename = "__FoodIndustry__/graphics/entity/fi-table-wood1.png",
+			  priority = "high",
+			  width = 168,
+			  height = 138,
+			  scale = 0.1,
+			  frame_count = 1,
+			  shift = {0.01, 0.41},
+            }
+        },
+        {
+			draw_as_shadow = true,
+            filename = "__FoodIndustry__/graphics/entity/fi-table-wood1-shadow.png",
+			priority = "high",
+			width = 398,
+			height = 201,
+			scale = 0.1,
+			frame_count = 1,
+			shift = {0.38, 0.50},
+            hr_version = {
+			  draw_as_shadow = true,
+              filename = "__FoodIndustry__/graphics/entity/fi-table-wood1-shadow.png",
+			  priority = "high",
+			  width = 398,
+			  height = 201,
+			  scale = 0.1,
+			  frame_count = 1,
+			  shift = {0.38, 0.50},
+            }
+        }
+      }
+    },
+    working_visualisations = {
+      {
+        animation =
+        {
+			filename = "__FoodIndustry__/graphics/entity/machines/fi-composter-working.png",
 			priority = "high",
 			width = 1040/8,
 			height = 760/8,
@@ -354,8 +926,59 @@ data:extend(
 			frame_count = 64,
 			line_length = 8,
 			shift = {18/64, 0.0},
+            hr_version = {
+			  filename = "__FoodIndustry__/graphics/entity/machines/fi-composter-working.png",
+			  priority = "high",
+			  width = 1040/8,
+			  height = 760/8,
+			  scale = 0.5,
+			  frame_count = 64,
+			  line_length = 8,
+			  shift = {18/64, 0.0},
+            }
+        },
+      },
+      {
+        animation =
+        {
+			filename = "__FoodIndustry__/graphics/entity/fi-table-wood1.png",
+			priority = "high",
+			width = 168,
+			height = 138,
+			scale = 0.1,
+			frame_count = 1,
+			shift = {0.01, 0.41},
+            hr_version = {
+			  filename = "__FoodIndustry__/graphics/entity/fi-table-wood1.png",
+			  priority = "high",
+			  width = 168,
+			  height = 138,
+			  scale = 0.1,
+			  frame_count = 1,
+			  shift = {0.01, 0.41},
+            }
+        },
+        {
+			draw_as_shadow = true,
+            filename = "__FoodIndustry__/graphics/entity/fi-table-wood1-shadow.png",
+			priority = "high",
+			width = 398,
+			height = 201,
+			scale = 0.1,
+			frame_count = 1,
+			shift = {0.38, 0.50},
+            hr_version = {
+			  draw_as_shadow = true,
+              filename = "__FoodIndustry__/graphics/entity/fi-table-wood1-shadow.png",
+			  priority = "high",
+			  width = 398,
+			  height = 201,
+			  scale = 0.1,
+			  frame_count = 1,
+			  shift = {0.38, 0.50},
+            }
         }
-      }
+      },
     },
     open_sound = { filename = "__base__/sound/machine-open.ogg", volume = 0.85 },
     close_sound = { filename = "__base__/sound/machine-close.ogg", volume = 0.75 },
@@ -392,21 +1015,24 @@ data:extend(
     order = "d-e",
     allowed_effects = {}
   },
+
+---------------------- fi-electric-composter
+
   {
     type = "furnace",
-    name = "electric-composter",
-    icon = "__FoodIndustry__/graphics/icons/entities/electric-composter.png",
-    icon_size = 32,
+    name = "fi-electric-composter",
+    icon = "__FoodIndustry__/graphics/icons/entities/fi-electric-composter-icon.png",
+    icon_size = 64,
     flags = {"placeable-neutral", "placeable-player", "player-creation"},
-    minable = {hardness = 0.3, mining_time = 3, result = "electric-composter"},
+    minable = {hardness = 0.3, mining_time = 3, result = "fi-electric-composter"},
     max_health = 500,
     resistances =
     {      
     },    
-    selection_box = {{-1.65, -1.65}, {1.65, 1.65}}, 
-    collision_box = {{-1.65, -1.65}, {1.65, 1.65}},    
-	collision_mask = {"item-layer", "object-layer", "water-tile", "player-layer"},
-	fluid_boxes =
+    selection_box = {{-1.65, -1.65}, {1.65, 1.65}},
+    collision_box = {{-1.65, -1.65}, {1.65, 1.65}},
+    collision_mask = {"item-layer", "object-layer", "water-tile", "player-layer"},
+    fluid_boxes =
     {
       {
         production_type = "input",
@@ -418,62 +1044,162 @@ data:extend(
       },
       off_when_no_fluid_recipe = false
     },
-	animation = {
+    animation = {
         layers = {
           {
-            filename = "__base__/graphics/entity/electric-furnace/electric-furnace-base.png",
-            frame_count = 1,
-            height = 100,
-            hr_version = {
-              filename = "__base__/graphics/entity/electric-furnace/hr-electric-furnace.png",
-              frame_count = 1,
-              height = 219,
-              priority = "high",
-              scale = 0.6,
-              shift = {
-                0.0234375,
-                0.1796875
-              },
-              width = 239,
-			  tint = {r=0.5,g=0.8,b=1,a=0.5}
-            },
+            filename = "__FoodIndustry__/graphics/entity/machines/fi-electric-composter.png",
             priority = "high",
-            shift = {
-              0.421875,
-              0
-            },			 
-			scale = 1.2,
-            width = 129,
-			tint = {r=0.5,g=0.8,b=1,a=0.5}
+            width = 342/2,
+            height = 189,
+            frame_count = 1,
+            shift = {0.0, -0.055},
+            scale = 0.32*2,
+            --tint = {r=0.5,g=0.8,b=1,a=0.5},
+            hr_version = {
+              filename = "__FoodIndustry__/graphics/entity/machines/hr-fi-electric-composter.png",
+              frame_count = 1,
+              width = 342,
+              height = 377,
+              priority = "high",
+              scale = 0.32,
+              shift = {0.0, -0.055},
+              --tint = {r=0.5,g=0.8,b=1,a=0.5}
+            }
+          },
+          {
+            filename = "__FoodIndustry__/graphics/entity/fi-mashines-propeller1.png",
+            priority = "high",
+            width = 97,
+            height = 71,
+            frame_count = 1,
+            shift = {0.75, -0.45},
+            scale = 0.32,
+            hr_version = {
+              filename = "__FoodIndustry__/graphics/entity/hr-fi-mashines-propeller1.png",
+              frame_count = 1,
+              width = 192,
+              height = 138,
+              priority = "high",
+              scale = 0.32/2,
+              shift = {0.75, -0.45},
+            }
           },
           {
             draw_as_shadow = true,
-            filename = "__base__/graphics/entity/electric-furnace/electric-furnace-shadow.png",
+            filename = "__FoodIndustry__/graphics/entity/machines/fi-electric-composter-shadow.png",
+            priority = "high",
+            width = 250,
+            height = 191,
             frame_count = 1,
-            height = 100,
+            shift = {0.76, -0.044},
+            scale = 0.32*2,
             hr_version = {
               draw_as_shadow = true,
-              filename = "__base__/graphics/entity/electric-furnace/hr-electric-furnace-shadow.png",
-              frame_count = 1,
-              height = 171,
+              filename = "__FoodIndustry__/graphics/entity/machines/hr-fi-electric-composter-shadow.png",
               priority = "high",
-              scale = 0.6,
-              shift = {
-                0.3515625,
-                0.2421875
-              },
-              width = 227
-            },
-            priority = "high",
-            shift = {
-              0.421875,
-              0
-            },
-			scale = 1.2,
-            width = 129			
+              width = 499,
+              height = 381,
+              frame_count = 1,
+              scale = 0.32,
+              shift = {0.76, -0.044},
+            }
           }
         }
       },
+    working_visualisations =
+    {
+      {
+        animation =
+        {
+          filename = "__FoodIndustry__/graphics/entity/machines/fi-electric-composter-working.png",
+          priority = "high",
+          width = 342/2,
+          height = 189,
+          line_length = 5,
+          frame_count = 24,
+          animation_speed = 0.3,
+          shift = {0, -0.055},
+          scale = 0.32*2,
+          hr_version =
+          {
+            filename = "__FoodIndustry__/graphics/entity/machines/hr-fi-electric-composter-working.png",
+            priority = "high",
+            width = 342,
+            height = 377,
+            line_length = 5,
+            frame_count = 24,
+            animation_speed = 0.3,
+            shift = {0, -0.055},
+            scale = 0.32
+          }
+        }
+      },
+      --[[{
+        animation =
+        {
+          filename = "__base__/graphics/entity/electric-furnace/electric-furnace-heater.png",
+          priority = "high",
+          width = 25,
+          height = 15,
+          frame_count = 12,
+          animation_speed = 0.5,
+          shift = {0.015625, 0.890625},
+          hr_version =
+          {
+            filename = "__base__/graphics/entity/electric-furnace/hr-electric-furnace-heater.png",
+            priority = "high",
+            width = 60,
+            height = 56,
+            frame_count = 12,
+            animation_speed = 0.5,
+            shift = util.by_pixel(1.75, 32.75),
+            scale = 0.5
+          }
+        },
+        light = {intensity = 0.4, size = 6, shift = {0.0, 1.0}, color = {r = 1.0, g = 1.0, b = 1.0}}
+      },]]
+      {
+        animation =
+        {
+          filename = "__FoodIndustry__/graphics/entity/fi-mashines-propeller1-working.png",
+          priority = "high",
+          width = 97,
+          height = 71,
+          line_length = 5,
+          frame_count = 17,
+          animation_speed = 0.7,
+          shift = {0.75, -0.44},
+          scale = 0.32,
+          hr_version =
+          {
+            filename = "__FoodIndustry__/graphics/entity/hr-fi-mashines-propeller1-working.png",
+            priority = "high",
+            width = 192,
+            height = 138,
+            line_length = 5,
+            frame_count = 17,
+            animation_speed = 0.7,
+            shift = {0.75, -0.44},
+            scale = 0.32/2
+          }
+        }
+      },
+      {
+        animation =
+        {
+          --  priority = "high",
+          tint = {r=0.5,g=0.25,b=0,a=0.4},
+          width = 152,
+          height = 120,
+          line_length = 5,
+          frame_count = 60,
+          animation_speed = 0.875,
+          filename = "__base__/graphics/entity/smoke/smoke.png",
+          shift = {-0.8, -0.6},
+          scale = 0.8
+        }
+      },
+    },
     open_sound = { filename = "__base__/sound/machine-open.ogg", volume = 0.85 },
     close_sound = { filename = "__base__/sound/machine-close.ogg", volume = 0.75 },
     working_sound =
@@ -493,6 +1219,7 @@ data:extend(
     {
 		type = "electric",
 		usage_priority = "secondary-input",
+        drain = "45kW",
 		emissions = 0.004
     },
     energy_usage = "800kW",
@@ -507,10 +1234,10 @@ data:extend(
 	source_inventory_size = 1,
 	result_inventory_size = 1,	
     },
-  
-  
-  
-  
+
+
+---------------------------------- Cookers ------------------------------------------
+
 
   {
     type = "assembling-machine",
@@ -545,14 +1272,48 @@ data:extend(
             frame_count = 1,
             height = 64,            
             priority = "extra-high",
-            shift = {
-              0.515625,
-              0.0625
-            },
+            shift = {0.515625, 0.0625},
             width = 81
           },
         }
+    },
+	
+    working_visualisations =
+      {
+        {
+          north_position = {0.0, 0.0},
+          east_position = {0.0, 0.0},
+          south_position = {0.0, 0.0},
+          west_position = {0.0, 0.0},
+          animation =
+          {
+            filename = "__base__/graphics/entity/stone-furnace/stone-furnace-fire.png",
+            priority = "extra-high",
+            line_length = 8,
+            width = 20,
+            height = 49,
+            frame_count = 48,
+            axially_symmetrical = false,
+            direction_count = 1,
+            shift = util.by_pixel(2, 5.5),
+            hr_version =
+        {
+              filename = "__base__/graphics/entity/stone-furnace/hr-stone-furnace-fire.png",
+              priority = "extra-high",
+              line_length = 8,
+              width = 41,
+              height = 100,
+              frame_count = 48,
+              axially_symmetrical = false,
+              direction_count = 1,
+              shift = util.by_pixel(-0.75, 5.5),
+              scale = 0.5
+            }
+          },
+        light = {intensity = 1, size = 1, color = {r=1.0, g=1.0, b=1.0}}
+        }
       },
+	
     open_sound = { filename = "__base__/sound/machine-open.ogg", volume = 0.85 },
     close_sound = { filename = "__base__/sound/machine-close.ogg", volume = 0.75 },
     working_sound =
@@ -579,8 +1340,19 @@ data:extend(
 		fuel_categories = {"chemical"},
 		fuel_inventory_size = 1,
 		light_flicker = { intensity = 0, size = 0}, color = { r = 1.0, g = 0.9, b = 0.8 },
-		emissions = 0.015
-    },
+		emissions = 0.015,
+		smoke =
+		{
+			{
+			name = "smoke",
+			deviation = {0.1, 0.1},
+			frequency = 5,
+			position = {0.42, 0.0},
+			starting_vertical_speed = 0.08,
+			starting_frame_deviation = 60
+			}
+		  }
+	},
     energy_usage = "30kW",
     ingredient_count = 8,
     module_specification =
@@ -591,7 +1363,10 @@ data:extend(
     },
     order = "d-e",
     allowed_effects = {},
-  }, 
+  },
+
+---------------------- electric-cooker
+
   {
     type = "assembling-machine",
     name = "electric-cooker",
@@ -643,6 +1418,35 @@ data:extend(
           },
       }
     },
+
+working_visualisations =
+	{ 
+		{
+			animation =
+			{
+				filename = "__base__/graphics/entity/electric-furnace/electric-furnace-heater.png",
+				priority = "high",
+				width = 25,
+				height = 15,
+				frame_count = 12,
+				animation_speed = 0.5,
+				shift = {0.037, 0.59},
+				scale = 1*0.7,
+				hr_version =
+				{
+				filename = "__base__/graphics/entity/electric-furnace/hr-electric-furnace-heater.png",
+				priority = "high",
+				width = 60,
+				height = 56,
+				frame_count = 12,
+				animation_speed = 0.5,
+				shift = util.by_pixel(1.75, 25.75),
+				scale = 0.5*0.7
+				}
+			},
+			light = {intensity = 0.34, size = 5, shift = {0.0, 1.0}, color = {r = 1.0, g = 1.0, b = 1.0}}
+		}, 
+	},
     open_sound = { filename = "__base__/sound/machine-open.ogg", volume = 0.85 },
     close_sound = { filename = "__base__/sound/machine-close.ogg", volume = 0.75 },
     working_sound =
@@ -675,8 +1479,9 @@ data:extend(
     order = "d-e",
     allowed_effects = {"speed", "consumption", "pollution"},
   },
-  
-  
+
+----------------------
+
   --[[{
     type = "simple-entity",
     name = "used-land",

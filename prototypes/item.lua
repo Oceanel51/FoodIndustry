@@ -95,8 +95,8 @@ data:extend(
   {
     type = "item",
     name = "fi-greenhouse",
-    icon = "__FoodIndustry__/graphics/icons/entities/fi-greenhouse.png",
-    icon_size = 32,
+    icon = "__FoodIndustry__/graphics/icons/entities/fi-greenhouse-icon.png",
+    icon_size = 64,
     flags = {"goes-to-quickbar"},
     subgroup = "food-machines",
     order = "w-a-b",
@@ -106,8 +106,8 @@ data:extend(
   {
     type = "item",
     name = "fi-big-greenhouse",
-    icon = "__FoodIndustry__/graphics/icons/entities/fi-big-greenhouse.png",
-    icon_size = 32,
+    icon = "__FoodIndustry__/graphics/icons/entities/fi-big-greenhouse-icon.png",
+    icon_size = 64,
     flags = {"goes-to-quickbar"},
     subgroup = "food-machines",
     order = "w-a-c",
@@ -117,7 +117,7 @@ data:extend(
   {
     type = "item",
     name = "fi-incubator",
-    icon = "__FoodIndustry__/graphics/icons/entities/fi-incubator.png",
+    icon = "__FoodIndustry__/graphics/icons/entities/fi-incubator-icon.png",
     icon_size = 32,
     flags = {"goes-to-quickbar"},
     subgroup = "food-machines",
@@ -128,8 +128,8 @@ data:extend(
   {
     type = "item",
     name = "fi-composter",
-    icon = "__FoodIndustry__/graphics/icons/entities/composter.png",
-    icon_size = 32,
+    icon = "__FoodIndustry__/graphics/icons/entities/fi-composter-icon.png",
+    icon_size = 64,
     flags = {"goes-to-quickbar"},
     subgroup = "food-machines",
     order = "w-a-e",
@@ -138,13 +138,13 @@ data:extend(
   },
   {
     type = "item",
-    name = "electric-composter",
-    icon = "__FoodIndustry__/graphics/icons/entities/electric-composter.png",
-    icon_size = 32,
+    name = "fi-electric-composter",
+    icon = "__FoodIndustry__/graphics/icons/entities/fi-electric-composter-icon.png",
+    icon_size = 64,
     flags = {"goes-to-quickbar"},
     subgroup = "food-machines",
     order = "w-a-f",
-	place_result = "electric-composter",
+	place_result = "fi-electric-composter",
     stack_size = 20
   },
   
