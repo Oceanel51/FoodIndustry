@@ -432,7 +432,7 @@ data:extend(
     name = "fi-incubator",
     enabled = false,
 	icon = "__FoodIndustry__/graphics/icons/entities/fi-incubator-icon.png",
-	icon_size = 32,
+	icon_size = 64,
 	category = "crafting-with-fluid",
 	subgroup = "food-machines",
 	energy_required = 30.0,

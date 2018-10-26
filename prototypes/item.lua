@@ -118,7 +118,7 @@ data:extend(
     type = "item",
     name = "fi-incubator",
     icon = "__FoodIndustry__/graphics/icons/entities/fi-incubator-icon.png",
-    icon_size = 32,
+    icon_size = 64,
     flags = {"goes-to-quickbar"},
     subgroup = "food-machines",
     order = "w-a-d",

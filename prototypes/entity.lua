@@ -568,7 +568,7 @@ data:extend(
     type = "assembling-machine",
     name = "fi-incubator",
     icon = "__FoodIndustry__/graphics/icons/entities/fi-incubator-icon.png",
-    icon_size = 32,    
+    icon_size = 64,    
 	flags = {"placeable-neutral", "placeable-player", "player-creation"},
     minable = {hardness = 0.6, mining_time = 3, result = "fi-incubator"},
     max_health = 700,
