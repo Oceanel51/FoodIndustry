@@ -41,3 +41,7 @@ luac.out
 
 # Notepad++ session files
 *.nppses
+
+# Devs directories
+Food-Industry/.development/
+.dev/
