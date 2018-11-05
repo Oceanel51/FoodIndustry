@@ -209,14 +209,14 @@ data:extend(
             height = 71,
             frame_count = 1,
             shift = {-1.14, 0.28},
-            scale = 0.32,
+            scale = 0.36,
             hr_version = {
               filename = "__FoodIndustry__/graphics/entity/hr-fi-mashines-propeller1.png",
               frame_count = 1,
               width = 192,
               height = 138,
               priority = "high",
-              scale = 0.32/2,
+              scale = 0.36/2,
               shift = {-1.14, 0.28},
             }
         },
@@ -255,6 +255,7 @@ data:extend(
             animation_speed = 0.06,
             shift = {-0.022, -0.008},
             scale = 0.351*2,
+			--run_mode = "forward-then-backward",
             hr_version =
             {
               filename = "__FoodIndustry__/graphics/entity/farms/hr-fi-greenhouse-working.png",
@@ -266,6 +267,7 @@ data:extend(
               animation_speed = 0.06,
               shift = {-0.022, -0.008},
               scale = 0.351
+			  --run_mode = "forward-then-backward",
             }
         }
       },
@@ -278,9 +280,9 @@ data:extend(
           height = 71,
           line_length = 5,
           frame_count = 17,
-          animation_speed = 0.4,
+          animation_speed = 0.45,
           shift = {-1.14, 0.28},
-          scale = 0.32,
+          scale = 0.36,
           hr_version =
           {
             filename = "__FoodIndustry__/graphics/entity/hr-fi-mashines-propeller1-working.png",
@@ -289,9 +291,9 @@ data:extend(
             height = 138,
             line_length = 5,
             frame_count = 17,
-            animation_speed = 0.4,
+            animation_speed = 0.45,
             shift = {-1.14, 0.28},
-            scale = 0.32/2
+            scale = 0.36/2
           }
         }
       },
@@ -397,7 +399,7 @@ data:extend(
             height = 71,
             frame_count = 1,
             shift = {-2.27, 0.30},
-            scale = 0.32,
+            scale = 0.36,
 			hr_version = {
 			  filename = "__FoodIndustry__/graphics/entity/hr-fi-mashines-propeller1.png",
 			  priority = "high",
@@ -405,7 +407,7 @@ data:extend(
 			  height = 138,
 			  frame_count = 1,
 			  shift = {-2.27, 0.30},
-			  scale = 0.32/2,
+			  scale = 0.36/2,
 			}
           },
           {
@@ -415,7 +417,7 @@ data:extend(
             height = 71,
             frame_count = 1,
             shift = {-2.27, 1.20},
-            scale = 0.32,
+            scale = 0.36,
 			hr_version = {
 			  filename = "__FoodIndustry__/graphics/entity/hr-fi-mashines-propeller1.png",
 			  priority = "high",
@@ -423,7 +425,7 @@ data:extend(
 			  height = 138,
 			  frame_count = 1,
 			  shift = {-2.27, 1.20},
-			  scale = 0.32/2,
+			  scale = 0.36/2,
 			}
           },
           {
@@ -461,6 +463,7 @@ data:extend(
             animation_speed = 0.06,
             shift = {0, 0.05},
             scale = 0.43*2,
+			--run_mode = "forward-then-backward",
             hr_version =
             {
               filename = "__FoodIndustry__/graphics/entity/farms/hr-fi-big-greenhouse-working.png",
@@ -472,6 +475,7 @@ data:extend(
               animation_speed = 0.06,
               shift = {0, 0.05},
               scale = 0.43
+			  --run_mode = "forward-then-backward",
             }
         }
       },
@@ -484,9 +488,9 @@ data:extend(
           height = 71,
           line_length = 5,
           frame_count = 17,
-          animation_speed = 0.43,
+          animation_speed = 0.55,
           shift = {-2.27, 0.30},
-          scale = 0.32,
+          scale = 0.36,
           hr_version =
           {
             filename = "__FoodIndustry__/graphics/entity/hr-fi-mashines-propeller1-working.png",
@@ -495,9 +499,9 @@ data:extend(
             height = 138,
             line_length = 5,
             frame_count = 17,
-            animation_speed = 0.43,
+            animation_speed = 0.55,
             shift = {-2.27, 0.30},
-            scale = 0.32/2
+            scale = 0.36/2
           }
         }
       },
@@ -510,9 +514,9 @@ data:extend(
           height = 71,
           line_length = 5,
           frame_count = 17,
-          animation_speed = 0.43,
+          animation_speed = 0.55,
           shift = {-2.27, 1.20},
-          scale = 0.32,
+          scale = 0.36,
           hr_version =
           {
             filename = "__FoodIndustry__/graphics/entity/hr-fi-mashines-propeller1-working.png",
@@ -521,9 +525,9 @@ data:extend(
             height = 138,
             line_length = 5,
             frame_count = 17,
-            animation_speed = 0.43,
+            animation_speed = 0.55,
             shift = {-2.27, 1.20},
-            scale = 0.32/2
+            scale = 0.36/2
           }
         }
       },
@@ -609,93 +613,93 @@ data:extend(
 			scale = 0.43*2,
 			frame_count = 1,
 			line_length = 1,
-			shift = {0.0, -0.21},
+			shift = {0.0, -0.1},
 			hr_version = {
 				filename = "__FoodIndustry__/graphics/entity/farms/hr-fi-incubator.png",
 				priority = "high",
-				width = 496,
+				width = 495,
 				height = 513,
 				scale = 0.43,
 				frame_count = 1,
 				line_length = 1,
-				shift = {0.0, -0.21},
+				shift = {0.0, -0.1},
 			}
         },
         {
 			draw_as_shadow = true,
 			filename = "__FoodIndustry__/graphics/entity/farms/fi-incubator-shadow.png",
 			priority = "high",
-			width = 669/2,
-			height = 513/2,
+			width = 334,
+			height = 263,
 			scale = 0.43*2,
 			frame_count = 1,
 			line_length = 1,
-			shift = {1.16, -0.30},
+			shift = {1.14, -0.032},
 			hr_version = {
 				draw_as_shadow = true,
 				filename = "__FoodIndustry__/graphics/entity/farms/hr-fi-incubator-shadow.png",
 				priority = "high",
-				width = 669,
-				height = 513,
+				width = 667,
+				height = 526,
 				scale = 0.43,
 				frame_count = 1,
 				line_length = 1,
-				shift = {1.16, -0.30},
+				shift = {1.14, -0.032},
 			}
         },
 -------------
           {
-            filename = "__FoodIndustry__/graphics/entity/fi-mashines-propeller1.png",
+            filename = "__FoodIndustry__/graphics/entity/fi-mashines-propeller2.png",
             priority = "high",
             width = 97,
-            height = 71,
+            height = 70,
             frame_count = 1,
-            shift = {-1.82, -2.62},
-            scale = 0.32,
+            shift = {-1.82, -2.49},
+            scale = 0.36,
 			hr_version = {
-			  filename = "__FoodIndustry__/graphics/entity/hr-fi-mashines-propeller1.png",
+			  filename = "__FoodIndustry__/graphics/entity/hr-fi-mashines-propeller2.png",
 			  priority = "high",
 			  width = 192,
 			  height = 138,
 			  frame_count = 1,
-			  shift = {-1.82, -2.62},
-			  scale = 0.32/2,
+			  shift = {-1.82, -2.49},
+			  scale = 0.36/2,
 			}
           },
           {
-            filename = "__FoodIndustry__/graphics/entity/fi-mashines-propeller1.png",
+            filename = "__FoodIndustry__/graphics/entity/fi-mashines-propeller2.png",
             priority = "high",
             width = 97,
-            height = 71,
+            height = 70,
             frame_count = 1,
-            shift = {-1.82, -1.67},
-            scale = 0.32,
+            shift = {-1.82, -1.53},
+            scale = 0.36,
 			hr_version = {
-			  filename = "__FoodIndustry__/graphics/entity/hr-fi-mashines-propeller1.png",
+			  filename = "__FoodIndustry__/graphics/entity/hr-fi-mashines-propeller2.png",
 			  priority = "high",
 			  width = 192,
 			  height = 138,
 			  frame_count = 1,
-			  shift = {-1.82, -1.67},
-			  scale = 0.32/2,
+			  shift = {-1.82, -1.53},
+			  scale = 0.36/2,
 			}
           },
           {
-            filename = "__FoodIndustry__/graphics/entity/fi-mashines-propeller1.png",
+            filename = "__FoodIndustry__/graphics/entity/fi-mashines-propeller2.png",
             priority = "high",
             width = 97,
-            height = 71,
+            height = 70,
             frame_count = 1,
-            shift = {-1.82, -0.72},
-            scale = 0.32,
+            shift = {-1.82, -0.58},
+            scale = 0.36,
 			hr_version = {
-			  filename = "__FoodIndustry__/graphics/entity/hr-fi-mashines-propeller1.png",
+			  filename = "__FoodIndustry__/graphics/entity/hr-fi-mashines-propeller2.png",
 			  priority = "high",
 			  width = 192,
 			  height = 138,
 			  frame_count = 1,
-			  shift = {-1.82, -0.72},
-			  scale = 0.32/2,
+			  shift = {-1.82, -0.58},
+			  scale = 0.36/2,
 			}
           }
       }
@@ -704,38 +708,43 @@ data:extend(
       {
         animation =
         {
-			filename = "__FoodIndustry__/graphics/entity/farms/fi-incubator.png",
+			filename = "__FoodIndustry__/graphics/entity/farms/fi-incubator-working.png",
 			priority = "high",
 			width = 248,
 			height = 257,
 			scale = 0.43*2,
-			frame_count = 1,
-			line_length = 1,
-			shift = {0.0, -0.21},
+			line_length = 3,
+			frame_count = 8,
+            animation_speed = 0.06,
+			shift = {0.0, -0.1},
+			run_mode = "forward-then-backward",
 			hr_version = {
-				filename = "__FoodIndustry__/graphics/entity/farms/hr-fi-incubator.png",
+				filename = "__FoodIndustry__/graphics/entity/farms/hr-fi-incubator-working.png",
 				priority = "high",
-				width = 496,
+				width = 495,
 				height = 513,
 				scale = 0.43,
-				frame_count = 1,
-				line_length = 1,
-				shift = {0.0, -0.21},
+				line_length = 3,
+				frame_count = 8,
+                animation_speed = 0.06,
+				shift = {0.0, -0.1},
+				run_mode = "forward-then-backward",
 			}
-        }
+        },
+		light = {intensity = 0.4, size = 15, shift = {0.25, -0.3}, color = {r = 0.91, g = 1.0, b = 0.26}}
       },
       {
         animation =
         {
-          filename = "__FoodIndustry__/graphics/entity/fi-mashines-propeller1-working.png",
+          filename = "__FoodIndustry__/graphics/entity/fi-mashines-propeller2-working.png",
           priority = "high",
           width = 97,
-          height = 71,
+          height = 70,
           line_length = 5,
           frame_count = 17,
-          animation_speed = 0.53,
-          shift = {-1.82, -2.62},
-          scale = 0.32,
+          animation_speed = 0.65,
+          shift = {-1.82, -2.49},
+          scale = 0.36,
           hr_version =
           {
             filename = "__FoodIndustry__/graphics/entity/hr-fi-mashines-propeller1-working.png",
@@ -744,24 +753,24 @@ data:extend(
             height = 138,
             line_length = 5,
             frame_count = 17,
-            animation_speed = 0.53,
-            shift = {-1.82, -2.62},
-            scale = 0.32/2
+            animation_speed = 0.65,
+            shift = {-1.82, -2.49},
+            scale = 0.36/2
           }
         }
       },
       {
         animation =
         {
-          filename = "__FoodIndustry__/graphics/entity/fi-mashines-propeller1-working.png",
+          filename = "__FoodIndustry__/graphics/entity/fi-mashines-propeller2-working.png",
           priority = "high",
           width = 97,
-          height = 71,
+          height = 70,
           line_length = 5,
           frame_count = 17,
-          animation_speed = 0.53,
-          shift = {-1.82, -1.67},
-          scale = 0.32,
+          animation_speed = 0.65,
+          shift = {-1.82, -1.53},
+          scale = 0.36,
           hr_version =
           {
             filename = "__FoodIndustry__/graphics/entity/hr-fi-mashines-propeller1-working.png",
@@ -770,24 +779,24 @@ data:extend(
             height = 138,
             line_length = 5,
             frame_count = 17,
-            animation_speed = 0.53,
-            shift = {-1.82, -1.67},
-            scale = 0.32/2
+            animation_speed = 0.65,
+            shift = {-1.82, -1.53},
+            scale = 0.36/2
           }
         }
       },
       {
         animation =
         {
-          filename = "__FoodIndustry__/graphics/entity/fi-mashines-propeller1-working.png",
+          filename = "__FoodIndustry__/graphics/entity/fi-mashines-propeller2-working.png",
           priority = "high",
           width = 97,
-          height = 71,
+          height = 70,
           line_length = 5,
           frame_count = 17,
-          animation_speed = 0.48,
-          shift = {-1.82, -0.72},
-          scale = 0.32,
+          animation_speed = 0.65,
+          shift = {-1.82, -0.58},
+          scale = 0.36,
           hr_version =
           {
             filename = "__FoodIndustry__/graphics/entity/hr-fi-mashines-propeller1-working.png",
@@ -796,9 +805,9 @@ data:extend(
             height = 138,
             line_length = 5,
             frame_count = 17,
-            animation_speed = 0.48,
-            shift = {-1.82, -0.72},
-            scale = 0.32/2
+            animation_speed = 0.65,
+            shift = {-1.82, -0.58},
+            scale = 0.36/2
           }
         }
       },
@@ -1067,20 +1076,20 @@ data:extend(
             }
           },
           {
-            filename = "__FoodIndustry__/graphics/entity/fi-mashines-propeller1.png",
+            filename = "__FoodIndustry__/graphics/entity/fi-mashines-propeller3.png",
             priority = "high",
             width = 97,
-            height = 71,
+            height = 70,
             frame_count = 1,
             shift = {0.75, -0.45},
-            scale = 0.32,
+            scale = 0.34,
             hr_version = {
-              filename = "__FoodIndustry__/graphics/entity/hr-fi-mashines-propeller1.png",
+              filename = "__FoodIndustry__/graphics/entity/hr-fi-mashines-propeller3.png",
               frame_count = 1,
               width = 192,
               height = 138,
               priority = "high",
-              scale = 0.32/2,
+              scale = 0.34/2,
               shift = {0.75, -0.45},
             }
           },
@@ -1161,26 +1170,26 @@ data:extend(
       {
         animation =
         {
-          filename = "__FoodIndustry__/graphics/entity/fi-mashines-propeller1-working.png",
+          filename = "__FoodIndustry__/graphics/entity/fi-mashines-propeller3-working.png",
           priority = "high",
           width = 97,
-          height = 71,
+          height = 70,
           line_length = 5,
           frame_count = 17,
-          animation_speed = 0.7,
-          shift = {0.75, -0.44},
-          scale = 0.32,
+          animation_speed = 1.5,
+          shift = {0.75, -0.45},
+          scale = 0.34,
           hr_version =
           {
-            filename = "__FoodIndustry__/graphics/entity/hr-fi-mashines-propeller1-working.png",
+            filename = "__FoodIndustry__/graphics/entity/hr-fi-mashines-propeller3-working.png",
             priority = "high",
             width = 192,
             height = 138,
             line_length = 5,
             frame_count = 17,
-            animation_speed = 0.7,
-            shift = {0.75, -0.44},
-            scale = 0.32/2
+            animation_speed = 1.5,
+            shift = {0.75, -0.45},
+            scale = 0.34/2
           }
         }
       },
@@ -1434,14 +1443,14 @@ working_visualisations =
 				scale = 1*0.7,
 				hr_version =
 				{
-				filename = "__base__/graphics/entity/electric-furnace/hr-electric-furnace-heater.png",
-				priority = "high",
-				width = 60,
-				height = 56,
-				frame_count = 12,
-				animation_speed = 0.5,
-				shift = util.by_pixel(1.75, 25.75),
-				scale = 0.5*0.7
+					filename = "__base__/graphics/entity/electric-furnace/hr-electric-furnace-heater.png",
+					priority = "high",
+					width = 60,
+					height = 56,
+					frame_count = 12,
+					animation_speed = 0.5,
+					shift = util.by_pixel(1.75, 25.75),
+					scale = 0.5*0.7
 				}
 			},
 			light = {intensity = 0.34, size = 5, shift = {0.0, 1.0}, color = {r = 1.0, g = 1.0, b = 1.0}}

@@ -1,4 +1,12 @@
 ---------------------------------------------------------------------------------------------------
+0.16.30
+	Added new graphics for entity: fi-incubator
+	Added glow for fi-incubator
+	Change scales of fi-mashines-propeller1
+	Added new sprite fi-mashines-propeller2 (for fi-incubator)
+	Added new sprite fi-mashines-propeller3 (for fi-electric-composter)
+	Fixed bugs
+---------------------------------------------------------------------------------------------------
 0.16.29
 	New FI logo (discussions and suggestions are welcome in https://mods.factorio.com/mod/FoodIndustry/discussion or in https://github.com/Oceanel51/Food-Industry/issues)
 	Added new graphics for entity: fi-electric-composter, fi-greenhouse, fi-big-greenhouse, fi-incubator (prototype)
