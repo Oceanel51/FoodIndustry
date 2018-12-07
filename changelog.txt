@@ -1,13 +1,35 @@
 ---------------------------------------------------------------------------------------------------
-0.16.30
+Version: 0.16.31
+Date: --.12.2018
+	-Added new item: fi-fluid-tank
+	Added Energy usage when Player is:
+	- mining (factor=1.2, increase when equiped mining-tool);
+	- driving (factor=0.4, always constant);
+	- picking (factor=1.4, increase when equiped armor and its durability, also equipment in grid);
+	- repairing (factor=1.6, increase when equiped armor and its durability, also equipment in grid).
+	Changed when Player is created/joined, in his inventory additionally insert: crafting-capsule=3, speed-capsule=2. That helps on early game.
+	Mirrored capsules icon for best view expirience
+	-Rerendered sprites for fi-table-logo-lamp and fi-table-logo
+	-Changed to get the recipe fi-table-logo-lamp need to research "optics" technology
+	-Added sprite for fi-table-logo-lamp light effect
+	Rerendered icon for fi-incubator
+	Changed some technology icons
+	Changed recipe burner-cooker: results = 1 (old value 2).
+	Added more yellow to corn-seeds sprite
+	Added localization keys for some print messages.
+	Fixed some bugs
+---------------------------------------------------------------------------------------------------
+Version: 0.16.30
+Date: 05.11.2018
 	Added new graphics for entity: fi-incubator
 	Added glow for fi-incubator
-	Change scales of fi-mashines-propeller1
+	Changed scales of fi-mashines-propeller1
 	Added new sprite fi-mashines-propeller2 (for fi-incubator)
 	Added new sprite fi-mashines-propeller3 (for fi-electric-composter)
 	Fixed bugs
 ---------------------------------------------------------------------------------------------------
-0.16.29
+Version: 0.16.29
+Date: 26.10.2018
 	New FI logo (discussions and suggestions are welcome in https://mods.factorio.com/mod/FoodIndustry/discussion or in https://github.com/Oceanel51/Food-Industry/issues)
 	Added new graphics for entity: fi-electric-composter, fi-greenhouse, fi-big-greenhouse, fi-incubator (prototype)
 	Added simple animation to fi-basic-farmland
@@ -17,16 +39,17 @@
 	Added fi-table-wood1 of "FI logo" on fi-composter and fi-basic-farmland
 	Added smoke and stone-furnace-fire animations for burner-cooker
 	Added electric-furnace-heater scale 0.7 and light glowing for electric-cooker
-	All graphics compressed (17,0 > 3,57 Mb) via https://forums.factorio.com/viewtopic.php?f=70&t=30591#p250171
+	Compressed all graphics (17,0 > 3,57 Mb) via https://forums.factorio.com/viewtopic.php?f=70&t=30591#p250171
 	Changed technology name electric-composter to electric-composting
-	Drain energy ballance for farms
+	Ballanced drain energy for farms
 	Added emissions: fi-greenhouse -6PU, fi-big-greenhouse -14PU, fi-incubator -20PU
 	Fixed some bugs
 	Added changelog into mod directory
 ---------------------------------------------------------------------------------------------------
-0.16.28
-	Add compost as fuel to fi-basic-farmland
-	Fix names: fi-basic-farmland, fi-greenhouse, fi-big-greenhouse, fi-incubator
+Version: 0.16.28
+Date: 04.10.2018
+	Added compost as fuel to fi-basic-farmland
+	Fixed names: fi-basic-farmland, fi-greenhouse, fi-big-greenhouse, fi-incubator
 	More green
 ---------------------------------------------------------------------------------------------------
 0.16.27
@@ -71,7 +94,7 @@
 	Redone plant generation so it no longer depends on biome and should be more reliable
 	Fixed world generation settings
 0.16.12
-	~ADDED RAPESEED~
+	~ Added new item: Rapeseed! ~
 	Few achievement tweaks and added 2 more
 0.16.11
 	Fixed some potential compatability issues

@@ -531,7 +531,7 @@ data:extend({
   {
     type = "technology",
     name = "advanced-farming",
-    icon = "__FoodIndustry__/graphics/technology/advanced-farming.png",
+    icon = "__FoodIndustry__/graphics/technology/advanced-farming-1.png",
     icon_size = 128,
     prerequisites = {"landfill", "electronics", "logistics", "potato-growth", "corn-growth", "soy-growth", "rapeseed-growth"},
     effects =
@@ -561,7 +561,7 @@ data:extend({
   {
     type = "technology",
     name = "advanced-farming-2",
-    icon = "__FoodIndustry__/graphics/technology/advanced-farming.png",
+    icon = "__FoodIndustry__/graphics/technology/advanced-farming-2.png",
     icon_size = 128,
     prerequisites = {"advanced-farming", "advanced-electronics"},
     effects =
@@ -585,7 +585,7 @@ data:extend({
   {
     type = "technology",
     name = "advanced-farming-3",
-    icon = "__FoodIndustry__/graphics/technology/advanced-farming.png",
+    icon = "__FoodIndustry__/graphics/technology/advanced-farming-3.png",
     icon_size = 128,
     prerequisites = {"advanced-farming-2", "productivity-module-3", "fertilization-2", "advanced-material-processing-2"},
     effects =

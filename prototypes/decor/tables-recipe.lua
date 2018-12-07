@@ -1,5 +1,5 @@
-data:extend(
-{		
+data:extend({
+  
   {
 	type = "recipe",
 	name = "fi-table-logo",
@@ -25,7 +25,7 @@ data:extend(
   {
     type = "recipe",
     name = "fi-table-logo-lamp",
-    enabled = true,
+    enabled = false,
 	icon = "__FoodIndustry__/graphics/icons/decor/fi-table-logo-lamp-icon.png",
 	icon_size = 64,
 	category = "crafting",

@@ -1,4 +1,5 @@
 local foods = {
+--name,            energy, fullness,  ?, effect
 {"corn", 			10, 	30, 	-20},
 {"cucumber", 		8, 		20, 	-20},
 {"tomato", 			4, 		10, 	-15},
@@ -43,7 +44,7 @@ effectcolors["Fast mining"] = {r=0.9,g=0,b=0,a=1}
 effectcolors["Invulnerability"] = {r=1,g=1,b=0,a=1}
 effectcolors["Health buffer"] = {r=1,g=0,b=1,a=1}
 
-
+-- maximum times for effect duration, val/60=seconds
 local maxtimes = {}
 maxtimes["Long reach"] = 21600
 maxtimes["Speed"] = 5400
@@ -54,8 +55,7 @@ maxtimes["Invulnerability"] = 900
 maxtimes["Health buffer"] = 2700
 
 
-
-script.on_event({defines.events.on_tick}, function (e)  
+script.on_event({defines.events.on_tick}, function (e)
 	local default_delay = 10000 / settings.global["food-industry-hunger-speed"].value
 	if not global.energy then
 		global.energy = {}
@@ -73,10 +73,10 @@ script.on_event({defines.events.on_tick}, function (e)
 		global.usage = {}
 	end
 	if not global.foods then
-		global.foods = {}		
+		global.foods = {}
 	end
 	if not global.full_time then
-		global.full_time = {}		
+		global.full_time = {}
 	end
 	if not global.effects then
 		global.effects = {}
@@ -119,8 +119,7 @@ script.on_event({defines.events.on_tick}, function (e)
 					end
 				else
 					global.full_time[index] = 0
-				end      
-        
+				end
 				
 				if not player.character then
 					global.energy[index] = 50
@@ -130,10 +129,10 @@ script.on_event({defines.events.on_tick}, function (e)
 					for effect,t in pairs(global.effects[index]) do
 						global.effects[index][effect] = 0
 					end
-				else					
-					if player.walking_state.walking then
-						local slots = 0  
-						local durability = 0
+				else ---- calculate character Energy usage data
+					local slots = 0  
+					local durability = 0
+					if player.walking_state.walking then -- if walking
 						if player.get_inventory(defines.inventory.player_armor) and player.get_inventory(defines.inventory.player_armor).valid then
 							if player.get_inventory(defines.inventory.player_armor).get_item_count() > 0 and player.get_inventory(defines.inventory.player_armor)[1] and player.get_inventory(defines.inventory.player_armor)[1].valid then
 								local armor = player.get_inventory(defines.inventory.player_armor)[1]
@@ -141,7 +140,7 @@ script.on_event({defines.events.on_tick}, function (e)
 									durability = armor.prototype.durability
 								end
 							end
-						end         
+						end
 						if player.character.grid then
 							for x = 0, player.character.grid.width do
 								for y = 0, player.character.grid.height do
@@ -151,18 +150,72 @@ script.on_event({defines.events.on_tick}, function (e)
 								end
 							end
 						end
-						global.usage[index] = 1.5 + settings.global["food-industry-slots"].value * slots + settings.global["food-industry-durability"].value * durability * 0.001
+						global.usage[index] = 1.5 + settings.global["food-industry-slots"].value * slots + settings.global["food-industry-durability"].value * durability * 0.001 -- calculate usage data
+					elseif player.mining_state.mining then -- if mining, if player have mining-tool in player_tools - get it mining speed
+						mining_speed = 1.6
+						if player.get_inventory(defines.inventory.player_tools) and player.get_inventory(defines.inventory.player_tools).valid then
+							if player.get_inventory(defines.inventory.player_tools).get_item_count() > 0 and player.get_inventory(defines.inventory.player_tools)[1] and player.get_inventory(defines.inventory.player_tools)[1].valid then
+								local tool = player.get_inventory(defines.inventory.player_tools)[1]
+								if tool and tool.prototype then
+									mining_speed = tool.prototype.speed
+								end
+							end
+						end
+						global.usage[index] = math.ceil((0.125 * mining_speed + 1) / 0.01) / 100
+						-- player.print("mining with speed " .. mining_speed)
+					elseif player.driving then -- if driving
+						global.usage[index] = 0.4
+					elseif player.picking_state then -- if picking
+						if player.get_inventory(defines.inventory.player_armor) and player.get_inventory(defines.inventory.player_armor).valid then
+							if player.get_inventory(defines.inventory.player_armor).get_item_count() > 0 and player.get_inventory(defines.inventory.player_armor)[1] and player.get_inventory(defines.inventory.player_armor)[1].valid then
+								local armor = player.get_inventory(defines.inventory.player_armor)[1]
+								if armor and armor.prototype then
+									durability = armor.prototype.durability
+								end
+							end
+						end
+						if player.character.grid then
+							for x = 0, player.character.grid.width do
+								for y = 0, player.character.grid.height do
+									if player.character.grid.get({x,y}) then
+										slots = slots + 1
+									end
+								end
+							end
+						end
+						global.usage[index] = 1.4 + settings.global["food-industry-slots"].value * slots + settings.global["food-industry-durability"].value * durability * 0.001
+						-- player.print("picking...")
+					elseif player.repair_state.repairing then -- if repairing
+						if player.get_inventory(defines.inventory.player_armor) and player.get_inventory(defines.inventory.player_armor).valid then
+							if player.get_inventory(defines.inventory.player_armor).get_item_count() > 0 and player.get_inventory(defines.inventory.player_armor)[1] and player.get_inventory(defines.inventory.player_armor)[1].valid then
+								local armor = player.get_inventory(defines.inventory.player_armor)[1]
+								if armor and armor.prototype then
+									durability = armor.prototype.durability
+								end
+							end
+						end
+						if player.character.grid then
+							for x = 0, player.character.grid.width do
+								for y = 0, player.character.grid.height do
+									if player.character.grid.get({x,y}) then
+										slots = slots + 1
+									end
+								end
+							end
+						end
+						global.usage[index] = 1.6 + settings.global["food-industry-slots"].value * slots + settings.global["food-industry-durability"].value * durability * 0.001
+						-- player.print("repairing...")
 					else
 						global.usage[index] = 1
 					end
-					  
+					
 					global.used[index] = global.used[index] + global.usage[index]
-					  
-					if global.used[index] >= (default_delay * global.update_delay[index]) then					  
-						global.used[index] = global.used[index] - (default_delay * global.update_delay[index])  				
+					
+					if global.used[index] >= (default_delay * global.update_delay[index]) then
+						global.used[index] = global.used[index] - (default_delay * global.update_delay[index])
 						if global.energy[index] > -50 then
 							global.energy[index] = global.energy[index] - 1
-						end				
+						end
   					
 						if global.energy[index] < 25 then
 							player.character_running_speed_modifier = (global.energy[index] - 25)/100
@@ -183,16 +236,17 @@ script.on_event({defines.events.on_tick}, function (e)
 					if global.fullness[index] < 0 then
 						global.fullness[index] = 0	
 					end
-							
+					
 					if e.tick % 30 == 0 and global.energy[index] < 0 then
-						player.character.health = player.character.health -5.75 + global.energy[index]/10		
+						player.character.health = player.character.health -5.75 + global.energy[index]/10
 						if player.character.health <= 0 then
 							player.character.health = 1 
 							player.character.damage(900000,"neutral")
 							return
-						end						
+						end
 					end	
 					
+					--------------------- effects assignment ------------------------
 					for effect,t in pairs(global.effects[index]) do
 						if t > 0 and player.character then
 							global.effects[index][effect] = t - 5
@@ -246,7 +300,7 @@ script.on_event({defines.events.on_tick}, function (e)
 								end
 							end
 						end
-					end					
+					end
 					
 					u_gui()
 				end
@@ -281,26 +335,32 @@ script.on_event({defines.events.on_tick}, function (e)
 	end
 end)
 
+
 script.on_event(defines.events.on_built_entity, function(event)
 	local entity = event.created_entity
 		if (entity.name == "fi-basic-farmland") and entity.burner and entity.burner.remaining_burning_fuel then 
 			event.created_entity.burner.currently_burning="wood"
-			event.created_entity.burner.remaining_burning_fuel=2000000				
+			event.created_entity.burner.remaining_burning_fuel=2000000
 		end
 	end
 )
 
+
+-- when new Player is created/joined
 script.on_event(defines.events.on_player_created, function(event)
 	local player = game.players[event.player_index]
-	player.insert({name="vegan-food-capsule", count=25})	
+	player.insert({name="vegan-food-capsule", count=25})
+	player.insert({name="crafting-capsule", count=3})
+	player.insert({name="speed-capsule", count=2})
 end
 )
+
 
 script.on_event(defines.events.on_player_used_capsule, function(event)
 	if event.item.name == "raw-fish" then
 		local player = game.players[event.player_index]
 		player.insert{name = "raw-fish", count = 1}
-		player.print("There are bones in this, you don't want to eat this.")
+		player.print({'print.dont-eat-fish'})
 		return
 	end	
 	if event.item.name == "neutralizing-capsule" then
@@ -316,11 +376,11 @@ script.on_event(defines.events.on_player_used_capsule, function(event)
 			if global.fullness[event.player_index] + food[3] > 100 then
 				local player = game.players[event.player_index]
 				player.insert{name = food[1], count = 1}
-				player.print("You are too full to eat this.")
+				player.print({'print.too-full'})
 			else
 				global.energy[event.player_index] = global.energy[event.player_index] + food[2]
 				global.fullness[event.player_index] = global.fullness[event.player_index] + food[3]
-				global.foods[event.player_index][i] = global.foods[event.player_index][i] + 1				
+				global.foods[event.player_index][i] = global.foods[event.player_index][i] + 1
 				
 				if(game.players[event.player_index].character) then
 					game.players[event.player_index].character.health = game.players[event.player_index].character.health - food[4]
@@ -349,7 +409,7 @@ script.on_event(defines.events.on_player_used_capsule, function(event)
 				end
 				
 				
-				u_gui()				
+				u_gui()
 				
 				for j,k in pairs(global.foods[event.player_index]) do
 					if j > #foods then
@@ -369,6 +429,7 @@ script.on_event(defines.events.on_player_used_capsule, function(event)
 	end
 end
 )
+
 
 script.on_event(defines.events.on_research_finished, function(event)
 		if event.research.name == "food-energy-efficiency-1" then
@@ -492,6 +553,7 @@ script.on_event(defines.events.on_rocket_launched, function(event)
 	end
 )
 
+
 function u_gui()
 	if global.energy and global.fullness then
 		for index, player in pairs(game.players) do
@@ -613,6 +675,7 @@ function u_gui()
 		end
 	end
 end
+
 
 function getTime(ticks)
 	if  math.floor((ticks/60)%60) >=10 then

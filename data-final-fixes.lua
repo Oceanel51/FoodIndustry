@@ -7,5 +7,3 @@ for i, t in pairs(data.raw.tree) do
 end
 
 data.raw["assembling-machine"].centrifuge.ingredient_count = 74
-
---table.insert(p.inputs, "food-science-pack")

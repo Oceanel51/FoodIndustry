@@ -85,8 +85,8 @@ for index, crop in pairs(crops) do
 			},
 		})	
 	end
-	if crop[10] then		
-		data:extend({		
+	if crop[10] then
+		data:extend({
 			{
 				type = "capsule",
 				name = crop[1],
@@ -127,7 +127,7 @@ for index, crop in pairs(crops) do
 			},
 		})
 	else
-		data:extend({		
+		data:extend({
 			{
 				type = "item",
 				name = crop[1],
@@ -143,8 +143,6 @@ for index, crop in pairs(crops) do
 		})
 		
 	end
-	
-	
 	
 	
 	data:extend({
@@ -245,7 +243,7 @@ for index, crop in pairs(crops) do
 				{type = "item", name = "raw-straw", amount_min = 3, amount_max = 7},
 			},
 			allow_as_intermediate = false,
-		},						
+		},
 	})
 end
 

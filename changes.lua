@@ -78,3 +78,8 @@ end
 if data.raw.technology["oil-processing"] then
 	table.insert(data.raw.technology["oil-processing"].prerequisites,"crystal-extraction")
 end
+
+-- open recipe after research technology "optics"
+table.insert(data.raw["technology"]["optics"].effects, { type = "unlock-recipe", recipe = "fi-table-logo-lamp" } )
+-- open recipe after research technology "fluid-handling"
+table.insert(data.raw["technology"]["fluid-handling"].effects, { type = "unlock-recipe", recipe = "fi-fluid-tank" } )
