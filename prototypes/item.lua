@@ -1,5 +1,5 @@
-data:extend(
-{    
+data:extend({
+  
   {
     type = "item",
     name = "raw-straw",
@@ -249,5 +249,5 @@ data:extend(
         type = "use-on-self"
     },
   },
-})
   
+})

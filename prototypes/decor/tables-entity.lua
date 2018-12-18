@@ -21,15 +21,15 @@ data:extend({
 			{
 				filename = "__FoodIndustry__/graphics/entity/decor/fi-table-logo.png",
 				priority = "extra-high",
-				width = 260/2,
-				height = 169,
+				width = 130,
+				height = 168,
 				scale = 0.1*2,
 				shift = {0.0, -0.34},
 				hr_version = {
 					filename = "__FoodIndustry__/graphics/entity/decor/hr-fi-table-logo.png",
 					priority = "extra-high",
-					width = 260,
-					height = 337,
+					width = 259,
+					height = 336,
 					scale = 0.1,
 					shift = {0.0, -0.34}
 				}
@@ -38,16 +38,16 @@ data:extend({
 				draw_as_shadow = true,
 				filename = "__FoodIndustry__/graphics/entity/decor/fi-table-logo-shadow.png",
 				priority = "extra-high",
-				width = 321,
-				height = 176,
+				width = 323,
+				height = 177,
 				scale = 0.1*2,
 				shift = {0.56, -0.3},
 				hr_version = {
 					draw_as_shadow = true,
 					filename = "__FoodIndustry__/graphics/entity/decor/hr-fi-table-logo-shadow.png",
 					priority = "extra-high",
-					width = 642,
-					height = 351,
+					width = 644,
+					height = 350,
 					scale = 0.1,
 					shift = {0.55, -0.3}
 				}
@@ -106,8 +106,8 @@ data:extend({
 			  hr_version = {
 				filename = "__FoodIndustry__/graphics/entity/decor/hr-fi-table-logo-lamp.png",
 				priority = "high",
-				width = 231,
-				height = 328,
+				width = 230,
+				height = 326,
 				frame_count = 1,
 				axially_symmetrical = false,
 				direction_count = 1,
@@ -130,7 +130,7 @@ data:extend({
 				draw_as_shadow = true,
 				filename = "__FoodIndustry__/graphics/entity/decor/hr-fi-table-logo-lamp-shadow.png",
 				priority = "high",
-				width = 530,
+				width = 529,
 				height = 328,
 				frame_count = 1,
 				axially_symmetrical = false,
@@ -145,51 +145,28 @@ data:extend({
 		{
 		layers = {
            {
-              filename = "__base__/graphics/entity/small-lamp/lamp-light.png",
+              filename = "__FoodIndustry__/graphics/entity/decor/fi-table-logo-lamp-light.png",
               priority = "high",
-              width = 46,
-              height = 40,
+              width = 81,
+              height = 85,
               frame_count = 1,
               axially_symmetrical = false,
               direction_count = 1,
-              shift = util.by_pixel(-4, -22.4),
-              scale = 0.8,
+              shift = util.by_pixel(0.9, -17.1),
+              scale = 0.45,
               tint = {r=1.0,g=1.0,b=0.2,a=0.6},
               hr_version = {
-                filename = "__base__/graphics/entity/small-lamp/hr-lamp-light.png",
+                filename = "__FoodIndustry__/graphics/entity/decor/hr-fi-table-logo-lamp-light.png",
                 priority = "high",
-                width = 90,
-                height = 78,
+                width = 161,
+                height = 170,
                 frame_count = 1,
                 axially_symmetrical = false,
                 direction_count = 1,
-                shift = util.by_pixel(-4, -22.4),
-                scale = 0.8
+                shift = util.by_pixel(0.9, -17.1),
+                scale = 0.45
               }
             },
-            {
-              filename = "__base__/graphics/entity/small-lamp/lamp-light.png",
-              priority = "high",
-              width = 46,
-              height = 40,
-              frame_count = 1,
-              axially_symmetrical = false,
-              direction_count = 1,
-              shift = util.by_pixel(6, -19.4),
-              tint = {r=1.0,g=1.0,b=0.2,a=0.5},
-              scale = 0.35,
-              hr_version = {
-                filename = "__base__/graphics/entity/small-lamp/hr-lamp-light.png",
-                priority = "high",
-                width = 90,
-                height = 78,
-                frame_count = 1,
-                axially_symmetrical = false,
-                direction_count = 1,
-                shift = util.by_pixel(6, -19.4),
-                scale = 0.5
-              }
-            }
 		  }
 		},
 		signal_to_color_mapping =
@@ -204,7 +181,7 @@ data:extend({
 		  {type="virtual", name="signal-grey", color={r=0.5,g=0.5,b=0.5}},
 		  {type="virtual", name="signal-black", color={r=0.97,g=0.97,b=0.95}},
 		},
-
+		
 		circuit_wire_connection_point = circuit_connector_definitions["lamp"].points,
 		circuit_connector_sprites = circuit_connector_definitions["lamp"].sprites,
 		circuit_wire_max_distance = default_circuit_wire_max_distance,
@@ -212,4 +189,3 @@ data:extend({
 	}
 	
 })
-

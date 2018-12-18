@@ -15,3 +15,9 @@ require("prototypes.decor.tables-entity")
 require("prototypes.decor.tables-recipe")
 require("prototypes.decor.tables-item")
 require("prototypes.decor.tables-category")
+
+require("prototypes.storages.storage-entity")
+require("prototypes.storages.storage-recipe")
+require("prototypes.storages.storage-item")
+
+require("prototypes.styles.fi-style-gui")

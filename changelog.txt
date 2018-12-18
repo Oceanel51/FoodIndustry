@@ -1,21 +1,23 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.16.31
 Date: --.12.2018
-	-Added new item: fi-fluid-tank
+	Added new item: fi-fluid-tank
+	Add new technology: fi-tech-more-energy (5 tiers). Basicaly adds 100 Energy for Player character, then research up 500.
 	Added Energy usage when Player is:
-	- mining (factor=1.2, increase when equiped mining-tool);
-	- driving (factor=0.4, always constant);
-	- picking (factor=1.4, increase when equiped armor and its durability, also equipment in grid);
-	- repairing (factor=1.6, increase when equiped armor and its durability, also equipment in grid).
-	Changed when Player is created/joined, in his inventory additionally insert: crafting-capsule=3, speed-capsule=2. That helps on early game.
+	 - mining (factor=1.2, increase when equiped mining-tool);
+	 - driving (factor=0.4, always constant);
+	 - picking (factor=1.4, increase when equiped armor and its durability, also equipment in grid);
+	 - repairing (factor=1.6, increase when equiped armor and its durability, also equipment in grid).
+	Changed when Player is created/joined, in his inventory additionally insert: crafting-capsule=2, speed-capsule=2, mining-capsule=2. That helps on early game.
 	Mirrored capsules icon for best view expirience
-	-Rerendered sprites for fi-table-logo-lamp and fi-table-logo
-	-Changed to get the recipe fi-table-logo-lamp need to research "optics" technology
-	-Added sprite for fi-table-logo-lamp light effect
-	Rerendered icon for fi-incubator
+	Improved and rerendered sprites for fi-table-logo-lamp and fi-table-logo
+	Added new sprite for fi-table-logo-lamp light effect
+	Changed to get the recipe fi-table-logo-lamp need to research "optics" technology
+	Improved icon for fi-incubator
 	Changed some technology icons
 	Changed recipe burner-cooker: results = 1 (old value 2).
 	Added more yellow to corn-seeds sprite
+	Add localization keys for some GUI labels.
 	Added localization keys for some print messages.
 	Fixed some bugs
 ---------------------------------------------------------------------------------------------------

@@ -980,4 +980,110 @@ data:extend({
     },
     order = "w",
   },
+  
+  -- More Energy technologies
+
+  {
+    type = "technology",
+    name = "fi-tech-more-energy-1",
+    icon = "__FoodIndustry__/graphics/technology/fi-tech-more-energy-1.png",
+    icon_size = 128,
+    prerequisites = {"composting"},
+    effects = {},
+    unit =
+    {
+      time = 30,
+      count = 10,
+      ingredients =
+      {        
+		{"science-pack-1", 1},
+		{"food-science-pack", 1},
+      },
+    },
+    order = "w",
+  },
+  {
+    type = "technology",
+    name = "fi-tech-more-energy-2",
+    icon = "__FoodIndustry__/graphics/technology/fi-tech-more-energy-1.png",
+    icon_size = 128,
+    prerequisites = {"fi-tech-more-energy-1"},
+    effects = {},
+    unit =
+    {
+      time = 30,
+      count = 25,
+      ingredients =
+      {        
+		{"science-pack-1", 1},
+		{"food-science-pack", 1},
+      },
+    },
+    order = "w",
+  },
+  -- fi-tech-more-energy-3 +100 = 300,
+  {
+    type = "technology",
+    name = "fi-tech-more-energy-3",
+    icon = "__FoodIndustry__/graphics/technology/fi-tech-more-energy-3.png",
+    icon_size = 128,
+    prerequisites = {"fi-tech-more-energy-2"},
+    effects = {},
+    unit =
+    {
+      time = 30,
+      count = 100,
+      ingredients =
+      {        
+		{"science-pack-2", 2},
+		{"science-pack-3", 1},
+		{"food-science-pack", 2},
+      },
+    },
+    order = "w",
+  },
+  -- fi-tech-more-energy-4 +100 = 400, and
+  {
+    type = "technology",
+    name = "fi-tech-more-energy-4",
+    icon = "__FoodIndustry__/graphics/technology/fi-tech-more-energy-3.png",
+    icon_size = 128,
+    prerequisites = {"fi-tech-more-energy-3", "advanced-farming-3"},
+    effects = {},
+    unit =
+    {
+      time = 30,
+      count = 100,
+      ingredients =
+      {        
+		{"science-pack-3", 2},
+		{"high-tech-science-pack", 1},
+		{"food-science-pack", 4},
+      },
+    },
+    order = "w",
+  },
+  -- fi-tech-more-energy-5 +100 = 500 max.
+  {
+    type = "technology",
+    name = "fi-tech-more-energy-5",
+    icon = "__FoodIndustry__/graphics/technology/fi-tech-more-energy-3.png",
+    icon_size = 128,
+    prerequisites = {"fi-tech-more-energy-4", "advanced-nutrient-extraction"},
+    effects = {},
+    unit =
+    {
+      time = 30,
+      count = 200,
+      ingredients =
+      {        
+		{"science-pack-3", 2},
+		{"high-tech-science-pack", 1},
+		{"food-science-pack", 4},
+      },
+    },
+    order = "w",
+  },
+
+
 })

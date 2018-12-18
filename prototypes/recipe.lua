@@ -1,5 +1,5 @@
-data:extend(
-{		
+data:extend({
+	
 	{
     type = "recipe",
     name = "straw",
@@ -462,11 +462,11 @@ data:extend(
     {
 		{"stone-brick", 4},
 		{"stone-furnace", 1},
-		{"iron-plate", 6}
+		{"iron-plate", 5}
     },
       results = 
 	{
-		{"burner-cooker", 2}
+		{"burner-cooker", 1}
 	}
     },	
 	{
@@ -608,5 +608,6 @@ data:extend(
 	{
 		{"food-science-pack", 1}
 	}
-    },		
+    },
+	
 })

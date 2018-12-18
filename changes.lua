@@ -13,7 +13,7 @@ if data.raw.recipe["chemical-plant"] then
 end
 
 
-local productivity_recipes = {		
+local productivity_recipes = {
 	"fertilizer-oil-cracking",
 	"food-science-pack",
 	"crystal",
@@ -33,7 +33,7 @@ end
 
 
 
-local biter_drops = {		
+local biter_drops = {
 	{"unit",		"small-biter",		 "biter-meat",	0.15,	1,	1},
 	{"unit",		"small-spitter",	 "biter-meat",	0.15,	1,	1},
 	

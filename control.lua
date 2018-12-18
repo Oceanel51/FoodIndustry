@@ -57,6 +57,9 @@ maxtimes["Health buffer"] = 2700
 
 script.on_event({defines.events.on_tick}, function (e)
 	local default_delay = 10000 / settings.global["food-industry-hunger-speed"].value
+	if not global.energy_max then -- maximum value of Energy
+		global.energy_max = {}
+	end
 	if not global.energy then
 		global.energy = {}
 	end
@@ -84,8 +87,11 @@ script.on_event({defines.events.on_tick}, function (e)
 	if e.tick % 5 == 0 then
 		for index,player in pairs(game.players) do
 			if player.connected then
+				if not global.energy_max[index] then
+					global.energy_max[index] = 100 -- set initial max Energy for connected players
+				end
 				if not global.energy[index] then
-					global.energy[index] = 200
+					global.energy[index] = global.energy_max[index] -- set initial Energy for connected players
 				end
 				if not global.fullness[index] then
 					global.fullness[index] = 0
@@ -112,7 +118,7 @@ script.on_event({defines.events.on_tick}, function (e)
 					global.effects[index] = {}
 				end
 					
-				if global.energy[index] > 180 then
+				if global.energy[index] > global.energy_max[index] * 0.9 then -- for achievement "overweight" > 90% of 30 minutes
 					global.full_time[index] = global.full_time[index] + 5
 					if global.full_time[index] > 108000 then
 						player.unlock_achievement("overweight")
@@ -121,7 +127,7 @@ script.on_event({defines.events.on_tick}, function (e)
 					global.full_time[index] = 0
 				end
 				
-				if not player.character then
+				if not player.character then -- for sandbox mode
 					global.energy[index] = 50
 					global.fullness[index] = 0
 					global.used[index] = 0
@@ -209,6 +215,7 @@ script.on_event({defines.events.on_tick}, function (e)
 						global.usage[index] = 1
 					end
 					
+					-------------------- used energy calculation --------------------
 					global.used[index] = global.used[index] + global.usage[index]
 					
 					if global.used[index] >= (default_delay * global.update_delay[index]) then
@@ -217,8 +224,8 @@ script.on_event({defines.events.on_tick}, function (e)
 							global.energy[index] = global.energy[index] - 1
 						end
   					
-						if global.energy[index] < 25 then
-							player.character_running_speed_modifier = (global.energy[index] - 25)/100
+						if global.energy[index] < global.energy_max[index] * 0.25 then -- if Energy level down below 25% - decrease running speed
+							player.character_running_speed_modifier = (global.energy[index] - (global.energy_max[index] * 0.2))/global.energy_max[index]
 						else
 							player.character_running_speed_modifier = 0
 						end
@@ -229,6 +236,7 @@ script.on_event({defines.events.on_tick}, function (e)
 						u_gui()
 					end
 						
+					---------------------- fullness calculation ---------------------
 					if global.fullness[index] > 0 then
 						global.fullness[index] = global.fullness[index] - (settings.global["food-industry-hunger-speed"].value / 400)
 					end
@@ -290,8 +298,8 @@ script.on_event({defines.events.on_tick}, function (e)
 									player.character_health_bonus = 0
 								end
 							elseif effect == "Speed" then
-								if global.energy[index] < 25 then
-									player.character_running_speed_modifier = (global.energy[index] - 25)/100
+								if global.energy[index] < global.energy_max[index] * 0.25 then -- if Energy level down below 25% - decrease running speed
+									player.character_running_speed_modifier = (global.energy[index] - (global.energy_max[index] * 0.2))/global.energy_max[index]
 								else
 									player.character_running_speed_modifier = 0
 								end
@@ -350,8 +358,9 @@ script.on_event(defines.events.on_built_entity, function(event)
 script.on_event(defines.events.on_player_created, function(event)
 	local player = game.players[event.player_index]
 	player.insert({name="vegan-food-capsule", count=25})
-	player.insert({name="crafting-capsule", count=3})
+	player.insert({name="crafting-capsule", count=2})
 	player.insert({name="speed-capsule", count=2})
+	player.insert({name="mining-capsule", count=2})
 end
 )
 
@@ -391,16 +400,16 @@ script.on_event(defines.events.on_player_used_capsule, function(event)
 					end
 				end
 				
-				if global.energy[event.player_index] > 200 then
-					global.energy[event.player_index] = 200
+				if global.energy[event.player_index] > global.energy_max[event.player_index] then
+					global.energy[event.player_index] = global.energy_max[event.player_index]
 				end
 				
 				if food[5] then
 					global.effects[event.player_index][food[5]] = maxtimes[food[5]]
 				end
 				
-				if global.energy[event.player_index] < 25 then
-					game.players[event.player_index].character_running_speed_modifier = math.max((global.energy[event.player_index] - 25)/100,-0.99)
+				if global.energy[event.player_index] < global.energy_max[event.player_index] * 0.25 then
+					game.players[event.player_index].character_running_speed_modifier = math.max((global.energy[event.player_index] - (global.energy_max[event.player_index] * 0.2))/global.energy_max[event.player_index],-0.99)
 				else
 					game.players[event.player_index].character_running_speed_modifier = 0
 				end
@@ -408,7 +417,7 @@ script.on_event(defines.events.on_player_used_capsule, function(event)
 					game.players[event.player_index].character_running_speed_modifier = (game.players[event.player_index].character_running_speed_modifier+1)*1.75-1
 				end
 				
-				
+				-- update GUI
 				u_gui()
 				
 				for j,k in pairs(global.foods[event.player_index]) do
@@ -432,99 +441,168 @@ end
 
 
 script.on_event(defines.events.on_research_finished, function(event)
-		if event.research.name == "food-energy-efficiency-1" then
-			local force = event.research.force
-			for index,player in pairs(game.players) do
-				if player.force == force then
-					global.update_delay[index] = 1.1
-					u_gui()
-				end
+	if event.research.name == "food-energy-efficiency-1" then
+		local force = event.research.force
+		for index,player in pairs(game.players) do
+			if player.force == force then
+				global.update_delay[index] = 1.1
+				u_gui()
 			end
-		elseif event.research.name == "food-energy-efficiency-2" then
-			local force = event.research.force
-			for index,player in pairs(game.players) do
-				if player.force == force then
-					global.update_delay[index] = 1.2
-					u_gui()
-				end
+		end
+	elseif event.research.name == "food-energy-efficiency-2" then
+		local force = event.research.force
+		for index,player in pairs(game.players) do
+			if player.force == force then
+				global.update_delay[index] = 1.2
+				u_gui()
 			end
-		elseif event.research.name == "food-energy-efficiency-3" then
-			local force = event.research.force
-			for index,player in pairs(game.players) do
-				if player.force == force then
-					global.update_delay[index] = 1.3
-					u_gui()
-				end
+		end
+	elseif event.research.name == "food-energy-efficiency-3" then
+		local force = event.research.force
+		for index,player in pairs(game.players) do
+			if player.force == force then
+				global.update_delay[index] = 1.3
+				u_gui()
 			end
-		elseif event.research.name == "food-energy-efficiency-4" then
-			local force = event.research.force
-			for index,player in pairs(game.players) do
-				if player.force == force then
-					global.update_delay[index] = 1.4
-					u_gui()
-				end
+		end
+	elseif event.research.name == "food-energy-efficiency-4" then
+		local force = event.research.force
+		for index,player in pairs(game.players) do
+			if player.force == force then
+				global.update_delay[index] = 1.4
+				u_gui()
 			end
-		elseif event.research.name == "food-energy-efficiency-5" then
-			local force = event.research.force
-			for index,player in pairs(game.players) do
-				if player.force == force then
-					global.update_delay[index] = 1.5
-					u_gui()
-				end
+		end
+	elseif event.research.name == "food-energy-efficiency-5" then
+		local force = event.research.force
+		for index,player in pairs(game.players) do
+			if player.force == force then
+				global.update_delay[index] = 1.5
+				u_gui()
 			end
-		elseif event.research.name == "food-energy-efficiency-6" then
-			local force = event.research.force
-			for index,player in pairs(game.players) do
-				if player.force == force then
-					global.update_delay[index] = 1.6
-					u_gui()
-				end
+		end
+	elseif event.research.name == "food-energy-efficiency-6" then
+		local force = event.research.force
+		for index,player in pairs(game.players) do
+			if player.force == force then
+				global.update_delay[index] = 1.6
+				u_gui()
 			end
-		elseif event.research.name == "food-energy-efficiency-7" then
-			local force = event.research.force
-			for index,player in pairs(game.players) do
-				if player.force == force then
-					global.update_delay[index] = 1.7
-					u_gui()
-				end
+		end
+	elseif event.research.name == "food-energy-efficiency-7" then
+		local force = event.research.force
+		for index,player in pairs(game.players) do
+			if player.force == force then
+				global.update_delay[index] = 1.7
+				u_gui()
 			end
-		elseif event.research.name == "food-energy-efficiency-8" then
-			local force = event.research.force
-			for index,player in pairs(game.players) do
-				if player.force == force then
-					global.update_delay[index] = 1.8
-					u_gui()
-				end
+		end
+	elseif event.research.name == "food-energy-efficiency-8" then
+		local force = event.research.force
+		for index,player in pairs(game.players) do
+			if player.force == force then
+				global.update_delay[index] = 1.8
+				u_gui()
 			end
-		elseif event.research.name == "food-energy-efficiency-9" then
-			local force = event.research.force
-			for index,player in pairs(game.players) do
-				if player.force == force then
-					global.update_delay[index] = 1.9
-					u_gui()
-				end
+		end
+	elseif event.research.name == "food-energy-efficiency-9" then
+		local force = event.research.force
+		for index,player in pairs(game.players) do
+			if player.force == force then
+				global.update_delay[index] = 1.9
+				u_gui()
 			end
-		elseif event.research.name == "food-energy-efficiency-10" then
-			local force = event.research.force
-			for index,player in pairs(game.players) do
-				if player.force == force then
-					global.update_delay[index] = 2
-					u_gui()
-				end
+		end
+	elseif event.research.name == "food-energy-efficiency-10" then
+		local force = event.research.force
+		for index,player in pairs(game.players) do
+			if player.force == force then
+				global.update_delay[index] = 2
+				u_gui()
 			end
-		elseif event.research.name == "food-energy-efficiency-11" then
-			local force = event.research.force
-			for index,player in pairs(game.players) do
+		end
+	elseif event.research.name == "food-energy-efficiency-11" then
+		local force = event.research.force
+		for index,player in pairs(game.players) do
+			if player.force == force then
+				global.update_delay[index] = 0.9 + event.research.level * 0.1
+				if event.research.level > 50 then
+					player.unlock_achievement("hibernation")
+				end
+				u_gui()
+			end
+		end
+	end
+	--------------- if tech "fi-tech-more-energy" researched
+	local force = event.research.force
+	if event.research.name == "fi-tech-more-energy-1" then
+		for index,player in pairs(game.players) do
+			if player.valid and player.connected and player.character then
 				if player.force == force then
-					global.update_delay[index] = 0.9 + event.research.level * 0.1
-					if event.research.level > 50 then
-						player.unlock_achievement("hibernation")
+					local leftGui = player.gui.left
+					if leftGui and leftGui.valid then
+						global.energy_max[index] = 150
+						player.print({'print.fi-tech-more-energy', "150"})
+						leftGui.frame.flow1.energylabel.tooltip = {'label.energylabel-tooltip', global.energy_max[index]}
 					end
-					u_gui()
+				end
+			end
+		end
+	elseif event.research.name == "fi-tech-more-energy-2" then
+		for index,player in pairs(game.players) do
+			if player.valid and player.connected and player.character then
+				if player.force == force then
+					local leftGui = player.gui.left
+					if leftGui and leftGui.valid then
+						global.energy_max[index] = 200
+						player.print({'print.fi-tech-more-energy', "200"})
+						leftGui.frame.flow1.energylabel.tooltip = {'label.energylabel-tooltip', global.energy_max[index]}
+					end
+				end
+			end
+		end
+	elseif event.research.name == "fi-tech-more-energy-3" then
+		for index,player in pairs(game.players) do
+			if player.valid and player.connected and player.character then
+				if player.force == force then
+					local leftGui = player.gui.left
+					if leftGui and leftGui.valid then
+						global.energy_max[index] = 300
+						player.print({'print.fi-tech-more-energy', "300"})
+						leftGui.frame.flow1.energylabel.tooltip = {'label.energylabel-tooltip', global.energy_max[index]}
+					end
+				end
+			end
+		end
+	elseif event.research.name == "fi-tech-more-energy-4" then
+		for index,player in pairs(game.players) do
+			if player.valid and player.connected and player.character then
+				if player.force == force then
+					local leftGui = player.gui.left
+					if leftGui and leftGui.valid then
+						global.energy_max[index] = 400
+						player.print({'print.fi-tech-more-energy', "400"})
+						leftGui.frame.flow1.energylabel.tooltip = {'label.energylabel-tooltip', global.energy_max[index]}
+					end
+				end
+			end
+		end
+	elseif event.research.name == "fi-tech-more-energy-5" then
+		for index,player in pairs(game.players) do
+			if player.valid and player.connected and player.character then
+				if player.force == force then
+					local leftGui = player.gui.left
+					if leftGui and leftGui.valid then
+						global.energy_max[index] = 500
+						player.print({'print.fi-tech-more-energy', "500"})
+						leftGui.frame.flow1.energylabel.tooltip = {'label.energylabel-tooltip', global.energy_max[index]}
+					end
 				end
 			end
 		end
 	end
+	
+end
 )
 
 
@@ -557,7 +635,7 @@ script.on_event(defines.events.on_rocket_launched, function(event)
 function u_gui()
 	if global.energy and global.fullness then
 		for index, player in pairs(game.players) do
-			if global.energy[index] and global.fullness[index] then
+			if global.energy[index] and global.fullness[index] then -- if exists values in global.energy table
 				if player.valid and player.connected then
 					local leftGui = player.gui.left
 					
@@ -566,73 +644,122 @@ function u_gui()
 					end
 					
 					if not leftGui.frame then
-						leftGui.add{
-						type = "frame",
-						name = "frame",
-						direction = "vertical"
-						}			
-					end	
+						leftGui.add{type = "frame", name = "frame", direction = "vertical"}
+					end
 
 						if not leftGui.frame.energylabel then
 							leftGui.frame.add({type="label", name="energylabel", caption=""})
-						end	
+						end
+						-- initialize labels and bars of .flow1
+						if not leftGui.frame.flow1 then
+							leftGui.frame.add{type = "flow", name = "flow1", right_padding = 0, left_padding = 0, direction = "horizontal"}
+						end
+						if not leftGui.frame.flow1.energylabel then
+							leftGui.frame.flow1.add({type="sprite", name="sprite_fi_logo", SpritePath="__FoodIndustry__/graphics/icons/fi-icon-x32.png", align="right",})
+							-- "Energy: " .. energylabel .. " (usage: ".. ussagelabel .."%)"
+							leftGui.frame.flow1.add({type="label", name="label_energy", caption={'label.label-energy', ": "}, style = "fi-label", align="right",})
+							leftGui.frame.flow1.add({type="label", name="energylabel", caption="", tooltip = {'label.energylabel-tooltip', global.energy_max[index]},})
+							leftGui.frame.flow1.add({type="label", name="label_usage", caption={'label.label-usage', " (", ": "}, style = "fi-label",})
+							leftGui.frame.flow1.add({type="label", name="usagelabel", caption="", style = "fi-label",})
+							leftGui.frame.flow1.add({type="label", name="label_percent", caption="%)", style = "fi-label",})
+						end
 						if not leftGui.frame.energybar then
 							leftGui.frame.add({type="progressbar", name="energybar"})
 							leftGui.frame.energybar.style.width = 200
 						end	
-						if not leftGui.frame.fullnesslabel then
-							leftGui.frame.add({type="label", name="fullnesslabel", caption=""})
-						end	
+						
+						-- initialize labels and bars of .flow2
+						if not leftGui.frame.flow2 then
+							leftGui.frame.add{type = "flow", name = "flow2", direction = "horizontal"}
+						end
+						if not leftGui.frame.flow2.fullnesslabel then
+							--"Fullness: " .. fullnessbar .."%"
+							leftGui.frame.flow2.add({type="label", name="label_fullness", caption={'label.label-fullness', ": "},})
+							leftGui.frame.flow2.add({type="label", name="fullnesslabel", caption=""})
+							leftGui.frame.flow2.add({type="label", name="label_percent", caption="%",})
+						end
 						if not leftGui.frame.fullnessbar then
 							leftGui.frame.add({type="progressbar", name="fullnessbar"})
 							leftGui.frame.fullnessbar.style.width = 200
 							leftGui.frame.fullnessbar.style.color = {r = 1, g = 0.6, a = 1}
-						end			
-						
-					if pcall(function () leftGui.frame.energylabel.caption = "Energy: " .. global.energy[index] .. " (usage: ".. (math.floor((100 * settings.global["food-industry-hunger-speed"].value * global.usage[index] / global.update_delay[index]) + 0.5) * 0.01) .."%)" end) then
-						leftGui.frame.energylabel.caption = "Energy: " .. global.energy[index] .. " (usage: ".. (math.floor((100 * settings.global["food-industry-hunger-speed"].value * global.usage[index] / global.update_delay[index]) + 0.5) * 0.01) .."%)"
+						end
+
+					-- .flow 3,4,5 rezerved for "Balance of Substances"
+					
+					-- initialize labels and bars of .flow6
+
+					if pcall(function () leftGui.frame.flow1.usagelabel.caption = (math.floor((100 * settings.global["food-industry-hunger-speed"].value * global.usage[index] / global.update_delay[index]) + 0.5) * 0.01) end) then
+						leftGui.frame.flow1.energylabel.caption = global.energy[index]
+						leftGui.frame.flow1.usagelabel.caption = (math.floor((100 * settings.global["food-industry-hunger-speed"].value * global.usage[index] / global.update_delay[index]) + 0.5) * 0.01)
 					else
-						leftGui.frame.energylabel.caption = "Energy: " .. global.energy[index] .. " (usage: ---%)"
+						leftGui.frame.flow1.energylabel.caption = global.energy[index]
+						leftGui.frame.flow1.usagelabel.caption = "---"
 					end
 					
-					leftGui.frame.energybar.value = math.abs(global.energy[index]/200)
+					leftGui.frame.energybar.value = math.abs(global.energy[index]/global.energy_max[index])
 					leftGui.frame.fullnesslabel.caption = "Fullness: " .. math.ceil(global.fullness[index]) .."%"
+
+					leftGui.frame.flow2.fullnesslabel.caption = math.ceil(global.fullness[index])
 					leftGui.frame.fullnessbar.value = global.fullness[index]/100			
 					
-					if global.energy[index] < 0	then
-						if not (leftGui.frame.starvinglabel and leftGui.frame.starvingbar) then
-							leftGui.frame.add({type="label", name="starvinglabel", caption=""})				
+					-- .flow8 for Starving
+					if global.energy[index] < 0 then
+						if not leftGui.frame.flow8 then
+							leftGui.frame.add{ type = "flow", name = "flow8", align = "left", direction = "horizontal"}
+						end
+						if not (leftGui.frame.flow8.starvinglabel and leftGui.frame.starvingbar) then
+							-- "Starving: -" ..  .."HP/s (< " ..  .. " to death)"
+							leftGui.frame.flow8.add({type="label", name="label_starving", caption={'label.label-starving', ": "}, style = "fi-label", align="left",})
+							leftGui.frame.flow8.add({type="label", name="starvinglabel", caption=""})
+							leftGui.frame.flow8.add({type="label", name="label_starving1", caption={'label.label-hppersec', " (<"}, style = "fi-label", align="right",})
+							leftGui.frame.flow8.add({type="label", name="starvingtimelabel", caption=""})
+							leftGui.frame.flow8.add({type="label", name="label_todeath", caption={'label.label-to-death', ")"}, style = "fi-label", align="right",})
+							
 							leftGui.frame.add({type="progressbar", name="starvingbar"})
 							leftGui.frame.starvingbar.style.width = 200
 							leftGui.frame.starvingbar.style.color = {r = 1, a = 1}
 						end
 						leftGui.frame.starvingbar.value = (2.5 - global.energy[index]/5)/12.5
 						if player.character then
-							leftGui.frame.starvinglabel.caption = "Starving: -" .. (math.floor(25 - global.energy[index]/0.5)/10) .."HP/s (< " .. getTime(player.character.health*60/(2.5 - global.energy[index]/5)) .. " to death)"
+							leftGui.frame.flow8.starvinglabel.caption = (math.floor(global.energy_max[index] * 0.25 - global.energy[index]/0.5)/10)
+							leftGui.frame.flow8.starvingtimelabel.caption = getTime(player.character.health*60/(2.5 - global.energy[index]/5))
 						end
 						
-					elseif leftGui.frame.starvingbar and leftGui.frame.starvinglabel then
+					elseif leftGui.frame.starvingbar and leftGui.frame.flow8.starvinglabel then
+						leftGui.frame.flow8.destroy()
 						leftGui.frame.starvingbar.destroy()
-						leftGui.frame.starvinglabel.destroy()
 					end
 					
-					if global.energy[index] < 25 then
-						if not (leftGui.frame.hungerspeedlabel and leftGui.frame.hungerspeedbar) then
-							leftGui.frame.add({type="label", name="hungerspeedlabel", caption=""})				
+					-- .flow7 for Hunger slowness
+					if not leftGui.frame.flow7 then
+						leftGui.frame.add{ type = "flow", name = "flow7", align = "left", direction = "horizontal"}
+					end
+					if global.energy[index] < global.energy_max[index] * 0.25 then -- add hunger slowness when Energy level below 25%
+						if not (leftGui.frame.flow7.hungerspeedlabel and leftGui.frame.hungerspeedbar) then
+							--"Hunger slowness: " ..  .."%"
+							leftGui.frame.flow7.add({type="label", name="label_hungerspeed", caption={'label.label-hunger-slowness', ": "}, style = "fi-label", align="left",})
+							leftGui.frame.flow7.add({type="label", name="hungerspeedlabel", caption=""})
+							leftGui.frame.flow7.add({type="label", name="label_hungerspeed_percent", caption="%", style = "fi-label", align="right",})
 							leftGui.frame.add({type="progressbar", name="hungerspeedbar"})
 							leftGui.frame.hungerspeedbar.style.width = 200
 							leftGui.frame.hungerspeedbar.style.color = {r = 0.7, g = 0.7, b = 0.9, a = 1}
 						end
-						leftGui.frame.hungerspeedbar.value = -(global.energy[index] - 25)/100
+						leftGui.frame.hungerspeedbar.value = -(global.energy[index] - global.energy_max[index] * 0.25)/global.energy_max[index]
 						if player.character then
-							leftGui.frame.hungerspeedlabel.caption = "Hunger slowness: " .. math.max(global.energy[index] - 25,-99) .."%"
+							leftGui.frame.flow7.hungerspeedlabel.caption = math.max(global.energy[index] - global.energy_max[index] * 0.25,-99)
 						end
 						
-					elseif leftGui.frame.hungerspeedbar and leftGui.frame.hungerspeedlabel then
-						leftGui.frame.hungerspeedlabel.destroy()
+					elseif leftGui.frame.hungerspeedbar and leftGui.frame.flow7.hungerspeedlabel then
+						leftGui.frame.flow7.destroy()
 						leftGui.frame.hungerspeedbar.destroy()
 					end
 					
+					-- rezerved .flow8 for buttons how activate "capsule effects"
+					
+					-- initialize .flow10 - Effects
+					--if not leftGui.frame.flow10 then
+					--	leftGui.frame.add{ type = "flow", name = "flow10", direction = "vertical" }
+					--end
 					if global.effects[index] then
 						for effect,t in pairs(global.effects[index]) do
 							if t > 0 then
@@ -654,11 +781,11 @@ function u_gui()
 						end
 					end
 					
+					-- ------------------
 					
-					
-					if global.energy[index] >= 100 then
+					if global.energy[index] >= global.energy_max[index] * 1 then -- >=100%
 						leftGui.frame.energybar.style.color = {g = 1, a = 1}
-					elseif global.energy[index] >= 25 then
+					elseif global.energy[index] >= global.energy_max[index] * 0.25 then -- >=20%
 						leftGui.frame.energybar.style.color = {r = 1, g = 1, a = 1}
 					elseif global.energy[index] >= 0 then
 						leftGui.frame.energybar.style.color = {r = 1, g = 0.6, a = 1}
