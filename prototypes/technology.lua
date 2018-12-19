@@ -1067,7 +1067,7 @@ data:extend({
   {
     type = "technology",
     name = "fi-tech-more-energy-5",
-    icon = "__FoodIndustry__/graphics/technology/fi-tech-more-energy-3.png",
+    icon = "__FoodIndustry__/graphics/technology/fi-tech-more-energy-5.png",
     icon_size = 128,
     prerequisites = {"fi-tech-more-energy-4", "advanced-nutrient-extraction"},
     effects = {},
@@ -1079,6 +1079,7 @@ data:extend({
       {        
 		{"science-pack-3", 2},
 		{"high-tech-science-pack", 1},
+		{"space-science-pack", 1},
 		{"food-science-pack", 4},
       },
     },

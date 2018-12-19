@@ -17,6 +17,7 @@ Date: --.12.2018
 	Changed some technology icons
 	Changed recipe burner-cooker: results = 1 (old value 2).
 	Added more yellow to corn-seeds sprite
+	Added more springgreen to lettuce item sprite
 	Add localization keys for some GUI labels.
 	Added localization keys for some print messages.
 	Fixed some bugs

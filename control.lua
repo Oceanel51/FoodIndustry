@@ -643,50 +643,49 @@ function u_gui()
 						leftGui.bar.destroy()
 					end
 					
+
+					-- initialize main .frame
 					if not leftGui.frame then
 						leftGui.add{type = "frame", name = "frame", direction = "vertical"}
 					end
-
-						if not leftGui.frame.energylabel then
-							leftGui.frame.add({type="label", name="energylabel", caption=""})
-						end
-						-- initialize labels and bars of .flow1
-						if not leftGui.frame.flow1 then
-							leftGui.frame.add{type = "flow", name = "flow1", right_padding = 0, left_padding = 0, direction = "horizontal"}
-						end
-						if not leftGui.frame.flow1.energylabel then
-							leftGui.frame.flow1.add({type="sprite", name="sprite_fi_logo", SpritePath="__FoodIndustry__/graphics/icons/fi-icon-x32.png", align="right",})
-							-- "Energy: " .. energylabel .. " (usage: ".. ussagelabel .."%)"
-							leftGui.frame.flow1.add({type="label", name="label_energy", caption={'label.label-energy', ": "}, style = "fi-label", align="right",})
-							leftGui.frame.flow1.add({type="label", name="energylabel", caption="", tooltip = {'label.energylabel-tooltip', global.energy_max[index]},})
-							leftGui.frame.flow1.add({type="label", name="label_usage", caption={'label.label-usage', " (", ": "}, style = "fi-label",})
-							leftGui.frame.flow1.add({type="label", name="usagelabel", caption="", style = "fi-label",})
-							leftGui.frame.flow1.add({type="label", name="label_percent", caption="%)", style = "fi-label",})
-						end
-						if not leftGui.frame.energybar then
-							leftGui.frame.add({type="progressbar", name="energybar"})
-							leftGui.frame.energybar.style.width = 200
-						end	
-						
-						-- initialize labels and bars of .flow2
-						if not leftGui.frame.flow2 then
-							leftGui.frame.add{type = "flow", name = "flow2", direction = "horizontal"}
-						end
-						if not leftGui.frame.flow2.fullnesslabel then
-							--"Fullness: " .. fullnessbar .."%"
-							leftGui.frame.flow2.add({type="label", name="label_fullness", caption={'label.label-fullness', ": "},})
-							leftGui.frame.flow2.add({type="label", name="fullnesslabel", caption=""})
-							leftGui.frame.flow2.add({type="label", name="label_percent", caption="%",})
-						end
-						if not leftGui.frame.fullnessbar then
-							leftGui.frame.add({type="progressbar", name="fullnessbar"})
-							leftGui.frame.fullnessbar.style.width = 200
-							leftGui.frame.fullnessbar.style.color = {r = 1, g = 0.6, a = 1}
-						end
-
-					-- .flow 3,4,5 rezerved for "Balance of Substances"
 					
-					-- initialize labels and bars of .flow6
+					
+					-- initialize labels and bars of .flow1
+					if not leftGui.frame.flow1 then
+						leftGui.frame.add{type = "flow", name = "flow1", right_padding = 0, left_padding = 0, direction = "horizontal"}
+					end
+					if not leftGui.frame.flow1.energylabel then
+						-- "Energy: " .. energylabel .. " (usage: ".. ussagelabel .."%)"
+						leftGui.frame.flow1.add({type="label", name="label_energy", caption={'label.label-energy', ": "}, style = "fi-label", align="right",})
+						leftGui.frame.flow1.add({type="label", name="energylabel", caption="", tooltip = {'label.energylabel-tooltip', global.energy_max[index]},})
+						leftGui.frame.flow1.add({type="label", name="label_usage", caption={'label.label-usage', " (", ": "}, style = "fi-label",})
+						leftGui.frame.flow1.add({type="label", name="usagelabel", caption="", style = "fi-label",})
+						leftGui.frame.flow1.add({type="label", name="label_percent", caption="%)", style = "fi-label",})
+					end
+					if not leftGui.frame.energybar then
+						leftGui.frame.add({type="progressbar", name="energybar"})
+						leftGui.frame.energybar.style.width = 200
+					end	
+						
+					-- initialize labels and bars of .flow2
+					if not leftGui.frame.flow2 then
+						leftGui.frame.add{type = "flow", name = "flow2", direction = "horizontal"}
+					end
+					if not leftGui.frame.flow2.fullnesslabel then
+						--"Fullness: " .. fullnessbar .."%"
+						leftGui.frame.flow2.add({type="label", name="label_fullness", caption={'label.label-fullness', ": "},})
+						leftGui.frame.flow2.add({type="label", name="fullnesslabel", caption=""})
+						leftGui.frame.flow2.add({type="label", name="label_percent", caption="%",})
+					end
+					if not leftGui.frame.fullnessbar then
+						leftGui.frame.add({type="progressbar", name="fullnessbar"})
+						leftGui.frame.fullnessbar.style.width = 200
+						leftGui.frame.fullnessbar.style.color = {r = 1, g = 0.6, a = 1}
+					end
+
+				-- .flow 3,4,5 rezerved for "Balance of Substances"
+				
+				-- initialize labels and bars of .flow6
 
 					if pcall(function () leftGui.frame.flow1.usagelabel.caption = (math.floor((100 * settings.global["food-industry-hunger-speed"].value * global.usage[index] / global.update_delay[index]) + 0.5) * 0.01) end) then
 						leftGui.frame.flow1.energylabel.caption = global.energy[index]
@@ -697,8 +696,7 @@ function u_gui()
 					end
 					
 					leftGui.frame.energybar.value = math.abs(global.energy[index]/global.energy_max[index])
-					leftGui.frame.fullnesslabel.caption = "Fullness: " .. math.ceil(global.fullness[index]) .."%"
-
+					
 					leftGui.frame.flow2.fullnesslabel.caption = math.ceil(global.fullness[index])
 					leftGui.frame.fullnessbar.value = global.fullness[index]/100			
 					
