@@ -357,7 +357,7 @@ script.on_event(defines.events.on_built_entity, function(event)
 -- when new Player is created/joined
 script.on_event(defines.events.on_player_created, function(event)
 	local player = game.players[event.player_index]
-	player.insert({name="vegan-food-capsule", count=25})
+	player.insert({name="vegan-food-capsule", count=20})
 	player.insert({name="crafting-capsule", count=2})
 	player.insert({name="speed-capsule", count=2})
 	player.insert({name="mining-capsule", count=2})
@@ -387,6 +387,7 @@ script.on_event(defines.events.on_player_used_capsule, function(event)
 				player.insert{name = food[1], count = 1}
 				player.print({'print.too-full'})
 			else
+				local player = game.players[event.player_index]
 				global.energy[event.player_index] = global.energy[event.player_index] + food[2]
 				global.fullness[event.player_index] = global.fullness[event.player_index] + food[3]
 				global.foods[event.player_index][i] = global.foods[event.player_index][i] + 1
@@ -420,6 +421,10 @@ script.on_event(defines.events.on_player_used_capsule, function(event)
 				-- update GUI
 				u_gui()
 				
+				if string.find(food[1], "food") == 1 or string.find(food[1], "food") == 7 then
+					player.play_sound({path = "use-food-capsule-sound",volume_modifier = 0.7}) -- play sound when eat food-capsule
+				end
+
 				for j,k in pairs(global.foods[event.player_index]) do
 					if j > #foods then
 						break

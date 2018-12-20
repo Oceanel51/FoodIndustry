@@ -2,7 +2,7 @@
 Version: 0.16.31
 Date: --.12.2018
 	Added new item: fi-fluid-tank
-	Add new technology: fi-tech-more-energy (5 tiers). Basicaly adds 100 Energy for Player character, then research up 500.
+	Add new technology: fi-tech-more-energy (5 tiers) with some item bonuses. Basicaly adds 100 Energy for Player character, then research up to 500.
 	Added Energy usage when Player is:
 	 - mining (factor=1.2, increase when equiped mining-tool);
 	 - driving (factor=0.4, always constant);
@@ -18,8 +18,9 @@ Date: --.12.2018
 	Changed recipe burner-cooker: results = 1 (old value 2).
 	Added more yellow to corn-seeds sprite
 	Added more springgreen to lettuce item sprite
-	Add localization keys for some GUI labels.
+	Added localization keys for some GUI labels.
 	Added localization keys for some print messages.
+	Added sound effect when use food-capsules
 	Fixed some bugs
 ---------------------------------------------------------------------------------------------------
 Version: 0.16.30

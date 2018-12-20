@@ -989,13 +989,23 @@ data:extend({
     icon = "__FoodIndustry__/graphics/technology/fi-tech-more-energy-1.png",
     icon_size = 128,
     prerequisites = {"composting"},
-    effects = {},
-    unit =
+    effects = {
+      {
+          type = "nothing",
+          effect_description = {'technology-effect.fi-tech-more-energy-bonus', "50"},
+      },
+      {
+        type = "give-item",
+        item = "vegan-food-capsule",
+        count = 3
+      }
+  },
+  unit =
     {
       time = 30,
       count = 10,
       ingredients =
-      {        
+      {
 		{"science-pack-1", 1},
 		{"food-science-pack", 1},
       },
@@ -1005,16 +1015,36 @@ data:extend({
   {
     type = "technology",
     name = "fi-tech-more-energy-2",
-    icon = "__FoodIndustry__/graphics/technology/fi-tech-more-energy-1.png",
+    icon = "__FoodIndustry__/graphics/technology/fi-tech-more-energy-2.png",
     icon_size = 128,
     prerequisites = {"fi-tech-more-energy-1"},
-    effects = {},
-    unit =
+    effects = {
+      {
+          type = "nothing",
+          effect_description = {'technology-effect.fi-tech-more-energy-bonus', "50"}
+      },
+      {
+        type = "give-item",
+        item = "vegan-food-capsule",
+        count = 5
+      },
+      {
+        type = "give-item",
+        item = "speed-capsule",
+        count = 1
+      },
+      {
+        type = "give-item",
+        item = "crafting-capsule",
+        count = 1
+      }
+  },
+  unit =
     {
       time = 30,
       count = 25,
       ingredients =
-      {        
+      {
 		{"science-pack-1", 1},
 		{"food-science-pack", 1},
       },
@@ -1028,8 +1058,23 @@ data:extend({
     icon = "__FoodIndustry__/graphics/technology/fi-tech-more-energy-3.png",
     icon_size = 128,
     prerequisites = {"fi-tech-more-energy-2"},
-    effects = {},
-    unit =
+    effects = {
+      {
+          type = "nothing",
+          effect_description = {'technology-effect.fi-tech-more-energy-bonus', "100"}
+      },
+      {
+        type = "give-item",
+        item = "speed-capsule",
+        count = 2
+      },
+      {
+        type = "give-item",
+        item = "crafting-capsule",
+        count = 2
+      }
+  },
+  unit =
     {
       time = 30,
       count = 100,
@@ -1049,13 +1094,28 @@ data:extend({
     icon = "__FoodIndustry__/graphics/technology/fi-tech-more-energy-3.png",
     icon_size = 128,
     prerequisites = {"fi-tech-more-energy-3", "advanced-farming-3"},
-    effects = {},
-    unit =
+    effects = {
+      {
+          type = "nothing",
+          effect_description = {'technology-effect.fi-tech-more-energy-bonus', "100"}
+      },
+      {
+        type = "give-item",
+        item = "speed-capsule",
+        count = 5
+      },
+      {
+        type = "give-item",
+        item = "crafting-capsule",
+        count = 5
+      }
+  },
+  unit =
     {
       time = 30,
       count = 100,
       ingredients =
-      {        
+      {
 		{"science-pack-3", 2},
 		{"high-tech-science-pack", 1},
 		{"food-science-pack", 4},
@@ -1070,8 +1130,13 @@ data:extend({
     icon = "__FoodIndustry__/graphics/technology/fi-tech-more-energy-5.png",
     icon_size = 128,
     prerequisites = {"fi-tech-more-energy-4", "advanced-nutrient-extraction"},
-    effects = {},
-    unit =
+    effects = {
+      {
+          type = "nothing",
+          effect_description = {'technology-effect.fi-tech-more-energy-bonus', "100"}
+      },
+  },
+  unit =
     {
       time = 30,
       count = 200,
