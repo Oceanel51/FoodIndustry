@@ -78,6 +78,8 @@ data:extend({
 		corpse = "small-remnants",
 		collision_box = {{-0.25, -0.30}, {0.25, 0.28}},
 		selection_box = {{-0.44, -0.8}, {0.44, 0.4}},
+		repair_sound = { filename = "__base__/sound/manual-repair-simple.ogg" },
+		mined_sound = { filename = "__FoodIndustry__/sounds/deconstruct-wood.ogg" },
 		vehicle_impact_sound =  { filename = "__base__/sound/car-metal-impact.ogg", volume = 0.65 },
 		energy_source =
 		{
