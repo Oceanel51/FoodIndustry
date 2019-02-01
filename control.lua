@@ -1,3 +1,5 @@
+require("prototypes.scripts.fishing-inserter")
+
 local foods = {
 --name,            energy, fullness,  ?, effect
 {"corn", 			10, 	30, 	-20},
@@ -10,11 +12,13 @@ local foods = {
 {"food-capsule", 	50, 	50, 	-200},
 {"basic-salad", 	25, 	40, 	-100},
 {"cooked-soy", 		2,		5, 		-5},
+{"cooked-fish", 	2,		5, 		-5},
 {"baked-potato", 	10, 	30, 	-40},
 {"fries", 			20, 	55, 	-50},
 {"ketchup-fries", 	25, 	70, 	-50},
 {"biter-meat", 		15, 	55, 	100},
 {"biter-steak", 	30, 	70, 	30},
+{"fish-steak", 		30, 	70, 	30},
 {"schnitzel", 		35, 	80, 	40},
 {"pickles", 		3, 		5, 		-5},
 {"tofu", 			25, 	60, 	-15},
@@ -22,8 +26,12 @@ local foods = {
 {"burger", 			75, 	100, 	-60},
 {"tofu-pizza", 		65, 	95, 	-80},
 {"tofu-burger", 	60, 	100, 	-80},
+{"fish-pizza", 		65, 	95, 	-80},
+{"fish-burger", 	60, 	100, 	-80},
 {"best-salad", 		45, 	70, 	-200},
-{"vegan-food-capsule",50, 	50, 	-200},
+{"fish-salad", 		45, 	70, 	-200},
+{"fish-and-chips", 	75, 	100, 	-200},
+{"vegan-food-capsule",50, 	50, 	-80},
 {"cooked-biter-meat",20, 	60, 	50},
 {"long-reach-capsule",50, 	50, 	0,	"Long reach"},
 {"speed-capsule", 	50, 	50, 	0,	"Speed"},
@@ -54,8 +62,42 @@ maxtimes["Fast mining"] = 3600
 maxtimes["Invulnerability"] = 900
 maxtimes["Health buffer"] = 2700
 
+function setupFi()
+
+	if not foodi then foodi = {} end
+	if not foodi.ticks then foodi.ticks = {} end
+	if not foodi.on_added then foodi.on_added = {} end
+	if not foodi.on_remove then foodi.on_remove = {} end
+	if not foodi.on_adjust then foodi.on_adjust = {} end
+	if not foodi.on_pick_up then foodi.on_pick_up = {} end
+
+
+	if global ~= nil then
+		if not global.foodi then global.foodi = {} end
+		if not global.foodi.fishing_inserters then global.foodi.fishing_inserters = {} end
+		if not global.players then global.players = {} end
+		if not global.foodi.players then global.foodi.players = {} end
+	end
+end
+
+function OnInit()
+	setupFi()
+	initFishingInserter()
+end
+
+function OnLoad()
+	OnInit()
+end
+
+script.on_init(OnInit)
+script.on_load(OnLoad)
 
 script.on_event({defines.events.on_tick}, function (e)
+	for k=1, #foodi.ticks do
+		local v = foodi.ticks[k]
+		v()
+	end
+
 	local default_delay = 10000 / settings.global["food-industry-hunger-speed"].value
 	if not global.energy_max then -- maximum value of Energy
 		global.energy_max = {}
@@ -342,9 +384,28 @@ script.on_event({defines.events.on_tick}, function (e)
 		end
 	end
 end)
-
+local local_on_added = function(event)
+	local entity = event.created_entity
+	if entity ~= nil then
+		for k=1, #foodi.on_added do
+			local v = foodi.on_added[k]
+			v(entity)
+		end
+	end
+end
+local local_on_removed = function(event)
+	local entity = event.entity
+	if entity ~= nil then
+		for k=1, #foodi.on_remove do
+			local v = foodi.on_remove[k]
+			v(entity)
+		end
+	end
+end
 
 script.on_event(defines.events.on_built_entity, function(event)
+	local_on_added(event)
+
 	local entity = event.created_entity
 		if (entity.name == "fi-basic-farmland") and entity.burner and entity.burner.remaining_burning_fuel then 
 			event.created_entity.burner.currently_burning="wood"
@@ -814,3 +875,10 @@ function getTime(ticks)
 		return math.floor(ticks/3600) .. ":0" .. math.floor((ticks/60)%60)
 	end
 end
+
+local build_events = {defines.events.on_built_entity, defines.events.on_robot_built_entity}
+local remove_events = {defines.events.on_entity_died,defines.events.on_robot_pre_mined,defines.events.on_robot_mined_entity,defines.events.on_pre_player_mined_entity,defines.events.on_player_mined_entity}
+
+script.on_event(build_events, local_on_added)
+script.on_event(remove_events, local_on_removed)
+

@@ -445,6 +445,7 @@ data:extend({
 		{type = "unlock-recipe", recipe = "cooked-corn"},
 		{type = "unlock-recipe", recipe = "cooked-soy"},
 		{type = "unlock-recipe", recipe = "baked-potato"},
+        {type = "unlock-recipe", recipe = "cooked-fish"},
 		{type = "unlock-recipe", recipe = "cooked-biter-meat"},
     },
     unit =
@@ -811,9 +812,11 @@ data:extend({
     {  
 		{type = "unlock-recipe", recipe = "raw-fries"},
 		{type = "unlock-recipe", recipe = "fries"},
+        {type = "unlock-recipe", recipe = "fish-steak"},
 		{type = "unlock-recipe", recipe = "biter-steak"},
 		{type = "unlock-recipe", recipe = "schnitzel"},
 		{type = "unlock-recipe", recipe = "popcorn"},
+        {type = "unlock-recipe", recipe = "fish-and-chips"},
     },
     unit =
     {
@@ -904,8 +907,10 @@ data:extend({
     effects =
     {  
 		{type = "unlock-recipe", recipe = "burger"},
+        {type = "unlock-recipe", recipe = "fish-burger"},
 		{type = "unlock-recipe", recipe = "tofu-burger"},
 		{type = "unlock-recipe", recipe = "pizza"},
+        {type = "unlock-recipe", recipe = "fish-pizza"},
 		{type = "unlock-recipe", recipe = "tofu-pizza"},
     },
     unit =

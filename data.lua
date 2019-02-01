@@ -1,4 +1,7 @@
 require("changes")
+
+require("prototypes.fishing-inserter")
+
 require("prototypes.item")
 require("prototypes.fluid")
 require("prototypes.recipe")
