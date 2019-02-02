@@ -884,6 +884,7 @@ data:extend({
     {  
 		{type = "unlock-recipe", recipe = "soy-sauce"},
 		{type = "unlock-recipe", recipe = "best-salad"},
+        {type = "unlock-recipe", recipe = "fish-salad"},
 		{type = "unlock-recipe", recipe = "ketchup"},
 		{type = "unlock-recipe", recipe = "ketchup-fries"},
     },

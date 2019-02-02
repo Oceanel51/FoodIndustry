@@ -1,6 +1,7 @@
 local crops = {
 --1			2		3			4		5		6		7			8		9			10		11		12
 --name, 	time, 	to plant,	plants,	crops,	seeds, 	stack size,	plant?,	seed?,	edible?,	straws,	compost
+{"apple", 	300, 	0,        	0,		0.0, 	0.0, 	50,			false,	false,		true,	0.0,	"3J"},
 {"lettuce", 300, 	5,        	6,		0.0, 	0.0, 	10,			false,	false,		true,	0.0,	"4J"},
 {"cucumber",600, 	60,        	4,		2.0, 	8.5, 	10,			true,	true,		true,	1.0,	"8J"},
 {"tomato", 	800, 	30,        	6,		3.0, 	2.0, 	10,			true,	true,		true,	1.0,	"6J"},
@@ -143,8 +144,6 @@ for index, crop in pairs(crops) do
 		})
 		
 	end
-	
-	
 	data:extend({
 		{
 			type = "item-subgroup",
@@ -152,99 +151,103 @@ for index, crop in pairs(crops) do
 			group = "food-industry",
 			order = "w-d-"..index,
 		},
-		{
-			type = "recipe",
-			name = crop[1].."-growth",
-			order = "w-d-a-a",
-			enabled = false,
-			icon = "__FoodIndustry__/graphics/icons/items/"..crop[1]..str..".png",
-			icon_size = 32,
-			category = "basic-crop-growth",
-			subgroup = crop[1],
-			energy_required = crop[2],
-			ingredients =
-			{
-				{crop[1]..ing, crop[3]}
-			},
-			  results = 
-			{
-				{type = "item", name = crop[1]..str, amount_min = crop[4], amount_max = crop[4]*1.5},
-				{type = "item", name = "straw", amount_min = 15, amount_max = 25},
-				{type = "item", name = "raw-straw", amount_min = 0, amount_max = 2},
-			},
-			allow_as_intermediate = false,
-		},	
-		
-		{
-			type = "recipe",
-			name = crop[1].."-growth-w",
-			order = "w-d-a-b",
-			enabled = false,
-			icon = "__FoodIndustry__/graphics/icons/items/"..crop[1]..str..".png",
-			icon_size = 32,
-			category = "advanced-crop-growth",
-			subgroup = crop[1],
-			energy_required = crop[2],
-			ingredients =
-			{
-				{crop[1]..ing, crop[3]},
-				{type = "fluid", name = "water", amount = 1000}
-			},
-			  results = 
-			{
-				{type = "item", name = crop[1]..str, amount_min = crop[4], amount_max = crop[4]*2},
-				{type = "item", name = "straw", amount_min = 8, amount_max = 16},
-				{type = "item", name = "raw-straw", amount_min = 1, amount_max = 3},
-			},
-			allow_as_intermediate = false,
-		},	
-		{
-			type = "recipe",
-			name = crop[1].."-growth-c",
-			order = "w-d-a-c",
-			enabled = false,
-			icon = "__FoodIndustry__/graphics/icons/items/"..crop[1]..str..".png",
-			icon_size = 32,
-			category = "advanced-crop-growth",
-			subgroup = crop[1],
-			energy_required = crop[2]*0.9,
-			ingredients =
-			{
-				{crop[1]..ing, crop[3]},
-				{type = "fluid", name = "compost-water", amount = 1000},
-			},
-			  results = 
-			{
-				{type = "item", name = crop[1]..str, amount_min = crop[4]*1.5, amount_max = crop[4]*2.5},
-				{type = "item", name = "straw", amount_min = 4, amount_max = 12},
-				{type = "item", name = "raw-straw", amount_min = 1, amount_max = 5},
-			},
-			allow_as_intermediate = false,
-		},
-		{
-			type = "recipe",
-			name = crop[1].."-growth-f",
-			order = "w-d-a-d",
-			enabled = false,
-			icon = "__FoodIndustry__/graphics/icons/items/"..crop[1]..str..".png",
-			icon_size = 32,
-			category = "advanced-crop-growth",
-			subgroup = crop[1],
-			energy_required = crop[2]*0.625,
-			ingredients =
-			{
-				{crop[1]..ing, crop[3]},
-				{type = "fluid", name = "fertilizer-water", amount = 1000}
-			},
-			  results = 
-			{
-				{type = "item", name = crop[1]..str, amount_min = crop[4]*2, amount_max = crop[4]*3},
-				{type = "item", name = "straw", amount_min = 1, amount_max = 4},
-				{type = "item", name = "raw-straw", amount_min = 3, amount_max = 7},
-			},
-			allow_as_intermediate = false,
-		},
 	})
+	if crop[4] > 0 then
+		data:extend({
+			{
+				type = "recipe",
+				name = crop[1].."-growth",
+				order = "w-d-a-a",
+				enabled = false,
+				icon = "__FoodIndustry__/graphics/icons/items/"..crop[1]..str..".png",
+				icon_size = 32,
+				category = "basic-crop-growth",
+				subgroup = crop[1],
+				energy_required = crop[2] / 2,
+				ingredients =
+				{
+					{crop[1]..ing, crop[3] / 2}
+				},
+				  results =
+				{
+					{type = "item", name = crop[1]..str, amount_min = crop[4] / 2, amount_max = crop[4]*0.75},
+					{type = "item", name = "straw", amount_min = 7, amount_max = 12},
+					{type = "item", name = "raw-straw", amount_min = 0, amount_max = 1},
+				},
+				allow_as_intermediate = false,
+			},
+
+			{
+				type = "recipe",
+				name = crop[1].."-growth-w",
+				order = "w-d-a-b",
+				enabled = false,
+				icon = "__FoodIndustry__/graphics/icons/items/"..crop[1]..str..".png",
+				icon_size = 32,
+				category = "advanced-crop-growth",
+				subgroup = crop[1],
+				energy_required = crop[2],
+				ingredients =
+				{
+					{crop[1]..ing, crop[3]},
+					{type = "fluid", name = "water", amount = 1000}
+				},
+				  results =
+				{
+					{type = "item", name = crop[1]..str, amount_min = crop[4], amount_max = crop[4]*2},
+					{type = "item", name = "straw", amount_min = 8, amount_max = 16},
+					{type = "item", name = "raw-straw", amount_min = 1, amount_max = 3},
+				},
+				allow_as_intermediate = false,
+			},
+			{
+				type = "recipe",
+				name = crop[1].."-growth-c",
+				order = "w-d-a-c",
+				enabled = false,
+				icon = "__FoodIndustry__/graphics/icons/items/"..crop[1]..str..".png",
+				icon_size = 32,
+				category = "advanced-crop-growth",
+				subgroup = crop[1],
+				energy_required = crop[2]*0.9,
+				ingredients =
+				{
+					{crop[1]..ing, crop[3]},
+					{type = "fluid", name = "compost-water", amount = 1000},
+				},
+				  results =
+				{
+					{type = "item", name = crop[1]..str, amount_min = crop[4]*1.5, amount_max = crop[4]*2.5},
+					{type = "item", name = "straw", amount_min = 4, amount_max = 12},
+					{type = "item", name = "raw-straw", amount_min = 1, amount_max = 5},
+				},
+				allow_as_intermediate = false,
+			},
+			{
+				type = "recipe",
+				name = crop[1].."-growth-f",
+				order = "w-d-a-d",
+				enabled = false,
+				icon = "__FoodIndustry__/graphics/icons/items/"..crop[1]..str..".png",
+				icon_size = 32,
+				category = "advanced-crop-growth",
+				subgroup = crop[1],
+				energy_required = crop[2]*0.625,
+				ingredients =
+				{
+					{crop[1]..ing, crop[3]},
+					{type = "fluid", name = "fertilizer-water", amount = 1000}
+				},
+				  results =
+				{
+					{type = "item", name = crop[1]..str, amount_min = crop[4]*2, amount_max = crop[4]*3},
+					{type = "item", name = "straw", amount_min = 1, amount_max = 4},
+					{type = "item", name = "raw-straw", amount_min = 3, amount_max = 7},
+				},
+				allow_as_intermediate = false,
+			},
+		})
+	end
 end
 
 data.raw.recipe["lettuce-growth"].enabled=true

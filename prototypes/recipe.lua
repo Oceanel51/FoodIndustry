@@ -92,7 +92,7 @@ data:extend({
     },
       results = 
 	{
-		{"compost", 100}
+		{"compost", 10}
 	},
 	allow_as_intermediate = false,	
     },

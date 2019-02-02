@@ -18,7 +18,7 @@ data:extend({
         name = "food-industry-hunger-speed",
         setting_type = "runtime-global",
         default_value = 100,
-		minimum_value = 10,
+		minimum_value = 1,
 		maximum_value = 1000,
     },
 	{
