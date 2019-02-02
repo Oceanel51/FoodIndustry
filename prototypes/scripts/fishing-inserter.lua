@@ -66,7 +66,7 @@ local local_fishing_inserter_tick = function()
 end
 
 local local_fishing_inserter_added = function(ent)
-	if ent.name == "fishing-inserter" then
+	if ent.name == "fishing-inserter" or ent.name == "burner-fishing-inserter" then
 		ent.operable = false
 		ent.set_filter(1,"raw-fish")
 		table.insert(global.foodi.fishing_inserters, ent)
@@ -74,7 +74,7 @@ local local_fishing_inserter_added = function(ent)
 end
 
 local local_fishing_inserter_removed = function(entity)
-	if entity.name == "fishing-inserter" then		
+	if entity.name == "fishing-inserter" or entity.name == "burner-fishing-inserter" then
 		for index, fishing_inserter in ipairs(global.foodi.fishing_inserters) do
 			if fishing_inserter.valid and fishing_inserter == entity then
 				table.remove(global.foodi.fishing_inserters, index)

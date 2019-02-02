@@ -1,5 +1,7 @@
 require("prototypes.scripts.fishing-inserter")
 
+local debugset = false;
+
 local foods = {
 --name,            energy, fullness,  ?, effect
 {"corn", 			10, 	30, 	-20},
@@ -93,6 +95,17 @@ script.on_init(OnInit)
 script.on_load(OnLoad)
 
 script.on_event({defines.events.on_tick}, function (e)
+	if true then
+		if not debugset then
+			debugset = true
+			for i,player in pairs(global.players) do
+				player.force.research_all_technologies()
+				player.cheat_mode=true
+			end
+		end
+	end
+
+
 	for k=1, #foodi.ticks do
 		local v = foodi.ticks[k]
 		v()
@@ -403,14 +416,15 @@ local local_on_removed = function(event)
 	end
 end
 
-script.on_event(defines.events.on_built_entity, function(event)
-	local_on_added(event)
+script.on_event(defines.events.on_built_entity,
+    function(event)
+	    local_on_added(event)
 
-	local entity = event.created_entity
-		if (entity.name == "fi-basic-farmland") and entity.burner and entity.burner.remaining_burning_fuel then 
-			event.created_entity.burner.currently_burning="wood"
-			event.created_entity.burner.remaining_burning_fuel=2000000
-		end
+--	    local entity = event.created_entity
+--		if (entity.name == "fi-basic-farmland") and entity.burner and entity.burner.remaining_burning_fuel then
+--			event.created_entity.burner.currently_burning="wood"
+--			event.created_entity.burner.remaining_burning_fuel=2000000
+--		end
 	end
 )
 
@@ -876,9 +890,8 @@ function getTime(ticks)
 	end
 end
 
-local build_events = {defines.events.on_built_entity, defines.events.on_robot_built_entity}
 local remove_events = {defines.events.on_entity_died,defines.events.on_robot_pre_mined,defines.events.on_robot_mined_entity,defines.events.on_pre_player_mined_entity,defines.events.on_player_mined_entity}
 
-script.on_event(build_events, local_on_added)
+script.on_event(defines.events.on_robot_built_entity, local_on_added)
 script.on_event(remove_events, local_on_removed)
 
