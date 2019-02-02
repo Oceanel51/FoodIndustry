@@ -1,7 +1,5 @@
 require("prototypes.scripts.fishing-inserter")
 
-local debugset = false;
-
 local foods = {
 --name,            energy, fullness,  ?, effect
 {"corn", 			10, 	30, 	-20},
@@ -95,16 +93,6 @@ script.on_init(OnInit)
 script.on_load(OnLoad)
 
 script.on_event({defines.events.on_tick}, function (e)
-	if true then
-		if not debugset then
-			debugset = true
-			for i,player in pairs(global.players) do
-				player.force.research_all_technologies()
-				player.cheat_mode=true
-			end
-		end
-	end
-
 
 	for k=1, #foodi.ticks do
 		local v = foodi.ticks[k]
