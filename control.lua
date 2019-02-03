@@ -1,4 +1,5 @@
 require("prototypes.scripts.fishing-inserter")
+require("prototypes.scripts.food-picker")
 
 local foods = {
 --name,            energy, fullness,  ?, effect
@@ -83,6 +84,7 @@ end
 function OnInit()
 	setupFi()
 	initFishingInserter()
+	initFoodPicker()
 end
 
 function OnLoad()

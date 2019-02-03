@@ -2,6 +2,7 @@ local crops = {
 --1			2		3			4		5		6		7			8		9			10		11		12
 --name, 	time, 	to plant,	plants,	crops,	seeds, 	stack size,	plant?,	seed?,	edible?,	straws,	compost
 {"apple", 	300, 	0,        	0,		0.0, 	0.0, 	50,			false,	false,		true,	0.0,	"3J"},
+{"orange", 	300, 	0,        	0,		0.0, 	0.0, 	50,			false,	false,		true,	0.0,	"2J"},
 {"lettuce", 300, 	5,        	6,		0.0, 	0.0, 	10,			false,	false,		true,	0.0,	"4J"},
 {"cucumber",600, 	60,        	4,		2.0, 	8.5, 	10,			true,	true,		true,	1.0,	"8J"},
 {"tomato", 	800, 	30,        	6,		3.0, 	2.0, 	10,			true,	true,		true,	1.0,	"6J"},
