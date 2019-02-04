@@ -42,6 +42,8 @@ local foods = {
 {"invulnerability-capsule",50,50, 	0,	"Invulnerability"},
 {"neutralizing-capsule",50, 50, 	0},
 {"health-buffer-capsule",50,50, 	0, 	"Health buffer"},
+{"apple", 			12, 	20,		-10},
+{"orange", 			15, 	25,		-10},
 }
 
 local effectcolors = {}
