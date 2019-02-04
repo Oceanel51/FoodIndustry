@@ -1,20 +1,32 @@
 local plants = {
---name			suffix		autoplace-control	debug color		starting	size
-{"lettuce", 	"",			"food-plant",		{r=0,g=1,b=0},	15,			0.4},
-{"cucumber",	"-plant",	"food-plant",		{r=0,g=1,b=1},	15,			0.4},
-{"tomato", 		"-plant",	"food-plant",		{r=1,g=0,b=1},	15,			0.35},
-{"potato", 		"-plant",	"food-plant",		{r=1,g=0,b=0},	0,			0.35},
-{"corn", 		"-plant",	"food-plant",		{r=1,g=1,b=0},	0,			0.45},
-{"soy", 		"-plant",	"food-plant",		{r=1,g=0.6,b=0},0,			0.3},
-{"rapeseed", 	"-plant",	"oil-plant",		{r=1,g=1,b=1},	0,			0.3},
-
+--   1				  2			3					4				5		6		7
+--  name		suffix		autoplace-control	debug color		starting	size	result
+{"lettuce", 	"",			"food-plant",		{r=0,g=1,b=0},		15,		0.4,	1},
+{"cucumber",	"-plant",	"food-plant",		{r=0,g=1,b=1},		15,		0.4,	2},
+{"tomato", 		"-plant",	"food-plant",		{r=1,g=0,b=1},		15,		0.35,	3},
+{"potato", 		"-plant",	"food-plant",		{r=1,g=0,b=0},		0,		0.35,	2},
+{"corn", 		"-plant",	"food-plant",		{r=1,g=1,b=0},		0,		0.45,	3},
+{"soy", 		"-plant",	"food-plant",		{r=1,g=0.6,b=0},	0,		0.3,	4},
+{"rapeseed", 	"-plant",	"oil-plant",		{r=1,g=1,b=1},		0,		0.3,	5},
+{"apple", 		"-tree",	"food-plant",		{r=1,g=0.2,b=0},	20,		1.2,	5},
+{"orange", 		"-tree",	"food-plant",		{r=0.6,g=0.6,b=0},	20,		0.75,	4},
 }
 
 for i, plant in pairs(plants) do
-data:extend({
+	local ty = "plant"
+	local it = "-plant"
+	if plant[2] == "" then
+		ty = "plant"
+		it = ""
+	else
+		ty = string.match(plant[2], "%w+")
+		it = string.match(plant[2], "%-%w+")
+	end
+
+	data:extend({
 	  {		
       type = "tree",
-      name = plant[1].."-plant",
+      name = plant[1].."-"..ty,
       order = "w",
       autoplace = {
 		control = plant[3],
@@ -45,7 +57,7 @@ data:extend({
       icon_size = 32,
       max_health = 5,
       minable = {
-        count = 1,
+        count = plant[7],
 		mining_hardness = 0.1,
         mining_time = 0.5,
         result = plant[1]..plant[2]
@@ -63,7 +75,7 @@ data:extend({
       subgroup = "trees",
 	  pictures = {
 		{
-			filename = "__FoodIndustry__/graphics/entity/plants/"..plant[1]..".png",
+			filename = "__FoodIndustry__/graphics/entity/"..ty.."s/"..plant[1]..".png",
 			priority = "high",
 			width = 256,
 			height = 256,
@@ -72,7 +84,8 @@ data:extend({
         }
 	  },
 	  map_color = {r=0.1, g= 0.7, b=0}--[[plant[4]],
-    },	
+	},
+	
 	{
 	type = "noise-layer",
 	name = "wild-"..plant[1]
