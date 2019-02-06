@@ -11,6 +11,36 @@ data:extend({
 			},
 		},
 	},
+	--[[{
+		type = "sound",
+		name = "use-food-sound",
+		variations =
+		{
+			{
+				filename = "__FoodIndustry__/sounds/звук кушанья мяса, картофеля.ogg",
+				volume = 0.9
+			},
+			{
+				filename = "__FoodIndustry__/sounds/звук кушанья мяса, картофеля.ogg",
+				volume = 0.9
+			},
+		},
+	},
+	{
+		type = "sound",
+		name = "use-vegan-food-sound",
+		variations =
+		{
+			{
+				filename = "__FoodIndustry__/sounds/звук кушанья морковки, салата.ogg",
+				volume = 0.9
+			},
+			{
+				filename = "__FoodIndustry__/sounds/звук кушанья морковки, картофеля.ogg",
+				volume = 0.9
+			},
+		},
+	},]]
 	{
 		type = "sound",
 		name = "use-food-capsule-sound",
@@ -28,11 +58,11 @@ data:extend({
 		variations =
 		{
 			{
-				filename = "__FoodIndustry__/sounds/buff-1.ogg",
+				filename = "__FoodIndustry__/sounds/lineage-ii-buff-1.ogg",
 				volume = 0.9
 			},
 			{
-				filename = "__FoodIndustry__/sounds/buff-1.ogg",
+				filename = "__FoodIndustry__/sounds/lineage-ii-buff-1.ogg",
 				volume = 0.9
 			},
 		},

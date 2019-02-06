@@ -1,0 +1,16 @@
+{
+  "capsule":
+  [
+    ["long-reach-capsule", "advanced-long-reach-capsule"],
+    ["speed-capsule", "advanced-speed-capsule"],
+    ["crafting-capsule", "advanced-crafting-capsule"],
+    ["mining-capsule", "advanced-mining-capsule"]
+  ],
+  "recipe":
+  [
+  ],
+  "technology":
+  [
+    ["effect-capsules", "effect-capsules-2"]
+  ]
+}

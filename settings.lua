@@ -22,6 +22,22 @@ data:extend({
 		maximum_value = 1000,
     },
 	{
+        type = "int-setting",
+        name = "food-industry-drinks-modifier",
+        setting_type = "runtime-global",
+        default_value = 30,
+		minimum_value = 1,
+		maximum_value = 100,
+    },
+	{
+        type = "int-setting",
+        name = "food-industry-substances-modifier",
+        setting_type = "runtime-global",
+        default_value = 30,
+		minimum_value = 1,
+		maximum_value = 100,
+    },
+	{
         type = "double-setting",
         name = "food-industry-slots",
         setting_type = "runtime-global",
@@ -40,6 +56,12 @@ data:extend({
 	{
         type = "bool-setting",
         name = "food-industry-remove-meat",
+        setting_type = "runtime-global",
+        default_value = true
+    },
+	{
+        type = "bool-setting",
+        name = "food-industry-disassembly-recipes",
         setting_type = "runtime-global",
         default_value = true
     },

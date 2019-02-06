@@ -23,6 +23,8 @@ data:extend({
     stack_size = 200,
 	fuel_category = "plant",
 	fuel_value = "0.5J",
+	--fuel_emission_multiplier = 1.0,
+	effectivity = 0.8,
   }, 
   {
     type = "item",
@@ -36,8 +38,8 @@ data:extend({
 	fuel_category = "chemical",
 	fuel_value = "16MJ",
 	fuel_acceleration_multiplier = 1.1,
-	fuel_top_speed_multiplier = 1.3,
-	fuel_emission_multiplier = 1,
+  fuel_top_speed_multiplier = 1.3,
+  fuel_emission_multiplier = 0.9,
   },
   {
     type = "item",
@@ -46,7 +48,7 @@ data:extend({
     icon_size = 32,
     flags = {"goes-to-main-inventory"},
     fuel_category = "humus", -- changed by Oceanel
-    fuel_value = "2500J", 
+    fuel_value = "6000J", 
     subgroup = "food-items",
     order = "w-b-d",
     stack_size = 200
@@ -89,7 +91,7 @@ data:extend({
     flags = {"goes-to-quickbar"},
     subgroup = "food-machines",
     order = "w-a-a",
-	place_result = "fi-basic-farmland",
+  	place_result = "fi-basic-farmland",
     stack_size = 10
   },
   {
@@ -100,7 +102,7 @@ data:extend({
     flags = {"goes-to-quickbar"},
     subgroup = "food-machines",
     order = "w-a-b",
-	place_result = "fi-greenhouse",
+  	place_result = "fi-greenhouse",
     stack_size = 10
   },
   {
@@ -111,7 +113,7 @@ data:extend({
     flags = {"goes-to-quickbar"},
     subgroup = "food-machines",
     order = "w-a-c",
-	place_result = "fi-big-greenhouse",
+  	place_result = "fi-big-greenhouse",
     stack_size = 5
   },
   {
@@ -122,7 +124,7 @@ data:extend({
     flags = {"goes-to-quickbar"},
     subgroup = "food-machines",
     order = "w-a-d",
-	place_result = "fi-incubator",
+  	place_result = "fi-incubator",
     stack_size = 5
   },
   {
@@ -133,7 +135,7 @@ data:extend({
     flags = {"goes-to-quickbar"},
     subgroup = "food-machines",
     order = "w-a-e",
-	place_result = "fi-composter",
+  	place_result = "fi-composter",
     stack_size = 50
   },
   {
@@ -144,7 +146,7 @@ data:extend({
     flags = {"goes-to-quickbar"},
     subgroup = "food-machines",
     order = "w-a-f",
-	place_result = "fi-electric-composter",
+  	place_result = "fi-electric-composter",
     stack_size = 20
   },
   
@@ -156,7 +158,7 @@ data:extend({
     flags = {"goes-to-quickbar"},
     subgroup = "food-machines",
     order = "w-a-g",
-	place_result = "burner-cooker",
+  	place_result = "burner-cooker",
     stack_size = 50
   },
   {
@@ -167,7 +169,7 @@ data:extend({
     flags = {"goes-to-quickbar"},
     subgroup = "food-machines",
     order = "w-a-h",
-	place_result = "electric-cooker",
+  	place_result = "electric-cooker",
     stack_size = 50
   },
   
@@ -180,7 +182,7 @@ data:extend({
     flags = {"goes-to-main-inventory"},
     subgroup = "science-pack",
     order = "h",
-	durability = 1,
+	  durability = 1,
     stack_size = 200
   },   
    
@@ -196,8 +198,8 @@ data:extend({
     flags = {"goes-to-main-inventory"},
     subgroup = "food-intermediates",
     order = "w-d",
-	stack_size = 100,
-    },
+	  stack_size = 100,
+  },
 	{
     type = "item",
     name = "raw-fries",
@@ -206,8 +208,8 @@ data:extend({
     flags = {"goes-to-main-inventory"},
     subgroup = "food-intermediates",
     order = "w-d",
-	stack_size = 10,
-    },
+	  stack_size = 10,
+  },
 	
 	
 	
@@ -250,4 +252,41 @@ data:extend({
     },
   },
   
+
+  -- Drinks items
+	{
+    type = "item",
+    name = "flask",
+    icon = "__FoodIndustry__/graphics/icons/items/flask.png",
+    icon_size = 64,
+    flags = {"goes-to-main-inventory"},
+    subgroup = "drink-empty-packages",
+    order = "a-d",
+	  stack_size = 50,
+  },
+	{
+    type = "item",
+    name = "plastic-bottle",
+    icon = "__FoodIndustry__/graphics/icons/items/plastic-bottle.png",
+    icon_size = 64,
+    flags = {"goes-to-main-inventory"},
+    subgroup = "drink-empty-packages",
+    order = "a-e",
+	  stack_size = 200,
+  },
+	{
+    type = "item",
+    name = "plastic-bottle-used",
+    icon = "__FoodIndustry__/graphics/icons/items/plastic-bottle-used.png",
+    icon_size = 64,
+    --dark_background_icon = "__base__/graphics/icons/coal-dark-background.png",
+    flags = {"goes-to-main-inventory"},
+    fuel_category = "chemical",
+    fuel_value = "5kJ",
+    fuel_emissions_multiplier = 3.4,
+    --burnt_result = "",
+    subgroup = "drink-empty-packages",
+    order = "a-f",
+	  stack_size = 500,
+  },
 })

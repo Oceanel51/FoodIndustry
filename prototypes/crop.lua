@@ -1,13 +1,13 @@
 local crops = {
 --1			2		3			4		5		6		7			8		9			10		11		12
---name, 	time, 	to plant,	plants,	crops,	seeds, 	stack size,	plant?,	seed?,	edible?,	straws,	compost
-{"lettuce", 300, 	5,        	6,		0.0, 	0.0, 	10,			false,	false,		true,	0.0,	"4J"},
-{"cucumber",600, 	60,        	4,		2.0, 	8.5, 	10,			true,	true,		true,	1.0,	"8J"},
-{"tomato", 	800, 	30,        	6,		3.0, 	2.0, 	10,			true,	true,		true,	1.0,	"6J"},
-{"potato", 	1200, 	8,        	10,		1.0, 	0.0, 	10,			true,	false,		false,	0.0,	"10J"},
-{"corn", 	1200, 	35,        	4,		2.5, 	4.5, 	10,			true,	true,		true,	3.5,	"10J"},
-{"soy", 	2400, 	50,        	6,		9.5, 	0.0, 	50,			true,	false,		false,	0.0,	"3J"},
-{"rapeseed",900, 	90,        	8,		11.5, 	0.0, 	100,		true,	false,		false,	0.0,	"1J"},
+--name, 	time, 	to plant,	plants,	result,	seeds, 	stack size,	plant?,	seed?,	edible?,	straws,	fuel for compost
+{"lettuce", 300, 	5,        	6,		0.6, 	0.0, 	10,			false,	false,		true,	0.8,	"4J"},
+{"cucumber",600, 	60,        	4,		2.4, 	8.5, 	10,			true,	true,		true,	1.4,	"8J"},
+{"tomato", 	800, 	30,        	6,		3.2, 	2.0, 	10,			true,	true,		true,	1.0,	"6J"},
+{"potato", 	1200, 	8,        	10,		1.0, 	0.0, 	10,			true,	false,		false,	4.0,	"10J"},
+{"corn", 	1200, 	35,        	4,		3.7, 	4.5, 	10,			true,	true,		true,	3.5,	"10J"},
+{"soy", 	2400, 	50,        	6,		9.8, 	0.0, 	50,			true,	false,		false,	6.0,	"3J"},
+{"rapeseed",900, 	90,        	8,		11.5, 	0.0, 	100,		true,	false,		false,	6.0,	"1J"},
 }
 
 for index, crop in pairs(crops) do
@@ -149,7 +149,7 @@ for index, crop in pairs(crops) do
 		{
 			type = "item-subgroup",
 			name = crop[1],
-			group = "food-industry",
+			group = "food-industry-foods",
 			order = "w-d-"..index,
 		},
 		{
@@ -168,9 +168,9 @@ for index, crop in pairs(crops) do
 			},
 			  results = 
 			{
-				{type = "item", name = crop[1]..str, amount_min = crop[4], amount_max = crop[4]*1.5},
-				{type = "item", name = "straw", amount_min = 15, amount_max = 25},
-				{type = "item", name = "raw-straw", amount_min = 0, amount_max = 2},
+				{type = "item", name = crop[1]..str, amount_min = crop[4], amount_max = crop[4]*1.6},
+				{type = "item", name = "straw", amount_min = crop[11]*7, amount_max = crop[11]*9},
+				{type = "item", name = "raw-straw", amount_min = crop[11]*2.8, amount_max = crop[11]*4.2},
 			},
 			allow_as_intermediate = false,
 		},	
@@ -192,9 +192,9 @@ for index, crop in pairs(crops) do
 			},
 			  results = 
 			{
-				{type = "item", name = crop[1]..str, amount_min = crop[4], amount_max = crop[4]*2},
-				{type = "item", name = "straw", amount_min = 8, amount_max = 16},
-				{type = "item", name = "raw-straw", amount_min = 1, amount_max = 3},
+				{type = "item", name = crop[1]..str, amount_min = crop[4]*1.2, amount_max = crop[4]*2.4},
+				{type = "item", name = "straw", amount_min = crop[11]*4.5, amount_max = crop[11]*6},
+				{type = "item", name = "raw-straw", amount_min = crop[11]*1.7, amount_max = crop[11]*3.5},
 			},
 			allow_as_intermediate = false,
 		},	
@@ -215,9 +215,9 @@ for index, crop in pairs(crops) do
 			},
 			  results = 
 			{
-				{type = "item", name = crop[1]..str, amount_min = crop[4]*1.5, amount_max = crop[4]*2.5},
-				{type = "item", name = "straw", amount_min = 4, amount_max = 12},
-				{type = "item", name = "raw-straw", amount_min = 1, amount_max = 5},
+				{type = "item", name = crop[1]..str, amount_min = crop[4]*1.8, amount_max = crop[4]*3.2},
+				{type = "item", name = "straw", amount_min = crop[11]*2.4, amount_max = crop[11]*4.5},
+				{type = "item", name = "raw-straw", amount_min = crop[11]*0.8, amount_max = crop[11]*2.2},
 			},
 			allow_as_intermediate = false,
 		},
@@ -238,9 +238,9 @@ for index, crop in pairs(crops) do
 			},
 			  results = 
 			{
-				{type = "item", name = crop[1]..str, amount_min = crop[4]*2, amount_max = crop[4]*3},
-				{type = "item", name = "straw", amount_min = 1, amount_max = 4},
-				{type = "item", name = "raw-straw", amount_min = 3, amount_max = 7},
+				{type = "item", name = crop[1]..str, amount_min = crop[4]*2.3, amount_max = crop[4]*4},
+				{type = "item", name = "straw", amount_min = crop[11]*0.8, amount_max = crop[11]*1.4},
+				{type = "item", name = "raw-straw", amount_min = crop[11]*0.01, amount_max = crop[11]*0.6},
 			},
 			allow_as_intermediate = false,
 		},

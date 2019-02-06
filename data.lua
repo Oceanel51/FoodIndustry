@@ -1,8 +1,9 @@
 require("changes")
 require("prototypes.item")
-require("prototypes.fluid")
+require("prototypes.fluids")
 require("prototypes.recipe")
-require("prototypes.food")
+require("prototypes.foods-item-recipe")
+require("prototypes.drinks-item-recipe")
 require("prototypes.auto-composting")
 require("prototypes.crop")
 require("prototypes.entity")
@@ -21,4 +22,9 @@ require("prototypes.storages.storage-recipe")
 require("prototypes.storages.storage-item")
 
 require("prototypes.styles.fi-style-gui")
+require("prototypes.styles.fi-font-gui")
+require("prototypes.styles.fi-sprites")
 require("prototypes.sounds")
+
+
+require("prototypes.pure-water.fluid")

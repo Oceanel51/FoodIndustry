@@ -43,7 +43,7 @@ data:extend({
 	icon = "__FoodIndustry__/graphics/icons/items/biter-meat.png",
 	icon_size = 32,
 	category = "crafting",
-	subgroup = "food-items",
+	subgroup = "foods-other",
 	energy_required = 0.5,
     ingredients =
     {
@@ -73,7 +73,7 @@ data:extend({
     },
       results = 
 	{
-		{"compost", 20}
+		{"compost", 20} -- OPTIMIZE receipt results
 	},
 	allow_as_intermediate = false,
     },
@@ -219,7 +219,10 @@ data:extend({
     enabled = false,
 	icon = "__FoodIndustry__/graphics/icons/fluids/canola-oil.png",
 	icon_size = 32,
-	category = "mixing",
+	--category = "mixing",
+	-- TODO разобраться почему не работает categories
+	--categories = {"mixing", "chemistry"},
+	category = "chemistry",
 	subgroup = "food-intermediates",
 	energy_required = 2.5,
     ingredients =
@@ -574,7 +577,7 @@ data:extend({
     enabled = false,
 	icon = "__FoodIndustry__/graphics/icons/fluids/ketchup.png",
 	icon_size = 32,
-	category = "mixing",
+	category = "cooking",
 	subgroup = "food-intermediates",
 	energy_required = 10.0,
     ingredients =
@@ -584,7 +587,7 @@ data:extend({
     },
       results = 
 	{
-		{type = "fluid", name = "ketchup", amount = 5}
+		{type = "fluid", name = "ketchup", amount = 5} -- TODO сделать в рецепте больше единиц жидкости
 	}
     },
 	
@@ -608,6 +611,44 @@ data:extend({
 	{
 		{"food-science-pack", 1}
 	}
-    },
+	},
 	
+	-- Drinks
+	{
+		type = "recipe",
+		name = "flask",
+		enabled = true,
+		icon = "__FoodIndustry__/graphics/icons/items/flask.png",
+		icon_size = 64,
+		category = "crafting",
+		subgroup = "drink-empty-packages",
+		energy_required = 4.5,
+		ingredients =
+		{
+			{"iron-plate", 1},
+		},
+		results =
+		{
+			{"flask", 1}
+		}
+	},
+	{
+		type = "recipe",
+		name = "plastic-bottle",
+		enabled = false,
+		icon = "__FoodIndustry__/graphics/icons/items/plastic-bottle.png",
+		icon_size = 64,
+		category = "crafting",
+		subgroup = "drink-empty-packages",
+		energy_required = 3.0,
+		ingredients =
+		{
+			{"plastic-bar", 1},
+		},
+		results =
+		{
+			{"plastic-bottle", 4}
+		}
+	},
+
 })
