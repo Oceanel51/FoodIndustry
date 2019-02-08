@@ -220,6 +220,7 @@ data:extend({
 	icon = "__FoodIndustry__/graphics/icons/fluids/canola-oil.png",
 	icon_size = 32,
 	category = "mixing",
+	categories = {"chemistry", "mixing"},
 	subgroup = "food-intermediates",
 	energy_required = 2.5,
     ingredients =

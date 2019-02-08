@@ -426,9 +426,9 @@ data:extend(
             enabled = true,
             ingredients =
             {
-                {"iron-gear-wheel", 1},
+                {"burner-fishing-inserter", 1},
                 {"iron-plate", 1},
-                {"inserter", 1}
+                {"electronic-circuit", 2}
             },
             result = "fishing-inserter"
         },
