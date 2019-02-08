@@ -7,9 +7,7 @@ local plants = {
 {"potato", 		"-plant",	"food-plant",		{r=1,g=0,b=0},		0,		0.35,	2},
 {"corn", 		"-plant",	"food-plant",		{r=1,g=1,b=0},		0,		0.45,	3},
 {"soy", 		"-plant",	"food-plant",		{r=1,g=0.6,b=0},	0,		0.3,	4},
-{"rapeseed", 	"-plant",	"oil-plant",		{r=1,g=1,b=1},		0,		0.3,	5},
-{"apple", 		"-tree",	"food-plant",		{r=1,g=0.2,b=0},	20,		1.2,	5},
-{"orange", 		"-tree",	"food-plant",		{r=0.6,g=0.6,b=0},	20,		0.75,	4},
+{"rapeseed", 	"-plant",	"oil-plant",		{r=1,g=1,b=1},		0,		0.3,	5}
 }
 
 for i, plant in pairs(plants) do

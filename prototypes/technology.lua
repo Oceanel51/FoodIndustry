@@ -414,16 +414,17 @@ data:extend({
     icon_size = 128,
     prerequisites = {"composting"},
     effects =
-    {  
-		{type = "unlock-recipe", recipe = "apple-growth"},
-		{type = "unlock-recipe", recipe = "orange-growth"},
+    {
+        {type = "unlock-recipe", recipe = "fi_recipe_tree_greenhouse"},
+		{type = "unlock-recipe", recipe = "apple-seedling"},
+		{type = "unlock-recipe", recipe = "orange-seedling"},
     },
     unit =
     {
       time = 40,
       count = 15,
       ingredients =
-      {        
+      {
 		{"food-science-pack", 1},
       },
     },
@@ -567,8 +568,8 @@ data:extend({
 		{type = "unlock-recipe", recipe = "corn-growth-w"},
 		{type = "unlock-recipe", recipe = "soy-growth-w"},
 		{type = "unlock-recipe", recipe = "rapeseed-growth-w"},
-		{type = "unlock-recipe", recipe = "apple-growth-w"},
-		{type = "unlock-recipe", recipe = "orange-growth-w"},
+--		{type = "unlock-recipe", recipe = "apple-growth-w"},
+--		{type = "unlock-recipe", recipe = "orange-growth-w"},
     },
     unit =
     {
@@ -695,8 +696,8 @@ data:extend({
 		{type = "unlock-recipe", recipe = "corn-growth-c"},
 		{type = "unlock-recipe", recipe = "soy-growth-c"},		
 		{type = "unlock-recipe", recipe = "rapeseed-growth-c"},
-		{type = "unlock-recipe", recipe = "apple-growth-c"},
-		{type = "unlock-recipe", recipe = "orange-growth-c"},
+--		{type = "unlock-recipe", recipe = "apple-growth-c"},
+--		{type = "unlock-recipe", recipe = "orange-growth-c"},
     },
     unit =
     {
@@ -729,8 +730,8 @@ data:extend({
 		{type = "unlock-recipe", recipe = "corn-growth-f"},
 		{type = "unlock-recipe", recipe = "soy-growth-f"},
 		{type = "unlock-recipe", recipe = "rapeseed-growth-f"},
-		{type = "unlock-recipe", recipe = "apple-growth-f"},
-		{type = "unlock-recipe", recipe = "orange-growth-f"},
+--		{type = "unlock-recipe", recipe = "apple-growth-f"},
+--		{type = "unlock-recipe", recipe = "orange-growth-f"},
     },
     unit =
     {

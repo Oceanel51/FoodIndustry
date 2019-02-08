@@ -1,16 +1,13 @@
-local crops = {
---1			2		3			4		5		6		7			8		9			10		11		12			13
---name, 	time, 	to plant,	plants,	result,	seeds, 	stack size,	plant?,	seed?,	edible?,	straws,	compost,	type
-{"apple", 	1500, 	8,        	9,		6.0, 	2.6, 	10,			true,	true,		true,	0.0,	"3J",		"tree"},
-{"orange", 	1300, 	6,        	5,		4.0, 	1.8, 	10,			true,	true,		true,	0.0,	"2J",		"tree"},
+local trees = {
+--1			2		3			4		5		6		7			8		9			10		11		12			13			14				15		16		17		18
+--name, 	time, 	to plant,	plants,	result,	seeds, 	stack size,	plant?,	seed?,	edible?,	straws,	compost,	type,	debug color,	starting,	size,	result,	change
+{"apple", 	1500, 	8,        	9,		6.0, 	2.6, 	10,			true,	true,		true,	0.0,	"3J",		"tree", {r=1,g=0.2,b=0},	20,		1.2,	5,		0.25},
+{"orange", 	1300, 	6,        	5,		4.0, 	1.8, 	10,			true,	true,		true,	0.0,	"2J",		"tree", {r=0.6,g=0.6,b=0},	20,		0.75,	4,		0.12},
 }
 
-for index, crop in pairs(crops) do
-	local ing = ""
-	local str = ""
-	if crop[8] then
-		str = "-"..crop[13]
+for index, crop in pairs(trees) do
 		data:extend({
+			-- Fruits
 			{
 				type = "item",
 				name = crop[1].."-"..crop[13],
@@ -18,35 +15,12 @@ for index, crop in pairs(crops) do
 				icon_size = 32,
 				flags = {"goes-to-main-inventory"},
 				subgroup = crop[1],
-				order = "w-d-"..index.."-y",
+				order = "a",
 				stack_size = 10
 			},
-			{
-				type = "recipe",
-				name = crop[1],
-				order = "w-d-b-x",
-				enabled = true,
-				icon = "__FoodIndustry__/graphics/icons/items/"..crop[1]..".png",
-				icon_size = 32,
-				category = "crafting",
-				subgroup = crop[1],
-				energy_required = 2.0,
-				ingredients =
-				{
-					{crop[1].."-"..crop[13], 1}
-				},
-				  results = 
-				{
-					{type = "item", name = crop[1], amount_min = math.floor(crop[5]-0.4), amount_max = math.floor(crop[5]+1.4)},
-					{type = "item", name = "raw-straw", amount = 3, probability = 0.8},
-					{type = "item", name = "straw", amount_min = 1, amount_max = 2},
-				}
-			},
-		})	
-	end
-	if crop[9] then
-		ing = "-seeds"
-		data:extend({		
+		})
+		data:extend({
+			-- Fruit seeds
 			{
 				type = "item",
 				name = crop[1].."-seeds",
@@ -54,9 +28,10 @@ for index, crop in pairs(crops) do
 				icon_size = 32,
 				flags = {"goes-to-main-inventory"},
 				subgroup = crop[1],
-				order = "w-d-"..index.."-z",
+				order = "a",
 				stack_size = 100
 			},
+			-- Fruit seeds recipe
 			{
 				type = "recipe",
 				name = crop[1].."-seeds",
@@ -73,15 +48,12 @@ for index, crop in pairs(crops) do
 				},
 				  results = 
 				{
-					{type = "item", name = crop[1].."-seeds", amount_min = math.floor(crop[6]-0.4), amount_max = math.floor(crop[6]+1.4)},
-					{type = "item", name = "raw-straw", amount = 1, probability = 0.75},
-					{type = "item", name = "straw", amount_min = crop[11]*1, amount_max = crop[11]*2},
+					{type = "item", name = crop[1].."-seeds", amount_min = math.floor(crop[6]-0.4), amount_max = math.floor(crop[6]+1.4)}
 				}
 			},
 		})	
-	end
-	if crop[10] then
 		data:extend({
+			-- Fruit as food
 			{
 				type = "capsule",
 				name = crop[1],
@@ -121,23 +93,6 @@ for index, crop in pairs(crops) do
 				fuel_value = crop[12],
 			},
 		})
-	else
-		data:extend({
-			{
-				type = "item",
-				name = crop[1],
-				icon = "__FoodIndustry__/graphics/icons/items/"..crop[1]..".png",
-				icon_size = 32,
-				flags = {"goes-to-main-inventory"},
-				subgroup = crop[1],
-				order = "w-d-"..index.."-x",
-				stack_size = crop[7],
-				fuel_category = "plant",
-				fuel_value = crop[12],
-			},
-		})
-		
-	end
 
 	data:extend({
 		{
@@ -147,104 +102,208 @@ for index, crop in pairs(crops) do
 			order = "w-d-"..index,
 		},
 	})
-	if crop[4] > 0 then
-		data:extend({
+	data:extend({
+
+		-- seedlings
+		-- seedling item
+		---- Seedling
 			{
-				type = "recipe",
-				name = crop[1].."-growth",
-				order = "w-d-a-a",
-				enabled = false,
-				icon = "__FoodIndustry__/graphics/icons/items/"..crop[1]..str..".png",
+				type = "item",
+				name = crop[1].."-seedling",
+				icon = "__FoodIndustry__/graphics/entity/trees/"..crop[1].."-Seedling.png",
 				icon_size = 32,
-				category = "basic-crop-growth",
+				flags = {"goes-to-main-inventory"},
 				subgroup = crop[1],
-				energy_required = crop[2] / 2,
-				ingredients =
-				{
-					{crop[1]..ing, crop[3] / 2}
-				},
-				  results =
-				{
-					{type = "item", name = crop[1]..str, amount_min = crop[4] / 2, amount_max = crop[4]*0.75},
-					{type = "item", name = "straw", amount_min = 7, amount_max = 12},
-					{type = "item", name = "raw-straw", amount_min = 0, amount_max = 1},
-				},
-				allow_as_intermediate = false,
+				order = "b",
+				place_result=crop[1].."-tree",
+				fuel_value = "1MJ",
+				fuel_category = "chemical",
+				stack_size= 400
 			},
 
+		-- seedling entity
 			{
-				type = "recipe",
-				name = crop[1].."-growth-w",
-				order = "w-d-a-b",
-				enabled = false,
-				icon = "__FoodIndustry__/graphics/icons/items/"..crop[1]..str..".png",
+				type = "land-mine",
+				name = crop[1].."-seedling",
+				icon = "__FoodIndustry__/graphics/entity/trees/"..crop[1].."-Seedling.png",
 				icon_size = 32,
-				category = "advanced-crop-growth",
-				subgroup = crop[1],
-				energy_required = crop[2],
-				ingredients =
+				order = "b",
+				flags = {"placeable-neutral", "placeable-player", "player-creation", "breaths-air",},
+				minable =
 				{
-					{crop[1]..ing, crop[3]},
-					{type = "fluid", name = "water", amount = 1000}
+					mining_particle = "wooden-particle",
+					mining_time = 0.25,
+					result = crop[1].."-seedling",
+					count = 1
 				},
-				  results =
+				emissions_per_tick = -0.0006,
+				max_health = 5,
+				collision_box = {{-0.1, -0.1}, {0.1, 0.1}},
+				selection_box = {{-0.5, -0.5}, {0.5, 0.5}},
+				subgroup = "intermediate-product",
+				vehicle_impact_sound = { filename = "__base__/sound/car-wood-impact.ogg", volume = 1.0 },
+				picture_safe =
 				{
-					{type = "item", name = crop[1]..str, amount_min = crop[4], amount_max = crop[4]*2},
-					{type = "item", name = "straw", amount_min = 8, amount_max = 16},
-					{type = "item", name = "raw-straw", amount_min = 1, amount_max = 3},
+					filename = "__FoodIndustry__/graphics/entity/trees/"..crop[1].."-Seedling_a.png",
+					priority = "extra-high",
+					width = 32,
+					height = 32,
 				},
-				allow_as_intermediate = false,
+				picture_set =
+				{
+					filename = "__FoodIndustry__/graphics/entity/trees/"..crop[1].."-Seedling_b.png",
+					priority = "extra-high",
+					width = 32,
+					height = 32,
+				},
+				trigger_radius = 0,
 			},
+
+		-- seedling recipe
 			{
 				type = "recipe",
-				name = crop[1].."-growth-c",
-				order = "w-d-a-c",
-				enabled = false,
-				icon = "__FoodIndustry__/graphics/icons/items/"..crop[1]..str..".png",
+				name = crop[1].."-seedling",
+				icon = "__FoodIndustry__/graphics/entity/trees/"..crop[1].."-Seedling.png",
 				icon_size = 32,
-				category = "advanced-crop-growth",
-				subgroup = crop[1],
-				energy_required = crop[2]*0.9,
+				category = "fi-mod-tree-greenhouse",
+				energy_required = 50,
 				ingredients =
 				{
-					{crop[1]..ing, crop[3]},
-					{type = "fluid", name = "compost-water", amount = 1000},
+					{type="item", name=crop[1].."-seeds", amount=5},
 				},
-				  results =
+				results=
 				{
-					{type = "item", name = crop[1]..str, amount_min = crop[4]*1.5, amount_max = crop[4]*2.5},
-					{type = "item", name = "straw", amount_min = 4, amount_max = 12},
-					{type = "item", name = "raw-straw", amount_min = 1, amount_max = 5},
+					{type="item", name=crop[1].."-seedling", amount=5},
 				},
-				allow_as_intermediate = false,
-			},
-			{
-				type = "recipe",
-				name = crop[1].."-growth-f",
-				order = "w-d-a-d",
 				enabled = false,
-				icon = "__FoodIndustry__/graphics/icons/items/"..crop[1]..str..".png",
-				icon_size = 32,
-				category = "advanced-crop-growth",
-				subgroup = crop[1],
-				energy_required = crop[2]*0.625,
-				ingredients =
-				{
-					{crop[1]..ing, crop[3]},
-					{type = "fluid", name = "fertilizer-water", amount = 1000}
-				},
-				  results =
-				{
-					{type = "item", name = crop[1]..str, amount_min = crop[4]*2, amount_max = crop[4]*3},
-					{type = "item", name = "straw", amount_min = 1, amount_max = 4},
-					{type = "item", name = "raw-straw", amount_min = 3, amount_max = 7},
-				},
-				allow_as_intermediate = false,
+				always_show_made_in = true,
+				allow_decomposition = false,
 			},
 		})
-	end
+
+	data:extend({
+		{
+			type = "tree",
+			name = crop[1].."-tree",
+			order = "w",
+			collision_box = {{-0.2,-0.2},{0.2,0.2}},
+			collision_mask = {"item-layer", "object-layer", "water-tile"},
+			darkness_of_burnt_tree = 0.5,
+			emissions_per_tick = -0.001,
+			flags = {
+				"placeable-neutral",
+				"placeable-off-grid",
+				"breaths-air",
+				"placeable-player",
+				"player-creation"
+			},
+			icon = "__FoodIndustry__/graphics/icons/items/"..crop[1].."-tree.png",
+			icon_size = 32,
+			max_health = 5,
+			minable = {
+				count = crop[17],
+				mining_hardness = 0.1,
+				mining_time = 0.5,
+				results = {
+					{type = "item", name = "raw-wood", amount = 5 },
+					{type = "item", name = "raw-straw", amount = 3, probability = 0.8},
+					{type = "item", name = crop[1], amount = 1, probability = crop[18] }
+				},
+			},
+			selection_box = {
+				{
+					-0.4,
+					-0.4
+				},
+				{
+					0.4,
+					0.4
+				}
+			},
+			subgroup = "trees",
+			pictures = {
+				{
+					filename = "__FoodIndustry__/graphics/entity/trees/"..crop[1]..".png",
+					priority = "high",
+					width = 256,
+					height = 256,
+					scale = crop[16],
+					shift = {0.0, 0.0},
+				}
+			},
+			map_color = {r=0.1, g= 0.7, b=0}--[[crop[4]],
+		},
+
+		{
+			type = "tree",
+			name = crop[1].."-wild-tree",
+			order = "w",
+			autoplace = {
+				control = "food-plant",
+				max_probability = 0.006,
+				coverage = 0.0003,
+				order = "c",
+				peaks = {
+					{
+						noise_layer = "wild-"..crop[1],
+						noise_octaves_difference = -0.85,
+						noise_persistence = 0.4
+					}
+				},
+				sharpness = 0.9375,
+				starting_area_amount = 1600,
+				starting_area_size = crop[15]
+			},
+			collision_box = {{-0.2,-0.2},{0.2,0.2}},
+			collision_mask = {"item-layer", "object-layer", "water-tile"},
+			darkness_of_burnt_tree = 0.5,
+			emissions_per_tick = -0.001,
+			flags = {
+				"placeable-neutral",
+				"placeable-off-grid",
+				"breaths-air"
+			},
+			icon = "__FoodIndustry__/graphics/icons/items/"..crop[1].."-tree.png",
+			icon_size = 32,
+			max_health = 5,
+			minable = {
+				count = crop[17],
+				mining_hardness = 0.1,
+				mining_time = 0.5,
+				results = {
+					{type = "item", name = "raw-wood", amount = 5 },
+					{type = "item", name = "raw-straw", amount = 3, probability = 0.8},
+					{type = "item", name = crop[1], amount = 1, probability = crop[18] }
+				},
+			},
+			selection_box = {
+				{
+					-0.4,
+					-0.4
+				},
+				{
+					0.4,
+					0.4
+				}
+			},
+			subgroup = "trees",
+			pictures = {
+				{
+					filename = "__FoodIndustry__/graphics/entity/trees/"..crop[1]..".png",
+					priority = "high",
+					width = 256,
+					height = 256,
+					scale = crop[16],
+					shift = {0.0, 0.0},
+				}
+			},
+			map_color = {r=0.1, g= 0.7, b=0}--[[crop[4]],
+		},
+
+		{
+			type = "noise-layer",
+			name = "wild-"..crop[1]
+		}
+	})
 end
 
-data.raw.recipe["lettuce-growth"].enabled=true
-data.raw.recipe["tomato-growth"].enabled=true
-data.raw.recipe["cucumber-growth"].enabled=true
