@@ -93,106 +93,110 @@ function figui.create(index, player)
 		leftGui.frame.drinksbar.style.width = 200
 		leftGui.frame.drinksbar.style.color = {r=0.2, g=0.2, b=1, a=1}
 	end	
-	-- initialize labels and bars of .flow2
-	if not leftGui.frame.flow2 then
-		leftGui.frame.add{type = "flow", name = "flow2", direction = "horizontal"}
-	end
-	if not leftGui.frame.flow2.fullnesslabel then
-		--"Fullness: " .. fullnessbar .."%"
-		leftGui.frame.flow2.add({type="label", name="label_fullness", caption={'label.label-fullness', ": "},})
-		--leftGui.frame.flow2.add({type="label", name="label_fullness1", caption=": ",})
-		leftGui.frame.flow2.add({type="label", name="fullnesslabel", caption=""})
-		--leftGui.frame.flow2.add({type="label", name="label_percent", caption={'label.label-percent'},})
-		leftGui.frame.flow2.add({type="label", name="label_percent", caption="%",})
-	end	
-	if not leftGui.frame.fullnessbar then
-		leftGui.frame.add({type="progressbar", name="fullnessbar"})
-		leftGui.frame.fullnessbar.style.width = 200
-		leftGui.frame.fullnessbar.style.color = {r = 1, g = 0.6, a = 1}
-	end
-	
-	-- .flow 3,4,5 rezerved for "Balance of Substances"
-	if not leftGui.frame.flow3 then
-		leftGui.frame.add{type = "flow", name = "flow3", direction = "horizontal"}
-	end
-	if not leftGui.frame.flow3.flow33 then
-		leftGui.frame.flow3.add{type="flow", name="flow33", direction="vertical"}
-		--leftGui.frame.flow3.flow33.style.left_padding=10
-		leftGui.frame.flow3.flow33.add({type="label", name="label_substances", caption={'label.label-substances', ": "},})
-	end
-	
-	if not leftGui.frame.flow3.flow33.flow331 then
-		leftGui.frame.flow3.flow33.add{type="flow", name="flow331", tooltip={'label.label-substancesbar_v-tooltip',"100"}, style="fi-substances-flow"}
-		if not leftGui.frame.flow3.flow33.flow331.substancesbar_v then
-			--leftGui.frame.flow3.flow33.flow331.add({type="label", name="label_substancesbar_v", caption={'label.label-substancesbar_v'},})
-			leftGui.frame.flow3.flow33.flow331.add({type="progressbar", name="substancesbar_v", style="fi-substances-bar"})
-			leftGui.frame.flow3.flow33.flow331.substancesbar_v.style.color = {r=0.388235294, g=1, b=0.317647059, a=1}
-			leftGui.frame.flow3.flow33.flow331.add({type="label", name="label_substancesbar_v", caption="0", tooltip={'label.label-substancesbar_v-tooltip',"100"}, style="fi-label-mini"})
-			leftGui.frame.flow3.flow33.flow331.label_substancesbar_v.style.font_color = {r=0.388235294, g=1, b=0.317647059, a=1}
-		end
-	end
-	if not leftGui.frame.flow3.flow33.flow332 then
-		leftGui.frame.flow3.flow33.add{type = "flow", name = "flow332", tooltip={'label.label-substancesbar_m-tooltip',"100"}, style="fi-substances-flow"}
-		if not leftGui.frame.flow3.flow33.flow332.substancesbar_m then
-			--leftGui.frame.flow3.flow33.flow332.add({type="label", name="label_substancesbar_m", caption={'label.label-substancesbar_m'},})
-			leftGui.frame.flow3.flow33.flow332.add({type="progressbar", name="substancesbar_m", style="fi-substances-bar"})
-			leftGui.frame.flow3.flow33.flow332.substancesbar_m.style.color = {r=1, g=0.996078431, b=0.047058824, a=1}
-			leftGui.frame.flow3.flow33.flow332.add({type="label", name="label_substancesbar_m", caption="0", tooltip={'label.label-substancesbar_m-tooltip',"100"}, style="fi-label-mini"})
-			leftGui.frame.flow3.flow33.flow332.label_substancesbar_m.style.font_color = {r=1, g=0.996078431, b=0.047058824, a=1}
-		end
-	end
-	if not leftGui.frame.flow3.flow33.flow333 then
-		leftGui.frame.flow3.flow33.add{type = "flow", name = "flow333", tooltip={'label.label-substancesbar_c-tooltip',"100"}, style="fi-substances-flow"}
-		if not leftGui.frame.flow3.flow33.flow333.substancesbar_c then
-			--leftGui.frame.flow3.flow33.flow333.add({type="label", name="label_substancesbar_c", caption={'label.label-substancesbar_c'},})
-			leftGui.frame.flow3.flow33.flow333.add({type="progressbar", name="substancesbar_c", style="fi-substances-bar"})
-			leftGui.frame.flow3.flow33.flow333.substancesbar_c.style.color = {r=1, g=0.552941176, b=0.937254902, a=1}
-			leftGui.frame.flow3.flow33.flow333.add({type="label", name="label_substancesbar_c", caption="0", tooltip={'label.label-substancesbar_c-tooltip',"100"}, style="fi-label-mini"})
-			leftGui.frame.flow3.flow33.flow333.label_substancesbar_c.style.font_color = {r=1, g=0.552941176, b=0.937254902, a=1}
-		end
-	end
-	if not leftGui.frame.flow3.flow33.flow334 then
-		leftGui.frame.flow3.flow33.add{type = "flow", name = "flow334", tooltip={'label.label-substancesbar_f-tooltip',"100"}, style="fi-substances-flow"}
-		if not leftGui.frame.flow3.flow33.flow334.substancesbar_f then
-			--leftGui.frame.flow3.flow33.flow334.add({type="label", name="label_substancesbar_f", caption={'label.label-substancesbar_f'},})
-			leftGui.frame.flow3.flow33.flow334.add({type="progressbar", name="substancesbar_f", style="fi-substances-bar"})
-			leftGui.frame.flow3.flow33.flow334.substancesbar_f.style.color = {r=0.301960784, g=0.882352941, b=0.984313725, a=1}
-			leftGui.frame.flow3.flow33.flow334.add({type="label", name="label_substancesbar_f", caption="0", tooltip={'label.label-substancesbar_f-tooltip',"100"}, style="fi-label-mini"})
-			leftGui.frame.flow3.flow33.flow334.label_substancesbar_f.style.font_color = {r=0.301960784, g=0.882352941, b=0.984313725, a=1}
-		end
-	end
 
-	if not leftGui.frame.flow3.flow34 then
-		leftGui.frame.flow3.add{type="flow", name="flow34", direction="horizontal"}
-		--leftGui.frame.flow3.flow34.style.left_padding=0
-		leftGui.frame.flow3.flow34.style.maximal_width=80
-		leftGui.frame.flow3.flow34.add({type="label", name="label_effects", caption={'label.label-effects', ": "},})
-		leftGui.frame.flow3.flow34.add({type="label", name="label_effects_count", caption="0",})
-	end
-	-- TODO Add Effects icons function
-
-	
-	-- initialize labels and bars of .flow6
-	if not leftGui.frame.flow6 then
-		leftGui.frame.add{ type = "flow", name = "flow6", direction = "horizontal", width = 200, align = "right"}
-	end
-	-- TODO "eat-button-ongui" by Oceanel
-	if player.force.technologies["fi-tech-eatout-button"] and player.force.technologies["fi-tech-eatout-button"].researched then
-		if not leftGui.frame.flow6.eat_button then
-			leftGui.frame.flow6.add{
-			type = "button",
-			name = "eat_button",
-			caption = {'button.eatout'},
-			tooltip = {'button.eatout-tooltip'},
-			align = "right",
-			vertical_align = "bottom",
-			--horizontally_stretchable = true,
-			--key_sequence = "SHIFT + E",
-			height = 20,
-			width = 25}
+	-- DEBUG check this
+	if player.connected and player.character then -- if not sandbox mode
+		-- initialize labels and bars of .flow2
+		if not leftGui.frame.flow2 then
+			leftGui.frame.add{type = "flow", name = "flow2", direction = "horizontal"}
 		end
-		else
-		leftGui.frame.flow6.destroy()
+		if not leftGui.frame.flow2.fullnesslabel then
+			--"Fullness: " .. fullnessbar .."%"
+			leftGui.frame.flow2.add({type="label", name="label_fullness", caption={'label.label-fullness', ": "},})
+			--leftGui.frame.flow2.add({type="label", name="label_fullness1", caption=": ",})
+			leftGui.frame.flow2.add({type="label", name="fullnesslabel", caption=""})
+			--leftGui.frame.flow2.add({type="label", name="label_percent", caption={'label.label-percent'},})
+			leftGui.frame.flow2.add({type="label", name="label_percent", caption="%",})
+		end	
+		if not leftGui.frame.fullnessbar then
+			leftGui.frame.add({type="progressbar", name="fullnessbar"})
+			leftGui.frame.fullnessbar.style.width = 200
+			leftGui.frame.fullnessbar.style.color = {r = 1, g = 0.6, a = 1}
+		end
+		
+		-- .flow 3,4,5 rezerved for "Balance of Substances"
+		if not leftGui.frame.flow3 then
+			leftGui.frame.add{type = "flow", name = "flow3", direction = "horizontal"}
+		end
+		if not leftGui.frame.flow3.flow33 then
+			leftGui.frame.flow3.add{type="flow", name="flow33", direction="vertical"}
+			--leftGui.frame.flow3.flow33.style.left_padding=10
+			leftGui.frame.flow3.flow33.add({type="label", name="label_substances", caption={'label.label-substances', ": "},})
+		end
+		
+		if not leftGui.frame.flow3.flow33.flow331 then
+			leftGui.frame.flow3.flow33.add{type="flow", name="flow331", tooltip={'label.label-substancesbar_v-tooltip',"100"}, style="fi-substances-flow"}
+			if not leftGui.frame.flow3.flow33.flow331.substancesbar_v then
+				--leftGui.frame.flow3.flow33.flow331.add({type="label", name="label_substancesbar_v", caption={'label.label-substancesbar_v'},})
+				leftGui.frame.flow3.flow33.flow331.add({type="progressbar", name="substancesbar_v", style="fi-substances-bar"})
+				leftGui.frame.flow3.flow33.flow331.substancesbar_v.style.color = {r=0.388235294, g=1, b=0.317647059, a=1}
+				leftGui.frame.flow3.flow33.flow331.add({type="label", name="label_substancesbar_v", caption="0", tooltip={'label.label-substancesbar_v-tooltip',"100"}, style="fi-label-mini"})
+				leftGui.frame.flow3.flow33.flow331.label_substancesbar_v.style.font_color = {r=0.388235294, g=1, b=0.317647059, a=1}
+			end
+		end
+		if not leftGui.frame.flow3.flow33.flow332 then
+			leftGui.frame.flow3.flow33.add{type = "flow", name = "flow332", tooltip={'label.label-substancesbar_m-tooltip',"100"}, style="fi-substances-flow"}
+			if not leftGui.frame.flow3.flow33.flow332.substancesbar_m then
+				--leftGui.frame.flow3.flow33.flow332.add({type="label", name="label_substancesbar_m", caption={'label.label-substancesbar_m'},})
+				leftGui.frame.flow3.flow33.flow332.add({type="progressbar", name="substancesbar_m", style="fi-substances-bar"})
+				leftGui.frame.flow3.flow33.flow332.substancesbar_m.style.color = {r=1, g=0.996078431, b=0.047058824, a=1}
+				leftGui.frame.flow3.flow33.flow332.add({type="label", name="label_substancesbar_m", caption="0", tooltip={'label.label-substancesbar_m-tooltip',"100"}, style="fi-label-mini"})
+				leftGui.frame.flow3.flow33.flow332.label_substancesbar_m.style.font_color = {r=1, g=0.996078431, b=0.047058824, a=1}
+			end
+		end
+		if not leftGui.frame.flow3.flow33.flow333 then
+			leftGui.frame.flow3.flow33.add{type = "flow", name = "flow333", tooltip={'label.label-substancesbar_c-tooltip',"100"}, style="fi-substances-flow"}
+			if not leftGui.frame.flow3.flow33.flow333.substancesbar_c then
+				--leftGui.frame.flow3.flow33.flow333.add({type="label", name="label_substancesbar_c", caption={'label.label-substancesbar_c'},})
+				leftGui.frame.flow3.flow33.flow333.add({type="progressbar", name="substancesbar_c", style="fi-substances-bar"})
+				leftGui.frame.flow3.flow33.flow333.substancesbar_c.style.color = {r=1, g=0.552941176, b=0.937254902, a=1}
+				leftGui.frame.flow3.flow33.flow333.add({type="label", name="label_substancesbar_c", caption="0", tooltip={'label.label-substancesbar_c-tooltip',"100"}, style="fi-label-mini"})
+				leftGui.frame.flow3.flow33.flow333.label_substancesbar_c.style.font_color = {r=1, g=0.552941176, b=0.937254902, a=1}
+			end
+		end
+		if not leftGui.frame.flow3.flow33.flow334 then
+			leftGui.frame.flow3.flow33.add{type = "flow", name = "flow334", tooltip={'label.label-substancesbar_f-tooltip',"100"}, style="fi-substances-flow"}
+			if not leftGui.frame.flow3.flow33.flow334.substancesbar_f then
+				--leftGui.frame.flow3.flow33.flow334.add({type="label", name="label_substancesbar_f", caption={'label.label-substancesbar_f'},})
+				leftGui.frame.flow3.flow33.flow334.add({type="progressbar", name="substancesbar_f", style="fi-substances-bar"})
+				leftGui.frame.flow3.flow33.flow334.substancesbar_f.style.color = {r=0.301960784, g=0.882352941, b=0.984313725, a=1}
+				leftGui.frame.flow3.flow33.flow334.add({type="label", name="label_substancesbar_f", caption="0", tooltip={'label.label-substancesbar_f-tooltip',"100"}, style="fi-label-mini"})
+				leftGui.frame.flow3.flow33.flow334.label_substancesbar_f.style.font_color = {r=0.301960784, g=0.882352941, b=0.984313725, a=1}
+			end
+		end
+
+		if not leftGui.frame.flow3.flow34 then
+			leftGui.frame.flow3.add{type="flow", name="flow34", direction="horizontal"}
+			--leftGui.frame.flow3.flow34.style.left_padding=0
+			leftGui.frame.flow3.flow34.style.maximal_width=80
+			leftGui.frame.flow3.flow34.add({type="label", name="label_effects", caption={'label.label-effects', ": "},})
+			leftGui.frame.flow3.flow34.add({type="label", name="label_effects_count", caption="0",})
+		end
+		-- TODO Add Effects icons function
+
+		
+		-- initialize labels and bars of .flow6
+		if not leftGui.frame.flow6 then
+			leftGui.frame.add{ type = "flow", name = "flow6", direction = "horizontal", width = 200, align = "right"}
+		end
+		-- TODO "eat-button-ongui" by Oceanel
+		if player.force.technologies["fi-tech-eatout-button"] and player.force.technologies["fi-tech-eatout-button"].researched then
+			if not leftGui.frame.flow6.eat_button then
+				leftGui.frame.flow6.add{
+				type = "button",
+				name = "eat_button",
+				caption = {'button.eatout'},
+				tooltip = {'button.eatout-tooltip'},
+				align = "right",
+				vertical_align = "bottom",
+				--horizontally_stretchable = true,
+				--key_sequence = "SHIFT + E",
+				height = 20,
+				width = 25}
+			end
+			else
+			leftGui.frame.flow6.destroy()
+		end
 	end
 
 end

@@ -185,8 +185,9 @@ data:extend({
 	{
 		{type = "item", name = "crystal", amount = 1, probability = 0.3}
 	},
-    },
-	{
+},
+
+{
     type = "recipe",
     name = "crystal-steam",
 	order = "w-b-e-2",
@@ -209,33 +210,31 @@ data:extend({
 	},
 	crafting_machine_tint = { primary = {r=0.8,g=0.8,b=1,a=1}, secondary = {r=0.9,g=0.9,b=0.9,a=1}, tertiary = {r=0.8,g=0.8,b=0.8,a=1}},
 	allow_as_intermediate = false,
-    },
-	
-	
-	
-	{
-    type = "recipe",
-    name = "canola-oil",
-    enabled = false,
+},
+
+{
+	type = "recipe",
+	name = "canola-oil",
+	enabled = false,
 	icon = "__FoodIndustry__/graphics/icons/fluids/canola-oil.png",
 	icon_size = 32,
-	--category = "mixing",
 	-- TODO разобраться почему не работает categories
 	--categories = {"mixing", "chemistry"},
 	category = "chemistry",
 	subgroup = "food-intermediates",
 	energy_required = 2.5,
-    ingredients =
-    {
+	ingredients =
+	{
 		{type = "fluid", name = "steam", amount = 10},
 		{ "rapeseed", 2 }
-    },
-      results = 
+	},
+	results = 
 	{
 		{type = "fluid", name = "canola-oil", amount = 40}
 	},
-    },
-	{
+},
+
+{
     type = "recipe",
     name = "canola-oil-processing",
     enabled = false,
@@ -617,6 +616,7 @@ data:extend({
 	{
 		type = "recipe",
 		name = "flask",
+		order = "a-b-a",
 		enabled = true,
 		icon = "__FoodIndustry__/graphics/icons/items/flask.png",
 		icon_size = 64,
@@ -634,7 +634,32 @@ data:extend({
 	},
 	{
 		type = "recipe",
+		name = "flask-recycle",
+		order = "a-b-b",
+		enabled = true,
+		icon = "__FoodIndustry__/graphics/icons/items/flask-recycle.png",
+		icon_size = 64,
+		category = "crafting",
+		subgroup = "drink-empty-packages",
+		energy_required = 6,
+		ingredients =
+		{
+			{"flask", 4}
+		},
+		results =
+		{
+			{"iron-plate", 1},
+		},
+		hide_from_stats = true,
+		--allow_decomposition = false,
+		allow_as_intermediate = false,
+		allow_intermediates = false,
+	},
+
+	{
+		type = "recipe",
 		name = "plastic-bottle",
+		order = "a-c-a",
 		enabled = false,
 		icon = "__FoodIndustry__/graphics/icons/items/plastic-bottle.png",
 		icon_size = 64,

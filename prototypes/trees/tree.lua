@@ -8,6 +8,8 @@ local plants = {
 {"soy", 		"-plant",	"food-plant",		{r=1,g=0.6,b=0},	0,			0.3},
 {"rapeseed", 	"-plant",	"oil-plant",		{r=1,g=1,b=1},		0,			0.3},
 }
+{"apple", 	1500, 	8,        	9,		6.0, 	2.6, 	10,			true,	true,		true,	0.0,	"3J",		"tree"},
+{"orange", 	1300, 	6,        	5,		4.0, 	1.8, 	10,			true,	true,		true,	0.0,	"2J",		"tree"},
 
 
 for i, plant in pairs(plants) do

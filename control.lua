@@ -6,15 +6,16 @@ require "prototypes.functions.fi-calculations"
 require "libs.helper-functions"
 
 
--- TODO разобраться что это значит
-script.on_init(	figui.mod_init )
-script.on_load(	figui.mod_init )
---script.on_configuration_changed(evogui.mod_update)
+script.on_init(OnInit)
+script.on_load(OnLoad)
+--script.on_configuration_changed(OnLoad)
 
 
 --local foods = foods_table()
 local foods = collect_all_foods_table()
 
+
+-- TODO перенести в effects function
 local effectcolors = {}
 effectcolors["Long reach"] = {r=1,g=0.8,b=0,a=1}
 effectcolors["Speed"] = {r=0,g=0.5,b=1,a=1}
@@ -35,33 +36,29 @@ maxtimes["Invulnerability"] = 900
 maxtimes["Health buffer"] = 2700
 
 
-local function mod_init()
+function OnInit()
 	for index,player in pairs(game.players) do
 		if player.connected then
 			fi_global_variables_init()
 			figui.create(index, player)
+			fi_global_variables_set(index) -- set global variables default data of connected players
 		end
 	end
 end
+function OnLoad()
+    OnInit()
+end
+
 
 
 script.on_event({defines.events.on_tick}, function (e)
 	
+	-- TODO добавить сюда sleep modifier, это основной блок по которому считаются все расходы
 	if e.tick % 5 == 0 then
 		for index,player in pairs(game.players) do
 			if player.connected then
 				
 				fi_global_variables_set(index) -- set global variables default data of connected players
-
-				 -- for achievement "overweight" > 90% for 30 minutes
-				if global.energy[index] > global.energy_max[index] * 0.9 then
-					global.effects[index]["overweight"][3] = global.effects[index]["overweight"][3] + 5
-					if global.effects[index]["overweight"][3] > 108000 then
-						player.unlock_achievement("overweight")
-					end
-				else
-					global.effects[index]["overweight"][3] = 0
-				end
 				-----------------------------------------------------
 				
 				if not player.character then -- for sandbox mode
@@ -76,6 +73,12 @@ script.on_event({defines.events.on_tick}, function (e)
 					global.substances[index] = {v=0,m=0,c=0,f=0}
 					for effect,t in pairs(global.effects[index]) do
 						global.effects[index][effect] = 0
+					end
+					if player.gui.left.frame.flow1.usagelabel then
+						player.gui.left.frame.flow1.energylabel.caption = global.energy[index]
+						player.gui.left.frame.energybar.value = global.energy[index]/100
+						player.gui.left.frame.flow1.usagelabel.caption = "---"
+						player.gui.left.frame.flow22.drinkslabel.caption = "0"
 					end
 
 				else ---- calculate character Energy usage data
@@ -187,14 +190,28 @@ script.on_event({defines.events.on_tick}, function (e)
 					
 					-------------------- used energy calculation --------------------
 					-- TODO уменьшить Energy usage for -10%, как-то так:
-					if e.tick % 8 == 0 then
+					--if e.tick % 8 == 0 then
 						energy_reduction(index, player)
-					end
+					--end
 					drinks_reduction(index, player)
 					--if e.tick % 60 == 0 then
 					--	writeDebug("global.energy["..index.."] "..math.floor(global.energy[index]).."  global.drinks["..index.."] "..math.floor(global.drinks[index]).."  tick "..e.tick)
 					--	writeDebug("global.energy["..index.."] "..global.energy[index].."  global.drinks["..index.."] "..global.drinks[index].."  tick "..e.tick)
+					--	writeDebug("energy["..index.."] "..global.energy[index].."  drinks["..index.."] "..global.drinks[index].."  tick "..e.tick)
 					--	writeDebug("global.drinks["..index.."] "..math.floor(global.drinks[index]).." tick "..e.tick)
+					--	global.fi_debug[index][1] = global.energy[index]
+					--	global.fi_debug[index][3] = global.drinks[index]
+					--	global.fi_debug[index][5] = e.tick
+					--	if global.fi_debug[index][2] > global.fi_debug[index][1] then
+					--		local energy1 = global.fi_debug[index][2] - global.fi_debug[index][1]
+					--		global.fi_debug[index][2] = global.fi_debug[index][1]
+					--		local drinks1 = global.fi_debug[index][4] - global.fi_debug[index][3]
+					--		global.fi_debug[index][4] = global.fi_debug[index][3]
+					--		
+					--		local tick1 = global.fi_debug[index][6] - global.fi_debug[index][5]
+					--		global.fi_debug[index][6] = global.fi_debug[index][5]
+					--		writeDebug(dump(global.fi_debug[index]))
+					--	end
 					--end
 					-------------------- fat modifier calculation -------------------
 					if global.fi_character_fat_modifier and global.fi_character_fat_modifier[index] then
@@ -229,11 +246,28 @@ script.on_event({defines.events.on_tick}, function (e)
 					end
 					
 					--------------------- effects calculation -----------------------
+					if e.tick % 60 == 0 then
+						effects_time_reduction(index)
+						--effects_remove(index)
+					end
 					if e.tick % 600 == 0 then
 						effects_calc_on_tick(index, player)
+						--writeDebug(dump(global.effects[index]))
+						--figui.update_effects(index, player)
 					end
 					
+					
 					u_gui()
+
+					-- for achievement "overweight" > 90% for 30 minutes
+					if global.energy[index] > global.energy_max[index] * 0.9 then
+						global.effects[index]["overweight"][3] = global.effects[index]["overweight"][3] + 5
+						if global.effects[index]["overweight"][3] > 108000 then
+							player.unlock_achievement("overweight")
+						end
+					else
+						global.effects[index]["overweight"][3] = 0
+					end
 					
 				end
 			end
@@ -288,12 +322,13 @@ script.on_event(defines.events.on_player_created, function(event)
 
 	player.insert({name="vegan-food-capsule", count=10})
 	player.insert({name="simple-digestive-capsule", count=5})
-	player.insert({name="simple-crafting-capsule", count=2})
 	player.insert({name="simple-speed-capsule", count=2})
+	player.insert({name="simple-crafting-capsule", count=2})
 	player.insert({name="simple-mining-capsule", count=2})
 	
 	-- DEBUG remove this
 	player.insert({name="lettuce", count=10})
+	player.insert({name="tomato", count=10})
 	player.insert({name="corn", count=10})
 	player.insert({name="popcorn", count=10})
 	player.insert({name="flask-pure-water", count=10})
@@ -331,7 +366,7 @@ script.on_event(defines.events.on_player_used_capsule, function(event)
 		if event.item.name == food[1] then
 			
 			local player = game.players[event.player_index]
-			if player.connected and player.character and global.effects[event.player_index] then
+			--if player.connected and player.character and global.effects[event.player_index] then
 				if global.fullness[event.player_index] and global.fullness[event.player_index] > 180 then
 				-- TODO потеря сознания персонажа выше Fullness 181 единниц
 				--if global.fullness[event.player_index] + food[3] > 100 then
@@ -355,7 +390,10 @@ script.on_event(defines.events.on_player_used_capsule, function(event)
 					-- add effect to global.effects
 					if food_copy[9] and food_copy[9][1] then
 						--writeDebug(dump(food_copy[9]))
-						effects_add(event.player_index, food_copy[1], food_copy[9])
+						-- TODO обрабатываем каждый эфект отдельно
+						for _,ef in pairs(food_copy[9]) do
+							effects_add(event.player_index, food_copy[1], ef)
+						end
 						effects_calc_on_tick(event.player_index, player)
 					end
 
@@ -409,7 +447,7 @@ script.on_event(defines.events.on_player_used_capsule, function(event)
 					--game.players[event.player_index].unlock_achievement("gourmet")
 					
 				end
-			end
+			--end
 			return
 		end
 	end
@@ -430,6 +468,7 @@ script.on_event(defines.events.on_research_finished, function(event)
 		local force = event.research.force
 		for index,player in pairs(game.players) do
 			if player.force == force then
+				-- TODO уменьшить эти все коеффициенты на -0.4
 				global.update_delay[index] = 1.1
 				u_gui()
 			end
@@ -510,7 +549,7 @@ script.on_event(defines.events.on_research_finished, function(event)
 		local force = event.research.force
 		for index,player in pairs(game.players) do
 			if player.force == force then
-				global.update_delay[index] = 0.9 + event.research.level * 0.1
+				global.update_delay[index] = 0.6 + event.research.level * 0.1
 				if event.research.level > 50 then
 					player.unlock_achievement("hibernation")
 				end

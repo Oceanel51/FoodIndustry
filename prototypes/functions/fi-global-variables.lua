@@ -103,6 +103,9 @@ function fi_global_variables_init()
 		global.fi_achievements = {}                           -- variable for achievements
 	end
 	--------------------------------------------------
+	if not global.fi_debug then
+		global.fi_debug = {}
+	end
 
 end
 
@@ -158,19 +161,20 @@ function fi_global_variables_set(index)
 		--game.players[index].print("global.effects["..index.."] set")
 		global.effects_active[index] = {} -- values of current active effects {affecting item or event, effect_name, modifier, action time}
 		global.effects[index] = {} -- values of current active effects modifiers
-		--						key								enabled,	modifier,	time/stage/level,	influencing factors (srings/table)
-		global.effects[index]["drinks_for_energy_usage"]	 = {false,		0,			0,					{"Drinks is not present"}}			-- add empty init value of modifier when +Drinks affect for Energy usage
-		global.effects[index]["substances_for_energy_usage"] = {false,		0,			0,					{"All Substances is not > 0"}}		-- add empty init value of modifier when All 4 +Substances affect for Energy usage
-		global.effects[index]["overweight"]					 = {false,		0,			0,					{}}									-- values used time for achievement "overweight"
-		global.effects[index]["digestion"]					 = {false,		0,			0,					{}}									-- add empty init value of Digestions
-		global.effects[index]["fat"]						 = {false,		0,			-78}													-- add empty init value of Fat
-		global.effects[index]["thirst"]						 = {false,		0,			-14400}													-- add empty init value of Thirst
-		global.effects[index]["sleep"]						 = {false,		0,			-18000,				{}}									-- add empty init value of Sleep state
-		global.effects[index]["speed"]						 = {false,		0,			0,					{}}									-- add empty init value of runing Speed
+		--						key								enabled,	modifier,	time/stage/level,	delay,	influencing factors (srings/table)
+		global.effects[index]["drinks_for_energy_usage"]	 = {false,		0,			0,					0,		{{"drinks_is_0",0,0},}}		-- add empty init value of modifier when +Drinks affect for Energy usage
+		global.effects[index]["substances_for_energy_usage"] = {false,		0,			0,					0,		{{"vmcf_is_0",0,0},}}		-- add empty init value of modifier when +VMCF Substances affect for Energy usage
+		global.effects[index]["drink_to_add_more_energy"]	 = {false,		0,			0,					0,		{}}							-- add empty init value of modifier when Pllayer drink after use item
+		global.effects[index]["overweight"]					 = {false,		0,			0,					0		}							-- values used time for achievement "overweight"
+		global.effects[index]["fat"]						 = {false,		0,			-78,				0		}							-- add empty init value of Fat
+		global.effects[index]["digestion"]					 = {false,		0,			0,					0,		{}}							-- add empty init value of Digestions
+		global.effects[index]["thirst"]						 = {false,		0,			-14400,				0,		{}}							-- add empty init value of Thirst
+		global.effects[index]["sleep"]						 = {false,		0,			-14400,				0,		{}}							-- add empty init value of Sleep state
+		global.effects[index]["speed"]						 = {false,		0,			0,					0,		{}}							-- add empty init value of runing Speed
+		global.effects[index]["mining"]						 = {false,		0,			0,					0,		{}}							-- add empty init value of Mining speed
 		-- TODO add other effects variables
-		global.effects[index]["long_reach"]					 = {false,		0,			0,					{}}									-- add empty init value of Long reach distance
-		global.effects[index]["crafting"]					 = {false,		0,			0,					{}}									-- add empty init value of Crafting speed
-		global.effects[index]["mining"]						 = {false,		0,			0,					{}}									-- add empty init value of Mining speed
+		--global.effects[index]["long_reach"]					 = {false,		0,			0,					0,		{}}							-- add empty init value of Long reach distance
+		--global.effects[index]["crafting"]					 = {false,		0,			0,					0,		{}}							-- add empty init value of Crafting speed
 	end
 	if not global.substances[index] then
 		global.substances[index] = {v=0,m=0,c=0,f=0} -- values of substances {V,M,C,F} of connected player (new!)
@@ -180,6 +184,7 @@ function fi_global_variables_set(index)
 	-- TODO add vanila modifiers
 
 	--------------- mod only modifiers ---------------
+	-- эти модификаторы уже используются в коде и мы их в effects_add(...) и effects_remove(...) модифицируем сразу - плюсуем или отнимаем
 	if not global.fi_energy_ussage_modifier[index] then
 		global.fi_energy_ussage_modifier[index] = 0                 -- values of energy ussage modifier [-unlim ... 0.0 ... 1] limited in code to +0.99
 	end
@@ -201,5 +206,8 @@ function fi_global_variables_set(index)
 		global.fi_achievements[index]["gourmet"] = 0
 	end
 	--------------------------------------------------
+	if not global.fi_debug[index] then
+		global.fi_debug[index] = {0,100,0,0,0,0}
+	end
 
 end

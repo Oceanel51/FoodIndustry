@@ -262,7 +262,7 @@ data:extend({
     flags = {"goes-to-main-inventory"},
     subgroup = "drink-empty-packages",
     order = "a-d",
-	  stack_size = 50,
+	  stack_size = 20,
   },
 	{
     type = "item",
@@ -272,7 +272,7 @@ data:extend({
     flags = {"goes-to-main-inventory"},
     subgroup = "drink-empty-packages",
     order = "a-e",
-	  stack_size = 200,
+	  stack_size = 100,
   },
 	{
     type = "item",
@@ -286,7 +286,7 @@ data:extend({
     fuel_emissions_multiplier = 3.4,
     --burnt_result = "",
     subgroup = "drink-empty-packages",
-    order = "a-f",
-	  stack_size = 500,
+    order = "a-g",
+	  stack_size = 200,
   },
 })

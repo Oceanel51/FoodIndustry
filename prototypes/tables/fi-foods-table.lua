@@ -21,7 +21,7 @@ function foods_table()
 	--name,								type,						energy,	water,	{V,M,C,F},		fullness, c_f,	health,	effect/s
 	{"corn", 							"vegan",					7,		-2,		{10,10,10,10},		30,		30,		5,		{} },
 	{"cucumber", 						"vegan",					8,		12,		{5,4,0,0},		25,		25,		10,		{} },
-	{"tomato", 							"vegan",					5,		8,		{5,2,0,0},		14,		14,		15,		{} },
+	{"tomato", 							"vegan",					5,		8,		{5,2,0,0},		14,		14,		15,		{{"speed",0.5,5400},{"mining",2,3600},} },
 	{"lettuce", 						"vegan",					3,		5,		{3,2,0,0},		8,		8,		3,		{} },
 	{"cooked-corn", 					"vegan",					15,		4,		{0,7,3,0},		40,		40,		25,		{} },
 	{"corn-bread", 						"vegan-fat",				25,		-2,		{0,1,4,1},		55,		55,		30,		{} },
@@ -63,6 +63,8 @@ function foods_table()
 	{"invulnerability-capsule",			"special",					50,		50,		{0,0,0,0},		50,		0,		0,		{{"invulnerability",9750,900},} },
 	{"simple-neutralizing-capsule",		"special",					30,		0,		{0,0,0,0},		30,		0,		0,		{{"neutralize-effects",15},} },
 	{"simple-digestive-capsule",		"special",					20,		0,		{0,0,0,0},		30,		30,		0,		{{"digestion",2,14400},} },
+	{"basic-digestive-capsule",			"special",					50,		0,		{0,0,0,0},		70,		70,		0,		{{"digestion",1,10600},} },
+	{"advanced-digestive-capsule",		"special",					80,		0,		{0,-1,-1,-1},	120,	120,	0,		{{"digestion",2,6200},} },
 }
 	
 	return foods
@@ -74,7 +76,7 @@ function drinks_table()
 	--  1								  2					  3		  4		  5				  6		  7		  8		  9
 	--name,								type,				energy,	water,	{V,M,C,F},		fullness,c_f,	health,	effect/s
 	{"flask-pure-water",				"",					1,		30,		{0,0,0,0},		30,		30,		3,		{} },
-	{"plastic-bottle-pure-water",		"",					0,		60,		{0,0,0,0},		60,		60,		0,		{} },
+	{"plastic-bottle-pure-water",		"",					0,		60,		{-1,0,0,0},		60,		60,		0,		{} },
 	-- TODO ad new drinks
 	{"glass-bottle-pure-water",			"healthy",			4,		50,		{0,1,-1,-0.5},	50,		50,		4,		{} },
 	{"tea-cup-with-sugar", 				"sweet",			10,		25,		{0,2,1,0},		30,		0,		5,		{{"crafting",1,12000},{"mining",0.5,12000},{"water-usage",-0.02,12000},} },

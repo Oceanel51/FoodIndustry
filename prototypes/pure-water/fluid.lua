@@ -56,8 +56,8 @@ data:extend({
     minimum = 1800,
     normal = 5000,
   	starting = {richness=20, size=1, probability=0.1},
-    --starting_area_size = 50,
-    starting_area_amount = 1,
+    starting_area_size = 30,
+    starting_area_amount = 1300,
     infinite_depletion_amount = 0,
     resource_patch_search_radius = 10,
     tree_removal_probability = 0.6,
@@ -83,14 +83,13 @@ data:extend({
     {
       order = "b",
       control = "pure-water",
-      sharpness = 0.008,
-      max_probability = 0.01,
+      sharpness = 0.08,
+      max_probability = 0.001,
       richness_base = 10,
       richness_multiplier = 100,
       richness_multiplier_distance_bonus = 150,
       coverage = (0.006 / 3) ,
-      peaks =
-      {
+      peaks = {
         {
           noise_layer = "pure-water",
           noise_octaves_difference = -0.5,
@@ -99,8 +98,7 @@ data:extend({
       }
     },
     stage_counts = {0},
-    stages =
-    {
+    stages = {
       sheet =
       {
         filename = "__FoodIndustry__/graphics/entity/pure-water/pure-water-1.png",
