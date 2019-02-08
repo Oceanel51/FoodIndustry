@@ -10,7 +10,7 @@ for i, t in pairs(data.raw.tree) do
 			t.minable.results=
 			{
 				{type = "item", name = "raw-wood", amount = 4},
-				{type = "item", name = "apple", amount = 1, probability = 0.45}
+				{type = "item", name = "apple", amount = 1, probability = 0.25}
 			}
 			t.minable.result = nil
 			addApple = false
@@ -18,7 +18,7 @@ for i, t in pairs(data.raw.tree) do
 			t.minable.results=
 			{
 				{type = "item", name = "raw-wood", amount = 4},
-				{type = "item", name = "orange", amount = 1, probability = 0.32}
+				{type = "item", name = "orange", amount = 1, probability = 0.12}
 			}
 			t.minable.result = nil
 			addApple = true

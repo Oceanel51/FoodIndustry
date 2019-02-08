@@ -11,6 +11,12 @@ end
 if data.raw.recipe["chemical-plant"] then
 	table.insert(data.raw.recipe["chemical-plant"].ingredients, {"crystal", 1})
 end
+-- Compabillities for Bob's chemical-plants 1, 2, 3, 4
+for i=2,4 do
+	if data.raw["assembling-machine"]["chemical-plant-"..i..""] then
+		table.insert(data.raw["assembling-machine"]["chemical-plant-"..i..""].crafting_categories, "mixing")
+	end
+end
 
 
 local productivity_recipes = {

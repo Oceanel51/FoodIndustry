@@ -3,7 +3,7 @@ local foods = {
 --name,				stack,	cool,	category,				time,	amount,	effect,	ingredients
 {"cooked-corn",		10,		0.5,	"cooking",				4.0,	1,		false,	{{"corn", 1}, {type="fluid", name="water", amount=20}} },
 {"corn-bread",		10,		0.5,	"cooking",				8.0,	1,		false,	{{"corn-flour", 2}, {type="fluid", name="water", amount=10}} },
-{"cooked-fish",		10,		0.2,	"cooking",				3.0,	1,		false,	{{"raw-fish", 1}, {type="fluid", name="water", amount=10}} },
+{"cooked-fish",		10,		0.2,	"cooking",				3.0,	1,		false,	{{"raw-fish", 1}, {"corn-flour", 1}} },
 {"popcorn",			50,		0.2,	"cooking",				1.5,	1,		false,	{{"corn-seeds", 1}, {type="fluid", name="canola-oil", amount=1}} },
 {"basic-salad",		10,		0.5,	"cooking",				1.5,	1,		false,	{{"tomato", 2}, {"cucumber", 1}, {"lettuce", 2}} },
 {"cooked-soy",		50,		0.2,	"cooking",				3.0,	5,		false,	{{"soy", 5}, {type="fluid", name="water", amount=20}} },
@@ -11,7 +11,7 @@ local foods = {
 {"fries",			10,		0.5,	"cooking",				6.0,	1,		false,	{{"raw-fries", 1}, {type="fluid", name="canola-oil", amount=6}} },
 {"ketchup-fries",	10,		0.5,	"crafting-with-fluid",	0.5,	1,		false,	{{"fries", 1}, {type="fluid", name="ketchup", amount=1}} },
 {"biter-steak",		10,		0.5,	"cooking",				12.0,	1,		false,	{{"biter-meat", 1}, {type="fluid", name="canola-oil", amount=2}} },
-{"fish-steak",		10,		0.5,	"cooking",				12.0,	1,		false,	{{"raw-fish", 1}, {type="fluid", name="canola-oil", amount=2}} },
+{"fish-steak",		10,		0.5,	"cooking",				12.0,	1,		false,	{{"raw-fish", 1}, {"corn-flour", 1}, {type="fluid", name="canola-oil", amount=2}} },
 {"schnitzel",		10,		0.5,	"cooking",				12.0,	1,		false,	{{"biter-meat", 1}, {"corn-flour", 1}, {type="fluid", name="canola-oil", amount=5}} },
 {"pickles",			50,		0.2,	"cooking",				40.0,	20,		false,	{{"cucumber", 5}, {"crystal", 1}, {type="fluid", name="water", amount=100}} },
 {"tofu",			10,		0.5,	"chemistry",			4.0,	2,		false,	{{"crystal", 1}, {type="fluid", name="soy-milk", amount=24}, {type="fluid", name="sulfuric-acid", amount=1}} },
