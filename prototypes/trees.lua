@@ -1,13 +1,8 @@
 local crops = {
 --1			2		3			4		5		6		7			8		9			10		11		12			13
 --name, 	time, 	to plant,	plants,	result,	seeds, 	stack size,	plant?,	seed?,	edible?,	straws,	compost,	type
-{"lettuce", 300, 	5,        	6,		0.0, 	0.0, 	10,			false,	false,		true,	0.0,	"4J",		""},
-{"cucumber",600, 	60,        	4,		2.0, 	8.5, 	10,			true,	true,		true,	1.0,	"8J",		"plant"},
-{"tomato", 	800, 	30,        	6,		3.0, 	2.0, 	10,			true,	true,		true,	1.0,	"6J",		"plant"},
-{"potato", 	1200, 	8,        	10,		1.0, 	0.0, 	10,			true,	false,		false,	0.0,	"10J",		"plant"},
-{"corn", 	1200, 	35,        	4,		2.5, 	4.5, 	10,			true,	true,		true,	3.5,	"10J",		"plant"},
-{"soy", 	2400, 	50,        	6,		9.5, 	0.0, 	50,			true,	false,		false,	0.0,	"3J",		"plant"},
-{"rapeseed",900, 	90,        	8,		11.5, 	0.0, 	100,		true,	false,		false,	0.0,	"1J",		"plant"},
+{"apple", 	1500, 	8,        	9,		6.0, 	2.6, 	10,			true,	true,		true,	0.0,	"3J",		"tree"},
+{"orange", 	1300, 	6,        	5,		4.0, 	1.8, 	10,			true,	true,		true,	0.0,	"2J",		"tree"},
 }
 
 for index, crop in pairs(crops) do
