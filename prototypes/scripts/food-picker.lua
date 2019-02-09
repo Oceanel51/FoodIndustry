@@ -6,6 +6,22 @@ if not util then require("prototypes.scripts.util") end
 local treeDistance = 5
 local catchDistance = 2
 local getFruitEveryXTicks = 60 * 5
+local minimumFruitsPerTree = 100
+local randomFruitsPerTree = 100
+
+
+local function createFruitTree(tree)
+
+    local fruitTree = global.foodi.fruittrees[tree.unit_number]
+
+    if fruitTree == nil then
+        fruitTree = { fruits = minimumFruitsPerTree }
+        global.foodi.fruittrees[tree.unit_number] = fruitTree
+    end
+
+    return fruitTree
+
+end
 
 local local_food_picker_process = function(picker)
     local trees = get_entities_around(picker, treeDistance)
@@ -21,9 +37,10 @@ local local_food_picker_process = function(picker)
         return
     end
 
-    if not picker.held_stack.can_set_stack({name="apple", count=1}) then
-        return
-    end
+--    if not picker.held_stack.can_set_stack({name="apple", count=1})
+--        or then
+--        return
+--    end
 
     picker.pickup_position = {
         x = tree.position.x,
@@ -35,12 +52,21 @@ local local_food_picker_process = function(picker)
         return
     end
 
+    local fruit = nil
     for _, r in ipairs(tree.prototype.mineable_properties.products) do
-        if r.name == "apple" then
-            picker.held_stack.set_stack({name="apple", count=1})
-        elseif r.name == "orange" then
-            picker.held_stack.set_stack({name="orange", count=1})
+        if r.name == "apple" or r.name == "orange" then
+            fruit = r.name
+            break
         end
+    end
+
+    if fruit ~= nil then
+        picker.held_stack.set_stack({name=fruit, count=1})
+        local fruitTree = createFruitTree(tree)
+        if fruitTree.fruits == 0 then
+            return
+        end
+        fruitTree.fruits = fruitTree.fruits - 1
     end
 end
 
@@ -80,6 +106,7 @@ function initFoodPicker()
     if global ~= nil then
         if not global.foodi then global.foodi = {} end
         if not global.foodi.food_pickers then global.foodi.food_pickers = {} end
+        if not global.foodi.fruittrees then global.foodi.fruittrees = {} end
     end
 
     if foodi.ticks ~= nil then

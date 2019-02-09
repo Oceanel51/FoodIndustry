@@ -115,7 +115,7 @@ for index, crop in pairs(trees) do
 				flags = {"goes-to-main-inventory"},
 				subgroup = crop[1],
 				order = "b",
-				place_result=crop[1].."-tree",
+				place_result=crop[1].."-seedling",
 				fuel_value = "1MJ",
 				fuel_category = "chemical",
 				stack_size= 400
@@ -266,6 +266,8 @@ for index, crop in pairs(trees) do
 			icon = "__FoodIndustry__/graphics/icons/items/"..crop[1].."-tree.png",
 			icon_size = 32,
 			max_health = 5,
+			healing_per_tick = 0,
+			repair_speed_modifier = 0,
 			minable = {
 				count = crop[17],
 				mining_hardness = 0.1,

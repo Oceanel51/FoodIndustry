@@ -1,5 +1,6 @@
 require("prototypes.scripts.fishing-inserter")
 require("prototypes.scripts.food-picker")
+require("prototypes.scripts.fruittrees")
 
 local foods = {
 --name,            energy, fullness,  ?, effect
@@ -87,6 +88,7 @@ function OnInit()
 	setupFi()
 	initFishingInserter()
 	initFoodPicker()
+	initFruitTrees()
 end
 
 function OnLoad()
@@ -100,7 +102,7 @@ script.on_event({defines.events.on_tick}, function (e)
 
 	for k=1, #foodi.ticks do
 		local v = foodi.ticks[k]
-		v()
+		v(e)
 	end
 
 	local default_delay = 10000 / settings.global["food-industry-hunger-speed"].value
@@ -394,7 +396,7 @@ local local_on_added = function(event)
 	if entity ~= nil then
 		for k=1, #foodi.on_added do
 			local v = foodi.on_added[k]
-			v(entity)
+			v(entity, event)
 		end
 	end
 end
@@ -403,7 +405,7 @@ local local_on_removed = function(event)
 	if entity ~= nil then
 		for k=1, #foodi.on_remove do
 			local v = foodi.on_remove[k]
-			v(entity)
+			v(entity, event)
 		end
 	end
 end
