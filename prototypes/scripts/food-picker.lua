@@ -1,7 +1,6 @@
 if not util then require("prototypes.scripts.util") end
 
 -- todo: change direction while picking
--- todo: don't add apples and oranges to dead or dry trees
 
 local treeDistance = 5
 local catchDistance = 2

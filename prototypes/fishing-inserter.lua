@@ -210,7 +210,7 @@ data:extend(
         {
             type = "recipe",
             name = "burner-fishing-inserter",
-            enabled = true,
+            enabled = false,
             ingredients =
             {
                 {"iron-gear-wheel", 1},
@@ -423,7 +423,7 @@ data:extend(
         {
             type = "recipe",
             name = "fishing-inserter",
-            enabled = true,
+            enabled = false,
             ingredients =
             {
                 {"burner-fishing-inserter", 1},

@@ -18,6 +18,27 @@ for index, crop in pairs(trees) do
 				order = "a",
 				stack_size = 10
 			},
+			-- Fruit seeds recipe
+			{
+				type = "recipe",
+				name = crop[1].."-pick",
+				order = "w-d-b-y",
+				enabled = true,
+				icon = "__FoodIndustry__/graphics/icons/items/"..crop[1]..".png",
+				icon_size = 32,
+				category = "crafting",
+				subgroup = crop[1],
+				energy_required = 0.75,
+				hidden=true,
+				ingredients =
+				{
+				},
+				results =
+				{
+					{type = "item", name = crop[1], amount_min = 1, amount_max = 2}
+				}
+			},
+
 		})
 		data:extend({
 			-- Fruit seeds

@@ -3,6 +3,7 @@ require("changes")
 require("prototypes.fishing-inserter")
 require("prototypes.food-picker")
 require("prototypes.tree-greenhouse")
+require("prototypes.fruit-scissors")
 
 require("prototypes.item")
 require("prototypes.fluid")

@@ -1,6 +1,7 @@
 require("prototypes.scripts.fishing-inserter")
 require("prototypes.scripts.food-picker")
 require("prototypes.scripts.fruittrees")
+require("prototypes.scripts.fruit-scissors")
 
 local foods = {
 --name,            energy, fullness,  ?, effect
@@ -73,8 +74,10 @@ function setupFi()
 	if not foodi.on_added then foodi.on_added = {} end
 	if not foodi.on_remove then foodi.on_remove = {} end
 	if not foodi.on_adjust then foodi.on_adjust = {} end
+	if not foodi.on_mod_item_opened then foodi.on_mod_item_opened = {} end
+	if not foodi.on_selected_entity_changed then foodi.on_selected_entity_changed = {} end
+	if not foodi.on_player_selected_area then foodi.on_player_selected_area = {} end
 	if not foodi.on_pick_up then foodi.on_pick_up = {} end
-
 
 	if global ~= nil then
 		if not global.foodi then global.foodi = {} end
@@ -89,6 +92,7 @@ function OnInit()
 	initFishingInserter()
 	initFoodPicker()
 	initFruitTrees()
+	initFruitScissors()
 end
 
 function OnLoad()
@@ -884,8 +888,32 @@ function getTime(ticks)
 	end
 end
 
+local mod_item_opened = function(event)
+	for k=1, #foodi.on_mod_item_opened do
+		local v = foodi.on_mod_item_opened[k]
+		v(event)
+	end
+end
+
+local player_selected_area = function(event)
+	for k=1, #foodi.on_player_selected_area do
+		local v = foodi.on_player_selected_area[k]
+		v(event)
+	end
+end
+
+local selected_entity_changed = function(event)
+	for k=1, #foodi.on_selected_entity_changed do
+		local v = foodi.on_selected_entity_changed[k]
+		v(event)
+	end
+end
+
 local remove_events = {defines.events.on_entity_died,defines.events.on_robot_pre_mined,defines.events.on_robot_mined_entity,defines.events.on_pre_player_mined_entity,defines.events.on_player_mined_entity}
 
 script.on_event(defines.events.on_robot_built_entity, local_on_added)
 script.on_event(remove_events, local_on_removed)
+script.on_event(defines.events.on_mod_item_opened, mod_item_opened)
+script.on_event(defines.events.on_player_selected_area, player_selected_area)
+script.on_event(defines.events.on_selected_entity_changed, selected_entity_changed)
 

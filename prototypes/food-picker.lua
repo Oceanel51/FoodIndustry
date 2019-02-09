@@ -210,7 +210,7 @@ data:extend(
         {
             type = "recipe",
             name = "burner-food-picker",
-            enabled = true,
+            enabled = false,
             ingredients =
             {
                 {"iron-gear-wheel", 1},
@@ -423,7 +423,7 @@ data:extend(
         {
             type = "recipe",
             name = "food-picker",
-            enabled = true,
+            enabled = false,
             ingredients =
             {
                 {"burner-food-picker", 1},

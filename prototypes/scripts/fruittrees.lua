@@ -1,18 +1,7 @@
-local WILDE_ORANGE_TREE = "orange-wild-tree"
-local ORANGE_TREE = "orange-tree"
-local ORANGE_SEEDLING = "apple-seedling"
-
-local WILDE_APPLE_TREE = "apple-wild-tree"
-local APPLE_TREE = "apple-tree"
-local APPLE_SEEDLING = "apple-seedling"
 local TICKS_TO_GROW = 600
 
-local isFruitTrees = {
-    [WILDE_ORANGE_TREE] = true,
-    [ORANGE_TREE] = true,
-    [WILDE_APPLE_TREE] = true,
-    [APPLE_TREE] = true,
-}
+local ORANGE_SEEDLING = "apple-seedling"
+local APPLE_SEEDLING = "apple-seedling"
 
 local isFruitSeedlings = {
     [ORANGE_SEEDLING] = { result = ORANGE_TREE },

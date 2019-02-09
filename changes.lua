@@ -1,7 +1,6 @@
 if data.raw.capsule["raw-fish"] then
 	data.raw.capsule["raw-fish"].capsule_action.attack_parameters.ammo_type.action.action_delivery.target_effects.damage.amount = 0
 end
-
 for i,p in pairs(data.raw.lab) do
 	table.insert(p.inputs, "food-science-pack")
 end
@@ -74,6 +73,12 @@ end
 
 
 table.insert(data.raw.technology["automation"].effects,{recipe = "compressed-straw", type = "unlock-recipe"})
+table.insert(data.raw.technology["automation"].effects,{recipe = "burner-fishing-inserter", type = "unlock-recipe"})
+table.insert(data.raw.technology["automation"].effects,{recipe = "burner-food-picker", type = "unlock-recipe"})
+
+table.insert(data.raw.technology["logistics"].effects,{recipe = "fishing-inserter", type = "unlock-recipe"})
+table.insert(data.raw.technology["logistics"].effects,{recipe = "food-picker", type = "unlock-recipe"})
+
 data.raw.item["landfill"].fuel_value = "500kJ"
 data.raw.item["landfill"].fuel_category = "humus"
 
