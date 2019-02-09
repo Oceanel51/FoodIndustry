@@ -2,6 +2,7 @@ require("prototypes.scripts.fishing-inserter")
 require("prototypes.scripts.food-picker")
 require("prototypes.scripts.fruittrees")
 require("prototypes.scripts.fruit-scissors")
+require("prototypes.scripts.cattle")
 
 local foods = {
 --name,            energy, fullness,  ?, effect
@@ -93,6 +94,7 @@ function OnInit()
 	initFoodPicker()
 	initFruitTrees()
 	initFruitScissors()
+	initCattle()
 end
 
 function OnLoad()

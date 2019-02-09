@@ -8,12 +8,21 @@ data:extend(
     icon = "__FoodIndustry__/graphics/icons/fi-logo-icon.png",
     icon_size = 128,
   },
+
   {
     type = "item-subgroup",
     name = "food-machines",
     group = "food-industry",
     order = "w-a",
   },
+
+  {
+    type = "item-subgroup",
+    name = "cattle",
+    group = "food-industry",
+    order = "w-a1",
+  },
+
   {
     type = "item-subgroup",
     name = "food-items",
@@ -61,6 +70,10 @@ data:extend(
   {
     type = "recipe-category",
     name = "composting",	
+  },
+  {
+    type = "recipe-category",
+    name = "cattle",
   },
   {
     type = "recipe-category",

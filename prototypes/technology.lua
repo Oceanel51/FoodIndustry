@@ -430,9 +430,32 @@ data:extend({
     },
     order = "w",
   },
-  
-  
-  
+
+
+  {
+    type = "technology",
+    name = "cattle",
+    icon = "__base__/graphics/icons/small-biter.png",
+    icon_size = 32,
+    prerequisites = {"composting"},
+    effects =
+    {
+      {type = "unlock-recipe", recipe = "cattle-spawner"},
+      {type = "unlock-recipe", recipe = "cattle-feeder"},
+      {type = "unlock-recipe", recipe = "cattle-butcher"},
+    },
+    unit =
+    {
+      time = 40,
+      count = 15,
+      ingredients =
+      {
+        {"food-science-pack", 1},
+      },
+    },
+    order = "x",
+  },
+
   
   {
     type = "technology",
