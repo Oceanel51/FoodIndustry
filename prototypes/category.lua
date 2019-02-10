@@ -16,11 +16,25 @@ data:extend(
     order = "w-a",
   },
 
-  {
+    {
+        type = "item-subgroup",
+        name = "food-machines-trees",
+        group = "food-industry",
+        order = "w-a1",
+    },
+
+    {
+        type = "item-subgroup",
+        name = "food-machines-fish",
+        group = "food-industry",
+        order = "w-a2",
+    },
+
+    {
     type = "item-subgroup",
-    name = "cattle",
+    name = "food-machines-cattle",
     group = "food-industry",
-    order = "w-a1",
+    order = "w-a3",
   },
 
   {
@@ -41,6 +55,13 @@ data:extend(
     group = "food-industry",
     order = "w-e",
   },
+  {
+    type = "item-subgroup",
+    name = "food-cattle",
+    group = "food-industry",
+    order = "w-e",
+  },
+
   {
     type = "item-subgroup",
     name = "effect",
@@ -73,7 +94,7 @@ data:extend(
   },
   {
     type = "recipe-category",
-    name = "cattle",
+    name = "food-cattle",
   },
   {
     type = "recipe-category",

@@ -1,5 +1,5 @@
 
-function spawner_idle_animation(variation, tint)
+function spawner_idle_animation(variation, tint, scale)
     return
     {
         layers =
@@ -13,8 +13,9 @@ function spawner_idle_animation(variation, tint)
                 animation_speed = 0.18,
                 direction_count = 1,
                 run_mode = "forward-then-backward",
-                shift = {0.140625 - 0.65, -0.234375},
-                y = variation * 181
+                --shift = {0.140625 - 0.65, -0.234375},
+                y = variation * 181,
+                scale = scale
             },
             {
                 filename = "__base__/graphics/entity/spawner/spawner-idle-mask.png",
@@ -24,10 +25,11 @@ function spawner_idle_animation(variation, tint)
                 frame_count = 8,
                 animation_speed = 0.18,
                 run_mode = "forward-then-backward",
-                shift = {-0.34375 - 0.65, -0.375},
+                --shift = {-0.34375 - 0.65, -0.375},
                 line_length = 8,
                 tint = tint,
-                y = variation * 148
+                y = variation * 148,
+                scale = scale
             }
         }
     }

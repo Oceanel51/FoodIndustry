@@ -3,6 +3,7 @@ require("prototypes.scripts.food-picker")
 require("prototypes.scripts.fruittrees")
 require("prototypes.scripts.fruit-scissors")
 require("prototypes.scripts.cattle")
+require("prototypes.scripts.cattle-grabber")
 
 local foods = {
 --name,            energy, fullness,  ?, effect
@@ -82,7 +83,6 @@ function setupFi()
 
 	if global ~= nil then
 		if not global.foodi then global.foodi = {} end
-		if not global.foodi.fishing_inserters then global.foodi.fishing_inserters = {} end
 		if not global.players then global.players = {} end
 		if not global.foodi.players then global.foodi.players = {} end
 	end
@@ -95,6 +95,7 @@ function OnInit()
 	initFruitTrees()
 	initFruitScissors()
 	initCattle()
+	initCattleGrabber()
 end
 
 function OnLoad()

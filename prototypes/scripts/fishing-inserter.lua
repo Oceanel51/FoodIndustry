@@ -84,11 +84,21 @@ local local_fishing_inserter_removed = function(entity)
 	end
 end
 
+local isInitFishingInserter = false
 function initFishingInserter()
-
+	if isInitFishingInserter then
+		return false
+	end
+	isInitFishingInserter = true
 	if foodi.ticks ~= nil then
 		table.insert(foodi.ticks,local_fishing_inserter_tick)
 		table.insert(foodi.on_added,local_fishing_inserter_added)
 		table.insert(foodi.on_remove,local_fishing_inserter_removed)
 	end
+
+	if global ~= nil then
+		if not global.foodi then global.foodi = {} end
+		if not global.foodi.fishing_inserters then global.foodi.fishing_inserters = {} end
+	end
+
 end

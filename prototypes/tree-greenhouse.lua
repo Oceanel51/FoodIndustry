@@ -12,7 +12,7 @@ data:extend({
         icon = "__FoodIndustry__/graphics/icons/entities/tree_greenhouse.png",
         icon_size = 32,
         flags= { "goes-to-quickbar" },
-        subgroup = "food-machines",
+        subgroup = "food-machines-trees",
         order = "w-a-c1",
         place_result = "fi-tree-greenhouse",
         stack_size= 10,
@@ -128,7 +128,7 @@ data:extend({
             result = "fi-tree-greenhouse",
             result_count = 1,
         },
-        subgroup = "food-machines",
+        subgroup = "food-machines-trees",
         order = "w-a-c1",
     },
 })

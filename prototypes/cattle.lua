@@ -9,7 +9,18 @@ local calfscale = 0.25
 -- butcher
 -- cattle
 -- cattle-calf
+-- cattle-meat
 data:extend({
+    {
+        type = "item",
+        name = "cattle",
+        icon = "__base__/graphics/icons/small-biter.png",
+        icon_size = 32,
+        flags = {"goes-to-quickbar"},
+        subgroup = "food-cattle",
+        order = "d",
+        stack_size = 10
+    },
     {
         type = "unit",
         name = "cattle",
@@ -80,7 +91,21 @@ data:extend({
         working_sound =  make_biter_calls(0.3),
         run_animation = biterrunanimation(calfscale, small_biter_tint1, small_biter_tint2)
     },
-
+    {
+        type = "recipe",
+        name = "cattle-meat",
+        enabled = false,
+        subgroup = "food-machines-cattle",
+        category = "food-cattle",
+        ingredients =
+        {
+            {"cattle", 1}
+        },
+        results = {
+            {"biter-meat", 5}
+        },
+        order = "d",
+    },
 })
 
 -- cattle spawner
@@ -93,7 +118,7 @@ data:extend({
         icon = "__base__/graphics/icons/biter-spawner.png",
         icon_size = 32,
         flags = {"goes-to-quickbar"},
-        subgroup = "cattle",
+        subgroup = "food-machines-cattle",
         order = "a",
         place_result = "cattle-spawner",
         stack_size = 50
@@ -105,9 +130,9 @@ data:extend({
         icon_size = 32,
         flags = {"placeable-player", "placeable-enemy", "not-repairable"},
         minable = {hardness = 0.2, mining_time = 2.0, result = "cattle-spawner"},
-        max_health = 350,
+        max_health = 50,
         order="b-b-h",
-        subgroup="cattle",
+        subgroup="food-machines-cattle",
         working_sound =
         {
             sound =
@@ -149,8 +174,10 @@ data:extend({
             }
         },
         healing_per_tick = 0.02,
-        collision_box = {{-3.2, -2.2}, {2.2, 2.2}},
-        selection_box = {{-3.5, -2.5}, {2.5, 2.5}},
+        collision_box = {{-1.2, -1.2}, {1.2, 1.2}},
+        selection_box = {{-1.5, -1.5}, {1.5, 1.5}},
+--        collision_box = {{-3.2, -2.2}, {2.2, 2.2}},
+--        selection_box = {{-3.5, -2.5}, {2.5, 2.5}},
         pollution_absorbtion_absolute = 20,
         pollution_absorbtion_proportional = 0.01,
         corpse = "spitter-spawner-corpse",
@@ -159,10 +186,10 @@ data:extend({
         max_friends_around_to_spawn = 5,
         animations =
         {
-            spawner_idle_animation(0, spitter_spawner_tint),
-            spawner_idle_animation(1, spitter_spawner_tint),
-            spawner_idle_animation(2, spitter_spawner_tint),
-            spawner_idle_animation(3, spitter_spawner_tint)
+            spawner_idle_animation(0, spitter_spawner_tint, 3/5 ),
+            spawner_idle_animation(1, spitter_spawner_tint, 3/5 ),
+            spawner_idle_animation(2, spitter_spawner_tint, 3/5 ),
+            spawner_idle_animation(3, spitter_spawner_tint, 3/5 )
         },
 --        result_units = {
 --            {
@@ -176,15 +203,15 @@ data:extend({
 --        },
         result_units = (function()
             local res = {}
-            res[1] = {"cattle-calf", {{0.0, 0.3}, {0.35, 0}}}
-            res[2] = {"cattle-calf", {{0.25, 0.0}, {0.5, 0.3}, {0.7, 0.0}}}
-            res[3] = {"cattle-calf", {{0.4, 0.0}, {0.7, 0.3}, {0.9, 0.1}}}
-            res[4] = {"cattle-calf", {{0.5, 0.0}, {1.0, 0.4}}}
+            res[1] = {"cattle", {{0.0, 0.3}, {0.35, 0}}}
+            res[2] = {"cattle", {{0.25, 0.0}, {0.5, 0.3}, {0.7, 0.0}}}
+            res[3] = {"cattle", {{0.4, 0.0}, {0.7, 0.3}, {0.9, 0.1}}}
+            res[4] = {"cattle", {{0.5, 0.0}, {1.0, 0.4}}}
             res[5] = {"cattle", {{0.9, 0.0}, {1.0, 0.3}}}
             return res
         end)(),
-        -- With zero evolution the spawn rate is 6 seconds, with max evolution it is 2.5 seconds
-        spawning_cooldown = {360, 150},
+        -- With zero evolution the spawn rate is 12 seconds, with max evolution it is 6 seconds
+        spawning_cooldown = {720, 360},
         spawning_radius = 10,
         spawning_spacing = 3,
         max_spawn_shift = 0,
@@ -202,10 +229,6 @@ data:extend({
         },
         result = "cattle-spawner"
     },
-
-
-
-
     })
 
 
@@ -245,7 +268,7 @@ data:extend({
         icon = "__FoodIndustry__/graphics/icons/entities/cattle-feeder.png",
         icon_size = 32,
         flags = {"goes-to-quickbar"},
-        subgroup = "cattle",
+        subgroup = "food-machines-cattle",
         order = "b",
         place_result = "cattle-feeder",
         stack_size = 50
@@ -513,7 +536,7 @@ data:extend({
     icon = "__FoodIndustry__/graphics/icons/entities/cattle-butcher.png",
     icon_size = 32,
     flags = {"goes-to-quickbar"},
-    subgroup = "cattle",
+    subgroup = "food-machines-cattle",
     order = "d",
     place_result = "cattle-butcher",
     stack_size = 10
@@ -530,13 +553,15 @@ data:extend({
     max_health = 100,
     corpse = "medium-remnants",
     dying_explosion = "big-explosion",
-    collision_box = {{-2.4, -2.4}, {2.4, 2.4}},
-    selection_box = {{-2.5, -2.5}, {2.5, 2.5}},
+--    collision_box = {{-2.4, -2.4}, {2.4, 2.4}},
+--    selection_box = {{-2.5, -2.5}, {2.5, 2.5}},
+    collision_box = {{-1.2, -1.2}, {1.2, 1.2}},
+    selection_box = {{-1.5, -1.5}, {1.5, 1.5}},
     module_specification = {
         module_slots = 4
     },
     allowed_effects = {"consumption", "speed", "productivity", "pollution"},
-    crafting_categories = {"cattle"},
+    crafting_categories = {"food-cattle"},
     crafting_speed = 1,
     energy_source = {
         type = "electric",
@@ -555,7 +580,8 @@ data:extend({
                 line_length = 12,
                 frame_count = 61,
                 animation_speed = 0.4,
-                shift = util.by_pixel(0, -36)
+                shift = util.by_pixel(0, -20),
+                scale = 3 /5
             },
             {
                 filename = "__FoodIndustry__/graphics/entity/cattle-butcher/shadow.png",
@@ -566,74 +592,75 @@ data:extend({
                 frame_count = 61,
                 animation_speed = 0.4,
                 draw_as_shadow = true,
-                shift = util.by_pixel(12, 8)
+                shift = util.by_pixel(12, 8),
+                scale = 3 /5
             }
         }
     },
-    fluid_boxes = {
-        --1
-        {
-            production_type = "input",
-            pipe_picture = PipesPictures("assembling-machine-2", nil, {-1.0, -4.04}, nil, nil, pipe_right),
-            pipe_covers = PipesCovers(false, true, true, true),
-            base_area = 10,
-            base_level = -1,
-            pipe_connections = {{type = "input", position = {1.0, 3.0}}}
-        },
-        {
-            production_type = "input",
-            pipe_picture = PipesPictures("assembling-machine-2", nil, {-1.0, -4.04}, nil, nil, pipe_right),
-            pipe_covers = PipesCovers(false, true, true, true),
-            base_area = 10,
-            base_level = -1,
-            pipe_connections = {{type = "input", position = {-1.0, -3.0}}}
-        },
-        {
-            production_type = "input",
-            pipe_picture = PipesPictures("assembling-machine-2", nil, {-1.0, -4.04}, nil, nil, pipe_right),
-            pipe_covers = PipesCovers(false, true, true, true),
-            base_area = 10,
-            base_level = -1,
-            pipe_connections = {{type = "input", position = {3.0, -1.0}}}
-        },
-        {
-            production_type = "input",
-            pipe_picture = PipesPictures("assembling-machine-2", nil, {-1.0, -4.04}, nil, nil, pipe_right),
-            pipe_covers = PipesCovers(false, true, true, true),
-            base_area = 10,
-            base_level = -1,
-            pipe_connections = {{type = "input", position = {-3.0, 1.0}}}
-        },
-        {
-            production_type = "output",
-            pipe_picture = PipesPictures("assembling-machine-2", nil, {1.0, -4.04}, nil, nil, pipe_left),
-            pipe_covers = PipesCovers(false, true, true, true),
-            base_level = 1,
-            pipe_connections = {{type = "output", position = {-1.0, 3.0}}}
-        },
-        {
-            production_type = "output",
-            pipe_picture = PipesPictures("assembling-machine-2", nil, {1.0, -4.04}, nil, nil, pipe_left),
-            pipe_covers = PipesCovers(false, true, true, true),
-            base_level = 1,
-            pipe_connections = {{type = "output", position = {-3.0, -1.0}}}
-        },
-        {
-            production_type = "output",
-            pipe_picture = PipesPictures("assembling-machine-2", nil, {1.0, -4.04}, nil, nil, pipe_left),
-            pipe_covers = PipesCovers(false, true, true, true),
-            base_level = 1,
-            pipe_connections = {{type = "output", position = {1.0, -3.0}}}
-        },
-        {
-            production_type = "output",
-            pipe_picture = PipesPictures("assembling-machine-2", nil, {1.0, -4.04}, nil, nil, pipe_left),
-            pipe_covers = PipesCovers(false, true, true, true),
-            base_level = 1,
-            pipe_connections = {{type = "output", position = {3.0, 1.0}}}
-        },
-        off_when_no_fluid_recipe = true
-    },
+--    fluid_boxes = {
+--        --1
+--        {
+--            production_type = "input",
+--            pipe_picture = PipesPictures("assembling-machine-2", nil, {-1.0, -4.04}, nil, nil, pipe_right),
+--            pipe_covers = PipesCovers(false, true, true, true),
+--            base_area = 10,
+--            base_level = -1,
+--            pipe_connections = {{type = "input", position = {1.0, 3.0}}}
+--        },
+--        {
+--            production_type = "input",
+--            pipe_picture = PipesPictures("assembling-machine-2", nil, {-1.0, -4.04}, nil, nil, pipe_right),
+--            pipe_covers = PipesCovers(false, true, true, true),
+--            base_area = 10,
+--            base_level = -1,
+--            pipe_connections = {{type = "input", position = {-1.0, -3.0}}}
+--        },
+--        {
+--            production_type = "input",
+--            pipe_picture = PipesPictures("assembling-machine-2", nil, {-1.0, -4.04}, nil, nil, pipe_right),
+--            pipe_covers = PipesCovers(false, true, true, true),
+--            base_area = 10,
+--            base_level = -1,
+--            pipe_connections = {{type = "input", position = {3.0, -1.0}}}
+--        },
+--        {
+--            production_type = "input",
+--            pipe_picture = PipesPictures("assembling-machine-2", nil, {-1.0, -4.04}, nil, nil, pipe_right),
+--            pipe_covers = PipesCovers(false, true, true, true),
+--            base_area = 10,
+--            base_level = -1,
+--            pipe_connections = {{type = "input", position = {-3.0, 1.0}}}
+--        },
+--        {
+--            production_type = "output",
+--            pipe_picture = PipesPictures("assembling-machine-2", nil, {1.0, -4.04}, nil, nil, pipe_left),
+--            pipe_covers = PipesCovers(false, true, true, true),
+--            base_level = 1,
+--            pipe_connections = {{type = "output", position = {-1.0, 3.0}}}
+--        },
+--        {
+--            production_type = "output",
+--            pipe_picture = PipesPictures("assembling-machine-2", nil, {1.0, -4.04}, nil, nil, pipe_left),
+--            pipe_covers = PipesCovers(false, true, true, true),
+--            base_level = 1,
+--            pipe_connections = {{type = "output", position = {-3.0, -1.0}}}
+--        },
+--        {
+--            production_type = "output",
+--            pipe_picture = PipesPictures("assembling-machine-2", nil, {1.0, -4.04}, nil, nil, pipe_left),
+--            pipe_covers = PipesCovers(false, true, true, true),
+--            base_level = 1,
+--            pipe_connections = {{type = "output", position = {1.0, -3.0}}}
+--        },
+--        {
+--            production_type = "output",
+--            pipe_picture = PipesPictures("assembling-machine-2", nil, {1.0, -4.04}, nil, nil, pipe_left),
+--            pipe_covers = PipesCovers(false, true, true, true),
+--            base_level = 1,
+--            pipe_connections = {{type = "output", position = {3.0, 1.0}}}
+--        },
+--        off_when_no_fluid_recipe = true
+--    },
     vehicle_impact_sound = {filename = "__base__/sound/car-metal-impact.ogg", volume = 0.65},
     working_sound = {
         sound = {filename = "__FoodIndustry__/sounds/cattle-butcher.ogg", volume = 0.8},

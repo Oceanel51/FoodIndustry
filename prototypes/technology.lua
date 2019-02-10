@@ -431,18 +431,19 @@ data:extend({
     order = "w",
   },
 
-
   {
     type = "technology",
     name = "cattle",
     icon = "__base__/graphics/icons/small-biter.png",
     icon_size = 32,
-    prerequisites = {"composting"},
+    prerequisites = {"composting", "automation"},
     effects =
     {
       {type = "unlock-recipe", recipe = "cattle-spawner"},
       {type = "unlock-recipe", recipe = "cattle-feeder"},
+      {type = "unlock-recipe", recipe = "cattle-grabber"},
       {type = "unlock-recipe", recipe = "cattle-butcher"},
+      {type = "unlock-recipe", recipe = "cattle-meat"},
     },
     unit =
     {
@@ -455,7 +456,6 @@ data:extend({
     },
     order = "x",
   },
-
   
   {
     type = "technology",

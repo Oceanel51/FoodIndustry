@@ -7,7 +7,7 @@ data:extend(
             icon = "__FoodIndustry__/graphics/icons/entities/fishing-inserter.png",
             icon_size = 32,
             flags = {"goes-to-quickbar"},
-            subgroup = "food-machines",
+            subgroup = "food-machines-fish",
             order = "w-a-i",
             place_result = "burner-fishing-inserter",
             stack_size = 50
@@ -229,7 +229,7 @@ data:extend(
             icon = "__FoodIndustry__/graphics/icons/entities/fishing-inserter.png",
             icon_size = 32,
             flags = {"goes-to-quickbar"},
-            subgroup = "food-machines",
+            subgroup = "food-machines-fish",
             order = "w-a-i",
             place_result = "fishing-inserter",
             stack_size = 50
