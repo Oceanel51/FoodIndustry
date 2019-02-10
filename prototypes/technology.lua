@@ -444,6 +444,8 @@ data:extend({
       {type = "unlock-recipe", recipe = "cattle-grabber"},
       {type = "unlock-recipe", recipe = "cattle-butcher"},
       {type = "unlock-recipe", recipe = "cattle-meat"},
+      {type = "unlock-recipe", recipe = "cattle-wood-fence"},
+      {type = "unlock-recipe", recipe = "cattle-wood-gate"},
     },
     unit =
     {

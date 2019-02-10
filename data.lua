@@ -6,6 +6,7 @@ require("prototypes.food-picker")
 require("prototypes.tree-greenhouse")
 require("prototypes.fruit-scissors")
 require("prototypes.cattle")
+require("prototypes.cattle-wood-fence")
 
 require("prototypes.item")
 require("prototypes.fluid")

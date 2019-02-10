@@ -13,6 +13,9 @@ local local_cattle_feeder_notify_damaged = function(ent)
                         return
                     end
                 end
+            else
+                table.remove(global.foodi.cattle, index)
+                return
             end
         end
         local entity = {entity = ent, countdown = 15}
@@ -44,22 +47,21 @@ local has_biters = false
 local local_cattle_feeder_process = function(feeder)
     has_biters = false
     --gets called 2 times a second
-    for index, cattle in ipairs(global.foodi.cattle) do
-        if cattle.entity.valid then
-            if not cattle.entity.to_be_deconstructed(cattle.entity.force) then
-                cattle.countdown = cattle.countdown - 1
-                if cattle.countdown <= 0 then
-                    table.remove(global.foodi.cattle, index)
-                end
-            end
-        end
-    end
+--    for index, cattle in ipairs(global.foodi.cattle) do
+--        if cattle.entity.valid then
+--            if not cattle.entity.to_be_deconstructed(cattle.entity.force) then
+--                cattle.countdown = cattle.countdown - 1
+--                if cattle.countdown <= 0 then
+--                    table.remove(global.foodi.cattle, index)
+--                end
+--            end
+--        end
+--    end
 
-    local entities = get_entities_around(feeder.entity,20 * math.max((1-(game.forces["enemy"].evolution_factor)),0.1))
+    local entities = get_entities_around(feeder.entity, 10)
     local biters = {}
     for i, ent in pairs(entities) do
-        if ent.name == "small-biter" or ent.name == "medium-biter" or ent.name == "big-biter" or  ent.name == "behemoth-biter"
-                or ent.name == "small-spitter" or ent.name == "medium-spitter" or ent.name == "big-spitter" or  ent.name == "behemoth-spitter"
+        if ent.name == "cattle" or ent.name == "cattle-calf"
         then
             table.insert(biters,ent)
         end
@@ -67,21 +69,21 @@ local local_cattle_feeder_process = function(feeder)
     if #biters > 0 and local_process_feeder_inventory(feeder,#biters) then
         if biters ~= nil then
             has_biters = true
-            for i, ent in pairs(biters) do
-                local angry = false
-                for index, cattle in ipairs(global.foodi.cattle) do
-                    if cattle.entity.valid then
-                        if not cattle.entity.to_be_deconstructed(cattle.entity.force) then
-                            if ent == cattle.entity then
-                                angry = true
-                            end
-                        end
-                    end
-                end
-                if angry == false then
-                    ent.set_command({type = defines.command.wander ,radius = 8});
-                end
-            end
+--            for i, ent in pairs(biters) do
+--                local angry = false
+--                for index, cattle in ipairs(global.foodi.cattle) do
+--                    if cattle.entity.valid then
+--                        if not cattle.entity.to_be_deconstructed(cattle.entity.force) then
+--                            if ent == cattle.entity then
+--                                angry = true
+--                            end
+--                        end
+--                    end
+--                end
+--                if angry == false then
+--                    ent.set_command({type = defines.command.wander ,radius = 8});
+--                end
+--            end
         end
     end
 end
