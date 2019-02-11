@@ -7,15 +7,22 @@ local catchDistance = 2
 local getFruitEveryXTicks = 60 * 5
 local minimumFruitsPerTree = 100
 local randomFruitsPerTree = 100
-
+local treeMax = 10
 
 local function createFruitTree(tree)
-
-    local fruitTree = global.foodi.fruittrees[tree.unit_number]
-
+    local fruitTree = nil
+    for _, r in ipairs(global.foodi.fruittrees) do
+        if r.entity == tree then
+            fruitTree = r
+            break
+        end
+    end
     if fruitTree == nil then
-        fruitTree = { fruits = minimumFruitsPerTree }
-        global.foodi.fruittrees[tree.unit_number] = fruitTree
+        fruitTree = {
+            entity == tree,
+            fruits = minimumFruitsPerTree
+        }
+        table.insert(global.foodi.fruittrees, fruitTree)
     end
 
     return fruitTree
@@ -23,29 +30,32 @@ local function createFruitTree(tree)
 end
 
 local local_food_picker_process = function(picker)
-    local trees = get_entities_around(picker, treeDistance)
+    if picker.held_stack.valid_for_read then
+        if picker.held_stack.count > 0 then
+            return
+        end
+    end
+    if entity.energy == 0 then
+        return
+    end
+
+    local trees = get_entities_around(picker, treeDistance, "tree")
     local trees_count = #trees
     if trees_count == 0 then
         return
     end
     local index = math.random(1, trees_count)
-
     local tree = trees[index]
-
     if tree == nil then
         return
     end
-
---    if not picker.held_stack.can_set_stack({name="apple", count=1})
---        or then
---        return
---    end
 
     picker.pickup_position = {
         x = tree.position.x,
         y = tree.position.y
     }
-    picker.direction = picker.direction
+
+--    picker.direction = picker.direction
 
     if tree.prototype.mineable_properties.products == nil then
         return

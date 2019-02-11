@@ -28,6 +28,7 @@ data:extend(
             max_health = 160,
             corpse = "small-remnants",
             filter_count = 2,
+            allow_custom_vectors = true,
             resistances =
             {
                 {
@@ -250,6 +251,7 @@ data:extend(
             max_health = 160,
             corpse = "small-remnants",
             filter_count = 1,
+            allow_custom_vectors = true,
             resistances =
             {
                 {

@@ -19,14 +19,25 @@ local local_try_pickup_fish_at_position = function(inserter,entity)
 end
 
 local local_fishing_inserter_process = function(entity)
-	local fish = get_entities_around(entity, 10)
+
+	if entity.held_stack.valid_for_read then
+		if entity.held_stack.count > 0 then
+			return
+		end
+	end
+
+	if entity.energy == 0 then
+		return
+	end
+
+	local fish = get_entities_around(entity, 10, "fish")
 	local fish_count = 0
 	local spawner = nil
 	local target = nil
 	local current_dist = 0
 	local target_dist = 100
 	if fish ~= nil then
-		for i, ent in pairs(fish) do					
+		for i, ent in pairs(fish) do
 			if ent.prototype.name == "fish" then	
 				fish_count = fish_count + 1	
 				local dist = distance(entity.held_stack_position.x,entity.held_stack_position.y,ent.position.x,ent.position.y)

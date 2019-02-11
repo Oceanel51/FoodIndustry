@@ -19,7 +19,16 @@ local local_try_pickup_cattle_at_position = function(inserter,entity)
 end
 
 local local_cattle_grabber_process = function(entity)
-	local cattle = get_entities_around(entity, grabbingDistance)
+	if entity.held_stack.valid_for_read then
+		if entity.held_stack.count > 0 then
+			return
+		end
+	end
+	if entity.energy == 0 then
+		return
+	end
+
+	local cattle = get_entities_around(entity, grabbingDistance, "unit")
 	local cattle_count = 0
 	local target
 	local current_dist = 0

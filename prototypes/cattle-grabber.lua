@@ -22,7 +22,8 @@ data:extend(
             max_health = 160,
             corpse = "small-remnants",
             filter_count = 1,
-            resistances =
+           allow_custom_vectors = true,
+           resistances =
             {
                 {
                     type = "fire",

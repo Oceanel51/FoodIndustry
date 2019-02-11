@@ -318,8 +318,9 @@ function get_entities_around(entity, tiles,type)
 	local h = wh[2]/2	
 	local entities
 	if type ~= nil then
-		entities = entity.surface.find_entities_filtered{area = {{entity.position.x-w, entity.position.y-h}, {entity.position.x-(w+0.5), entity.position.y+(h+0.5)}}, type = type}
+		entities = entity.surface.find_entities_filtered{area = {{entity.position.x-(w+tiles), entity.position.y-(h+tiles)}, {entity.position.x+(w+tiles), entity.position.y+(h+tiles)}}, type = type}
 	else
+
 		entities = entity.surface.find_entities({{entity.position.x-(w+tiles), entity.position.y-(h+tiles)}, {entity.position.x+(w+tiles), entity.position.y+(h+tiles)}})
 	end
 	for i, ent in pairs(entities) do	
