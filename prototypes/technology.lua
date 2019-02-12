@@ -309,6 +309,7 @@ data:extend({
     effects =
     {  
 		{type = "unlock-recipe", recipe = "fi-composter"},
+		{type = "unlock-recipe", recipe = "compost-1"},
     {type = "unlock-recipe", recipe = "compost-raw-straw"},
     {type = "unlock-recipe", recipe = "compost-straw"},
     {type = "unlock-recipe", recipe = "compost-compressed-straw"},
@@ -409,9 +410,57 @@ data:extend({
     },
     order = "w",
   },
+  {
+    type = "technology",
+    name = "trees-growth",
+    icon = "__FoodIndustry__/graphics/technology/trees-growth.png",
+    icon_size = 128,
+    prerequisites = {"composting"},
+    effects =
+    {
+        {type = "unlock-recipe", recipe = "fi_recipe_tree_greenhouse"},
+		{type = "unlock-recipe", recipe = "apple-seedling"},
+		{type = "unlock-recipe", recipe = "orange-seedling"},
+    },
+    unit =
+    {
+      time = 40,
+      count = 15,
+      ingredients =
+      {
+		{"food-science-pack", 1},
+      },
+    },
+    order = "w",
+  },
   
-  
-  
+  {
+    type = "technology",
+    name = "cattle",
+    icon = "__base__/graphics/icons/small-biter.png",
+    icon_size = 32,
+    prerequisites = {"composting", "automation"},
+    effects =
+    {
+      {type = "unlock-recipe", recipe = "cattle-spawner"},
+      {type = "unlock-recipe", recipe = "cattle-feeder"},
+      {type = "unlock-recipe", recipe = "cattle-grabber"},
+      {type = "unlock-recipe", recipe = "cattle-butcher"},
+      {type = "unlock-recipe", recipe = "cattle-meat"},
+      {type = "unlock-recipe", recipe = "cattle-wood-fence"},
+      {type = "unlock-recipe", recipe = "cattle-wood-gate"},
+    },
+    unit =
+    {
+      time = 40,
+      count = 15,
+      ingredients =
+      {
+        {"food-science-pack", 1},
+      },
+    },
+    order = "x",
+  },
   
   {
     type = "technology",
@@ -447,6 +496,7 @@ data:extend({
 		{type = "unlock-recipe", recipe = "cooked-corn"},
 		{type = "unlock-recipe", recipe = "cooked-soy"},
 		{type = "unlock-recipe", recipe = "baked-potato"},
+        {type = "unlock-recipe", recipe = "cooked-fish"},
 		{type = "unlock-recipe", recipe = "cooked-biter-meat"},
     },
     unit =
@@ -546,6 +596,8 @@ data:extend({
 		{type = "unlock-recipe", recipe = "corn-growth-w"},
 		{type = "unlock-recipe", recipe = "soy-growth-w"},
 		{type = "unlock-recipe", recipe = "rapeseed-growth-w"},
+--		{type = "unlock-recipe", recipe = "apple-growth-w"},
+--		{type = "unlock-recipe", recipe = "orange-growth-w"},
     },
     unit =
     {
@@ -672,6 +724,8 @@ data:extend({
 		{type = "unlock-recipe", recipe = "corn-growth-c"},
 		{type = "unlock-recipe", recipe = "soy-growth-c"},		
 		{type = "unlock-recipe", recipe = "rapeseed-growth-c"},
+--		{type = "unlock-recipe", recipe = "apple-growth-c"},
+--		{type = "unlock-recipe", recipe = "orange-growth-c"},
     },
     unit =
     {
@@ -704,6 +758,8 @@ data:extend({
 		{type = "unlock-recipe", recipe = "corn-growth-f"},
 		{type = "unlock-recipe", recipe = "soy-growth-f"},
 		{type = "unlock-recipe", recipe = "rapeseed-growth-f"},
+--		{type = "unlock-recipe", recipe = "apple-growth-f"},
+--		{type = "unlock-recipe", recipe = "orange-growth-f"},
     },
     unit =
     {
@@ -813,9 +869,11 @@ data:extend({
     {  
 		{type = "unlock-recipe", recipe = "raw-fries"},
 		{type = "unlock-recipe", recipe = "fries"},
+        {type = "unlock-recipe", recipe = "fish-steak"},
 		{type = "unlock-recipe", recipe = "biter-steak"},
 		{type = "unlock-recipe", recipe = "schnitzel"},
 		{type = "unlock-recipe", recipe = "popcorn"},
+        {type = "unlock-recipe", recipe = "fish-and-chips"},
     },
     unit =
     {
@@ -883,6 +941,7 @@ data:extend({
     {  
 		{type = "unlock-recipe", recipe = "soy-sauce"},
 		{type = "unlock-recipe", recipe = "best-salad"},
+        {type = "unlock-recipe", recipe = "fish-salad"},
 		{type = "unlock-recipe", recipe = "ketchup"},
 		{type = "unlock-recipe", recipe = "ketchup-fries"},
     },
@@ -906,8 +965,10 @@ data:extend({
     effects =
     {  
 		{type = "unlock-recipe", recipe = "burger"},
+        {type = "unlock-recipe", recipe = "fish-burger"},
 		{type = "unlock-recipe", recipe = "tofu-burger"},
 		{type = "unlock-recipe", recipe = "pizza"},
+        {type = "unlock-recipe", recipe = "fish-pizza"},
 		{type = "unlock-recipe", recipe = "tofu-pizza"},
     },
     unit =

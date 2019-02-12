@@ -5,6 +5,14 @@ require "prototypes.functions.fi-calculations"
 --require "prototypes.functions.fi-modifiers"
 require "libs.helper-functions"
 
+require("prototypes.scripts.fishing-inserter")
+require("prototypes.scripts.food-picker")
+require("prototypes.scripts.fruittrees")
+require("prototypes.scripts.fruit-scissors")
+require("prototypes.scripts.cattle")
+require("prototypes.scripts.cattle-grabber")
+
+
 
 script.on_init(OnInit)
 script.on_load(OnLoad)
@@ -35,8 +43,35 @@ maxtimes["Fast mining"] = 3600
 maxtimes["Invulnerability"] = 900
 maxtimes["Health buffer"] = 2700
 
+function setupFi()
+
+	if not foodi then foodi = {} end
+	if not foodi.ticks then foodi.ticks = {} end
+	if not foodi.on_added then foodi.on_added = {} end
+	if not foodi.on_remove then foodi.on_remove = {} end
+	if not foodi.on_adjust then foodi.on_adjust = {} end
+	if not foodi.on_mod_item_opened then foodi.on_mod_item_opened = {} end
+	if not foodi.on_selected_entity_changed then foodi.on_selected_entity_changed = {} end
+	if not foodi.on_player_selected_area then foodi.on_player_selected_area = {} end
+	if not foodi.on_pick_up then foodi.on_pick_up = {} end
+
+	if global ~= nil then
+		if not global.foodi then global.foodi = {} end
+		if not global.players then global.players = {} end
+		if not global.foodi.players then global.foodi.players = {} end
+	end
+end
 
 function OnInit()
+	setupFi()
+
+	initFishingInserter()
+	initFoodPicker()
+	initFruitTrees()
+	initFruitScissors()
+	initCattle()
+	initCattleGrabber()
+
 	for index,player in pairs(game.players) do
 		if player.connected then
 			fi_global_variables_init()
@@ -45,13 +80,18 @@ function OnInit()
 		end
 	end
 end
+
 function OnLoad()
     OnInit()
 end
 
-
-
 script.on_event({defines.events.on_tick}, function (e)
+	OnInit()
+
+	for k=1, #foodi.ticks do
+		local v = foodi.ticks[k]
+		v(e)
+	end
 	
 	-- TODO добавить сюда sleep modifier, это основной блок по которому считаются все расходы
 	if e.tick % 5 == 0 then
@@ -299,16 +339,36 @@ script.on_event({defines.events.on_tick}, function (e)
 	end
 end)
 
-
-script.on_event(defines.events.on_built_entity, function(event)
+local local_on_added = function(event)
 	local entity = event.created_entity
-		if (entity.name == "fi-basic-farmland") and entity.burner and entity.burner.remaining_burning_fuel then 
-			event.created_entity.burner.currently_burning="wood"
-			event.created_entity.burner.remaining_burning_fuel=2000000
+	if entity ~= nil then
+		for k=1, #foodi.on_added do
+			local v = foodi.on_added[k]
+			v(entity, event)
 		end
 	end
-)
+end
+local local_on_removed = function(event)
+	local entity = event.entity
+	if entity ~= nil then
+		for k=1, #foodi.on_remove do
+			local v = foodi.on_remove[k]
+			v(entity, event)
+		end
+	end
+end
 
+script.on_event(defines.events.on_built_entity, function(event)
+	local_on_added(event)
+
+	-- removed this as it seems to be buggy
+	--	    local entity = event.created_entity
+	--		if (entity.name == "fi-basic-farmland") and entity.burner and entity.burner.remaining_burning_fuel then
+	--			event.created_entity.burner.currently_burning="wood"
+	--			event.created_entity.burner.remaining_burning_fuel=2000000
+	--		end
+	end
+)
 
 -- when new Player is created/joined
 script.on_event(defines.events.on_player_created, function(event)
@@ -826,4 +886,33 @@ script.on_event(defines.events.on_gui_click, function(event)
 	end
 end
 )
+
+	local mod_item_opened = function(event)
+		for k=1, #foodi.on_mod_item_opened do
+			local v = foodi.on_mod_item_opened[k]
+			v(event)
+		end
+	end
+
+	local player_selected_area = function(event)
+		for k=1, #foodi.on_player_selected_area do
+			local v = foodi.on_player_selected_area[k]
+			v(event)
+		end
+	end
+
+	local selected_entity_changed = function(event)
+		for k=1, #foodi.on_selected_entity_changed do
+			local v = foodi.on_selected_entity_changed[k]
+			v(event)
+		end
+	end
+
+	local remove_events = {defines.events.on_entity_died,defines.events.on_robot_pre_mined,defines.events.on_robot_mined_entity,defines.events.on_pre_player_mined_entity,defines.events.on_player_mined_entity}
+
+	script.on_event(defines.events.on_robot_built_entity, local_on_added)
+	script.on_event(remove_events, local_on_removed)
+	script.on_event(defines.events.on_mod_item_opened, mod_item_opened)
+	script.on_event(defines.events.on_player_selected_area, player_selected_area)
+	script.on_event(defines.events.on_selected_entity_changed, selected_entity_changed)
 

@@ -45,6 +45,32 @@ data:extend(
     group = "food-industry",
     order = "w-j",
   },
+  {
+    type = "item-subgroup",
+    name = "food-cattle",
+    group = "food-industry",
+    order = "w-e",
+  },
+  {
+    type = "item-subgroup",
+    name = "food-machines-cattle",
+    group = "food-industry",
+    order = "w-a3",
+  },
+    {
+        type = "item-subgroup",
+        name = "food-machines-trees",
+        group = "food-industry",
+        order = "w-a1",
+    },
+
+    {
+        type = "item-subgroup",
+        name = "food-machines-fish",
+        group = "food-industry",
+        order = "w-a2",
+    },
+
   -- TODO fix categories
   -- foods
   {
@@ -109,6 +135,10 @@ data:extend(
   },
   {
     type = "recipe-category",
+    name = "food-cattle",
+  },
+  {
+    type = "recipe-category",
     name = "auto-composting",	
   },  
   {
@@ -117,15 +147,15 @@ data:extend(
   },
   {
     type = "recipe-category",
-    name = "advanced-cooking", -- для капсул второго уровня и продвинутого приготовления
+    name = "advanced-cooking", -- ??? ?????? ??????? ?????? ? ???????????? ?????????????
   },
   {
     type = "recipe-category",
-    name = "beverages",	-- напитки
+    name = "beverages",	-- ???????
   },
   {
     type = "recipe-category",
-    name = "juicing",	-- приготовление соков
+    name = "juicing",	-- ????????????? ?????
   },
   {
     type = "recipe-category",

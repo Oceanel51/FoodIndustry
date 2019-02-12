@@ -58,6 +58,27 @@ data:extend({
   },
 	
 	
+	
+	
+	{
+    type = "recipe",
+    name = "compost-1",
+    enabled = false,
+	icon = "__FoodIndustry__/graphics/icons/recipes/compost-1.png",
+	icon_size = 32,
+	category = "composting",
+	subgroup = "food-items",
+	energy_required = 25.0,
+    ingredients =
+    {
+		{"raw-straw", 10},
+    },
+      results = 
+	{
+		{"compost", 20}
+	},
+	allow_as_intermediate = false,
+    },
   {
 	type = "recipe",
 	name = "compost-2",
@@ -73,7 +94,7 @@ data:extend({
 	},
 		results = 
 	{
-		{"compost", 100}
+		{"compost", 10}
 	},
 	allow_as_intermediate = false,	
   },

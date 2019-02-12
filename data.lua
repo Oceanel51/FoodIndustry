@@ -1,4 +1,13 @@
 -- main data and foods
+
+require("prototypes.fish.fishing-inserter")
+require("prototypes.cattle.cattle-grabber")
+require("prototypes.trees.food-picker")
+require("prototypes.trees.tree-greenhouse")
+require("prototypes.trees.fruit-scissors")
+require("prototypes.cattle.cattle")
+require("prototypes.cattle.cattle-wood-fence")
+
 require("prototypes.item")
 require("prototypes.fluids")
 require("prototypes.recipe")
@@ -6,6 +15,7 @@ require("prototypes.foods-item-recipe")
 require("prototypes.composting-recipe")
 require("prototypes.composting-auto-recipe")
 require("prototypes.crop")
+require("prototypes.trees.trees")
 require("prototypes.entity")
 require("prototypes.technology")
 require("prototypes.category")
