@@ -179,13 +179,8 @@ script.on_event({defines.events.on_tick}, function (e)
 
 					------------------------- sleep marking -------------------------
 					if e.tick % 1200 == 0 then
-						-- TODO записать у вики: сон считается между -10 и 0
-						if global.usage[index] > 0 and global.usage[index] < -10 then
-							-- сбрасываем значения сна
-							global.effects[index]["sleep"] = {false, -14400, 0}
-						else
-							sleep_trg_on_tick(index, player)
-						end
+						sleep_trg_on_tick(index, player) -- start or stop Sleep
+						sleep_calc_on_tick(index, player)
 					end
 					
 					-------------------- used energy calculation --------------------
@@ -253,7 +248,7 @@ script.on_event({defines.events.on_tick}, function (e)
 					if e.tick % 600 == 0 then
 						effects_calc_on_tick(index, player)
 						--writeDebug(dump(global.effects[index]))
-						--figui.update_effects(index, player)
+						figui.update_effects(index, player)
 					end
 					
 					
@@ -261,12 +256,13 @@ script.on_event({defines.events.on_tick}, function (e)
 
 					-- for achievement "overweight" > 90% for 30 minutes
 					if global.energy[index] > global.energy_max[index] * 0.9 then
-						global.effects[index]["overweight"][3] = global.effects[index]["overweight"][3] + 5
-						if global.effects[index]["overweight"][3] > 108000 then
+						global.fi_achievements[index]["overweight"][3] = global.fi_achievements[index]["overweight"][3] + 5
+						if global.fi_achievements[index]["overweight"][3] > 108000 then
 							player.unlock_achievement("overweight")
+							global.fi_achievements[index]["overweight"][1] = true
 						end
 					else
-						global.effects[index]["overweight"][3] = 0
+						global.fi_achievements[index]["overweight"][3] = 0
 					end
 					
 				end
@@ -274,16 +270,17 @@ script.on_event({defines.events.on_tick}, function (e)
 		end
 	end
 	
-	if global.effects then
-		for index,player in pairs(game.players) do
-			if player.connected and player.character and global.effects[index] then
-				if global.effects[index]["Invulnerability"] and global.effects[index]["Invulnerability"] > 0 then
-					player.character.health = 10000
-					player.character_health_bonus = 9750
-				end 
-			end
-		end
-	end
+	-- TODO move to effects_add(...)/effects_remove(...)
+	---if global.effects then
+	---	for index,player in pairs(game.players) do
+	---		if player.connected and player.character and global.effects[index] then
+	---			if global.effects[index]["Invulnerability"] and global.effects[index]["Invulnerability"] > 0 then
+	---				player.character.health = 10000
+	---				player.character_health_bonus = 9750
+	---			end 
+	---		end
+	---	end
+	---end
 	
 	-- remove meat from surfaces
 	if settings.global["food-industry-remove-meat"].value then
@@ -322,19 +319,22 @@ script.on_event(defines.events.on_player_created, function(event)
 
 	player.insert({name="vegan-food-capsule", count=10})
 	player.insert({name="simple-digestive-capsule", count=5})
-	player.insert({name="simple-speed-capsule", count=2})
+	player.insert({name="simple-speed-capsule", count=5})
 	player.insert({name="simple-crafting-capsule", count=2})
 	player.insert({name="simple-mining-capsule", count=2})
 	
 	-- DEBUG remove this
+	player.insert({name="basic-digestive-capsule", count=5})
 	player.insert({name="lettuce", count=10})
 	player.insert({name="tomato", count=10})
 	player.insert({name="corn", count=10})
 	player.insert({name="popcorn", count=10})
 	player.insert({name="flask-pure-water", count=10})
-	player.insert({name="plastic-bottle-pure-water", count=20})
+	player.insert({name="plastic-bottle-pure-water", count=10})
 	player.insert({name="basic-speed-capsule", count=5})
 	player.insert({name="advanced-speed-capsule", count=5})
+	player.insert({name="simple-long-reach-capsule", count=5})
+	player.insert({name="basic-long-reach-capsule", count=5})
 end
 )
 
@@ -394,10 +394,11 @@ script.on_event(defines.events.on_player_used_capsule, function(event)
 						for _,ef in pairs(food_copy[9]) do
 							effects_add(event.player_index, food_copy[1], ef)
 						end
+						writeDebug(dump(global.effects[event.player_index]["digestion"]))
 						effects_calc_on_tick(event.player_index, player)
 					end
 
-					-- количество единиц еды в желудке
+					-- количество единиц еды в сумме
 					global.foods[event.player_index][i] = global.foods[event.player_index][i] + 1
 					
 					-- TODO перенести в effects_add
@@ -669,26 +670,6 @@ script.on_event(defines.events.on_rocket_launched, function(event)
 )
 
 
-script.on_event(defines.events.on_put_item, function(event)
-	--local entity_name = event.entity.name
-	local item_name = event.position
-	
-	
-	writeDebug(dump(item_name))
-	--if (entity.name == "pure-water") and entity.amount > 30 then
-		-- TODO fill the flask
-		-- if cursor stack = flask
-			--@ fill the the flask
-			--@ takeneed count of fluid from the pure-water entity
-			--@ insert new item with pure-water to player inventory
-			--writeDebug("Flask fill with pure-water")
-			--event.created_entity.burner.currently_burning="wood"
-			--event.created_entity.burner.remaining_burning_fuel=2000000
-	--end
-end
-)
-
-
 function u_gui()
 	if global.energy and global.drinks and global.fullness then
 		for index, player in pairs(game.players) do
@@ -808,6 +789,12 @@ function u_gui()
 					else
 						leftGui.style.top_padding = 0
 					end
+
+					-- DEBUG
+					if player.character then
+						figui.debug_create(index, player)
+						figui.debug_update(index, player)
+					end
 				end
 			end
 		end
@@ -824,7 +811,7 @@ function getTime(ticks)
 end
 
 
--- When eat_button is clicked
+-- TODO When eat_button is clicked
 script.on_event(defines.events.on_gui_click, function(event)
 	for index,player in pairs(game.players) do
 		if player.connected then
@@ -839,42 +826,4 @@ script.on_event(defines.events.on_gui_click, function(event)
 	end
 end
 )
-
-
-function eatoutFood()
-	for index,player in pairs(game.players) do
-		if player.connected then
-			-------------------------------------------------------------------------
-			local foundFood = false;
-			local inv = player.get_inventory(defines.inventory.player_main)
-			for trys=1,2 do
-				for i,d in pairs(inv.get_contents()) do
-					if gives_saturation[i] then -- тут нужно прописать если это еда и она добавляет Energy
-						if foundFood == false or foundFoodValue < gives_saturation[i] then
-							foundFoodValue = gives_saturation[i]
-							foundFood = i
-						end	
-					end
-				end
-				inv = player.get_inventory(defines.inventory.player_quickbar)
-			end
-			if foundFood ~= false and global.EatOrDie_Saturation + foundFoodValue <= 100 then
-				-- wenn ich essen kann, dann esse
-				local inv = player.get_inventory(defines.inventory.player_main)
-				for trys=1,2 do
-					if inv.get_item_count(foundFood) >= 1 then
-						inv.remove{name=foundFood, count=1}
-						global.EatOrDie_Saturation = global.EatOrDie_Saturation + foundFoodValue
-						player.print("eating " .. foundFood .. " gives " .. foundFoodValue .. " Saturation")
-						break
-					end
-					inv = player.get_inventory(defines.inventory.player_quickbar)
-				end
-			end
-			-------------------------------------------------------------------------
-		end
-	end
-end
-function eatingFood()
-end
 

@@ -49,39 +49,8 @@ function fi_global_variables_init()
 	if not global.substances then
 		global.substances = {}           -- values of {V,M,C,F} substances (new!)
 	end
-	
 
-	-- mod modifiers
-	-- where {modifier_description, value}
-	-- modifier_description values: Energy level, simple Capsule, basic Capsule, advanced Capsule, Water level, Balance of Substances levels: VMCF, VMC, VM, VC, MC, and F
-	--------------- vanila modifiers -----------------
-	if not global.fi_character_running_speed_modifier then
-		global.fi_character_running_speed_modifier = {}
-	end
-	
-	if not global.fi_character_build_distance_bonus_modifier then
-		global.fi_character_build_distance_bonus_modifier = {}
-	end
-	if not global.fi_character_item_drop_distance_bonus_modifier then
-		global.fi_character_item_drop_distance_bonus_modifier = {}
-	end
-	if not global.fi_character_reach_distance_bonus_modifier then
-		global.fi_character_reach_distance_bonus_modifier = {}
-	end
-	
-	if not global.fi_character_crafting_speed_modifier then
-		global.fi_character_crafting_speed_modifier = {}
-	end
-	
-	if not global.fi_character_mining_speed_modifier then
-		global.fi_character_mining_speed_modifier = {}
-	end
-	
-	if not global.fi_character_health_bonus_modifier then
-		global.fi_character_health_bonus_modifier = {}
-	end
-	--------------------------------------------------
-	
+
 	--------------- mod only modifiers ---------------
 	if not global.fi_energy_ussage_modifier then
 		global.fi_energy_ussage_modifier = {}                 -- values of energy ussage modifier
@@ -92,13 +61,12 @@ function fi_global_variables_init()
 	if not global.fi_character_sleep_modifier then
 		global.fi_character_sleep_modifier = {}               -- values of sleep
 	end
-	if not global.fi_character_digestion_modifier then
-		global.fi_character_digestion_modifier = {}           -- values of digestion modifier
-	end
+	--if not global.fi_character_digestion_modifier then
+	--	global.fi_character_digestion_modifier = {}           -- values of digestion modifier
+	--end
 	if not global.fi_character_fat_modifier then
 		global.fi_character_fat_modifier = {}                 -- values of fat modifier
 	end
-	-- TODO implement
 	if not global.fi_achievements then
 		global.fi_achievements = {}                           -- variable for achievements
 	end
@@ -159,29 +127,44 @@ function fi_global_variables_set(index)
 	end
 	if not global.effects[index] then
 		--game.players[index].print("global.effects["..index.."] set")
-		global.effects_active[index] = {} -- values of current active effects {affecting item or event, effect_name, modifier, action time}
+		global.effects_active[index] = {} -- values of current active effects from food {affecting item or event, effect_name, modifier, action time}
 		global.effects[index] = {} -- values of current active effects modifiers
-		--						key								enabled,	modifier,	time/stage/level,	delay,	influencing factors (srings/table)
-		global.effects[index]["drinks_for_energy_usage"]	 = {false,		0,			0,					0,		{{"drinks_is_0",0,0},}}		-- add empty init value of modifier when +Drinks affect for Energy usage
-		global.effects[index]["substances_for_energy_usage"] = {false,		0,			0,					0,		{{"vmcf_is_0",0,0},}}		-- add empty init value of modifier when +VMCF Substances affect for Energy usage
-		global.effects[index]["drink_to_add_more_energy"]	 = {false,		0,			0,					0,		{}}							-- add empty init value of modifier when Pllayer drink after use item
-		global.effects[index]["overweight"]					 = {false,		0,			0,					0		}							-- values used time for achievement "overweight"
-		global.effects[index]["fat"]						 = {false,		0,			-78,				0		}							-- add empty init value of Fat
-		global.effects[index]["digestion"]					 = {false,		0,			0,					0,		{}}							-- add empty init value of Digestions
-		global.effects[index]["thirst"]						 = {false,		0,			-14400,				0,		{}}							-- add empty init value of Thirst
-		global.effects[index]["sleep"]						 = {false,		0,			-14400,				0,		{}}							-- add empty init value of Sleep state
-		global.effects[index]["speed"]						 = {false,		0,			0,					0,		{}}							-- add empty init value of runing Speed
-		global.effects[index]["mining"]						 = {false,		0,			0,					0,		{}}							-- add empty init value of Mining speed
+		--						key									enabled,	modifier,	time/stage/level,	delay,	influencing factors (table)
+		global.effects[index]["drinks_for_energy_usage"]		 = {false,		0,			0,					0,		{{"drinks_is_0",0,0},}}		-- init basic value of modifier when +Drinks affect for Energy usage
+		global.effects[index]["substances_for_energy_usage"]	 = {false,		0,			0,					0,		{{"vmcf_is_0",0,0},}}		-- init basic value of modifier when +VMCF Substances affect for Energy usage
+		
+		--															enabled,				time,						influencing factors (table)
+		global.effects[index]["drink_to_add_more_energy"]		 = {false,		0,			0,					0,		{}}							-- init empty value of modifier when Pllayer drink after use item
+		global.effects[index]["add_more_energy"]				 = {false,		0,			0,					0,		{}}							-- init empty value of More Energy
+		global.effects[index]["add_more_drinks"]				 = {false,		0,			0,					0,		{}}							-- init empty value of More Drinks
+		
+		global.effects[index]["digestion"]						 = {false,		0,			0,					0,		{}}							-- init empty value of Digestions
+		global.effects[index]["thirst"]							 = {false,		0,			14400,				0,		{}}							-- init basic value of Thirst
+		
+		--															enabled,	modifier,	active time,		value
+		global.effects[index]["fat"]							 = {false,		0,			0,					-78		}							-- init empty value of Fat
+		--															enabled,	modifier,	time to next,		stage,	influencing factors (table)
+		global.effects[index]["sleep"]							 = {false,		0,			14400,				0,		{}}							-- init basic values of Sleep state
+		
+		--															enabled,				time,				delay,	influencing factors (table)
+		global.effects[index]["speed"]							 = {false,		0,			0,					0,		{}}							-- init empty value of runing Speed
+		global.effects[index]["mining"]							 = {false,		0,			0,					0,		{}}							-- init empty value of Mining speed
+		global.effects[index]["crafting"]						 = {false,		0,			0,					0,		{}}							-- init empty value of Crafting speed
+		global.effects[index]["long_reach"]						 = {false,		0,			0,					0,		{}}							-- init empty value of Long reach distance
+		
+		global.effects[index]["health_buffer"]					 = {false,		0,			0,					0,		{}}							-- init empty value of Health Buffer effect
+		global.effects[index]["invulnerability"]				 = {false,		0,			0,					0,		{}}							-- init empty value of Invulnerability effect
 		-- TODO add other effects variables
-		--global.effects[index]["long_reach"]					 = {false,		0,			0,					0,		{}}							-- add empty init value of Long reach distance
-		--global.effects[index]["crafting"]					 = {false,		0,			0,					0,		{}}							-- add empty init value of Crafting speed
 	end
 	if not global.substances[index] then
 		global.substances[index] = {v=0,m=0,c=0,f=0} -- values of substances {V,M,C,F} of connected player (new!)
 	end
 	
-	--------------- vanila modifiers -----------------
-	-- TODO add vanila modifiers
+	--------------- vanilla modifiers -----------------
+	--@ vanilla modifiers adds or remove directrly in functions:
+	--@  effects_add_update(...)
+	--@  effects_add_insert(...)
+	--@  effects_remove(...)
 
 	--------------- mod only modifiers ---------------
 	-- эти модификаторы уже используются в коде и мы их в effects_add(...) и effects_remove(...) модифицируем сразу - плюсуем или отнимаем
@@ -194,16 +177,19 @@ function fi_global_variables_set(index)
 	if not global.fi_character_sleep_modifier[index] then
 		global.fi_character_sleep_modifier[index] = 0               -- values of sleep [0%-100%]
 	end
-	if not global.fi_character_digestion_modifier[index] then
-		global.fi_character_digestion_modifier[index] = 0           -- values of digestion modifier [-unlim ... 0.0 ... 1]
-	end
+	--if not global.fi_character_digestion_modifier[index] then
+	--	global.fi_character_digestion_modifier[index] = 0           -- values of digestion modifier [-unlim ... 0.0 ... 1]
+	--end
 	if not global.fi_character_fat_modifier[index] then
 		global.fi_character_fat_modifier[index] = 0                 -- values of fat modifier [normal state is 0]
 	end
 	
 	if not global.fi_achievements[index] then
 		global.fi_achievements[index] = {}                           -- variable for achievements
-		global.fi_achievements[index]["gourmet"] = 0
+		--								key					unlock,		count/stage,	time,	table
+		-- TODO implement achievements
+		global.fi_achievements[index]["gourmet"]		 = {false,		0,				0,		{}}
+		global.fi_achievements[index]["overweight"]		 = {false,		0,				0,		0}		-- values achievement "overweight"
 	end
 	--------------------------------------------------
 	if not global.fi_debug[index] then

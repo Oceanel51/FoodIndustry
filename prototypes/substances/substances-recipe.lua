@@ -1,3 +1,7 @@
+require "prototypes.tables.fi-foods-table"
+local foods = collect_all_foods_table()
+
+
 local ingredients = {
 	--1						2				3
 	--plant					energy/water	result	?
@@ -18,7 +22,7 @@ for index, ingredient in pairs(ingredients) do
 	data:extend({
 		{
 			type = "recipe",
-			name = "compost-"..ingredient[1],
+			name = "compost-auto-"..ingredient[1],
 			enabled = false,
 			icon = "__FoodIndustry__/graphics/icons/items/compost.png",
 			icon_size = 32,

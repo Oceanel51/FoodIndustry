@@ -22,9 +22,9 @@ data:extend({
     default_temperature = 15,
     max_temperature = 100,
     heat_capacity = "0.5KJ",
-    base_color = {r=0, g=0, b=0.8,a=1.0},
-    flow_color = {r=0, g=0, b=0.8,a=1.0},
-    icon = "__FoodIndustry__/graphics/icons/fluids/pure-water-1.png",
+    base_color = {r=0.61, g=0.76, b=0.78,a=1.0},
+    flow_color = {r=0.61, g=0.76, b=0.78,a=1.0},
+    icon = "__FoodIndustry__/graphics/icons/fluids/pure-water.png",
     icon_size = 32,
     order = "pure-water",
     pressure_to_speed_ratio = 0.4,
@@ -46,7 +46,7 @@ data:extend({
   {
     type = "resource",
     name = "pure-water",
-    icon = "__FoodIndustry__/graphics/icons/fluids/pure-water-1.png",
+    icon = "__FoodIndustry__/graphics/icons/fluids/pure-water.png",
     icon_size = 32,
     flags = {"placeable-neutral"},
     category = "basic-fluid",
@@ -86,7 +86,7 @@ data:extend({
       sharpness = 0.08,
       max_probability = 0.001,
       richness_base = 10,
-      richness_multiplier = 100,
+      richness_multiplier = 10000,
       richness_multiplier_distance_bonus = 150,
       coverage = (0.006 / 3) ,
       peaks = {
@@ -101,7 +101,7 @@ data:extend({
     stages = {
       sheet =
       {
-        filename = "__FoodIndustry__/graphics/entity/pure-water/pure-water-1.png",
+        filename = "__FoodIndustry__/graphics/entity/pure-water/pure-water.png",
         priority = "extra-high",
         width = 75,
         height = 61,
@@ -109,7 +109,7 @@ data:extend({
         variation_count = 1
       }
     },
-    map_color = {r=0, g=0.4, b=0.8, a=0.6},
+    map_color = {r=0, g=0.4, b=0.8, a=0.7},
     map_grid = false
   },
 

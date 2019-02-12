@@ -302,6 +302,102 @@ end
 -- Update GUI gadgets: Effects
 function figui.update_effects(index, player)
 	local leftGui = player.gui.left
-	-- TODO Update GUI Effects
+	
+	local active_effects_count = 0
+	for i,effect in pairs(global.effects[index]) do
+		if not effect[5] == nil then
+			active_effects_count = active_effects_count + table.maxn(effect[5])
+		end
+	end
+	--leftGui.frame.flow3.flow34.label_effects_count.caption = active_effects_count
 
+	-- TODO Update GUI Effects
+	for i,effect in pairs(global.effects[index]) do
+		-- if effect is active
+		--	if effect[1] then
+
+	end
+
+end
+
+
+function figui.debug_create(index, player)
+	local centerGui = player.gui.center
+	
+	if centerGui.bar then
+		centerGui.bar.destroy()
+	end
+
+
+	-- initialize main .frame
+	if not centerGui.frame then
+		centerGui.add{type = "frame", name = "frame", direction = "vertical"}
+	end
+
+	
+	if not centerGui.frame.flow1 then
+		centerGui.frame.add{type = "flow", name = "flow1", right_padding = 0, center_padding = 0, direction = "horizontal"}
+	end
+	if not centerGui.frame.flow1.label1c then
+		centerGui.frame.flow1.add({type="label", name="label1", caption="speed 1:", style = "fi-label", align="right",})
+		centerGui.frame.flow1.add({type="label", name="label1c", caption="", style = "fi-label", align="right",})
+	end
+
+	if not centerGui.frame.flow1c then
+		centerGui.frame.add{type = "flow", name = "flow1c", right_padding = 0, center_padding = 0, direction = "horizontal"}
+	end
+	if not centerGui.frame.flow1c.label2c then
+		centerGui.frame.flow1c.add({type="label", name="label2", caption="speedc 2:", style = "fi-label", align="right",})
+		centerGui.frame.flow1c.add({type="label", name="label2c", caption="", style = "fi-label", align="right",})
+	end
+
+	-- crafting speed
+	if not centerGui.frame.flow2 then
+		centerGui.frame.add{type = "flow", name = "flow2", right_padding = 0, center_padding = 0, direction = "horizontal"}
+	end
+	if not centerGui.frame.flow2.label1c then
+		centerGui.frame.flow2.add({type="label", name="label1", caption="crafting 1:", style = "fi-label", align="right",})
+		centerGui.frame.flow2.add({type="label", name="label1c", caption="", style = "fi-label", align="right",})
+	end
+
+	-- mining speed
+	if not centerGui.frame.flow3 then
+		centerGui.frame.add{type = "flow", name = "flow3", right_padding = 0, center_padding = 0, direction = "horizontal"}
+	end
+	if not centerGui.frame.flow3.label1c then
+		centerGui.frame.flow3.add({type="label", name="label1", caption="mining 1:", style = "fi-label", align="right",})
+		centerGui.frame.flow3.add({type="label", name="label1c", caption="", style = "fi-label", align="right",})
+	end
+
+	-- long reach
+	if not centerGui.frame.flow4 then
+		centerGui.frame.add{type = "flow", name = "flow4", right_padding = 0, center_padding = 0, direction = "horizontal"}
+	end
+	if not centerGui.frame.flow4.label1c then
+		centerGui.frame.flow4.add({type="label", name="label1", caption="build_distance 1: ", style = "fi-label", align="right",})
+		centerGui.frame.flow4.add({type="label", name="label1c", caption="", style = "fi-label", align="right",})
+		centerGui.frame.flow4.add({type="label", name="label2", caption="item_drop_distance 1:", style = "fi-label", align="right",})
+		centerGui.frame.flow4.add({type="label", name="label2c", caption="", style = "fi-label", align="right",})
+		centerGui.frame.flow4.add({type="label", name="label3", caption="reach_distance 1:", style = "fi-label", align="right",})
+		centerGui.frame.flow4.add({type="label", name="label3c", caption="", style = "fi-label", align="right",})
+	end
+
+end
+function figui.debug_update(index, player)
+	local centerGui = player.gui.center
+
+    if player == nil then
+        return
+    end
+
+	centerGui.frame.flow1.label1c.caption = player.character_running_speed_modifier
+	centerGui.frame.flow1c.label2c.caption = player.force.character_running_speed_modifier
+	
+	centerGui.frame.flow2.label1c.caption = player.character_crafting_speed_modifier
+
+	centerGui.frame.flow3.label1c.caption = player.character_mining_speed_modifier
+	
+	centerGui.frame.flow4.label1c.caption = player.character_build_distance_bonus
+	centerGui.frame.flow4.label2c.caption = player.character_item_drop_distance_bonus
+	centerGui.frame.flow4.label3c.caption = player.character_reach_distance_bonus
 end

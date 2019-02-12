@@ -17,90 +17,68 @@ data:extend({
 	{
 		{"straw", 16}
 	}
-    },
-	{
-    type = "recipe",
-    name = "compressed-straw",
-    enabled = false,
+	},
+
+  {
+	type = "recipe",
+	name = "compressed-straw",
+	enabled = false,
 	icon = "__FoodIndustry__/graphics/icons/items/compressed-straw.png",
 	icon_size = 32,
 	category = "advanced-crafting",
 	subgroup = "food-items",
 	energy_required = 1.5,
-    ingredients =
-    {
+	ingredients =
+	{
 		{"straw", 60}
-    },
-      results = 
+	},
+	results = 
 	{
 		{"compressed-straw", 1}
 	}
-    },	
-	{
-    type = "recipe",
-    name = "fish-to-meat",
-    enabled = true,
+  },
+
+  {
+	type = "recipe",
+	name = "fish-to-meat",
+	enabled = true,
 	icon = "__FoodIndustry__/graphics/icons/items/biter-meat.png",
 	icon_size = 32,
 	category = "crafting",
 	subgroup = "foods-other",
 	energy_required = 0.5,
-    ingredients =
-    {
+	ingredients =
+	{
 		{"raw-fish", 5}
-    },
-      results = 
+	},
+	results = 
 	{
 		{type = "item", name = "biter-meat", amount = 1, probability = 0.2}
 	}
-    },	
+  },
 	
 	
-	
-	
-	{
-    type = "recipe",
-    name = "compost-1",
-    enabled = false,
-	icon = "__FoodIndustry__/graphics/icons/recipes/compost-1.png",
-	icon_size = 32,
-	category = "composting",
-	subgroup = "food-items",
-	energy_required = 25.0,
-    ingredients =
-    {
-		{"raw-straw", 10},
-    },
-      results = 
-	{
-		{"compost", 20} -- OPTIMIZE receipt results
-	},
-	allow_as_intermediate = false,
-    },
-	{
-    type = "recipe",
-    name = "compost-2",
-    enabled = false,
+  {
+	type = "recipe",
+	name = "compost-2",
+	enabled = false,
 	icon = "__FoodIndustry__/graphics/icons/recipes/compost-2.png",
 	icon_size = 32,
 	category = "composting",
 	subgroup = "food-items",
 	energy_required = 200.0,
-    ingredients =
-    {
+	ingredients =
+	{
 		{"landfill", 1},
-    },
-      results = 
+	},
+		results = 
 	{
 		{"compost", 100}
 	},
 	allow_as_intermediate = false,	
-    },
-	
-	
-	
-	
-	{
+  },
+
+  {
     type = "recipe",
     name = "compost-cracking",
     enabled = false,
@@ -116,36 +94,38 @@ data:extend({
 		{type = "fluid", name = "petroleum-gas", amount = 360},
 		
     },
-      results = 
+	results = 
 	{
 		{"unprocessed-fertilizer", 20},
 		{type = "fluid", name = "fertilizer-oil", amount = 480}
 	},
 	crafting_machine_tint = { primary = {r=0.5,g=0.3,b=0.3,a=1}, secondary = {r=0.8,g=0,b=0.7,a=1}, tertiary = {r=0.6,g=0,b=0.5,a=1}}	
-    },
-	{
-    type = "recipe",
-    name = "fertilizer",
-    enabled = false,
+  },
+
+  {
+	type = "recipe",
+	name = "fertilizer",
+	enabled = false,
 	icon = "__FoodIndustry__/graphics/icons/items/fertilizer.png",
 	icon_size = 32,
 	category = "chemistry",
 	subgroup = "food-items",
 	energy_required = 20.0,
-    ingredients =
-    {
+	ingredients =
+	{
 		{"unprocessed-fertilizer", 15},
 		{"crystal", 4},
 		{type = "fluid", name = "sulfuric-acid", amount = 10},
 		{type = "fluid", name = "steam", amount = 180}
-    },
-      results = 
+	},
+	results = 
 	{
 		{"fertilizer", 10}
 	},
 	crafting_machine_tint = { primary = {r=0.8,g=0.6,b=0.7,a=1}, secondary = {r=0.8,g=0,b=0.7,a=1}, tertiary = {r=0.8,g=0,b=0.7,a=1}}	
-    },
-	{
+  },
+
+  {
     type = "recipe",
     name = "fertilizer-oil-cracking",
     enabled = false,
@@ -220,7 +200,7 @@ data:extend({
 	icon_size = 32,
 	-- TODO разобраться почему не работает categories
 	--categories = {"mixing", "chemistry"},
-	category = "chemistry",
+	category = "mixing",
 	subgroup = "food-intermediates",
 	energy_required = 2.5,
 	ingredients =
@@ -591,89 +571,24 @@ data:extend({
     },
 	
 	
-	
-	{
-    type = "recipe",
-    name = "food-science-pack",
-    enabled = false,
+  {
+	type = "recipe",
+	name = "food-science-pack",
+	enabled = false,
 	icon = "__FoodIndustry__/graphics/icons/items/food-science-pack.png",
 	icon_size = 32,
 	category = "crafting",
 	subgroup = "science-pack",
 	energy_required = 3.0,
-    ingredients =
-    {
+	ingredients =
+	{
 		{"science-pack-1", 1},
 		{"compost", 5},
-    },
-      results = 
+	},
+	results = 
 	{
 		{"food-science-pack", 1}
 	}
-	},
-	
-	-- Drinks
-	{
-		type = "recipe",
-		name = "flask",
-		order = "a-b-a",
-		enabled = true,
-		icon = "__FoodIndustry__/graphics/icons/items/flask.png",
-		icon_size = 64,
-		category = "crafting",
-		subgroup = "drink-empty-packages",
-		energy_required = 4.5,
-		ingredients =
-		{
-			{"iron-plate", 1},
-		},
-		results =
-		{
-			{"flask", 1}
-		}
-	},
-	{
-		type = "recipe",
-		name = "flask-recycle",
-		order = "a-b-b",
-		enabled = true,
-		icon = "__FoodIndustry__/graphics/icons/items/flask-recycle.png",
-		icon_size = 64,
-		category = "crafting",
-		subgroup = "drink-empty-packages",
-		energy_required = 6,
-		ingredients =
-		{
-			{"flask", 4}
-		},
-		results =
-		{
-			{"iron-plate", 1},
-		},
-		hide_from_stats = true,
-		--allow_decomposition = false,
-		allow_as_intermediate = false,
-		allow_intermediates = false,
-	},
-
-	{
-		type = "recipe",
-		name = "plastic-bottle",
-		order = "a-c-a",
-		enabled = false,
-		icon = "__FoodIndustry__/graphics/icons/items/plastic-bottle.png",
-		icon_size = 64,
-		category = "crafting",
-		subgroup = "drink-empty-packages",
-		energy_required = 3.0,
-		ingredients =
-		{
-			{"plastic-bar", 1},
-		},
-		results =
-		{
-			{"plastic-bottle", 4}
-		}
-	},
+  },
 
 })

@@ -11,6 +11,42 @@ data:extend(
   },
   
   -- Effects icon
+  {
+    type = "sprite",
+    name = "unknown_red",
+    filename = "__FoodIndustry__/graphics/icons/effects/unknown_red.png",
+    priority = "medium",
+    width = 32,
+    height = 32,
+    flags = {"icon"},
+  },
+  {
+    type = "sprite",
+    name = "unknown_gray",
+    filename = "__FoodIndustry__/graphics/icons/effects/unknown_gray.png",
+    priority = "medium",
+    width = 32,
+    height = 32,
+    flags = {"icon"},
+  },
+  {
+    type = "sprite",
+    name = "unknown_green",
+    filename = "__FoodIndustry__/graphics/icons/effects/unknown_green.png",
+    priority = "medium",
+    width = 32,
+    height = 32,
+    flags = {"icon"},
+  },
+  {
+    type = "sprite",
+    name = "unknown_blue",
+    filename = "__FoodIndustry__/graphics/icons/effects/unknown_blue.png",
+    priority = "medium",
+    width = 32,
+    height = 32,
+    flags = {"icon"},
+  },
   
   {
     type = "sprite",

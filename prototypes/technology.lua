@@ -309,7 +309,9 @@ data:extend({
     effects =
     {  
 		{type = "unlock-recipe", recipe = "fi-composter"},
-		{type = "unlock-recipe", recipe = "compost-1"},
+    {type = "unlock-recipe", recipe = "compost-raw-straw"},
+    {type = "unlock-recipe", recipe = "compost-straw"},
+    {type = "unlock-recipe", recipe = "compost-compressed-straw"},
 		{type = "unlock-recipe", recipe = "food-science-pack"},
     },
     unit =
@@ -751,16 +753,16 @@ data:extend({
     effects =
     {  
 		{type = "unlock-recipe", recipe = "fi-electric-composter"},
-		{type = "unlock-recipe", recipe = "compost-raw-straw"},
-		{type = "unlock-recipe", recipe = "compost-straw"},
-		{type = "unlock-recipe", recipe = "compost-compressed-straw"},
-		{type = "unlock-recipe", recipe = "compost-lettuce"},
-		{type = "unlock-recipe", recipe = "compost-cucumber"},
-		{type = "unlock-recipe", recipe = "compost-tomato"},
-		{type = "unlock-recipe", recipe = "compost-potato"},
-		{type = "unlock-recipe", recipe = "compost-corn"},
-		{type = "unlock-recipe", recipe = "compost-soy"},
-		{type = "unlock-recipe", recipe = "compost-rapeseed"},
+		{type = "unlock-recipe", recipe = "compost-auto-raw-straw"},
+		{type = "unlock-recipe", recipe = "compost-auto-straw"},
+		{type = "unlock-recipe", recipe = "compost-auto-compressed-straw"},
+		{type = "unlock-recipe", recipe = "compost-auto-lettuce"},
+		{type = "unlock-recipe", recipe = "compost-auto-cucumber"},
+		{type = "unlock-recipe", recipe = "compost-auto-tomato"},
+		{type = "unlock-recipe", recipe = "compost-auto-potato"},
+		{type = "unlock-recipe", recipe = "compost-auto-corn"},
+		{type = "unlock-recipe", recipe = "compost-auto-soy"},
+		{type = "unlock-recipe", recipe = "compost-auto-rapeseed"},
     },
     unit =
     {

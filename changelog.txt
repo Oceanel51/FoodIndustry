@@ -7,7 +7,7 @@ Features:
 	-Remake Fullness system: now it's like a stomach in the human body, You put the food and its digestion takes place in turns.
 	-Add "Overeating" effect:
 	-Add "Drinks consumption" system and some basic fluids:
-	-Add "Thirst" effect. This is not exactly the thirst we know ;)
+	-Add "thirst" effect. This is not exactly the thirst we know ;)
 	-Implement bonus effects values to add and remove from modifiers instead of overwriting
 	-Corrected food values in localization files
 	-Improved and rerendered sprites with new materials for: fi-electric-composter, fi-greenhouse, fi-big-greenhouse, fi-incubator, fi-fluid-tank.

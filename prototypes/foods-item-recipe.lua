@@ -4,14 +4,14 @@ require "libs.helper-functions"
 local foods = {
 --1									2			3		4		5						6		7		8		9					10
 --name,								subgroup,	stack,	cool,	category,				time,	amount,	effect,	order,				ingredients
-{"cooked-corn",						"fv",		10,		0.5,	"cooking",				4.0,	1,		false,	"w-d-a",			{{"corn", 1}, {type="fluid", name="water", amount=20}} },
+{"cooked-corn",						"fv",		10,		0.5,	"cooking",				4.0,	1,		false,	"w-d-a",			{{"corn", 1}, {type="fluid", name="pure-water", amount=20}} },
 {"basic-salad",						"fv",		10,		0.5,	"cooking",				1.5,	1,		false,	"w-d-b",			{{"tomato", 2}, {"cucumber", 1}, {"lettuce", 2}} },
-{"corn-bread",						"fv",		10,		0.5,	"cooking",				8.0,	1,		false,	"w-d-c",			{{"corn-flour", 2}, {type="fluid", name="water", amount=10}} },
+{"corn-bread",						"fv",		10,		0.5,	"cooking",				8.0,	1,		false,	"w-d-c",			{{"corn-flour", 2}, {type="fluid", name="pure-water", amount=10}} },
 {"popcorn",							"fv",		50,		0.2,	"cooking",				1.5,	1,		false,	"w-d-d",			{{"corn-seeds", 1}, {type="fluid", name="canola-oil", amount=1}} },
-{"cooked-soy",						"fv",		50,		0.2,	"cooking",				3.0,	5,		false,	"w-d-e",			{{"soy", 5}, {type="fluid", name="water", amount=20}} },
+{"cooked-soy",						"fv",		50,		0.2,	"cooking",				3.0,	5,		false,	"w-d-e",			{{"soy", 5}, {type="fluid", name="pure-water", amount=20}} },
 {"baked-potato",					"fv",		10,		0.5,	"cooking",				6.0,	1,		false,	"w-d-f",			{{"potato", 1}} },
 {"fries",							"fv",		10,		0.5,	"cooking",				6.0,	1,		false,	"w-d-g",			{{"raw-fries", 1}, {type="fluid", name="canola-oil", amount=6}} },
-{"pickles",							"fv",		50,		0.3,	"cooking",				40.0,	20,		false,	"w-d-h",			{{"cucumber", 5}, {"crystal", 1}, {type="fluid", name="water", amount=100}} },
+{"pickles",							"fv",		50,		0.3,	"cooking",				40.0,	20,		false,	"w-d-h",			{{"cucumber", 5}, {"crystal", 2}, {type="fluid", name="pure-water", amount=80}} },
 {"ketchup-fries",					"fv",		10,		0.5,	"crafting-with-fluid",	0.5,	1,		false,	"w-d-i",			{{"fries", 1}, {type="fluid", name="ketchup", amount=1}} },
 {"tofu-burger",						"fv",		5,		0.5,	"cooking",				5.0,	1,		false,	"w-d-k",			{{"corn-bread", 1}, {"tomato", 2}, {"pickles", 2}, {"lettuce", 1}, {"tofu", 1}, {type="fluid", name="ketchup", amount=1}} },
 {"tofu",							"fv",		10,		0.5,	"chemistry",			4.0,	2,		false,	"w-d-l",			{{"crystal", 1}, {type="fluid", name="soy-milk", amount=24}, {type="fluid", name="sulfuric-acid", amount=1}} },
@@ -55,6 +55,7 @@ local foods = {
 {"simple-digestive-capsule",		"cvbh",		100,	0.8,	"cooking",				180.0,	1,		true,	"w-d-a",			{{"corn-flour", 2}, } },
 {"basic-digestive-capsule",			"cvbh",		100,	0.10,	"cooking",				180.0,	1,		true,	"w-d-b",			{{"corn-flour", 14}, } },
 --{"basic-sleep-capsule",				"cvbh",		50,		0.8,	"cooking",				180.0,	1,		true,	"w-d-d",			{{"corn-flour", 10}, } },
+--{"advanced-sleep-capsule",			"cvbh",		80,		0.8,	"centrifuging",			180.0,	1,		true,	"w-d-d",			{{"corn-flour", 10}, } },
 
 {"basic-regen-capsule",				"cvb",		50,		0.5,	"cooking",				180.0,	3,		true,	"w-capsule-f-ba",	{{"vegan-food-capsule", 20}, {"tofu", 5}, {"effectivity-module", 1}} },
 {"basic-regen-capsule",				"cmb",		50,		0.5,	"cooking",				180.0,	3,		true,	"w-capsule-f-bb",	{{"food-capsule", 20}, {"biter-steak", 5}, {"effectivity-module", 1}} },
@@ -78,11 +79,11 @@ for i, f in pairs(foods) do
 		sg = "effect"
 		rn = f[1].."-"..f[10][1][1]
 	end
-	local ty = "items"
+	local ty = "foods"
 	if string.match(f[1], ".+capsule$") then
 		ty = "capsules"
 	else
-		ty = "items"
+		ty = "foods"
 	end
 	
 	data:extend({
@@ -93,7 +94,7 @@ for i, f in pairs(foods) do
 			icon_size = 32,
 			flags = {"goes-to-main-inventory"},
 			subgroup = sg,
-			order = "w-d",
+			order = f[9],
 			stack_size = f[3],
 			capsule_action = {
 				attack_parameters = {

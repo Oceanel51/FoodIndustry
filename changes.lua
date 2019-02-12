@@ -15,14 +15,6 @@ end
 if data.raw.recipe["chemical-plant"] then
 	table.insert(data.raw.recipe["chemical-plant"].ingredients, {"crystal", 1})
 end
--- for Bob's chemical-plant 1, 2, 3, 4 compabillity
--- TODO Bob's chemical-plants - проверить и записать в лог
-for i=1,4 do
-	if data.raw["assembling-machine"]["chemical-plant-"..i] then
-		table.insert(data.raw["assembling-machine"]["chemical-plant-"..i].crafting_categories, "mixing")
-		log("for Bob's compabillity for chemical-plant-"..i)
-	end
-end
 
 
 local productivity_recipes = {
@@ -96,5 +88,7 @@ table.insert(data.raw["technology"]["optics"].effects, { type = "unlock-recipe",
 -- open recipe after research technology "fluid-handling"
 table.insert(data.raw["technology"]["fluid-handling"].effects, { type = "unlock-recipe", recipe = "fi-fluid-tank" } )
 
+
 -- open recipe after research technology "fluid-handling"
 table.insert(data.raw["technology"]["plastics"].effects, { type = "unlock-recipe", recipe = "plastic-bottle" } )
+table.insert(data.raw["technology"]["plastics"].effects, { type = "unlock-recipe", recipe = "plastic-bottle-pure-water" } )

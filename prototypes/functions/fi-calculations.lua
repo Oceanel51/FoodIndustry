@@ -12,7 +12,7 @@ function eat_food(player, index, food, food_item)
 			-- append food fullness to global.fullness
 			global.fullness[index] = global.fullness[index] + food[6]
 
-            --local new_food = table.deepcopy(food)
+			--local new_food = table.deepcopy(food)
 			table.insert(global.fullness_stomach[index], food)
 
 			-- TODO тут будет инфо о съеденой пище если есть "Eating" button или food-feeder equipment
@@ -151,15 +151,15 @@ function energy_reduction(index, player)
         
 
         -- TODO это преобразовать в Effect
-        if global.energy[index] < global.energy_max[index] * 0.25 then -- if Energy level down below 25% - decrease running speed
-            --player.character_running_speed_modifier = (global.energy[index] - 25)/100
-            player.character_running_speed_modifier = (global.energy[index] - (global.energy_max[index] * 0.2))/global.energy_max[index]
-        else
-            player.character_running_speed_modifier = 0
-        end
-        if global.effects[index]["Speed"] and global.effects[index]["Speed"] > 0 then
-            player.character_running_speed_modifier = (player.character_running_speed_modifier+1)*1.75-1
-        end
+        --if global.energy[index] < global.energy_max[index] * 0.25 then -- if Energy level down below 25% - decrease running speed
+        --    --player.character_running_speed_modifier = (global.energy[index] - 25)/100
+        --    player.character_running_speed_modifier = (global.energy[index] - (global.energy_max[index] * 0.2))/global.energy_max[index]
+        --else
+        --    player.character_running_speed_modifier = 0
+        --end
+        --if global.effects[index]["Speed"] and global.effects[index]["Speed"] > 0 then
+        --    player.character_running_speed_modifier = (player.character_running_speed_modifier+1)*1.75-1
+        --end
           
     end
 
@@ -274,86 +274,253 @@ function effects_add(index, item_name, effect_data)
 	--@ - 															- значение/модификатор эффекта
 	--@ - 															- время действия эффекта
 	--@ - затем время эффекта начинает отниматься в effects_time_reduction(index)
-	--@ - а обрабатываться эфект effects_calc_on_tick(index, player):
 	--@ - 															- проверяется его время
 	--@ - 															- если время вышло - эффект удаляется и го значение/модификатор отнимается с общей суммы в своей глобальной переменной
-	local effect_exist_bool = false
-
+	--@ - а обрабатываться эфект effects_calc_on_tick(index, player):
+	--@ - 															- тут проверяются эфекты зашитые в коде
 	--writeDebug("---------------0")
 	--writeDebug("item_name "..item_name)
 	--writeDebug(dump(global.effects[index]))
 	--writeDebug(dump(effect_data))
-	--writeDebug(item_name)
-	writeDebug("---------------1")
-
-	
-	--effect_data[1]
-	--effect_data[2]
-	--effect_data[3]
+	--writeDebug("item_name="..item_name)
+	--writeDebug("---------------1")
 
 	-- OPTIMIZE find effect key in a table
-	if table.maxn(global.effects[index][effect_data[1]][5]) > 0 then
-		for i,e in pairs(global.effects[index][effect_data[1]][5]) do
-			writeDebug(i..","..e)
-			-- TODO check with delay
-	--			if e[1] == item_name then
-	--				-- update effect
-	--				writeDebug("update digestion")
-	--				e[2] = ef[2]
-	--				e[3] = ef[3]
-	--			else
-	--				-- insert effect
-	--				writeDebug("insert digestion")
-	--				table.insert(global.effects[index][ef[1]][5], item_name)
-	--			end
-		end
-	else
-		writeDebug("No effects for '"..effect_data[1].."'")
+	if table.maxn(global.effects[index][effect_data[1]][5]) <= 0 then
 		-- insert first new effect
-		--local new_table_line = {item_name, effect_data[2], effect_data[3]}
-		table.insert(global.effects[index][effect_data[1]][5], {item_name, effect_data[2], effect_data[3]})
-		global.effects[index][effect_data[1]][1] = true
-		global.effects[index][effect_data[1]][2] = global.effects[index][effect_data[1]][2] + effect_data[2]
-		global.effects[index][effect_data[1]][3] = global.effects[index][effect_data[1]][3] + effect_data[3]
-		global.effects[index][effect_data[1]][4] = 0
-	end
-	writeDebug("global.effects[digestion] is:")
-	writeDebug(dump(global.effects[index]["digestion"]))
-
-	--	--writeDebug(table.find(global.effects[index], item_name))
-	--end
-	--writeDebug("---------------2")
-	--writeDebug(dump(global.effects[index]))
-
-		--if table.findTree(global.effects[index], nil, nil, nil, ef[1], true) then
-		--	writeDebug("effect exist "..ef[1])
+		--if string.match(effect_data[1], "fi_") == "fi_" then
+		--	writeDebug("No effects for fi '"..effect_data[1].."', insert new ")
+		--	effects_fi_add_insert(index, item_name, effect_data)
+		--else
+			writeDebug("No effects for vanilla '"..effect_data[1].."', insert new ")
+			effects_add_insert(index, item_name, effect_data)
 		--end
-	
-end
--- remove effects data values
-function effects_remove(index, effect_index, effect_name, effect_modifier)
-	global.effects[index][effect_name][2] = global.effects[index][effect_name][2] - effect_modifier
-	table.remove(global.effects[index][effect_name], effect_index)
+		--return
 
-end
--- reduce effects time values
-function effects_time_reduction(index) -- after -60 ticks
-	local function reduce_time(effect)
-		for i,ef in pairs(effect) do
-			if ef[3] > 0 and ef[3] - 60 > 0 then
-				ef[3] = ef[3] - 60
+	elseif table.maxn(global.effects[index][effect_data[1]][5]) > 0 then
+		for i5,e5 in pairs(global.effects[index][effect_data[1]][5]) do
+			--writeDebug("i5="..i5..",")
+			writeDebug(dump(e5))
+			if e5[1] == item_name then
+				-- update effect
+				--if string.match(effect_data[1], "fi_") == "fi_" then
+				--	writeDebug("update fi "..effect_data[1])
+				--	effects_fi_add_update(index, item_name, effect_data, i5)
+				--else
+				writeDebug("update "..effect_data[1])
+				--end
+				effects_add_update(index, item_name, effect_data, i5)
+			
+			elseif string.match(e5[1], "%w+%-%w+$") == string.match(item_name, "%w+%-%w+$") then
+				writeDebug("update capsule "..effect_data[1])
+				
+				writeDebug(index..", "..i5..", "..effect_data[1]..", "..e5[2])
+				effects_remove(index, i5, effect_data[1], e5[2]) -- remove old data
+				effects_add_insert(index, item_name, effect_data)
 			else
-				ef[3] = 0
-				effects_remove(index, i, ef[1], ef[2])
+				-- insert effect
+				--if string.match(effect_data[1], "fi_") == "fi_" then
+				--	writeDebug("insert fi "..effect_data[1])
+				--	effects_fi_add_insert(index, item_name, effect_data)
+				--else
+					writeDebug("insert "..effect_data[1])
+					effects_add_insert(index, item_name, effect_data)
+				--end
 			end
 		end
 	end
 
+	writeDebug("---------------2")
+	--writeDebug("global.effects[digestion] is:")
+	writeDebug(dump(global.effects[index]["digestion"]))
+
+end
+
+
+--function effects_fi_add_update(index, item_name, effect_data, i5)
+--	global.effects[index][effect_data[1]][1] = true
+--	global.effects[index][effect_data[1]][3] = global.effects[index][effect_data[1]][3] + effect_data[3]
+--	global.effects[index][effect_data[1]][5][i5][2] = effect_data[2]
+--	global.effects[index][effect_data[1]][5][i5][3] = effect_data[3]
+--	-- TODO check with delay
+--	global.effects[index][effect_data[1]][4] = global.effects[index][effect_data[1]][4] + table.maxn(global.effects[index][effect_data[1]][5]) * 20
+--	
+--	global.effects[index][effect_data[1]][2] = global.effects[index][effect_data[1]][2] + effect_data[2]
+--end
+function effects_add_update(index, item_name, effect_data, i5)
+	global.effects[index][effect_data[1]][1] = true
+	global.effects[index][effect_data[1]][3] = global.effects[index][effect_data[1]][3] + effect_data[3]
+	global.effects[index][effect_data[1]][5][i5][2] = effect_data[2]
+	global.effects[index][effect_data[1]][5][i5][3] = effect_data[3]
+	-- TODO check with delay
+	global.effects[index][effect_data[1]][4] = global.effects[index][effect_data[1]][4] + table.maxn(global.effects[index][effect_data[1]][5]) * 20
+	
+	--effects_vanilla_add_or_remove(true, index, effect_data[1], effect_data[2])
+	--global.effects[index][effect_data[1]][2] = global.effects[index][effect_data[1]][2] + effect_data[2]
+	global.effects[index][effect_data[1]][2] = effect_data[2]
+end
+
+
+function effects_add_insert(index, item_name, effect_data)
+	--local new_table_line = {item_name, effect_data[2], effect_data[3]}
+	global.effects[index][effect_data[1]][1] = true
+	global.effects[index][effect_data[1]][2] = global.effects[index][effect_data[1]][2] + effect_data[2]
+	global.effects[index][effect_data[1]][3] = global.effects[index][effect_data[1]][3] + effect_data[3]
+	--@ effect_data[4] may be = nil or table or number
+	if effect_data[4] ~= nil and type(effect_data[4]) == "number" then
+		global.effects[index][effect_data[1]][4] = effect_data[4]
+		table.insert(global.effects[index][effect_data[1]][5], {item_name, effect_data[2], effect_data[3], effect_data[4]})
+	elseif effect_data[4] ~= nil and type(effect_data[4]) == "table" then
+		if effect_data[1] == "drink_to_add_more_energy" then
+			for i,e in pairs(effect_data[4]) do
+				--						in effect_key[5]				item,	energy * modifier	time of action
+				global.effects[index][effect_data[1]][1] = true
+				global.effects[index][effect_data[1]][3] = effect_data[3]
+				table.insert(global.effects[index][effect_data[1]][5], {e[1], e[2]*effect_data[2], effect_data[3]})
+			end
+		else
+			writeDebug("[A bug]: this fi type of effect is not be insert! Contact the developer.")
+		end
+	else
+		table.insert(global.effects[index][effect_data[1]][5], {item_name, effect_data[2], effect_data[3]})
+		effects_vanilla_add_or_remove(true, index, effect_data[1], effect_data[2])
+	end
+
+	-- add 1 effect count
+	effects_counter_add_or_remove(true, index, 1)
+end
+--function effects_add_insert(index, item_name, effect_data)
+--	global.effects[index][effect_data[1]][1] = true
+--	global.effects[index][effect_data[1]][3] = global.effects[index][effect_data[1]][3] + effect_data[3]
+--	-- TODO check with delay
+--	global.effects[index][effect_data[1]][4] = global.effects[index][effect_data[1]][4] + table.maxn(global.effects[index][effect_data[1]][5]) * 20
+--	
+--	table.insert(global.effects[index][effect_data[1]][5], {item_name, effect_data[2], effect_data[3]})
+--	effects_vanilla_add_or_remove(true, index, effect_data[1], effect_data[2])
+--end
+
+
+-- remove effect data when time is left
+function effects_fi_remove(index, effect_index, effect_name, effect_modifier)
+	--global.effects[index][effect_name][2] = global.effects[index][effect_name][2] - effect_modifier
+	--table.remove(global.effects[index][effect_name][5], effect_index)
+	
+end
+function effects_remove(index, effect_index, effect_name, effect_modifier)
+	writeDebug("removed - "..index..", "..effect_index..", "..effect_name..", "..effect_modifier)
+	
+	table.remove(global.effects[index][effect_name][5], effect_index)
+	effects_vanilla_add_or_remove(false, index, effect_name, effect_modifier)
+	
+	-- remove 1 effect count
+	effects_counter_add_or_remove(false, index, 1)
+end
+
+
+function effects_counter_add_or_remove(add_bool, index, value)
+	-- remove counter
+	local leftGui = game.players[index].gui.left
+	if leftGui.frame.flow3.flow34.label_effects_count then
+		if add_bool then
+			leftGui.frame.flow3.flow34.label_effects_count.caption = leftGui.frame.flow3.flow34.label_effects_count.caption + value
+		else
+			if leftGui.frame.flow3.flow34.label_effects_count.caption - value < 0 then
+				leftGui.frame.flow3.flow34.label_effects_count.caption = 0
+			else
+				leftGui.frame.flow3.flow34.label_effects_count.caption = leftGui.frame.flow3.flow34.label_effects_count.caption - value
+			end
+		end
+	end
+end
+
+
+function effects_vanilla_add_or_remove(add_bool, index, effect_name, effect_modifier)
+	if effect_name == "speed" then
+		if add_bool then
+			game.players[index].character_running_speed_modifier = game.players[index].character_running_speed_modifier + effect_modifier
+		else
+			game.players[index].character_running_speed_modifier = game.players[index].character_running_speed_modifier - effect_modifier
+		end
+	elseif effect_name == "crafting" then
+		if add_bool then
+			game.players[index].character_crafting_speed_modifier = game.players[index].character_crafting_speed_modifier + effect_modifier
+		else
+			game.players[index].character_crafting_speed_modifier = game.players[index].character_crafting_speed_modifier - effect_modifier
+		end
+	elseif effect_name == "mining" then
+		if add_bool then
+			game.players[index].character_mining_speed_modifier = game.players[index].character_mining_speed_modifier + effect_modifier
+		else
+			game.players[index].character_mining_speed_modifier = game.players[index].character_mining_speed_modifier - effect_modifier
+		end
+	elseif effect_name == "long_reach" then
+		if add_bool then
+			--writeDebug("[.dev] long_reach - not done yet...")
+			--if character_build_distance_bonus = 100%
+			game.players[index].character_build_distance_bonus = game.players[index].character_build_distance_bonus + effect_modifier					-- if this is 100%
+			game.players[index].character_item_drop_distance_bonus = game.players[index].character_item_drop_distance_bonus + effect_modifier * 0.2		-- then this = 20%
+			game.players[index].character_reach_distance_bonus = game.players[index].character_reach_distance_bonus + effect_modifier * 1.2				-- then this = 120%
+		else
+			game.players[index].character_build_distance_bonus = game.players[index].character_build_distance_bonus - effect_modifier					-- if this is 100%
+			game.players[index].character_item_drop_distance_bonus = game.players[index].character_item_drop_distance_bonus - effect_modifier * 0.2		-- then this = 20%
+			game.players[index].character_reach_distance_bonus = game.players[index].character_reach_distance_bonus - effect_modifier * 1.2				-- then this = 120%
+		-- TODO add other
+		end
+	elseif effect_name == "health_buffer" or effect_name == "invulnerability"  then
+		if add_bool then
+			game.players[index].character_health_bonus = game.players[index].character_health_bonus + effect_modifier
+		else
+			game.players[index].character_health_bonus = game.players[index].character_health_bonus - effect_modifier
+		end
+	end
+end
+
+
+-- reduce effects time values
+function effects_time_reduction(index) -- after -60 ticks
+	--local function reduce_time(effect)
+	--	for i,ef in pairs(effect) do
+	--		if ef[3] > 0 and ef[3] - 60 > 0 then
+	--			ef[3] = ef[3] - 60
+	--		else
+	--			ef[3] = 0
+	--			effects_fi_remove(index, i, ef[1], ef[2])
+	--		end
+	--	end
+	--end
+
 	for i,effect in pairs(global.effects[index]) do
 		--writeDebug(i)
 		--writeDebug(dump(effect[5]))
-		if not effect[5] == nil then
-			reduce_time(effect[5])
+		if i ~= "fat" and i ~= "thirst" and i ~= "sleep" and i ~= "drinks_for_energy_usage" and i ~= "substances_for_energy_usage" then
+			if global.effects[index][i][3] - 60 > 0 then
+				global.effects[index][i][3] = global.effects[index][i][3] - 60
+			end
+			--writeDebug(global.effects[index][i][3])
+			if effect[5] ~= nil then
+				--reduce_time(effect[5])
+				for i5,e5 in pairs(effect[5]) do
+					if e5[3] > 0 and e5[3] - 60 > 0 then
+						e5[3] = e5[3] - 60
+					else
+						e5[3] = 0
+						--if string.match(i, "fi_") == "fi_" then
+						--	writeDebug("to remove fi: "..e5[1])
+						--	effects_fi_remove(index, i5, i, e5[2])
+						--else
+							writeDebug("to remove: "..e5[1])
+							effects_remove(index, i5, i, e5[2])
+						--end
+					end
+				end
+			end
+		end
+			
+		if i == "digestion" then
+			--writeDebug(dump(effect))
+		end
+		if i == "speed" then
+			--writeDebug(dump(effect))
 		end
 	end
 end
@@ -369,7 +536,7 @@ function effects_calc_on_tick(index, player)
 			global.effects[index]["drinks_for_energy_usage"][1] = true
 			global.effects[index]["drinks_for_energy_usage"][2] = drinks_for_energy_ussage_modifier
 			global.effects[index]["drinks_for_energy_usage"][3] = 1
-			global.effects[index]["drinks_for_energy_usage"][5][1]={"drinks_above_0",drinks_for_energy_ussage_modifier,30*60}
+			global.effects[index]["drinks_for_energy_usage"][5][1]={"code_drinks_above_0",drinks_for_energy_ussage_modifier,60*60}
 			if global.fi_energy_ussage_modifier[index] + drinks_for_energy_ussage_modifier > 1 then
 				writeDebug("[Debug] Warning: global.fi_energy_ussage_modifier["..index.."] ="..global.fi_energy_ussage_modifier[index]..">1")
 				global.fi_energy_ussage_modifier[index] = 0.99
@@ -389,7 +556,7 @@ function effects_calc_on_tick(index, player)
 			global.effects[index]["drinks_for_energy_usage"][1] = false
 			global.effects[index]["drinks_for_energy_usage"][2] = 0
 			global.effects[index]["drinks_for_energy_usage"][3] = 0
-			global.effects[index]["drinks_for_energy_usage"][5][1]={"drinks_is_0",0,0}
+			global.effects[index]["drinks_for_energy_usage"][5][1]={"code_drinks_is_0",0,0}
 		end
 	end
 
@@ -403,7 +570,7 @@ function effects_calc_on_tick(index, player)
 			global.effects[index]["substances_for_energy_usage"][1] = true
 			global.effects[index]["substances_for_energy_usage"][2] = substances_for_energy_ussage_modifier - 0.1
 			global.effects[index]["substances_for_energy_usage"][3]= 3
-			global.effects[index]["substances_for_energy_usage"][5][1]={"vmcf_above_80%",substances_for_energy_ussage_modifier - 0.1,30*60}
+			global.effects[index]["substances_for_energy_usage"][5][1]={"code_vmcf_above_80%",substances_for_energy_ussage_modifier - 0.1,60*60}
 			if global.fi_energy_ussage_modifier[index] - 0.1 > 1 then
 				writeDebug("[Debug] Warning: global.fi_energy_ussage_modifier["..index.."] ="..global.fi_energy_ussage_modifier[index]..">1")
 				global.fi_energy_ussage_modifier[index] = 0.99
@@ -417,7 +584,7 @@ function effects_calc_on_tick(index, player)
 			global.effects[index]["substances_for_energy_usage"][1] = true
 			global.effects[index]["substances_for_energy_usage"][2] = substances_for_energy_ussage_modifier - 0.1
 			global.effects[index]["substances_for_energy_usage"][3] = 2
-			global.effects[index]["substances_for_energy_usage"][5][1]={"vmcf_above_50%",substances_for_energy_ussage_modifier - 0.1,30*60}
+			global.effects[index]["substances_for_energy_usage"][5][1]={"code_vmcf_above_50%",substances_for_energy_ussage_modifier - 0.1,60*60}
 			if global.fi_energy_ussage_modifier[index] - 0.1 > 1 then
 				writeDebug("[Debug] Warning: global.fi_energy_ussage_modifier["..index.."] ="..global.fi_energy_ussage_modifier[index]..">1")
 				global.fi_energy_ussage_modifier[index] = 0.99
@@ -430,7 +597,7 @@ function effects_calc_on_tick(index, player)
 			global.effects[index]["substances_for_energy_usage"][1] = true
 			global.effects[index]["substances_for_energy_usage"][2] = substances_for_energy_ussage_modifier
 			global.effects[index]["substances_for_energy_usage"][3] = 1
-			global.effects[index]["substances_for_energy_usage"][5][1]={"vmcf_above_0",substances_for_energy_ussage_modifier,0}
+			global.effects[index]["substances_for_energy_usage"][5][1]={"code_vmcf_above_0",substances_for_energy_ussage_modifier,60*60}
 			if global.fi_energy_ussage_modifier[index] + substances_for_energy_ussage_modifier > 1 then
 				writeDebug("[Debug] Warning: global.fi_energy_ussage_modifier["..index.."] ="..global.fi_energy_ussage_modifier[index]..">1")
 				global.fi_energy_ussage_modifier[index] = 0.99
@@ -450,7 +617,7 @@ function effects_calc_on_tick(index, player)
 			global.effects[index]["substances_for_energy_usage"][1] = false
 			global.effects[index]["substances_for_energy_usage"][2] = 0
 			global.effects[index]["substances_for_energy_usage"][3] = 0
-			global.effects[index]["substances_for_energy_usage"][5][1] = {"vmcf_is_0",0,0}
+			global.effects[index]["substances_for_energy_usage"][5][1] = {"code_vmcf_is_0",0,0}
 		elseif global.effects[index]["substances_for_energy_usage"] and global.effects[index]["substances_for_energy_usage"][3] == 2 then
 			if global.fi_energy_ussage_modifier[index] - substances_for_energy_ussage_modifier+0.1 > 1 then
 				writeDebug("[Debug] Warning: global.fi_energy_ussage_modifier["..index.."] ="..global.fi_energy_ussage_modifier[index]..">1")
@@ -461,7 +628,7 @@ function effects_calc_on_tick(index, player)
 			global.effects[index]["substances_for_energy_usage"][1] = false
 			global.effects[index]["substances_for_energy_usage"][2] = 0
 			global.effects[index]["substances_for_energy_usage"][3] = 0
-			global.effects[index]["substances_for_energy_usage"][5][1] = {"vmcf_is_0",0,0}
+			global.effects[index]["substances_for_energy_usage"][5][1] = {"code_vmcf_is_0",0,0}
 		elseif global.effects[index]["substances_for_energy_usage"] and global.effects[index]["substances_for_energy_usage"][3] == 3 then
 			if global.fi_energy_ussage_modifier[index] - substances_for_energy_ussage_modifier+0.2 > 1 then
 				writeDebug("[Debug] Warning: global.fi_energy_ussage_modifier["..index.."] ="..global.fi_energy_ussage_modifier[index]..">1")
@@ -472,7 +639,7 @@ function effects_calc_on_tick(index, player)
 			global.effects[index]["substances_for_energy_usage"][1] = false
 			global.effects[index]["substances_for_energy_usage"][2] = 0
 			global.effects[index]["substances_for_energy_usage"][3] = 0
-			global.effects[index]["substances_for_energy_usage"][5][1] = {"vmcf_is_0",0,0}
+			global.effects[index]["substances_for_energy_usage"][5][1] = {"code_vmcf_is_0",0,0}
 		end
 	end
 	--writeDebug("[Debug] global.fi_energy_ussage_modifier["..index.."] ="..global.fi_energy_ussage_modifier[index])
@@ -488,18 +655,18 @@ function effects_calc_on_tick(index, player)
 			-- add substances_to_digestion
 			global.effects[index]["digestion"][1] = true
 			global.effects[index]["digestion"][2] = global.effects[index]["digestion"][2] + substances_to_digestion
-			table.insert(global.effects[index]["digestion"][5], {"vmcf_above_40",substances_to_digestion,30*60})
+			table.insert(global.effects[index]["digestion"][5], {"code_vmcf_above_40",substances_to_digestion,60*60})
 			--global.fi_character_digestion_modifier[index] = global.fi_character_digestion_modifier[index] + substances_to_digestion
 		else
 			-- check if present digestion effect influenses
 			-- check effects substances on digestion speed
 			for i,ef in pairs(global.effects[index]["digestion"][5]) do
 				--writeDebug(" i "..i..", ef "..ef)
-				if not ef == "vmcf_above_40" then
+				if not ef == "code_vmcf_above_40" then
 					writeDebug(" if not")
 					global.effects[index]["digestion"][1] = true
 					global.effects[index]["digestion"][2] = global.effects[index]["digestion"][2] + substances_to_digestion
-					table.insert(global.effects[index]["digestion"][5], {"vmcf_above_40",substances_to_digestion,30*60})
+					table.insert(global.effects[index]["digestion"][5], {"code_vmcf_above_40",substances_to_digestion,60*60})
 					--global.fi_character_digestion_modifier[index] = global.fi_character_digestion_modifier[index] + substances_to_digestion
 				end
 			end
@@ -509,7 +676,7 @@ function effects_calc_on_tick(index, player)
 		--writeDebug(" <= 10")
 		if table.maxn(global.effects[index]["digestion"][5]) > 0 then
 			for i,ef in pairs(global.effects[index]["digestion"][5]) do
-				if ef == "vmcf_above_40" then
+				if ef == "code_vmcf_above_40" then
 					global.effects[index]["digestion"][2] = global.effects[index]["digestion"][2] - substances_to_digestion
 					table.remove(global.effects[index]["digestion"][5], i)
 					--writeDebug(" remove substances_to_digestion")
@@ -522,15 +689,16 @@ function effects_calc_on_tick(index, player)
 	--writeDebug("global.effects[digestion] is:")
 	--writeDebug(dump(global.effects[index]["digestion"]))
 	
-	-- TODO make digestion effect
-	if table.maxn(global.effects[index]["digestion"][5]) > 0 then
-		
-	end
 	
+	-- TODO make effects: add_more_energy
+	-- TODO make effects: add_more_drinks
+	-- если в "животе" есть нужный напиток то...
+
+	-- TODO remade effects: Regeneration
+	--elseif effect == "Regeneration" then
+	--player.character.health = player.character.health + 5
 
 
-	-- TODO remade effects: Long reach, Speed, Fast crafting, Fast mining
-	-- TODO remade effects: Regeneration, Health buffer, Invulnerability
 					---------------------- effects assignment -----------------------
 					--for effect,t in pairs(global.effects[index]) do
 					--	if t > 0 and player.character then
@@ -552,77 +720,84 @@ function effects_calc_on_tick(index, player)
 					--				player.character_health_bonus = 1250
 					--			end
 					--		end
-					--	elseif t == 0 and player.character then
-					--		global.effects[index][effect] = -1
-					--		if effect == "Long reach" then
-					--			player.character_build_distance_bonus = 0
-					--			player.character_item_drop_distance_bonus = 0
-					--			player.character_reach_distance_bonus = 0
-					--		elseif effect == "Fast crafting" then
-					--			player.character_crafting_speed_modifier = 0
-					--		elseif effect == "Fast mining" then
-					--			player.character_mining_speed_modifier = 0
-					--		elseif effect == "Invulnerability" then
-					--			if global.effects[index]["Health buffer"] and global.effects[index]["Health buffer"] > 0 then
-					--				player.character_health_bonus = 1250
-					--			else
-					--				player.character_health_bonus = 0
-					--			end
-					--		elseif effect == "Health buffer" then
-					--			if global.effects[index]["Invulnerability"] and global.effects[index]["Invulnerability"] > 0 then
-					--				player.character_health_bonus = 9750
-					--			else
-					--				player.character_health_bonus = 0
-					--			end
-					--		elseif effect == "Speed" then
-					--			if global.energy[index] < global.energy_max[index] * 0.25 then -- if Energy level down below 25% - decrease running speed
-					--				player.character_running_speed_modifier = (global.energy[index] - (global.energy_max[index] * 0.2))/global.energy_max[index]
-					--			else
-					--				player.character_running_speed_modifier = 0
-					--			end
-					--			if global.effects[index]["Speed"] and global.effects[index]["Speed"] > 0 then
-					--				player.character_running_speed_modifier = (player.character_running_speed_modifier+1)*1.75-1
-					--			end
-					--		end
-					--	end
-					--end
-    
+	
+	-- TODO сделать это как негативный эфект
+	--		if effect == "Speed" then
+	--			if global.energy[index] < global.energy_max[index] * 0.25 then -- if Energy level down below 25% - decrease running speed
+	--				player.character_running_speed_modifier = (global.energy[index] - (global.energy_max[index] * 0.2))/global.energy_max[index]
+	--			else
+	--				player.character_running_speed_modifier = 0
+	--			end
+	--			if global.effects[index]["Speed"] and global.effects[index]["Speed"] > 0 then
+	--				player.character_running_speed_modifier = (player.character_running_speed_modifier+1)*1.75-1
+	--			end
+	--		end
+
+end
+
+
+-- TODO make check some achievements function
+function achievements_check(index, player)
+	--global.fi_achievements[index]["gourmet"]
 end
 
 
 -- TODO make Sleep function
+-- start or stop Sleep
 function sleep_trg_on_tick(index, player)
-	-- размещается в гланом on_tick там где бег и ставит маркер начала сна:
-	if not global.effects[index]["sleep"][1] then
-		-- включаем подготовку ко сну 1 этап
-		global.effects[index]["sleep"][1] = true
-		global.effects[index]["sleep"][3] = 1
+	-- размещается в гланом on_tick там где "usage" activity и ставит маркер начала сна:
+	
+	-- TODO записать у вики: сон начинает считаться между -10 и 0
+	if global.usage[index] > 0 and global.usage[index] < -10 then
+		if global.effects[index]["sleep"][1] then
+			-- сбрасываем значения сна
+			global.effects[index]["sleep"][1] = false
+			global.effects[index]["sleep"][2] = 0
+			global.effects[index]["sleep"][3] = 14400
+			global.effects[index]["sleep"][4] = 0
+		end
+	else
+		if not global.effects[index]["sleep"][1] then
+			-- включаем подготовку ко сну 1 этап
+			global.effects[index]["sleep"][1] = true
+			global.effects[index]["sleep"][4] = 1
+			global.effects[index]["sleep"][5][1] = {"self_sleep_1", 1, 0, 1}
+		end
 	end
-	writeDebug(dump(global.effects[index]["sleep"]))
+	
+	--writeDebug("sleep is:")
+	--writeDebug(dump(global.effects[index]["sleep"]))
 end
 function sleep_calc_on_tick(index, player)
 	-- OPTIMIZE translate coooments
 	--@ есть 3 стадии
 	--@ 1 этап - подготовка ко сну 4 минуты
-	if global.effects[index]["sleep"][1] and global.effects[index]["sleep"][3] == 1 then
-		if global.effects[index]["sleep"][2] + 1200 > 0 then
-			global.effects[index]["sleep"][2] = global.effects[index]["sleep"][2] + 1200
+	if global.effects[index]["sleep"][1] and global.effects[index]["sleep"][4] == 1 then
+		if global.effects[index]["sleep"][3] - 1200 > 0 then
+			global.effects[index]["sleep"][3] = global.effects[index]["sleep"][3] - 1200
 		else
-			global.effects[index]["sleep"][3] = 2
-			global.effects[index]["sleep"][2] = -21600
+			global.effects[index]["sleep"][3] = 21600
+			global.effects[index]["sleep"][4] = 2
 		end
-	--@ 6 мин - длится "лекгий сон" = 25% Energy usage
-	elseif global.effects[index]["sleep"][1] and global.effects[index]["sleep"][3] == 2 then
-		if global.effects[index]["sleep"][2] + 1200 > 0 then
-			global.effects[index]["sleep"][2] = global.effects[index]["sleep"][2] + 1200
+		--@ 6 мин - длится "лекгий сон" = 25% Energy usage
+	elseif global.effects[index]["sleep"][1] and global.effects[index]["sleep"][4] == 2 then
+		if global.effects[index]["sleep"][3] - 1200 > 0 then
+			global.effects[index]["sleep"][3] = global.effects[index]["sleep"][3] - 1200
 		--@ итого - прошло 10 мин
 		else
-			global.effects[index]["sleep"][3] = 3
-			global.effects[index]["sleep"][2] = 0
+			global.effects[index]["sleep"][2] = 0.25
+			global.effects[index]["sleep"][3] = 0
+			global.effects[index]["sleep"][4] = 3
 		end
-	--@ затем начинается "глубокий сон" - расход 0%
-	elseif global.effects[index]["sleep"][1] and global.effects[index]["sleep"][3] == 3 then
-		-- @ global.effects[index]["sleep"] = {0, -14400, false}
+		--@ затем начинается "глубокий сон" - расход 0%
+	elseif global.effects[index]["sleep"][1] and global.effects[index]["sleep"][4] == 3 then
+		-- @ global.effects[index]["sleep"] = {0, 14400, false}
+		--@ включаем "глубокий сон"
+		global.effects[index]["sleep"][2] = 1
+		global.effects[index]["sleep"][3] = 0
+		global.effects[index]["sleep"][4] = 4
 	end
-	writeDebug(dump(global.effects[index]["sleep"]))
+
+	--writeDebug("sleep is:")
+	--writeDebug(dump(global.effects[index]["sleep"]))
 end
