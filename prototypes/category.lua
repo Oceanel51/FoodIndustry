@@ -1,11 +1,12 @@
 data:extend(
 {
+  -- main
   {
     type = "item-group",
     name = "food-industry",
-    order = "e-a",
+    order = "fi-a",
     inventory_order = "c-a",
-    icon = "__FoodIndustry__/graphics/icons/fi-logo-icon.png",
+    icon = "__FoodIndustry__/graphics/icons/fi_logo_icon.png",
     icon_size = 128,
   },
   {
@@ -28,12 +29,6 @@ data:extend(
   },
   {
     type = "item-subgroup",
-    name = "foods",
-    group = "food-industry",
-    order = "w-e",
-  },
-  {
-    type = "item-subgroup",
     name = "effect",
     group = "food-industry",
     order = "w-f",
@@ -50,6 +45,56 @@ data:extend(
     group = "food-industry",
     order = "w-j",
   },
+  -- TODO fix categories
+  -- foods
+  {
+    type = "item-group",
+    name = "food-industry-foods",
+    order = "fi-b",
+    inventory_order = "c-b",
+    icon = "__FoodIndustry__/graphics/icons/fi_logo_foods_icon.png",
+    icon_size = 128,
+  },
+  {
+    type = "item-subgroup",
+    name = "foods",
+    group = "food-industry-foods",
+    order = "w-e",
+  },
+  {
+    type = "item-subgroup",
+    name = "foods-cooked",
+    group = "food-industry-foods",
+    order = "w-f",
+  },
+  {
+    type = "item-subgroup",
+    name = "foods-other",
+    group = "food-industry-foods",
+    order = "w-g",
+  },
+  -- drinks
+  {
+    type = "item-group",
+    name = "food-industry-drinks",
+    order = "fi-c",
+    inventory_order = "c-c",
+    icon = "__FoodIndustry__/graphics/icons/fi_logo_drinks_icon.png",
+    icon_size = 128,
+  },
+  {
+    type = "item-subgroup",
+    name = "drink-empty-packages",
+    group = "food-industry-drinks",
+    order = "w-b-a",
+  },
+  {
+    type = "item-subgroup",
+    name = "drinks",
+    group = "food-industry-drinks",
+    order = "w-b-b",
+  },
+  -------------------------------------------
   {
     type = "recipe-category",
     name = "basic-crop-growth",	
@@ -69,6 +114,18 @@ data:extend(
   {
     type = "recipe-category",
     name = "cooking",	
+  },
+  {
+    type = "recipe-category",
+    name = "advanced-cooking", -- для капсул второго уровня и продвинутого приготовления
+  },
+  {
+    type = "recipe-category",
+    name = "beverages",	-- напитки
+  },
+  {
+    type = "recipe-category",
+    name = "juicing",	-- приготовление соков
   },
   {
     type = "recipe-category",

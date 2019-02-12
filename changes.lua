@@ -2,9 +2,13 @@ if data.raw.capsule["raw-fish"] then
 	data.raw.capsule["raw-fish"].capsule_action.attack_parameters.ammo_type.action.action_delivery.target_effects.damage.amount = 0
 end
 
+-- add new type of science-pack to labs
 for i,p in pairs(data.raw.lab) do
 	table.insert(p.inputs, "food-science-pack")
 end
+
+
+-- add new crafting_categories for chemical-plants
 if data.raw["assembling-machine"]["chemical-plant"] then
 	table.insert(data.raw["assembling-machine"]["chemical-plant"].crafting_categories, "mixing")
 end
@@ -83,3 +87,8 @@ end
 table.insert(data.raw["technology"]["optics"].effects, { type = "unlock-recipe", recipe = "fi-table-logo-lamp" } )
 -- open recipe after research technology "fluid-handling"
 table.insert(data.raw["technology"]["fluid-handling"].effects, { type = "unlock-recipe", recipe = "fi-fluid-tank" } )
+
+
+-- open recipe after research technology "fluid-handling"
+table.insert(data.raw["technology"]["plastics"].effects, { type = "unlock-recipe", recipe = "plastic-bottle" } )
+table.insert(data.raw["technology"]["plastics"].effects, { type = "unlock-recipe", recipe = "plastic-bottle-pure-water" } )

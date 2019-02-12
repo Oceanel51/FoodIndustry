@@ -1,8 +1,27 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.16.32 (2.0)
+Date: --.--.2019
+Features:
+	-Restructured mod, I would call this version 2.0: 
+	 - bla bla bla
+	-Remake Fullness system: now it's like a stomach in the human body, You put the food and its digestion takes place in turns.
+	-Add "Overeating" effect:
+	-Add "Drinks consumption" system and some basic fluids:
+	-Add "thirst" effect. This is not exactly the thirst we know ;)
+	-Implement bonus effects values to add and remove from modifiers instead of overwriting
+	-Corrected food values in localization files
+	-Improved and rerendered sprites with new materials for: fi-electric-composter, fi-greenhouse, fi-big-greenhouse, fi-incubator, fi-fluid-tank.
+	-Add hr spritesheets for fi-basic-farmland
+Fixes:
+	Improved and rerendered sprites for: fi-mashines-propeller1, fi-mashines-propeller2, fi-mashines-propeller3.
+Balance:
+	Increased results for crop recipes
+	
+---------------------------------------------------------------------------------------------------
 Version: 0.16.31
 Date: 22.12.2018
-	Added new item: fi-fluid-tank
-	Add new technology: fi-tech-more-energy (5 tiers) with some item bonuses. Basicaly adds 100 Energy for Player character, then research up to 500.
+	Added new item: fi-fluid-tank, storage for food fluids.
+	Added new technology: fi-tech-more-energy (5 tiers) with some item bonuses. Basicaly adds 100 Energy for Player character, then research up to 500.
 	Added Energy usage when Player is:
 	 - mining (factor=1.2, increase when equiped mining-tool);
 	 - driving (factor=0.4, always constant);
@@ -28,7 +47,7 @@ Version: 0.16.30
 Date: 05.11.2018
 	Added new graphics for entity: fi-incubator
 	Added glow for fi-incubator
-	Changed scales of fi-mashines-propeller1
+	Changed scale of fi-mashines-propeller1
 	Added new sprite fi-mashines-propeller2 (for fi-incubator)
 	Added new sprite fi-mashines-propeller3 (for fi-electric-composter)
 	Fixed bugs
@@ -39,8 +58,8 @@ Date: 26.10.2018
 	Added new graphics for entity: fi-electric-composter, fi-greenhouse, fi-big-greenhouse, fi-incubator (prototype)
 	Added simple animation to fi-basic-farmland
 	Added new item:
-	- FI Logo Table (fi-logo-table), just decor
-	- FI Logo Lamp (fi-logo-table-lamp), decor and light, support vanila colors
+	 - FI Logo Table (fi-logo-table), just decor
+	 - FI Logo Lamp (fi-logo-table-lamp), decor and light, support vanila colors
 	Added fi-table-wood1 of "FI logo" on fi-composter and fi-basic-farmland
 	Added smoke and stone-furnace-fire animations for burner-cooker
 	Added electric-furnace-heater scale 0.7 and light glowing for electric-cooker
