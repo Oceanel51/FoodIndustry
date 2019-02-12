@@ -1,7 +1,10 @@
 local TICKS_TO_GROW = 600
 
-local ORANGE_SEEDLING = "apple-seedling"
+local ORANGE_SEEDLING = "orange-seedling"
 local APPLE_SEEDLING = "apple-seedling"
+
+local ORANGE_TREE = "orange-tree"
+local APPLE_TREE = "apple-tree"
 
 local isFruitSeedlings = {
     [ORANGE_SEEDLING] = { result = ORANGE_TREE },

@@ -35,7 +35,7 @@ local local_food_picker_process = function(picker)
             return
         end
     end
-    if entity.energy == 0 then
+    if picker.energy == 0 then
         return
     end
 
