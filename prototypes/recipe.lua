@@ -18,6 +18,7 @@ data:extend({
 		{"straw", 16}
 	}
     },
+
 	{
     type = "recipe",
     name = "compressed-straw",
@@ -36,6 +37,7 @@ data:extend({
 		{"compressed-straw", 1}
 	}
     },	
+
 	{
     type = "recipe",
     name = "fish-to-meat",
@@ -43,7 +45,7 @@ data:extend({
 	icon = "__FoodIndustry__/graphics/icons/items/biter-meat.png",
 	icon_size = 32,
 	category = "crafting",
-	subgroup = "food-items",
+	subgroup = "foods-other",
 	energy_required = 0.5,
     ingredients =
     {
@@ -97,9 +99,6 @@ data:extend({
 	allow_as_intermediate = false,	
     },
 	
-	
-	
-	
 	{
     type = "recipe",
     name = "compost-cracking",
@@ -123,6 +122,7 @@ data:extend({
 	},
 	crafting_machine_tint = { primary = {r=0.5,g=0.3,b=0.3,a=1}, secondary = {r=0.8,g=0,b=0.7,a=1}, tertiary = {r=0.6,g=0,b=0.5,a=1}}	
     },
+
 	{
     type = "recipe",
     name = "fertilizer",
@@ -145,6 +145,7 @@ data:extend({
 	},
 	crafting_machine_tint = { primary = {r=0.8,g=0.6,b=0.7,a=1}, secondary = {r=0.8,g=0,b=0.7,a=1}, tertiary = {r=0.8,g=0,b=0.7,a=1}}	
     },
+
 	{
     type = "recipe",
     name = "fertilizer-oil-cracking",
@@ -186,6 +187,7 @@ data:extend({
 		{type = "item", name = "crystal", amount = 1, probability = 0.3}
 	},
     },
+
 	{
     type = "recipe",
     name = "crystal-steam",
@@ -211,16 +213,15 @@ data:extend({
 	allow_as_intermediate = false,
     },
 	
-	
-	
 	{
     type = "recipe",
     name = "canola-oil",
     enabled = false,
 	icon = "__FoodIndustry__/graphics/icons/fluids/canola-oil.png",
 	icon_size = 32,
+	-- TODO разобраться почему не работает categories
+	--categories = {"mixing", "chemistry"},
 	category = "mixing",
-	categories = {"chemistry", "mixing"},
 	subgroup = "food-intermediates",
 	energy_required = 2.5,
     ingredients =
@@ -233,6 +234,7 @@ data:extend({
 		{type = "fluid", name = "canola-oil", amount = 40}
 	},
     },
+
 	{
     type = "recipe",
     name = "canola-oil-processing",
@@ -575,7 +577,7 @@ data:extend({
     enabled = false,
 	icon = "__FoodIndustry__/graphics/icons/fluids/ketchup.png",
 	icon_size = 32,
-	category = "mixing",
+	category = "cooking",
 	subgroup = "food-intermediates",
 	energy_required = 10.0,
     ingredients =
@@ -585,10 +587,9 @@ data:extend({
     },
       results = 
 	{
-		{type = "fluid", name = "ketchup", amount = 5}
+		{type = "fluid", name = "ketchup", amount = 5} -- TODO сделать в рецепте больше единиц жидкости
 	}
     },
-	
 	
 	
 	{

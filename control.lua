@@ -1,3 +1,10 @@
+require "prototypes.functions.fi-GUI"
+require "prototypes.tables.fi-foods-table"
+require "prototypes.functions.fi-global-variables"
+require "prototypes.functions.fi-calculations"
+--require "prototypes.functions.fi-modifiers"
+require "libs.helper-functions"
+
 require("prototypes.scripts.fishing-inserter")
 require("prototypes.scripts.food-picker")
 require("prototypes.scripts.fruittrees")
@@ -5,51 +12,18 @@ require("prototypes.scripts.fruit-scissors")
 require("prototypes.scripts.cattle")
 require("prototypes.scripts.cattle-grabber")
 
-local foods = {
---name,            energy, fullness,  ?, effect
-{"corn", 			10, 	30, 	-20},
-{"cucumber", 		8, 		20, 	-20},
-{"tomato", 			4, 		10, 	-15},
-{"lettuce", 		3, 		8, 		-10},
-{"cooked-corn", 	15, 	40, 	-40},
-{"corn-bread", 		25, 	65, 	-30},
-{"popcorn", 		4, 		9, 		-10},
-{"food-capsule", 	50, 	50, 	-200},
-{"basic-salad", 	25, 	40, 	-100},
-{"cooked-soy", 		2,		5, 		-5},
-{"cooked-fish", 	2,		5, 		-5},
-{"baked-potato", 	10, 	30, 	-40},
-{"fries", 			20, 	55, 	-50},
-{"ketchup-fries", 	25, 	70, 	-50},
-{"biter-meat", 		15, 	55, 	100},
-{"biter-steak", 	30, 	70, 	30},
-{"fish-steak", 		30, 	70, 	30},
-{"schnitzel", 		35, 	80, 	40},
-{"pickles", 		3, 		5, 		-5},
-{"tofu", 			25, 	60, 	-15},
-{"pizza", 			70, 	95, 	-60},
-{"burger", 			75, 	100, 	-60},
-{"tofu-pizza", 		65, 	95, 	-80},
-{"tofu-burger", 	60, 	100, 	-80},
-{"fish-pizza", 		65, 	95, 	-80},
-{"fish-burger", 	60, 	100, 	-80},
-{"best-salad", 		45, 	70, 	-200},
-{"fish-salad", 		45, 	70, 	-200},
-{"fish-and-chips", 	75, 	100, 	-200},
-{"vegan-food-capsule",50, 	50, 	-80},
-{"cooked-biter-meat",20, 	60, 	50},
-{"long-reach-capsule",50, 	50, 	0,	"Long reach"},
-{"speed-capsule", 	50, 	50, 	0,	"Speed"},
-{"regen-capsule", 	50, 	50, 	0,	"Regeneration"},
-{"crafting-capsule",50, 	50, 	0,	"Fast crafting"},
-{"mining-capsule", 	50, 	50, 	0,	"Fast mining"},
-{"invulnerability-capsule",50,50, 	0,	"Invulnerability"},
-{"neutralizing-capsule",50, 50, 	0},
-{"health-buffer-capsule",50,50, 	0, 	"Health buffer"},
-{"apple", 			6, 	20,		-10},
-{"orange", 			8, 	25,		-10},
-}
 
+
+script.on_init(OnInit)
+script.on_load(OnLoad)
+--script.on_configuration_changed(OnLoad)
+
+
+--local foods = foods_table()
+local foods = collect_all_foods_table()
+
+
+-- TODO перенести в effects function
 local effectcolors = {}
 effectcolors["Long reach"] = {r=1,g=0.8,b=0,a=1}
 effectcolors["Speed"] = {r=0,g=0.5,b=1,a=1}
@@ -90,109 +64,67 @@ end
 
 function OnInit()
 	setupFi()
+
 	initFishingInserter()
 	initFoodPicker()
 	initFruitTrees()
 	initFruitScissors()
 	initCattle()
 	initCattleGrabber()
+
+	for index,player in pairs(game.players) do
+		if player.connected then
+			fi_global_variables_init()
+			figui.create(index, player)
+			fi_global_variables_set(index) -- set global variables default data of connected players
+		end
+	end
 end
 
 function OnLoad()
-	OnInit()
+    OnInit()
 end
 
-script.on_init(OnInit)
-script.on_load(OnLoad)
-
 script.on_event({defines.events.on_tick}, function (e)
+	OnInit()
 
 	for k=1, #foodi.ticks do
 		local v = foodi.ticks[k]
 		v(e)
 	end
 
-	local default_delay = 10000 / settings.global["food-industry-hunger-speed"].value
-	if not global.energy_max then -- maximum value of Energy
-		global.energy_max = {}
-	end
-	if not global.energy then
-		global.energy = {}
-	end
-	if not global.fullness then
-		global.fullness = {}
-	end
-	if not global.update_delay then
-		global.update_delay = {}
-	end
-	if not global.used then
-		global.used = {}
-	end
-	if not global.usage then
-		global.usage = {}
-	end
-	if not global.foods then
-		global.foods = {}
-	end
-	if not global.full_time then
-		global.full_time = {}
-	end
-	if not global.effects then
-		global.effects = {}
-	end
+	-- TODO добавить сюда sleep modifier, это основной блок по которому считаются все расходы
 	if e.tick % 5 == 0 then
 		for index,player in pairs(game.players) do
 			if player.connected then
-				if not global.energy_max[index] then
-					global.energy_max[index] = 100 -- set initial max Energy for connected players
-				end
-				if not global.energy[index] then
-					global.energy[index] = global.energy_max[index] -- set initial Energy for connected players
-				end
-				if not global.fullness[index] then
-					global.fullness[index] = 0
-				end	
-				if not global.foods[index] then
-					global.foods[index] = {}
-					for i,f in pairs(foods) do
-						global.foods[index][i] = 0
-					end
-				end		
-				if not global.full_time[index] then
-					global.full_time[index] = 0
-				end
-				if not global.update_delay[index] then
-					global.update_delay[index] = 1
-				end
-				if not global.used[index] then
-					global.used[index] = 0
-				end
-				if not global.usage[index] then
-					global.usage[index] = 1
-				end	
-				if not global.effects[index] then
-					global.effects[index] = {}
-				end
-					
-				if global.energy[index] > global.energy_max[index] * 0.9 then -- for achievement "overweight" > 90% of 30 minutes
-					global.full_time[index] = global.full_time[index] + 5
-					if global.full_time[index] > 108000 then
-						player.unlock_achievement("overweight")
-					end
-				else
-					global.full_time[index] = 0
-				end
+				
+				fi_global_variables_set(index) -- set global variables default data of connected players
+				-----------------------------------------------------
 				
 				if not player.character then -- for sandbox mode
+					global.energy_max[index] = 100
 					global.energy[index] = 50
+					global.drinks_max[index] = 100
+					global.drinks[index] = 0
+					global.foods_eaten[index] = {}
 					global.fullness[index] = 0
 					global.used[index] = 0
 					global.usage[index] = 0
+					global.substances[index] = {v=0,m=0,c=0,f=0}
 					for effect,t in pairs(global.effects[index]) do
 						global.effects[index][effect] = 0
 					end
+					if player.gui.left.frame.flow1.usagelabel then
+						player.gui.left.frame.flow1.energylabel.caption = global.energy[index]
+						player.gui.left.frame.energybar.value = global.energy[index]/100
+						player.gui.left.frame.flow1.usagelabel.caption = "---"
+						player.gui.left.frame.flow22.drinkslabel.caption = "0"
+					end
+
 				else ---- calculate character Energy usage data
-					local slots = 0  
+					figui.create(index, player)
+					
+					local slots = 0
 					local durability = 0
 					if player.walking_state.walking then -- if walking
 						if player.get_inventory(defines.inventory.player_armor) and player.get_inventory(defines.inventory.player_armor).valid then
@@ -225,8 +157,14 @@ script.on_event({defines.events.on_tick}, function (e)
 						end
 						global.usage[index] = math.ceil((0.125 * mining_speed + 1) / 0.01) / 100
 						-- player.print("mining with speed " .. mining_speed)
+					--elseif player.riding_state.riding.acceleration then ---- if riding
 					elseif player.driving then -- if driving
 						global.usage[index] = 0.4
+						--player.print("driving...")
+					--elseif player.shooting_state.state and player.shooting_state.state(defines.shooting.shooting_selected).valid then ---- if shooting selected
+					--elseif player.shooting_state.state and player.shooting_state.state(defines.shooting.shooting_enemies).valid then ---- if shooting enemies
+						--defines.shooting.not_shooting	
+						--player.print("shooting enemy...")
 					elseif player.picking_state then -- if picking
 						if player.get_inventory(defines.inventory.player_armor) and player.get_inventory(defines.inventory.player_armor).valid then
 							if player.get_inventory(defines.inventory.player_armor).get_item_count() > 0 and player.get_inventory(defines.inventory.player_armor)[1] and player.get_inventory(defines.inventory.player_armor)[1].valid then
@@ -267,122 +205,124 @@ script.on_event({defines.events.on_tick}, function (e)
 						end
 						global.usage[index] = 1.6 + settings.global["food-industry-slots"].value * slots + settings.global["food-industry-durability"].value * durability * 0.001
 						-- player.print("repairing...")
+					elseif (not player.crafting_queue == nil) and (player.crafting_queue.count < 0) then -- if manual crafting
+						-- увеличивается в зависимости от количества предметов в очереди крафта, не сильно +0.05% за единицу
+						global.usage[index] = 1.5
+						player.print("manual crafting...")
 					else
 						global.usage[index] = 1
 					end
 					
-					-------------------- used energy calculation --------------------
-					global.used[index] = global.used[index] + global.usage[index]
-					
-					if global.used[index] >= (default_delay * global.update_delay[index]) then
-						global.used[index] = global.used[index] - (default_delay * global.update_delay[index])
-						if global.energy[index] > -50 then
-							global.energy[index] = global.energy[index] - 1
-						end
-  					
-						if global.energy[index] < global.energy_max[index] * 0.25 then -- if Energy level down below 25% - decrease running speed
-							player.character_running_speed_modifier = (global.energy[index] - (global.energy_max[index] * 0.2))/global.energy_max[index]
-						else
-							player.character_running_speed_modifier = 0
-						end
-						if global.effects[index]["Speed"] and global.effects[index]["Speed"] > 0 then
-							player.character_running_speed_modifier = (player.character_running_speed_modifier+1)*1.75-1
-						end
-  					
-						u_gui()
-					end
-						
 					---------------------- fullness calculation ---------------------
-					if global.fullness[index] > 0 then
-						global.fullness[index] = global.fullness[index] - (settings.global["food-industry-hunger-speed"].value / 400)
-					end
-				  
-					if global.fullness[index] < 0 then
-						global.fullness[index] = 0	
+					fullness_calc_on_tick(index)
+					figui.update(index, player)
+
+					------------------------- sleep marking -------------------------
+					if e.tick % 1200 == 0 then
+						sleep_trg_on_tick(index, player) -- start or stop Sleep
+						sleep_calc_on_tick(index, player)
 					end
 					
+					-------------------- used energy calculation --------------------
+					-- TODO уменьшить Energy usage for -10%, как-то так:
+					--if e.tick % 8 == 0 then
+						energy_reduction(index, player)
+					--end
+					drinks_reduction(index, player)
+					--if e.tick % 60 == 0 then
+					--	writeDebug("global.energy["..index.."] "..math.floor(global.energy[index]).."  global.drinks["..index.."] "..math.floor(global.drinks[index]).."  tick "..e.tick)
+					--	writeDebug("global.energy["..index.."] "..global.energy[index].."  global.drinks["..index.."] "..global.drinks[index].."  tick "..e.tick)
+					--	writeDebug("energy["..index.."] "..global.energy[index].."  drinks["..index.."] "..global.drinks[index].."  tick "..e.tick)
+					--	writeDebug("global.drinks["..index.."] "..math.floor(global.drinks[index]).." tick "..e.tick)
+					--	global.fi_debug[index][1] = global.energy[index]
+					--	global.fi_debug[index][3] = global.drinks[index]
+					--	global.fi_debug[index][5] = e.tick
+					--	if global.fi_debug[index][2] > global.fi_debug[index][1] then
+					--		local energy1 = global.fi_debug[index][2] - global.fi_debug[index][1]
+					--		global.fi_debug[index][2] = global.fi_debug[index][1]
+					--		local drinks1 = global.fi_debug[index][4] - global.fi_debug[index][3]
+					--		global.fi_debug[index][4] = global.fi_debug[index][3]
+					--		
+					--		local tick1 = global.fi_debug[index][6] - global.fi_debug[index][5]
+					--		global.fi_debug[index][6] = global.fi_debug[index][5]
+					--		writeDebug(dump(global.fi_debug[index]))
+					--	end
+					--end
+					-------------------- fat modifier calculation -------------------
+					if global.fi_character_fat_modifier and global.fi_character_fat_modifier[index] then
+						-- DEBUG потестировать сколько нужно для уменьшения Fat effect
+						--if e.tick % 600 == 0 then
+						if e.tick % 120 == 0 then
+							local reduce_value = 1 * global.usage[index]
+							fat_modifier_reduction(index,reduce_value)
+						end
+					end
+					
+					---------------------- starving calculation ---------------------
 					if e.tick % 30 == 0 and global.energy[index] < 0 then
 						player.character.health = player.character.health -5.75 + global.energy[index]/10
 						if player.character.health <= 0 then
-							player.character.health = 1 
+							player.character.health = 1
 							player.character.damage(900000,"neutral")
 							return
 						end
-					end	
-					
-					--------------------- effects assignment ------------------------
-					for effect,t in pairs(global.effects[index]) do
-						if t > 0 and player.character then
-							global.effects[index][effect] = t - 5
-							if effect == "Long reach" then
-								player.character_build_distance_bonus = 100
-								player.character_item_drop_distance_bonus = 20
-								player.character_reach_distance_bonus = 120
-							elseif effect == "Regeneration" then
-								player.character.health = player.character.health + 5
-							elseif effect == "Fast crafting" then
-								player.character_crafting_speed_modifier = 50
-							elseif effect == "Fast mining" then
-								player.character_mining_speed_modifier = 20
-							elseif effect == "Health buffer" then
-								if global.effects[index]["Invulnerability"] and global.effects[index]["Invulnerability"] > 0 then
-									player.character_health_bonus = 9750
-								else
-									player.character_health_bonus = 1250
-								end
-							end
-						elseif t == 0 and player.character then
-							global.effects[index][effect] = -1
-							if effect == "Long reach" then
-								player.character_build_distance_bonus = 0
-								player.character_item_drop_distance_bonus = 0
-								player.character_reach_distance_bonus = 0
-							elseif effect == "Fast crafting" then
-								player.character_crafting_speed_modifier = 0
-							elseif effect == "Fast mining" then
-								player.character_mining_speed_modifier = 0
-							elseif effect == "Invulnerability" then
-								if global.effects[index]["Health buffer"] and global.effects[index]["Health buffer"] > 0 then
-									player.character_health_bonus = 1250
-								else
-									player.character_health_bonus = 0
-								end
-							elseif effect == "Health buffer" then
-								if global.effects[index]["Invulnerability"] and global.effects[index]["Invulnerability"] > 0 then
-									player.character_health_bonus = 9750
-								else
-									player.character_health_bonus = 0
-								end
-							elseif effect == "Speed" then
-								if global.energy[index] < global.energy_max[index] * 0.25 then -- if Energy level down below 25% - decrease running speed
-									player.character_running_speed_modifier = (global.energy[index] - (global.energy_max[index] * 0.2))/global.energy_max[index]
-								else
-									player.character_running_speed_modifier = 0
-								end
-								if global.effects[index]["Speed"] and global.effects[index]["Speed"] > 0 then
-									player.character_running_speed_modifier = (player.character_running_speed_modifier+1)*1.75-1
-								end
-							end
-						end
 					end
 					
+					---------------------- thirst calculation -----------------------
+					
+					----------------------- fats calculation ------------------------
+					
+					----------------------- substances update -----------------------
+					figui.update_substances(index, player)
+					-- DEBUG увеличить расход Substances до -1 в 40 сек.
+					--if e.tick % 2880 == 0 then
+					if e.tick % 600 == 0 then
+						substances_reduction(index)
+					end
+					
+					--------------------- effects calculation -----------------------
+					if e.tick % 60 == 0 then
+						effects_time_reduction(index)
+						--effects_remove(index)
+					end
+					if e.tick % 600 == 0 then
+						effects_calc_on_tick(index, player)
+						--writeDebug(dump(global.effects[index]))
+						figui.update_effects(index, player)
+					end
+					
+					
 					u_gui()
+
+					-- for achievement "overweight" > 90% for 30 minutes
+					if global.energy[index] > global.energy_max[index] * 0.9 then
+						global.fi_achievements[index]["overweight"][3] = global.fi_achievements[index]["overweight"][3] + 5
+						if global.fi_achievements[index]["overweight"][3] > 108000 then
+							player.unlock_achievement("overweight")
+							global.fi_achievements[index]["overweight"][1] = true
+						end
+					else
+						global.fi_achievements[index]["overweight"][3] = 0
+					end
+					
 				end
 			end
 		end
 	end
 	
-	if global.effects then
-		for index,player in pairs(game.players) do
-			if player.connected and player.character and global.effects[index] then
-				if global.effects[index]["Invulnerability"] and global.effects[index]["Invulnerability"] > 0 then
-					player.character.health = 10000
-					player.character_health_bonus = 9750
-				end 
-			end
-		end
-	end
+	-- TODO move to effects_add(...)/effects_remove(...)
+	---if global.effects then
+	---	for index,player in pairs(game.players) do
+	---		if player.connected and player.character and global.effects[index] then
+	---			if global.effects[index]["Invulnerability"] and global.effects[index]["Invulnerability"] > 0 then
+	---				player.character.health = 10000
+	---				player.character_health_bonus = 9750
+	---			end 
+	---		end
+	---	end
+	---end
 	
+	-- remove meat from surfaces
 	if settings.global["food-industry-remove-meat"].value then
 		if e.tick % 600 == 0 then
 			for i,surface in pairs(game.surfaces) do
@@ -398,6 +338,7 @@ script.on_event({defines.events.on_tick}, function (e)
 		end
 	end
 end)
+
 local local_on_added = function(event)
 	local entity = event.created_entity
 	if entity ~= nil then
@@ -417,103 +358,157 @@ local local_on_removed = function(event)
 	end
 end
 
-script.on_event(defines.events.on_built_entity,
-    function(event)
-	    local_on_added(event)
+script.on_event(defines.events.on_built_entity, function(event)
+	local_on_added(event)
 
---	    local entity = event.created_entity
---		if (entity.name == "fi-basic-farmland") and entity.burner and entity.burner.remaining_burning_fuel then
---			event.created_entity.burner.currently_burning="wood"
---			event.created_entity.burner.remaining_burning_fuel=2000000
---		end
+	-- removed this as it seems to be buggy
+	--	    local entity = event.created_entity
+	--		if (entity.name == "fi-basic-farmland") and entity.burner and entity.burner.remaining_burning_fuel then
+	--			event.created_entity.burner.currently_burning="wood"
+	--			event.created_entity.burner.remaining_burning_fuel=2000000
+	--		end
 	end
 )
-
 
 -- when new Player is created/joined
 script.on_event(defines.events.on_player_created, function(event)
 	local player = game.players[event.player_index]
-	player.insert({name="vegan-food-capsule", count=20})
-	player.insert({name="crafting-capsule", count=2})
-	player.insert({name="speed-capsule", count=2})
-	player.insert({name="mining-capsule", count=2})
+	
+	fi_global_variables_init()
+	figui.create(index, player)
+
+	player.insert({name="vegan-food-capsule", count=10})
+	player.insert({name="simple-digestive-capsule", count=5})
+	player.insert({name="simple-speed-capsule", count=5})
+	player.insert({name="simple-crafting-capsule", count=2})
+	player.insert({name="simple-mining-capsule", count=2})
+	
+	-- DEBUG remove this
+	player.insert({name="basic-digestive-capsule", count=5})
+	player.insert({name="lettuce", count=10})
+	player.insert({name="tomato", count=10})
+	player.insert({name="corn", count=10})
+	player.insert({name="popcorn", count=10})
+	player.insert({name="flask-pure-water", count=10})
+	player.insert({name="plastic-bottle-pure-water", count=10})
+	player.insert({name="basic-speed-capsule", count=5})
+	player.insert({name="advanced-speed-capsule", count=5})
+	player.insert({name="simple-long-reach-capsule", count=5})
+	player.insert({name="basic-long-reach-capsule", count=5})
 end
 )
 
 
 script.on_event(defines.events.on_player_used_capsule, function(event)
+	-- some warnings of using food
 	if event.item.name == "raw-fish" then
 		local player = game.players[event.player_index]
 		player.insert{name = "raw-fish", count = 1}
-		player.print({'print.dont-eat-fish'})
+		--player.print("There are bones in this, you don't want to eat this.")
+		player.print({'print.dont-eat-raw-fish'})
 		return
-	end	
-	if event.item.name == "neutralizing-capsule" then
+	end
+	
+	
+    -- check "neutralizing" effects
+	if event.item.name == "simple-neutralizing-capsule" then
 		for effect,t in pairs(global.effects[event.player_index]) do
 			global.effects[event.player_index][effect] = 0
 		end
 	end
+	
+	
+	-- check how food is used
 	for i,food in pairs(foods) do
 		if not global.foods[event.player_index][i] then
 			global.foods[event.player_index][i] = 0
 		end
 		if event.item.name == food[1] then
-			if global.fullness[event.player_index] + food[3] > 100 then
-				local player = game.players[event.player_index]
-				player.insert{name = food[1], count = 1}
-				player.print({'print.too-full'})
-			else
-				local player = game.players[event.player_index]
-				global.energy[event.player_index] = global.energy[event.player_index] + food[2]
-				global.fullness[event.player_index] = global.fullness[event.player_index] + food[3]
-				global.foods[event.player_index][i] = global.foods[event.player_index][i] + 1
-				
-				if(game.players[event.player_index].character) then
-					game.players[event.player_index].character.health = game.players[event.player_index].character.health - food[4]
-					if game.players[event.player_index].character.health <= 0 then
-						game.players[event.player_index].character.health = 1 
-						game.players[event.player_index].character.damage(900000,"neutral")
-						return
-					end
-				end
-				
-				if global.energy[event.player_index] > global.energy_max[event.player_index] then
-					global.energy[event.player_index] = global.energy_max[event.player_index]
-				end
-				
-				if food[5] then
-					global.effects[event.player_index][food[5]] = maxtimes[food[5]]
-				end
-				
-				if global.energy[event.player_index] < global.energy_max[event.player_index] * 0.25 then
-					game.players[event.player_index].character_running_speed_modifier = math.max((global.energy[event.player_index] - (global.energy_max[event.player_index] * 0.2))/global.energy_max[event.player_index],-0.99)
+			
+			local player = game.players[event.player_index]
+			--if player.connected and player.character and global.effects[event.player_index] then
+				if global.fullness[event.player_index] and global.fullness[event.player_index] > 180 then
+				-- TODO потеря сознания персонажа выше Fullness 181 единниц
+				--if global.fullness[event.player_index] + food[3] > 100 then
+					player.insert{name = food[1], count = 1}
+					--player.print("You are too full to eat this.")
+					player.print({'print.too-full'})
 				else
-					game.players[event.player_index].character_running_speed_modifier = 0
-				end
-				if global.effects[event.player_index]["Speed"] and global.effects[event.player_index]["Speed"] > 0 then
-					game.players[event.player_index].character_running_speed_modifier = (game.players[event.player_index].character_running_speed_modifier+1)*1.75-1
-				end
-				
-				-- update GUI
-				u_gui()
-				
-				if string.find(food[1], "food") == 1 or string.find(food[1], "food") == 7 then
-					player.play_sound({path = "use-food-capsule-sound",volume_modifier = 0.7}) -- play sound when eat food-capsule
-				end
+					local player = game.players[event.player_index]
+					local food_item = event.item
+					
+					-- [Debug]
+					--player.print(dump(food))
+					--player.print(dump(food_item.type))
+					--player.print(print_table(food))
+					--player.print(print_table(food_item))
+					--player.print("[Debug] Eaten food - "..tostring(food[4]))
 
-				for j,k in pairs(global.foods[event.player_index]) do
-					if j > #foods then
-						break
+					local food_copy = table.deepcopy(food)
+					eat_food(player, event.player_index, food_copy, food_item)
+					
+					-- add effect to global.effects
+					if food_copy[9] and food_copy[9][1] then
+						--writeDebug(dump(food_copy[9]))
+						-- TODO обрабатываем каждый эфект отдельно
+						for _,ef in pairs(food_copy[9]) do
+							effects_add(event.player_index, food_copy[1], ef)
+						end
+						writeDebug(dump(global.effects[event.player_index]["digestion"]))
+						effects_calc_on_tick(event.player_index, player)
 					end
-					if k < 3 then
-						return
+
+					-- количество единиц еды в сумме
+					global.foods[event.player_index][i] = global.foods[event.player_index][i] + 1
+					
+					-- TODO перенести в effects_add
+					-- activate effect timer
+					--if food[5] then
+					--	global.effects[event.player_index][food[5]] = maxtimes[food[5]]
+					--end
+					
+					--TODO перенести в eat_food(
+					--local player = game.players[event.player_index]
+					if string.match(event.item.name, "flask") == "flask" then
+						player.insert{name = "flask", count = 1}
+					elseif string.match(event.item.name, "plastic%-bottle") == "plastic-bottle" then
+						player.insert{name = "plastic-bottle-used", count = 1}
 					end
+
+					---if global.energy[event.player_index] < global.energy_max[event.player_index] * 0.25 then -- if Energy level down below 25% - decrease running speed
+					---	game.players[event.player_index].character_running_speed_modifier = math.max((global.energy[event.player_index] - (global.energy_max[event.player_index] * 0.2))/global.energy_max[event.player_index],-0.99)
+					---else
+					---	game.players[event.player_index].character_running_speed_modifier = 0
+					---end
+					---if global.effects[event.player_index]["Speed"] and global.effects[event.player_index]["Speed"] > 0 then
+					---	game.players[event.player_index].character_running_speed_modifier = (game.players[event.player_index].character_running_speed_modifier+1)*1.75-1
+					---end
+					
+					-- update GUI
+					---u_gui()
+					-- figui.update(index, player)
+					
+					-- play some eated food sounds
+					if string.find(food[1], "food") == 1 or string.find(food[1], "food") == 7 then
+						--player.print("You eat "..food[1])
+						player.play_sound({path = "use-food-capsule-sound",volume_modifier = 0.7}) -- play sound when eat food-capsule
+					end
+
+					-- TODO сделать "gourmet"
+					-- for achievement "gourmet"
+					--for j,k in pairs(global.foods[event.player_index]) do
+					--	if j > #foods then
+					--		break
+					--	end
+					--	if k < 3 then
+					--		return
+					--	end
+					--	
+					--end
+					--game.players[event.player_index].unlock_achievement("gourmet")
 					
 				end
-				
-				game.players[event.player_index].unlock_achievement("gourmet")
-				
-			end
+			--end
 			return
 		end
 	end
@@ -521,11 +516,20 @@ end
 )
 
 
+local techs_on_research_finished = {
+--tech,						ver,	data1	data2
+{"fi-tech-more-energy",		1,		50,		150},
+{"fi-tech-more-energy",		2,		50,		200},
+{"fi-tech-more-energy",		3,		100,	300},
+{"fi-tech-more-energy",		4,		100,	400},
+{"fi-tech-more-energy",		5,		100,	500},
+}
 script.on_event(defines.events.on_research_finished, function(event)
 	if event.research.name == "food-energy-efficiency-1" then
 		local force = event.research.force
 		for index,player in pairs(game.players) do
 			if player.force == force then
+				-- TODO уменьшить эти все коеффициенты на -0.4
 				global.update_delay[index] = 1.1
 				u_gui()
 			end
@@ -606,7 +610,7 @@ script.on_event(defines.events.on_research_finished, function(event)
 		local force = event.research.force
 		for index,player in pairs(game.players) do
 			if player.force == force then
-				global.update_delay[index] = 0.9 + event.research.level * 0.1
+				global.update_delay[index] = 0.6 + event.research.level * 0.1
 				if event.research.level > 50 then
 					player.unlock_achievement("hibernation")
 				end
@@ -615,20 +619,26 @@ script.on_event(defines.events.on_research_finished, function(event)
 		end
 	end
 	--------------- if tech "fi-tech-more-energy" researched
+	--for i,tech in pairs(techs_on_research_finished) do
 	local force = event.research.force
 	if event.research.name == "fi-tech-more-energy-1" then
-		for index,player in pairs(game.players) do
-			if player.valid and player.connected and player.character then
-				if player.force == force then
-					local leftGui = player.gui.left
-					if leftGui and leftGui.valid then
-						global.energy_max[index] = 150
-						player.print({'print.fi-tech-more-energy', "150"})
-						leftGui.frame.flow1.energylabel.tooltip = {'label.energylabel-tooltip', global.energy_max[index]}
+		--if  pcall(function () event.research.name = tech[1] .. "-" tech[2] end) then
+			for index,player in pairs(game.players) do
+				if player.valid and player.connected and player.character then
+					if player.force == force then
+						local leftGui = player.gui.left
+						if leftGui and leftGui.valid then
+							global.energy_max[index] = 150
+							global.drinks_max[index] = 150
+							player.print({'print.fi-tech-more-energy', "150"})
+							--leftGui.frame.flow1.energylabel.tooltip = 'label.energylabel_tooltip' .. " - " .. "150" .. 'label.energylabelunits_tooltip'
+							leftGui.frame.flow1.energylabel.tooltip = {'label.label-energylabel-tooltip', global.energy_max[index]}
+							--u_gui()
+						end
 					end
 				end
 			end
-		end
+		--end
 	elseif event.research.name == "fi-tech-more-energy-2" then
 		for index,player in pairs(game.players) do
 			if player.valid and player.connected and player.character then
@@ -636,8 +646,9 @@ script.on_event(defines.events.on_research_finished, function(event)
 					local leftGui = player.gui.left
 					if leftGui and leftGui.valid then
 						global.energy_max[index] = 200
+						global.drinks_max[index] = 200
 						player.print({'print.fi-tech-more-energy', "200"})
-						leftGui.frame.flow1.energylabel.tooltip = {'label.energylabel-tooltip', global.energy_max[index]}
+						leftGui.frame.flow1.energylabel.tooltip = {'label.label-energylabel-tooltip', global.energy_max[index]}
 					end
 				end
 			end
@@ -649,8 +660,9 @@ script.on_event(defines.events.on_research_finished, function(event)
 					local leftGui = player.gui.left
 					if leftGui and leftGui.valid then
 						global.energy_max[index] = 300
+						global.drinks_max[index] = 300
 						player.print({'print.fi-tech-more-energy', "300"})
-						leftGui.frame.flow1.energylabel.tooltip = {'label.energylabel-tooltip', global.energy_max[index]}
+						leftGui.frame.flow1.energylabel.tooltip = {'label.label-energylabel-tooltip', global.energy_max[index]}
 					end
 				end
 			end
@@ -662,8 +674,9 @@ script.on_event(defines.events.on_research_finished, function(event)
 					local leftGui = player.gui.left
 					if leftGui and leftGui.valid then
 						global.energy_max[index] = 400
+						global.drinks_max[index] = 400
 						player.print({'print.fi-tech-more-energy', "400"})
-						leftGui.frame.flow1.energylabel.tooltip = {'label.energylabel-tooltip', global.energy_max[index]}
+						leftGui.frame.flow1.energylabel.tooltip = {'label.label-energylabel-tooltip', global.energy_max[index]}
 					end
 				end
 			end
@@ -675,8 +688,9 @@ script.on_event(defines.events.on_research_finished, function(event)
 					local leftGui = player.gui.left
 					if leftGui and leftGui.valid then
 						global.energy_max[index] = 500
+						global.drinks_max[index] = 500
 						player.print({'print.fi-tech-more-energy', "500"})
-						leftGui.frame.flow1.energylabel.tooltip = {'label.energylabel-tooltip', global.energy_max[index]}
+						leftGui.frame.flow1.energylabel.tooltip = {'label.label-energylabel-tooltip', global.energy_max[index]}
 					end
 				end
 			end
@@ -695,13 +709,16 @@ script.on_event(defines.events.on_rocket_launched, function(event)
 						return
 					end
 					
+					-- TODO переработать Achievements code
 					local total = 0
 					for j,k in pairs(global.foods[index]) do
 						total = total + k
 					end
+					-- for achievement "carnivore"
 					if global.foods[index][14] + global.foods[index][15] + global.foods[index][16] + global.foods[index][25] == total then
 						player.unlock_achievement("carnivore")
 					end
+					-- for achievement "vegan"
 					if global.foods[index][14] + global.foods[index][15] + global.foods[index][16] + global.foods[index][19] + global.foods[index][20] + global.foods[index][8] + global.foods[index][25] == 0 then
 						player.unlock_achievement("vegan")
 					end
@@ -714,72 +731,33 @@ script.on_event(defines.events.on_rocket_launched, function(event)
 
 
 function u_gui()
-	if global.energy and global.fullness then
+	if global.energy and global.drinks and global.fullness then
 		for index, player in pairs(game.players) do
-			if global.energy[index] and global.fullness[index] then -- if exists values in global.energy table
+			if global.energy[index] and global.drinks[index] and global.fullness[index] then -- if exists values in global tables
 				if player.valid and player.connected then
+					
+					figui.create(index, player)
+					--figui.update(index, player)
+					
+					
 					local leftGui = player.gui.left
 					
-					if leftGui.bar then
-						leftGui.bar.destroy()
-					end
 					
-
-					-- initialize main .frame
-					if not leftGui.frame then
-						leftGui.add{type = "frame", name = "frame", direction = "vertical"}
-					end
+					--if pcall(function () leftGui.frame.energylabel.caption = "Energy: " .. global.energy[index] .. " (usage: ".. (math.floor((100 * settings.global["food-industry-hunger-speed"].value * global.usage[index] / global.update_delay[index]) + 0.5) * 0.01) .."%)" end) then
+					---if pcall(function () leftGui.frame.flow1.usagelabel.caption = (math.floor((100 * settings.global["food-industry-hunger-speed"].value * global.usage[index] / global.update_delay[index]) + 0.5) * 0.01) end) then
+					---	--old leftGui.frame.energylabel.caption = "Energy: " .. global.energy[index] .. " (usage: ".. (math.floor((100 * settings.global["food-industry-hunger-speed"].value * global.usage[index] / global.update_delay[index]) + 0.5) * 0.01) .."%)"
+					---	leftGui.frame.flow1.energylabel.caption = global.energy[index]
+					---	leftGui.frame.flow1.usagelabel.caption = (math.floor((100 * settings.global["food-industry-hunger-speed"].value * global.usage[index] / global.update_delay[index]) + 0.5) * 0.01)
+					---else
+					---	-- old  leftGui.frame.energylabel.caption = "Energy: " .. global.energy[index] .. " (usage: ---%)"
+					---	leftGui.frame.flow1.energylabel.caption = global.energy[index]
+					---	leftGui.frame.flow1.usagelabel.caption = "---"
+					---end
+					---leftGui.frame.energybar.value = math.abs(global.energy[index]/global.energy_max[index])
 					
-					
-					-- initialize labels and bars of .flow1
-					if not leftGui.frame.flow1 then
-						leftGui.frame.add{type = "flow", name = "flow1", right_padding = 0, left_padding = 0, direction = "horizontal"}
-					end
-					if not leftGui.frame.flow1.energylabel then
-						-- "Energy: " .. energylabel .. " (usage: ".. ussagelabel .."%)"
-						leftGui.frame.flow1.add({type="label", name="label_energy", caption={'label.label-energy', ": "}, style = "fi-label", align="right",})
-						leftGui.frame.flow1.add({type="label", name="energylabel", caption="", tooltip = {'label.energylabel-tooltip', global.energy_max[index]},})
-						leftGui.frame.flow1.add({type="label", name="label_usage", caption={'label.label-usage', " (", ": "}, style = "fi-label",})
-						leftGui.frame.flow1.add({type="label", name="usagelabel", caption="", style = "fi-label",})
-						leftGui.frame.flow1.add({type="label", name="label_percent", caption="%)", style = "fi-label",})
-					end
-					if not leftGui.frame.energybar then
-						leftGui.frame.add({type="progressbar", name="energybar"})
-						leftGui.frame.energybar.style.width = 200
-					end	
-						
-					-- initialize labels and bars of .flow2
-					if not leftGui.frame.flow2 then
-						leftGui.frame.add{type = "flow", name = "flow2", direction = "horizontal"}
-					end
-					if not leftGui.frame.flow2.fullnesslabel then
-						--"Fullness: " .. fullnessbar .."%"
-						leftGui.frame.flow2.add({type="label", name="label_fullness", caption={'label.label-fullness', ": "},})
-						leftGui.frame.flow2.add({type="label", name="fullnesslabel", caption=""})
-						leftGui.frame.flow2.add({type="label", name="label_percent", caption="%",})
-					end
-					if not leftGui.frame.fullnessbar then
-						leftGui.frame.add({type="progressbar", name="fullnessbar"})
-						leftGui.frame.fullnessbar.style.width = 200
-						leftGui.frame.fullnessbar.style.color = {r = 1, g = 0.6, a = 1}
-					end
-
-				-- .flow 3,4,5 rezerved for "Balance of Substances"
-				
-				-- initialize labels and bars of .flow6
-
-					if pcall(function () leftGui.frame.flow1.usagelabel.caption = (math.floor((100 * settings.global["food-industry-hunger-speed"].value * global.usage[index] / global.update_delay[index]) + 0.5) * 0.01) end) then
-						leftGui.frame.flow1.energylabel.caption = global.energy[index]
-						leftGui.frame.flow1.usagelabel.caption = (math.floor((100 * settings.global["food-industry-hunger-speed"].value * global.usage[index] / global.update_delay[index]) + 0.5) * 0.01)
-					else
-						leftGui.frame.flow1.energylabel.caption = global.energy[index]
-						leftGui.frame.flow1.usagelabel.caption = "---"
-					end
-					
-					leftGui.frame.energybar.value = math.abs(global.energy[index]/global.energy_max[index])
-					
-					leftGui.frame.flow2.fullnesslabel.caption = math.ceil(global.fullness[index])
-					leftGui.frame.fullnessbar.value = global.fullness[index]/100			
+					--leftGui.frame.flow2.fullnesslabel.caption = "Fullness: " .. math.ceil(global.fullness[index]) .."%"
+					---leftGui.frame.flow2.fullnesslabel.caption = math.ceil(global.fullness[index])
+					---leftGui.frame.fullnessbar.value = global.fullness[index]/100
 					
 					-- .flow8 for Starving
 					if global.energy[index] < 0 then
@@ -800,11 +778,13 @@ function u_gui()
 						end
 						leftGui.frame.starvingbar.value = (2.5 - global.energy[index]/5)/12.5
 						if player.character then
+							--leftGui.frame.starvinglabel.caption = "Starving: -" .. (math.floor(25 - global.energy[index]/0.5)/10) .."HP/s (< " .. getTime(player.character.health*60/(2.5 - global.energy[index]/5)) .. " to death)"
 							leftGui.frame.flow8.starvinglabel.caption = (math.floor(global.energy_max[index] * 0.25 - global.energy[index]/0.5)/10)
 							leftGui.frame.flow8.starvingtimelabel.caption = getTime(player.character.health*60/(2.5 - global.energy[index]/5))
 						end
 						
 					elseif leftGui.frame.starvingbar and leftGui.frame.flow8.starvinglabel then
+						--leftGui.frame.starvinglabel.destroy()
 						leftGui.frame.flow8.destroy()
 						leftGui.frame.starvingbar.destroy()
 					end
@@ -825,56 +805,55 @@ function u_gui()
 						end
 						leftGui.frame.hungerspeedbar.value = -(global.energy[index] - global.energy_max[index] * 0.25)/global.energy_max[index]
 						if player.character then
+							--leftGui.frame.flow7.hungerspeedlabel.caption = "Hunger slowness: " .. math.max(global.energy[index] - 25,-99) .."%"
 							leftGui.frame.flow7.hungerspeedlabel.caption = math.max(global.energy[index] - global.energy_max[index] * 0.25,-99)
 						end
 						
 					elseif leftGui.frame.hungerspeedbar and leftGui.frame.flow7.hungerspeedlabel then
 						leftGui.frame.flow7.destroy()
+						--leftGui.frame.flow7.hungerspeedlabel.destroy()
 						leftGui.frame.hungerspeedbar.destroy()
 					end
 					
 					-- rezerved .flow8 for buttons how activate "capsule effects"
 					
 					-- initialize .flow10 - Effects
-					--if not leftGui.frame.flow10 then
-					--	leftGui.frame.add{ type = "flow", name = "flow10", direction = "vertical" }
+					-- TODO перенести в figui.update_effects
+					--if global.effects[index] then
+					--	for effect,t in pairs(global.effects[index]) do
+					--		if t > 0 then
+					--			if not (leftGui.frame[effect.."label"] and leftGui.frame[effect.."bar"] ) then
+					--				leftGui.frame.add({type="label", name=effect.."label", caption=""})
+					--				leftGui.frame.add({type="progressbar", name=effect.."bar"})
+					--				leftGui.frame[effect.."bar"].style.width = 200
+					--				leftGui.frame[effect.."bar"].style.color = effectcolors[effect]
+					--			end
+					--			leftGui.frame[effect.."bar"].value = t/maxtimes[effect]
+					--			if player.character then
+					--				leftGui.frame[effect.."label"].caption = effect..": " .. getTime(t)
+					--			end
+					--			
+					--		elseif leftGui.frame[effect.."bar"] and leftGui.frame[effect.."label"] then
+					--			leftGui.frame[effect.."label"].destroy()
+					--			leftGui.frame[effect.."bar"].destroy()
+					--		end
+					--	end
 					--end
-					if global.effects[index] then
-						for effect,t in pairs(global.effects[index]) do
-							if t > 0 then
-								if not (leftGui.frame[effect.."label"] and leftGui.frame[effect.."bar"] ) then
-									leftGui.frame.add({type="label", name=effect.."label", caption=""})				
-									leftGui.frame.add({type="progressbar", name=effect.."bar"})
-									leftGui.frame[effect.."bar"].style.width = 200
-									leftGui.frame[effect.."bar"].style.color = effectcolors[effect]
-								end
-								leftGui.frame[effect.."bar"].value = t/maxtimes[effect]
-								if player.character then
-									leftGui.frame[effect.."label"].caption = effect..": " .. getTime(t)
-								end
-								
-							elseif leftGui.frame[effect.."bar"] and leftGui.frame[effect.."label"] then
-								leftGui.frame[effect.."label"].destroy()
-								leftGui.frame[effect.."bar"].destroy()
-							end
-						end
-					end
 					
 					-- ------------------
 					
-					if global.energy[index] >= global.energy_max[index] * 1 then -- >=100%
-						leftGui.frame.energybar.style.color = {g = 1, a = 1}
-					elseif global.energy[index] >= global.energy_max[index] * 0.25 then -- >=20%
-						leftGui.frame.energybar.style.color = {r = 1, g = 1, a = 1}
-					elseif global.energy[index] >= 0 then
-						leftGui.frame.energybar.style.color = {r = 1, g = 0.6, a = 1}
-					else 
-						leftGui.frame.energybar.style.color = {r = 1, a = 1}
-					end
+					
+					-- set GUI top_padding
 					if settings.get_player_settings(player)["food-industry-bottom"].value then
 						leftGui.style.top_padding = player.display_resolution.height - 200 - settings.get_player_settings(player)["food-industry-padding"].value
 					else
 						leftGui.style.top_padding = 0
+					end
+
+					-- DEBUG
+					if player.character then
+						figui.debug_create(index, player)
+						figui.debug_update(index, player)
 					end
 				end
 			end
@@ -891,32 +870,49 @@ function getTime(ticks)
 	end
 end
 
-local mod_item_opened = function(event)
-	for k=1, #foodi.on_mod_item_opened do
-		local v = foodi.on_mod_item_opened[k]
-		v(event)
+
+-- TODO When eat_button is clicked
+script.on_event(defines.events.on_gui_click, function(event)
+	for index,player in pairs(game.players) do
+		if player.connected then
+			if event.element.name == "eat_button" then
+				--element
+				--player_index
+				player.print(event.player_index .. " " .. player.name .. " - Click Eat button!")
+				--debug_print("version cut = ")
+				--writeDebug("Drill has been built")
+			end
+		end
 	end
 end
+)
 
-local player_selected_area = function(event)
-	for k=1, #foodi.on_player_selected_area do
-		local v = foodi.on_player_selected_area[k]
-		v(event)
+	local mod_item_opened = function(event)
+		for k=1, #foodi.on_mod_item_opened do
+			local v = foodi.on_mod_item_opened[k]
+			v(event)
+		end
 	end
-end
 
-local selected_entity_changed = function(event)
-	for k=1, #foodi.on_selected_entity_changed do
-		local v = foodi.on_selected_entity_changed[k]
-		v(event)
+	local player_selected_area = function(event)
+		for k=1, #foodi.on_player_selected_area do
+			local v = foodi.on_player_selected_area[k]
+			v(event)
+		end
 	end
-end
 
-local remove_events = {defines.events.on_entity_died,defines.events.on_robot_pre_mined,defines.events.on_robot_mined_entity,defines.events.on_pre_player_mined_entity,defines.events.on_player_mined_entity}
+	local selected_entity_changed = function(event)
+		for k=1, #foodi.on_selected_entity_changed do
+			local v = foodi.on_selected_entity_changed[k]
+			v(event)
+		end
+	end
 
-script.on_event(defines.events.on_robot_built_entity, local_on_added)
-script.on_event(remove_events, local_on_removed)
-script.on_event(defines.events.on_mod_item_opened, mod_item_opened)
-script.on_event(defines.events.on_player_selected_area, player_selected_area)
-script.on_event(defines.events.on_selected_entity_changed, selected_entity_changed)
+	local remove_events = {defines.events.on_entity_died,defines.events.on_robot_pre_mined,defines.events.on_robot_mined_entity,defines.events.on_pre_player_mined_entity,defines.events.on_player_mined_entity}
+
+	script.on_event(defines.events.on_robot_built_entity, local_on_added)
+	script.on_event(remove_events, local_on_removed)
+	script.on_event(defines.events.on_mod_item_opened, mod_item_opened)
+	script.on_event(defines.events.on_player_selected_area, player_selected_area)
+	script.on_event(defines.events.on_selected_entity_changed, selected_entity_changed)
 

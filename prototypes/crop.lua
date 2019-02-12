@@ -1,25 +1,25 @@
 local crops = {
---1			2		3			4		5		6		7			8		9			10		11		12			13
---name, 	time, 	to plant,	plants,	result,	seeds, 	stack size,	plant?,	seed?,	edible?,	straws,	compost,	type
-{"lettuce", 300, 	5,        	6,		0.0, 	0.0, 	10,			false,	false,		true,	0.0,	"4J",		""},
-{"cucumber",600, 	60,        	4,		2.0, 	8.5, 	10,			true,	true,		true,	1.0,	"8J",		"plant"},
-{"tomato", 	800, 	30,        	6,		3.0, 	2.0, 	10,			true,	true,		true,	1.0,	"6J",		"plant"},
-{"potato", 	1200, 	8,        	10,		1.0, 	0.0, 	10,			true,	false,		false,	0.0,	"10J",		"plant"},
-{"corn", 	1200, 	35,        	4,		2.5, 	4.5, 	10,			true,	true,		true,	3.5,	"10J",		"plant"},
-{"soy", 	2400, 	50,        	6,		9.5, 	0.0, 	50,			true,	false,		false,	0.0,	"3J",		"plant"},
-{"rapeseed",900, 	90,        	8,		11.5, 	0.0, 	100,		true,	false,		false,	0.0,	"1J",		"plant"},
+--1			2		3			4		5		6		7			8		9			10		11		12
+--name, 	time, 	to plant,	plants,	result,	seeds, 	stack size,	plant?,	seed?,	edible?,	straws,	fuel for compost
+{"lettuce", 300, 	5,        	6,		0.6, 	0.0, 	10,			false,	false,		true,	0.8,	"4J"},
+{"cucumber",600, 	60,        	4,		2.4, 	8.5, 	10,			true,	true,		true,	1.4,	"8J"},
+{"tomato", 	800, 	30,        	6,		3.2, 	2.0, 	10,			true,	true,		true,	1.0,	"6J"},
+{"potato", 	1200, 	8,        	10,		1.0, 	0.0, 	10,			true,	false,		false,	4.0,	"10J"},
+{"corn", 	1200, 	35,        	4,		3.7, 	4.5, 	10,			true,	true,		true,	3.5,	"10J"},
+{"soy", 	2400, 	50,        	6,		9.8, 	0.0, 	50,			true,	false,		false,	6.0,	"3J"},
+{"rapeseed",900, 	90,        	8,		11.5, 	0.0, 	100,		true,	false,		false,	6.0,	"1J"},
 }
 
 for index, crop in pairs(crops) do
 	local ing = ""
 	local str = ""
 	if crop[8] then
-		str = "-"..crop[13]
+		str = "-plant"
 		data:extend({
 			{
 				type = "item",
-				name = crop[1].."-"..crop[13],
-				icon = "__FoodIndustry__/graphics/icons/items/"..crop[1].."-"..crop[13]..".png",
+				name = crop[1].."-plant",
+				icon = "__FoodIndustry__/graphics/icons/items/"..crop[1].."-plant.png",
 				icon_size = 32,
 				flags = {"goes-to-main-inventory"},
 				subgroup = crop[1],
@@ -38,7 +38,7 @@ for index, crop in pairs(crops) do
 				energy_required = 2.0,
 				ingredients =
 				{
-					{crop[1].."-"..crop[13], 1}
+					{crop[1].."-plant", 1}
 				},
 				  results = 
 				{
@@ -80,7 +80,7 @@ for index, crop in pairs(crops) do
 				{
 					{type = "item", name = crop[1].."-seeds", amount_min = math.floor(crop[6]-0.4), amount_max = math.floor(crop[6]+1.4)},
 					{type = "item", name = "raw-straw", amount = 1, probability = 0.75},
-					{type = "item", name = "straw", amount_min = crop[11]*1, amount_max = crop[11]*2},
+					{type = "item", name = "straw", amount_min = 1, amount_max = crop[11]*2-1},
 				}
 			},
 		})	
@@ -144,16 +144,14 @@ for index, crop in pairs(crops) do
 		
 	end
 
+	
 	data:extend({
 		{
 			type = "item-subgroup",
 			name = crop[1],
-			group = "food-industry",
+			group = "food-industry-foods",
 			order = "w-d-"..index,
 		},
-	})
-	if crop[4] > 0 then
-		data:extend({
 			{
 				type = "recipe",
 				name = crop[1].."-growth",
@@ -163,16 +161,16 @@ for index, crop in pairs(crops) do
 				icon_size = 32,
 				category = "basic-crop-growth",
 				subgroup = crop[1],
-				energy_required = crop[2] / 2,
+			energy_required = crop[2],
 				ingredients =
 				{
-					{crop[1]..ing, crop[3] / 2}
+				{crop[1]..ing, crop[3]}
 				},
 				  results =
 				{
-					{type = "item", name = crop[1]..str, amount_min = crop[4] / 2, amount_max = crop[4]*0.75},
-					{type = "item", name = "straw", amount_min = 7, amount_max = 12},
-					{type = "item", name = "raw-straw", amount_min = 0, amount_max = 1},
+				{type = "item", name = crop[1]..str, amount_min = crop[4], amount_max = crop[4]*1.6},
+				{type = "item", name = "straw", amount_min = crop[11]*7, amount_max = crop[11]*9},
+				{type = "item", name = "raw-straw", amount_min = crop[11]*2.8, amount_max = crop[11]*4.2},
 				},
 				allow_as_intermediate = false,
 			},
@@ -194,9 +192,9 @@ for index, crop in pairs(crops) do
 				},
 				  results =
 				{
-					{type = "item", name = crop[1]..str, amount_min = crop[4], amount_max = crop[4]*2},
-					{type = "item", name = "straw", amount_min = 8, amount_max = 16},
-					{type = "item", name = "raw-straw", amount_min = 1, amount_max = 3},
+				{type = "item", name = crop[1]..str, amount_min = crop[4]*1.2, amount_max = crop[4]*2.4},
+				{type = "item", name = "straw", amount_min = crop[11]*4.5, amount_max = crop[11]*6},
+				{type = "item", name = "raw-straw", amount_min = crop[11]*1.7, amount_max = crop[11]*3.5},
 				},
 				allow_as_intermediate = false,
 			},
@@ -217,9 +215,9 @@ for index, crop in pairs(crops) do
 				},
 				  results =
 				{
-					{type = "item", name = crop[1]..str, amount_min = crop[4]*1.5, amount_max = crop[4]*2.5},
-					{type = "item", name = "straw", amount_min = 4, amount_max = 12},
-					{type = "item", name = "raw-straw", amount_min = 1, amount_max = 5},
+				{type = "item", name = crop[1]..str, amount_min = crop[4]*1.8, amount_max = crop[4]*3.2},
+				{type = "item", name = "straw", amount_min = crop[11]*2.4, amount_max = crop[11]*4.5},
+				{type = "item", name = "raw-straw", amount_min = crop[11]*0.8, amount_max = crop[11]*2.2},
 				},
 				allow_as_intermediate = false,
 			},
@@ -240,15 +238,14 @@ for index, crop in pairs(crops) do
 				},
 				  results =
 				{
-					{type = "item", name = crop[1]..str, amount_min = crop[4]*2, amount_max = crop[4]*3},
-					{type = "item", name = "straw", amount_min = 1, amount_max = 4},
-					{type = "item", name = "raw-straw", amount_min = 3, amount_max = 7},
+				{type = "item", name = crop[1]..str, amount_min = crop[4]*2.3, amount_max = crop[4]*4},
+				{type = "item", name = "straw", amount_min = crop[11]*0.8, amount_max = crop[11]*1.4},
+				{type = "item", name = "raw-straw", amount_min = crop[11]*0.01, amount_max = crop[11]*0.6},
 				},
 				allow_as_intermediate = false,
 			},
 		})
 	end
-end
 
 data.raw.recipe["lettuce-growth"].enabled=true
 data.raw.recipe["tomato-growth"].enabled=true

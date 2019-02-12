@@ -11,7 +11,7 @@ for index, crop in pairs(trees) do
 			{
 				type = "item",
 				name = crop[1].."-"..crop[13],
-				icon = "__FoodIndustry__/graphics/icons/items/"..crop[1].."-"..crop[13]..".png",
+				icon = "__FoodIndustry__/graphics/icons/foods/"..crop[1].."-"..crop[13]..".png",
 				icon_size = 32,
 				flags = {"goes-to-main-inventory"},
 				subgroup = crop[1],
@@ -24,7 +24,7 @@ for index, crop in pairs(trees) do
 				name = crop[1].."-pick",
 				order = "w-d-b-y",
 				enabled = true,
-				icon = "__FoodIndustry__/graphics/icons/items/"..crop[1]..".png",
+				icon = "__FoodIndustry__/graphics/icons/foods/"..crop[1]..".png",
 				icon_size = 32,
 				category = "crafting",
 				subgroup = crop[1],
@@ -45,7 +45,7 @@ for index, crop in pairs(trees) do
 			{
 				type = "item",
 				name = crop[1].."-seeds",
-				icon = "__FoodIndustry__/graphics/icons/items/"..crop[1].."-seeds.png",
+				icon = "__FoodIndustry__/graphics/icons/foods/"..crop[1].."-seeds.png",
 				icon_size = 32,
 				flags = {"goes-to-main-inventory"},
 				subgroup = crop[1],
@@ -58,7 +58,7 @@ for index, crop in pairs(trees) do
 				name = crop[1].."-seeds",
 				order = "w-d-b-y",
 				enabled = true,
-				icon = "__FoodIndustry__/graphics/icons/items/"..crop[1].."-seeds.png",
+				icon = "__FoodIndustry__/graphics/icons/foods/"..crop[1].."-seeds.png",
 				icon_size = 32,
 				category = "crafting",
 				subgroup = crop[1],
@@ -78,7 +78,7 @@ for index, crop in pairs(trees) do
 			{
 				type = "capsule",
 				name = crop[1],
-				icon = "__FoodIndustry__/graphics/icons/items/"..crop[1]..".png",
+				icon = "__FoodIndustry__/graphics/icons/foods/"..crop[1]..".png",
 				icon_size = 32,
 				flags = {"goes-to-main-inventory"},
 				subgroup = crop[1],
@@ -218,7 +218,7 @@ for index, crop in pairs(trees) do
 				"placeable-player",
 				"player-creation"
 			},
-			icon = "__FoodIndustry__/graphics/icons/items/"..crop[1].."-tree.png",
+			icon = "__FoodIndustry__/graphics/icons/foods/"..crop[1].."-tree.png",
 			icon_size = 32,
 			max_health = 5,
 			minable = {
@@ -284,7 +284,7 @@ for index, crop in pairs(trees) do
 				"placeable-off-grid",
 				"breaths-air"
 			},
-			icon = "__FoodIndustry__/graphics/icons/items/"..crop[1].."-tree.png",
+			icon = "__FoodIndustry__/graphics/icons/foods/"..crop[1].."-tree.png",
 			icon_size = 32,
 			max_health = 5,
 			healing_per_tick = 0,

@@ -1,5 +1,5 @@
-require ("prototypes.cattle-autoplace")
-require ("prototypes.cattle-spawner-animation")
+require ("prototypes.cattle.cattle-autoplace")
+require ("prototypes.cattle.cattle-spawner-animation")
 
 local cattlescale = 0.5
 local calfscale = 0.25
