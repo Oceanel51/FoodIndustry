@@ -9,6 +9,10 @@ local minimumFruitsPerTree = 100
 local randomFruitsPerTree = 100
 local treeMax = 10
 
+local ORANGE_TREE = "orange-tree"
+local APPLE_TREE = "apple-tree"
+
+
 local function createFruitTree(tree)
     local fruitTree = nil
     for _, r in ipairs(global.foodi.fruittrees) do
@@ -54,6 +58,10 @@ local local_food_picker_process = function(picker)
         x = tree.position.x,
         y = tree.position.y
     }
+
+    if tree.name == ORANGE_TREE or tree.name == APPLE_TREE then
+        return
+    end
 
 --    picker.direction = picker.direction
 
@@ -111,7 +119,12 @@ local local_food_picker_removed = function(entity)
     end
 end
 
+local isInitFoodPicker = false
 function initFoodPicker()
+    if isInitFoodPicker then
+        return
+    end
+    isInitFoodPicker = true
     if global ~= nil then
         if not global.foodi then global.foodi = {} end
         if not global.foodi.food_pickers then global.foodi.food_pickers = {} end
