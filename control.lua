@@ -13,7 +13,6 @@ require("prototypes.scripts.cattle")
 require("prototypes.scripts.cattle-grabber")
 
 
-
 script.on_init(OnInit)
 script.on_load(OnLoad)
 --script.on_configuration_changed(OnLoad)
@@ -44,7 +43,6 @@ maxtimes["Invulnerability"] = 900
 maxtimes["Health buffer"] = 2700
 
 function setupFi()
-
 	if not foodi then foodi = {} end
 	if not foodi.ticks then foodi.ticks = {} end
 	if not foodi.on_added then foodi.on_added = {} end
@@ -62,6 +60,7 @@ function setupFi()
 	end
 end
 
+
 function OnInit()
 	setupFi()
 
@@ -75,24 +74,25 @@ function OnInit()
 	for index,player in pairs(game.players) do
 		if player.connected then
 			fi_global_variables_init()
+			fi_global_variables_set()
 			figui.create(index, player)
 			fi_global_variables_set(index) -- set global variables default data of connected players
 		end
 	end
 end
-
 function OnLoad()
     OnInit()
 end
 
-script.on_event({defines.events.on_tick}, function (e)
-	OnInit()
 
+
+script.on_event({defines.events.on_tick}, function (e)
+	OnInit() -- TODO Why do you need to perform this function every tick?
 	for k=1, #foodi.ticks do
 		local v = foodi.ticks[k]
 		v(e)
 	end
-	
+
 	-- TODO добавить сюда sleep modifier, это основной блок по которому считаются все расходы
 	if e.tick % 5 == 0 then
 		for index,player in pairs(game.players) do
@@ -339,6 +339,7 @@ script.on_event({defines.events.on_tick}, function (e)
 	end
 end)
 
+
 local local_on_added = function(event)
 	local entity = event.created_entity
 	if entity ~= nil then
@@ -360,28 +361,27 @@ end
 
 script.on_event(defines.events.on_built_entity, function(event)
 	local_on_added(event)
-
-	-- removed this as it seems to be buggy
-	--	    local entity = event.created_entity
-	--		if (entity.name == "fi-basic-farmland") and entity.burner and entity.burner.remaining_burning_fuel then
-	--			event.created_entity.burner.currently_burning="wood"
-	--			event.created_entity.burner.remaining_burning_fuel=2000000
-	--		end
+	
+	-- TODO Fix this! removed this as it seems to be buggy
+	--local entity = event.created_entity
+	--	if (entity.name == "fi-basic-farmland") and entity.burner and entity.burner.remaining_burning_fuel then 
+	--		event.created_entity.burner.currently_burning="wood"
+	--		event.created_entity.burner.remaining_burning_fuel=2000000
+	--	end
 	end
 )
+
 
 -- when new Player is created/joined
 script.on_event(defines.events.on_player_created, function(event)
 	local player = game.players[event.player_index]
 	
-	fi_global_variables_init()
-	figui.create(index, player)
-
 	player.insert({name="vegan-food-capsule", count=10})
 	player.insert({name="simple-digestive-capsule", count=5})
-	player.insert({name="simple-speed-capsule", count=5})
-	player.insert({name="simple-crafting-capsule", count=2})
-	player.insert({name="simple-mining-capsule", count=2})
+	player.insert({name="simple-speed-capsule", count=3})
+	player.insert({name="simple-crafting-capsule", count=3})
+	player.insert({name="simple-mining-capsule", count=3})
+	player.insert({name="flask-pure-water", count=2})
 	
 	-- DEBUG remove this
 	player.insert({name="basic-digestive-capsule", count=5})
@@ -389,7 +389,6 @@ script.on_event(defines.events.on_player_created, function(event)
 	player.insert({name="tomato", count=10})
 	player.insert({name="corn", count=10})
 	player.insert({name="popcorn", count=10})
-	player.insert({name="flask-pure-water", count=10})
 	player.insert({name="plastic-bottle-pure-water", count=10})
 	player.insert({name="basic-speed-capsule", count=5})
 	player.insert({name="advanced-speed-capsule", count=5})
@@ -454,7 +453,7 @@ script.on_event(defines.events.on_player_used_capsule, function(event)
 						for _,ef in pairs(food_copy[9]) do
 							effects_add(event.player_index, food_copy[1], ef)
 						end
-						writeDebug(dump(global.effects[event.player_index]["digestion"]))
+						--writeDebug(dump(global.effects[event.player_index]["digestion"]))
 						effects_calc_on_tick(event.player_index, player)
 					end
 
@@ -887,32 +886,33 @@ script.on_event(defines.events.on_gui_click, function(event)
 end
 )
 
-	local mod_item_opened = function(event)
-		for k=1, #foodi.on_mod_item_opened do
-			local v = foodi.on_mod_item_opened[k]
-			v(event)
-		end
+
+local mod_item_opened = function(event)
+	for k=1, #foodi.on_mod_item_opened do
+		local v = foodi.on_mod_item_opened[k]
+		v(event)
 	end
+end
 
-	local player_selected_area = function(event)
-		for k=1, #foodi.on_player_selected_area do
-			local v = foodi.on_player_selected_area[k]
-			v(event)
-		end
+local player_selected_area = function(event)
+	for k=1, #foodi.on_player_selected_area do
+		local v = foodi.on_player_selected_area[k]
+		v(event)
 	end
+end
 
-	local selected_entity_changed = function(event)
-		for k=1, #foodi.on_selected_entity_changed do
-			local v = foodi.on_selected_entity_changed[k]
-			v(event)
-		end
+local selected_entity_changed = function(event)
+	for k=1, #foodi.on_selected_entity_changed do
+		local v = foodi.on_selected_entity_changed[k]
+		v(event)
 	end
+end
 
-	local remove_events = {defines.events.on_entity_died,defines.events.on_robot_pre_mined,defines.events.on_robot_mined_entity,defines.events.on_pre_player_mined_entity,defines.events.on_player_mined_entity}
+local remove_events = {defines.events.on_entity_died,defines.events.on_robot_pre_mined,defines.events.on_robot_mined_entity,defines.events.on_pre_player_mined_entity,defines.events.on_player_mined_entity}
 
-	script.on_event(defines.events.on_robot_built_entity, local_on_added)
-	script.on_event(remove_events, local_on_removed)
-	script.on_event(defines.events.on_mod_item_opened, mod_item_opened)
-	script.on_event(defines.events.on_player_selected_area, player_selected_area)
-	script.on_event(defines.events.on_selected_entity_changed, selected_entity_changed)
+script.on_event(defines.events.on_robot_built_entity, local_on_added)
+script.on_event(remove_events, local_on_removed)
+script.on_event(defines.events.on_mod_item_opened, mod_item_opened)
+script.on_event(defines.events.on_player_selected_area, player_selected_area)
+script.on_event(defines.events.on_selected_entity_changed, selected_entity_changed)
 

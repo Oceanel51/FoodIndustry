@@ -48,7 +48,7 @@ data:extend({
     icon_size = 32,
     flags = {"goes-to-main-inventory"},
     fuel_category = "humus", -- changed by Oceanel
-    fuel_value = "6000J", 
+    fuel_value = "9000J", 
     subgroup = "food-items",
     order = "w-b-d",
     stack_size = 200

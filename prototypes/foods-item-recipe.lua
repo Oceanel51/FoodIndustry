@@ -2,34 +2,38 @@ require "libs.helper-functions"
 
 
 local foods = {
---1									2			3		4		5						6		7		8		9					10
---name,								subgroup,	stack,	cool,	category,				time,	amount,	effect,	order,				ingredients
-{"cooked-corn",						"fv",		10,		0.5,	"cooking",				4.0,	1,		false,	"w-d-a",			{{"corn", 1}, {type="fluid", name="pure-water", amount=20}} },
-{"basic-salad",						"fv",		10,		0.5,	"cooking",				1.5,	1,		false,	"w-d-b",			{{"tomato", 2}, {"cucumber", 1}, {"lettuce", 2}} },
-{"corn-bread",						"fv",		10,		0.5,	"cooking",				8.0,	1,		false,	"w-d-c",			{{"corn-flour", 2}, {type="fluid", name="pure-water", amount=10}} },
-{"cooked-fish",						"fv",		10,		0.2,	"cooking",				3.0,	1,		false,	"w-d-c1",			{{"raw-fish", 1}, {"corn-flour", 1}} },
-{"popcorn",							"fv",		50,		0.2,	"cooking",				1.5,	1,		false,	"w-d-d",			{{"corn-seeds", 1}, {type="fluid", name="canola-oil", amount=1}} },
-{"cooked-soy",						"fv",		50,		0.2,	"cooking",				3.0,	5,		false,	"w-d-e",			{{"soy", 5}, {type="fluid", name="pure-water", amount=20}} },
-{"baked-potato",					"fv",		10,		0.5,	"cooking",				6.0,	1,		false,	"w-d-f",			{{"potato", 1}} },
-{"fries",							"fv",		10,		0.5,	"cooking",				6.0,	1,		false,	"w-d-g",			{{"raw-fries", 1}, {type="fluid", name="canola-oil", amount=6}} },
-{"pickles",							"fv",		50,		0.3,	"cooking",				40.0,	20,		false,	"w-d-h",			{{"cucumber", 5}, {"crystal", 2}, {type="fluid", name="pure-water", amount=80}} },
-{"ketchup-fries",					"fv",		10,		0.5,	"crafting-with-fluid",	0.5,	1,		false,	"w-d-i",			{{"fries", 1}, {type="fluid", name="ketchup", amount=1}} },
-{"tofu-burger",						"fv",		5,		0.5,	"cooking",				5.0,	1,		false,	"w-d-k",			{{"corn-bread", 1}, {"tomato", 2}, {"pickles", 2}, {"lettuce", 1}, {"tofu", 1}, {type="fluid", name="ketchup", amount=1}} },
-{"tofu",							"fv",		10,		0.5,	"chemistry",			4.0,	2,		false,	"w-d-l",			{{"crystal", 1}, {type="fluid", name="soy-milk", amount=24}, {type="fluid", name="sulfuric-acid", amount=1}} },
-{"tofu-pizza",						"fv",		5,		0.5,	"cooking",				5.0,	1,		false,	"w-d-m",			{{"corn-flour", 2}, {"tomato", 3}, {"tofu", 1}, {type="fluid", name="ketchup", amount=2}} },
-{"best-salad",						"fv",		5,		0.5,	"crafting-with-fluid",	1.5,	1,		false,	"w-d-n",			{{"lettuce", 4}, {"tomato", 3}, {"pickles", 1}, {"corn-seeds", 2}, {type="fluid", name="soy-sauce", amount=1}} },
-
-{"biter-steak",						"fm",		10,		0.5,	"cooking",				12.0,	1,		false,	"w-d-a",			{{"biter-meat", 1}, {type="fluid", name="canola-oil", amount=2}} },
-{"fish-steak",						"fm",		10,		0.5,	"cooking",				12.0,	1,		false,	"w-d-a1",			{{"raw-fish", 1}, {"corn-flour", 1}, {type="fluid", name="canola-oil", amount=2}} },
-{"schnitzel",						"fm",		10,		0.5,	"cooking",				12.0,	1,		false,	"w-d-b",			{{"biter-meat", 1}, {"corn-flour", 1}, {type="fluid", name="canola-oil", amount=5}} },
-{"pizza",							"fm",		5,		0.5,	"cooking",				5.0,	1,		false,	"w-d-c",			{{"corn-flour", 2}, {"tomato", 3}, {"biter-steak", 1}, {type="fluid", name="ketchup", amount=2}} },
-{"fish-pizza",						"fm",		5,		0.5,	"cooking",				5.0,	1,		false,	"w-d-c1",			{{"corn-flour", 2}, {"tomato", 3}, {"fish-steak", 1}, {type="fluid", name="ketchup", amount=2}} },
-{"burger",							"fm",		5,		0.5,	"cooking",				5.0,	1,		false,	"w-d-d",			{{"corn-bread", 1}, {"tomato", 2}, {"pickles", 2}, {"lettuce", 1}, {"biter-steak", 1}, {type="fluid", name="ketchup", amount=1}} },
-{"fish-burger",						"fm",		5,		0.5,	"cooking",				5.0,	1,		false,	"w-d-d1",			{{"corn-bread", 1}, {"tomato", 2}, {"pickles", 2}, {"lettuce", 1}, {"fish-steak", 1}, {type="fluid", name="ketchup", amount=1}} },
-{"cooked-biter-meat",				"fm",		10,		0.5,	"cooking",				12.0,	1,		false,	"w-d-e",			{{"biter-meat", 1}, {type="fluid", name="water", amount=30}} },
-{"fish-salad",						"fm",		5,		0.5,	"crafting-with-fluid",	1.5,	1,		false,	"w-d-e1",			{{"lettuce", 4}, {"tomato", 3}, {"pickles", 1}, {"corn-seeds", 2}, {"fish-steak", 1}, } },
-{"fish-and-chips",					"fm",		5,		0.5,	"cooking",				1.5,	1,		false,	"w-d-e2",			{{"fish-steak", 1}, {"fries", 1}, } },
-
+--1									2					3		4		5						6		7		8			9				11
+--name,								subgroup,			stack,	cool,	crafting category,		time,	amount,	effect,		order,			ingredients
+{"cooked-corn",						"vegan-food",		10,		0.5,	"cooking",				4.0,	1,		false,		"w-d-a",		{{"corn", 1}, {type="fluid", name="pure-water", amount=20}} },
+{"basic-salad",						"vegan-food",		10,		0.5,	"cooking",				1.5,	1,		false,		"w-d-b",		{{"tomato", 2}, {"cucumber", 1}, {"lettuce", 2}} },
+{"corn-bread",						"vegan-food",		10,		0.5,	"cooking",				8.0,	1,		false,		"w-d-c",		{{"corn-flour", 2}, {type="fluid", name="pure-water", amount=10}} },
+{"popcorn",							"vegan-food",		50,		0.2,	"cooking",				1.5,	1,		false,		"w-d-d",		{{"corn-seeds", 1}, {type="fluid", name="canola-oil", amount=1}} },
+{"cooked-soy",						"vegan-food",		50,		0.2,	"cooking",				3.0,	5,		false,		"w-d-e",		{{"soy", 5}, {type="fluid", name="pure-water", amount=20}} },
+{"baked-potato",					"vegan-food",		10,		0.5,	"cooking",				6.0,	1,		false,		"w-d-f",		{{"potato", 1}} },
+{"fries",							"vegan-food",		10,		0.5,	"cooking",				6.0,	1,		false,		"w-d-g",		{{"raw-fries", 1}, {type="fluid", name="canola-oil", amount=6}} },
+{"pickles",							"vegan-food",		50,		0.3,	"cooking",				40.0,	10,		false,		"w-d-h",		{{"cucumber", 5}, {"salt", 5}, {type="fluid", name="pure-water", amount=60}} },
+{"ketchup-fries",					"vegan-food",		10,		0.5,	"crafting-with-fluid",	0.5,	1,		false,		"w-d-i",		{{"fries", 1}, {type="fluid", name="ketchup", amount=1}} },
+{"tofu-burger",						"vegan-food",		5,		0.5,	"cooking",				5.0,	1,		false,		"w-d-k",		{{"corn-bread", 1}, {"tomato", 2}, {"pickles", 2}, {"lettuce", 1}, {"tofu", 1}, {type="fluid", name="ketchup", amount=1}} },
+{"tofu",							"vegan-food",		10,		0.5,	"chemistry",			4.0,	2,		false,		"w-d-l",		{{"crystal", 1}, {type="fluid", name="soy-milk", amount=24}, {type="fluid", name="sulfuric-acid", amount=1}} },
+{"tofu-pizza",						"vegan-food",		5,		0.5,	"cooking",				5.0,	1,		false,		"w-d-m",		{{"corn-flour", 2}, {"tomato", 3}, {"tofu", 1}, {type="fluid", name="ketchup", amount=2}} },
+{"best-salad",						"vegan-food",		5,		0.5,	"crafting-with-fluid",	1.5,	1,		false,		"w-d-n",		{{"lettuce", 4}, {"tomato", 3}, {"pickles", 1}, {"corn-seeds", 2}, {type="fluid", name="soy-sauce", amount=1}} },
+-- species
+{"salt",							"foods-species",	100,	0.6,	"cooking",				20.0,	10,		false,		"w-a-a",		{{"crystal", 1},} },
+--{"sugar",							"foods-species",	100,	0.6,	"cooking",				30.0,	5,		false,		"w-b-a",		{{"sugarcane", 2},} },
+-- fish
+{"cooked-fish-meat",				"foods-fish",		10,		0.3,	"cooking",				3.0,	1,		false,		"w-d-c1",		{{"fish-meat-red", 1}, {"corn-flour", 1},} },
+{"fish-steak",						"foods-fish",		10,		0.5,	"cooking",				12.0,	1,		false,		"w-d-a1",		{{"fish-meat-red", 1}, {"corn-flour", 1}, {type="fluid", name="canola-oil", amount=2},} },
+{"fish-pizza",						"foods-fish",		5,		0.5,	"cooking",				5.0,	1,		false,		"w-d-c1",		{{"corn-flour", 2}, {"tomato", 3}, {"fish-steak", 1}, {type="fluid", name="ketchup", amount=2},} },
+{"fish-burger",						"foods-fish",		5,		0.5,	"cooking",				5.0,	1,		false,		"w-d-d1",		{{"corn-bread", 1}, {"tomato", 2}, {"pickles", 2}, {"lettuce", 1}, {"fish-steak", 1}, {type="fluid", name="ketchup", amount=1},} },
+{"fish-salad",						"foods-fish",		5,		0.5,	"crafting-with-fluid",	1.5,	1,		false,		"w-d-e1",		{{"lettuce", 4}, {"tomato", 3}, {"pickles", 1}, {"corn-seeds", 2}, {"fish-steak", 1},} },
+{"fish-and-chips",					"foods-fish",		5,		0.5,	"cooking",				1.5,	1,		false,		"w-d-e2",		{{"fish-steak", 1}, {"fries", 1},} },
+-- meat
+{"biter-steak",						"foods-meat",		10,		0.5,	"cooking",				12.0,	1,		false,		"w-d-a",		{{"biter-meat", 1}, {type="fluid", name="canola-oil", amount=2}} },
+{"schnitzel",						"foods-meat",		10,		0.5,	"cooking",				12.0,	1,		false,		"w-d-b",		{{"biter-meat", 1}, {"corn-flour", 1}, {type="fluid", name="canola-oil", amount=5}} },
+{"pizza",							"foods-meat",		5,		0.5,	"cooking",				5.0,	1,		false,		"w-d-c",		{{"corn-flour", 2}, {"tomato", 3}, {"biter-steak", 1}, {type="fluid", name="ketchup", amount=2}} },
+{"burger",							"foods-meat",		5,		0.5,	"cooking",				5.0,	1,		false,		"w-d-d",		{{"corn-bread", 1}, {"tomato", 2}, {"pickles", 2}, {"lettuce", 1}, {"biter-steak", 1}, {type="fluid", name="ketchup", amount=1}} },
+{"cooked-biter-meat",				"foods-meat",		10,		0.5,	"cooking",				12.0,	1,		false,		"w-d-e",		{{"biter-meat", 1}, {type="fluid", name="pure-water", amount=25}} },
+-- capsules
 {"vegan-food-capsule",				"cv",		50,		0.5,	"cooking",				60.0,	3,		false,	"w-d-a",			{{"fries", 1}, {"tofu-burger", 1}, {"best-salad", 1}, {"crystal", 1}} },
 {"food-capsule",					"cm",		50,		0.5,	"cooking",				60.0,	3,		false,	"w-d-b",			{{"fries", 1}, {"burger", 1}, {"best-salad", 1}, {"crystal", 1}} },
 

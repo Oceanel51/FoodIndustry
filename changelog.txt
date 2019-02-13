@@ -4,18 +4,23 @@ Date: --.--.2019
 Features:
 	-Restructured mod, I would call this version 2.0: 
 	 - bla bla bla
-	-Remake Fullness system: now it's like a stomach in the human body, You put the food and its digestion takes place in turns.
+	Remaked Fullness system: now it's like a stomach in the human body, You put the food and its digestion takes place in turns.
 	-Add "Overeating" effect:
-	-Add "Drinks consumption" system and some basic fluids:
-	-Add "thirst" effect. This is not exactly the thirst we know ;)
-	-Implement bonus effects values to add and remove from modifiers instead of overwriting
-	-Corrected food values in localization files
-	-Improved and rerendered sprites with new materials for: fi-electric-composter, fi-greenhouse, fi-big-greenhouse, fi-incubator, fi-fluid-tank.
-	-Add hr spritesheets for fi-basic-farmland
+	Added "Drinks" consumption system and some basic fluids - "pure-water" with:
+	 - flask-pure-water,
+	 - plastic-bottle-pure-water.
+	-Add "Thirst" effect. This is not exactly the thirst we know ;)
+	-Implement bonus effects values to add and remove from game modifiers instead of overwriting.
 Fixes:
+	-Improved and rerendered sprites with new materials for: fi-electric-composter, fi-greenhouse, fi-big-greenhouse, fi-incubator, fi-fluid-tank.
 	Improved and rerendered sprites for: fi-mashines-propeller1, fi-mashines-propeller2, fi-mashines-propeller3.
+	-Corrected food values in localization files
+	Supplemented en, ru localization files.
+	-Add hr spritesheets for fi-basic-farmland
 Balance:
-	Increased results for crop recipes
+	Reduced basic Energy consumption for -10%.
+	Increased results for crop raw recipes four times, that helps on early game.
+	Decreased all food values of Energy, Drinks, Substances about 20%-30%.
 	
 ---------------------------------------------------------------------------------------------------
 Version: 0.16.31

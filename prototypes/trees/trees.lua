@@ -131,7 +131,7 @@ for index, crop in pairs(trees) do
 			{
 				type = "item",
 				name = crop[1].."-seedling",
-				icon = "__FoodIndustry__/graphics/entity/trees/"..crop[1].."-Seedling.png",
+				icon = "__FoodIndustry__/graphics/entity/trees/"..crop[1].."-seedling.png",
 				icon_size = 32,
 				flags = {"goes-to-main-inventory"},
 				subgroup = crop[1],
@@ -146,7 +146,7 @@ for index, crop in pairs(trees) do
 			{
 				type = "land-mine",
 				name = crop[1].."-seedling",
-				icon = "__FoodIndustry__/graphics/entity/trees/"..crop[1].."-Seedling.png",
+				icon = "__FoodIndustry__/graphics/entity/trees/"..crop[1].."-seedling.png",
 				icon_size = 32,
 				order = "b",
 				flags = {"placeable-neutral", "placeable-player", "player-creation", "breaths-air",},
@@ -165,14 +165,14 @@ for index, crop in pairs(trees) do
 				vehicle_impact_sound = { filename = "__base__/sound/car-wood-impact.ogg", volume = 1.0 },
 				picture_safe =
 				{
-					filename = "__FoodIndustry__/graphics/entity/trees/"..crop[1].."-Seedling_a.png",
+					filename = "__FoodIndustry__/graphics/entity/trees/"..crop[1].."-seedling_a.png",
 					priority = "extra-high",
 					width = 32,
 					height = 32,
 				},
 				picture_set =
 				{
-					filename = "__FoodIndustry__/graphics/entity/trees/"..crop[1].."-Seedling_b.png",
+					filename = "__FoodIndustry__/graphics/entity/trees/"..crop[1].."-seedling_b.png",
 					priority = "extra-high",
 					width = 32,
 					height = 32,
@@ -184,7 +184,7 @@ for index, crop in pairs(trees) do
 			{
 				type = "recipe",
 				name = crop[1].."-seedling",
-				icon = "__FoodIndustry__/graphics/entity/trees/"..crop[1].."-Seedling.png",
+				icon = "__FoodIndustry__/graphics/entity/trees/"..crop[1].."-seedling.png",
 				icon_size = 32,
 				category = "fi-mod-tree-greenhouse",
 				energy_required = 50,

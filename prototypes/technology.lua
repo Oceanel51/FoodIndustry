@@ -309,7 +309,6 @@ data:extend({
     effects =
     {  
 		{type = "unlock-recipe", recipe = "fi-composter"},
-		{type = "unlock-recipe", recipe = "compost-1"},
     {type = "unlock-recipe", recipe = "compost-raw-straw"},
     {type = "unlock-recipe", recipe = "compost-straw"},
     {type = "unlock-recipe", recipe = "compost-compressed-straw"},
@@ -410,6 +409,7 @@ data:extend({
     },
     order = "w",
   },
+
   {
     type = "technology",
     name = "trees-growth",
@@ -462,6 +462,7 @@ data:extend({
     order = "x",
   },
   
+  
   {
     type = "technology",
     name = "advanced-composting",
@@ -496,7 +497,7 @@ data:extend({
 		{type = "unlock-recipe", recipe = "cooked-corn"},
 		{type = "unlock-recipe", recipe = "cooked-soy"},
 		{type = "unlock-recipe", recipe = "baked-potato"},
-        {type = "unlock-recipe", recipe = "cooked-fish"},
+    {type = "unlock-recipe", recipe = "cooked-fish-meat"},
 		{type = "unlock-recipe", recipe = "cooked-biter-meat"},
     },
     unit =
@@ -596,9 +597,9 @@ data:extend({
 		{type = "unlock-recipe", recipe = "corn-growth-w"},
 		{type = "unlock-recipe", recipe = "soy-growth-w"},
 		{type = "unlock-recipe", recipe = "rapeseed-growth-w"},
---		{type = "unlock-recipe", recipe = "apple-growth-w"},
---		{type = "unlock-recipe", recipe = "orange-growth-w"},
-    },
+		--{type = "unlock-recipe", recipe = "apple-growth-w"},
+		--{type = "unlock-recipe", recipe = "orange-growth-w"},
+},
     unit =
     {
       time = 60,
@@ -724,9 +725,9 @@ data:extend({
 		{type = "unlock-recipe", recipe = "corn-growth-c"},
 		{type = "unlock-recipe", recipe = "soy-growth-c"},		
 		{type = "unlock-recipe", recipe = "rapeseed-growth-c"},
---		{type = "unlock-recipe", recipe = "apple-growth-c"},
---		{type = "unlock-recipe", recipe = "orange-growth-c"},
-    },
+		--{type = "unlock-recipe", recipe = "apple-growth-c"},
+		--{type = "unlock-recipe", recipe = "orange-growth-c"},
+},
     unit =
     {
       time = 30,
@@ -758,9 +759,9 @@ data:extend({
 		{type = "unlock-recipe", recipe = "corn-growth-f"},
 		{type = "unlock-recipe", recipe = "soy-growth-f"},
 		{type = "unlock-recipe", recipe = "rapeseed-growth-f"},
---		{type = "unlock-recipe", recipe = "apple-growth-f"},
---		{type = "unlock-recipe", recipe = "orange-growth-f"},
-    },
+		--{type = "unlock-recipe", recipe = "apple-growth-f"},
+		--{type = "unlock-recipe", recipe = "orange-growth-f"},
+},
     unit =
     {
       time = 30,
@@ -869,12 +870,12 @@ data:extend({
     {  
 		{type = "unlock-recipe", recipe = "raw-fries"},
 		{type = "unlock-recipe", recipe = "fries"},
-        {type = "unlock-recipe", recipe = "fish-steak"},
 		{type = "unlock-recipe", recipe = "biter-steak"},
 		{type = "unlock-recipe", recipe = "schnitzel"},
 		{type = "unlock-recipe", recipe = "popcorn"},
-        {type = "unlock-recipe", recipe = "fish-and-chips"},
-    },
+    {type = "unlock-recipe", recipe = "fish-steak"},
+    {type = "unlock-recipe", recipe = "fish-and-chips"},
+  },
     unit =
     {
       time = 20,
@@ -941,10 +942,10 @@ data:extend({
     {  
 		{type = "unlock-recipe", recipe = "soy-sauce"},
 		{type = "unlock-recipe", recipe = "best-salad"},
-        {type = "unlock-recipe", recipe = "fish-salad"},
 		{type = "unlock-recipe", recipe = "ketchup"},
 		{type = "unlock-recipe", recipe = "ketchup-fries"},
-    },
+    {type = "unlock-recipe", recipe = "fish-salad"},
+  },
     unit =
     {
       time = 20,
@@ -965,12 +966,12 @@ data:extend({
     effects =
     {  
 		{type = "unlock-recipe", recipe = "burger"},
-        {type = "unlock-recipe", recipe = "fish-burger"},
 		{type = "unlock-recipe", recipe = "tofu-burger"},
 		{type = "unlock-recipe", recipe = "pizza"},
-        {type = "unlock-recipe", recipe = "fish-pizza"},
 		{type = "unlock-recipe", recipe = "tofu-pizza"},
-    },
+    {type = "unlock-recipe", recipe = "fish-burger"},
+    {type = "unlock-recipe", recipe = "fish-pizza"},
+  },
     unit =
     {
       time = 60,
