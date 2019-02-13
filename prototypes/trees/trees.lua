@@ -1,8 +1,8 @@
 local trees = {
 --1			2		3			4		5		6		7			8		9			10		11		12			13			14				15		16		17		18
 --name, 	time, 	to plant,	plants,	result,	seeds, 	stack size,	plant?,	seed?,	edible?,	straws,	compost,	type,	debug color,	starting,	size,	result,	chance
-{"apple", 	1500, 	8,        	9,		6.0, 	2.6, 	10,			true,	true,		true,	0.0,	"3J",		"tree", {r=1,g=0.2,b=0},	20,		0.3,	5,		0.25},
-{"orange", 	1300, 	6,        	5,		4.0, 	1.8, 	10,			true,	true,		true,	0.0,	"2J",		"tree", {r=0.6,g=0.6,b=0},	20,		0.3,	4,		0.12},
+{"apple", 	1500, 	8,        	9,		6.0, 	2.6, 	10,			true,	true,		true,	0.0,	"3J",		"tree", {r=1,g=0.2,b=0},	20,		0.16,	5,		0.25},
+{"orange", 	1300, 	6,        	5,		4.0, 	1.8, 	10,			true,	true,		true,	0.0,	"2J",		"tree", {r=0.6,g=0.6,b=0},	20,		0.16,	4,		0.12},
 }
 
 for index, crop in pairs(trees) do
@@ -252,10 +252,10 @@ for index, crop in pairs(trees) do
 				{
 					filename = "__FoodIndustry__/graphics/entity/trees/"..crop[1]..".png",
 					priority = "high",
-					width = 256,
-					height = 256,
+					width = 945,
+					height = 771,
 					scale = crop[16],
-					shift = {0.0, 0.0},
+					shift = {0.89, -1.71},
 				}
 			},
 			map_color = {r=0.1, g= 0.7, b=0}--[[crop[4]],
@@ -300,7 +300,7 @@ for index, crop in pairs(trees) do
 				mining_hardness = 0.1,
 				mining_time = 0.5,
 				results = {
-					{type = "item", name = "raw-wood", amount = 5 },
+					{type = "item", name = "raw-wood", amount = 4 },
 					{type = "item", name = "raw-straw", amount = 3, probability = 0.8},
 					{type = "item", name = crop[1], amount = 1, probability = crop[18] }
 				},
@@ -323,7 +323,7 @@ for index, crop in pairs(trees) do
 					width = 945, -- TODO check sizes
 					height = 771,
 					scale = crop[16],
-					shift = {2.97, 0.44},
+					shift = {0.89, -1.71},
 				}
 			},
 			map_color = {r=0.1, g= 0.7, b=0}--[[crop[4]],
