@@ -41,7 +41,11 @@ luac.out
 
 # Notepad++ session files
 *.nppses
+# Visual Studio Code session files
+*.code-workspace
 
 # Devs directories
 Food-Industry/.development/
+.development/
 .dev/
+.idea/
