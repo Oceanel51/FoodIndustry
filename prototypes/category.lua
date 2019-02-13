@@ -45,6 +45,31 @@ data:extend(
     group = "food-industry",
     order = "w-j",
   },
+  {
+    type = "item-subgroup",
+    name = "food-cattle",
+    group = "food-industry",
+    order = "w-e",
+  },
+  {
+    type = "item-subgroup",
+    name = "food-machines-cattle",
+    group = "food-industry",
+    order = "w-a3",
+  },
+  {
+    type = "item-subgroup",
+    name = "food-machines-trees",
+    group = "food-industry",
+    order = "w-a1",
+},
+{
+    type = "item-subgroup",
+    name = "food-machines-fish",
+    group = "food-industry",
+    order = "w-a2",
+},
+
   -- TODO fix categories
   -- foods
   {
@@ -63,15 +88,33 @@ data:extend(
   },
   {
     type = "item-subgroup",
+    name = "foods-species",
+    group = "food-industry-foods",
+    order = "w-e",
+  },
+  {
+    type = "item-subgroup",
     name = "foods-cooked",
     group = "food-industry-foods",
     order = "w-f",
   },
   {
     type = "item-subgroup",
-    name = "foods-other",
+    name = "foods-fish",
     group = "food-industry-foods",
     order = "w-g",
+  },
+  {
+    type = "item-subgroup",
+    name = "foods-substances",
+    group = "food-industry-foods",
+    order = "w-g",
+  },
+  {
+    type = "item-subgroup",
+    name = "foods-other",
+    group = "food-industry-foods",
+    order = "w-h",
   },
   -- drinks
   {
@@ -109,15 +152,19 @@ data:extend(
   },
   {
     type = "recipe-category",
+    name = "food-cattle",
+  },
+  {
+    type = "recipe-category",
     name = "auto-composting",	
-  },  
+  },
   {
     type = "recipe-category",
     name = "cooking",	
   },
   {
     type = "recipe-category",
-    name = "advanced-cooking", -- для капсул второго уровня и продвинутого приготовления
+    name = "advanced-cooking", -- for advanced capsules and cooking
   },
   {
     type = "recipe-category",

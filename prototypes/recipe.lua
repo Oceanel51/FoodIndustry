@@ -73,7 +73,7 @@ data:extend({
 	},
 		results = 
 	{
-		{"compost", 100}
+		{"compost", 60}
 	},
 	allow_as_intermediate = false,	
   },
