@@ -42,6 +42,7 @@ maxtimes["Fast mining"] = 3600
 maxtimes["Invulnerability"] = 900
 maxtimes["Health buffer"] = 2700
 
+
 function setupFi()
 	if not foodi then foodi = {} end
 	if not foodi.ticks then foodi.ticks = {} end
@@ -63,7 +64,7 @@ end
 
 function OnInit()
 	setupFi()
-
+	
 	initFishingInserter()
 	initFoodPicker()
 	initFruitTrees()
@@ -74,14 +75,13 @@ function OnInit()
 	for index,player in pairs(game.players) do
 		if player.connected then
 			fi_global_variables_init()
-			fi_global_variables_set()
 			figui.create(index, player)
 			fi_global_variables_set(index) -- set global variables default data of connected players
 		end
 	end
 end
 function OnLoad()
-    OnInit()
+	OnInit()
 end
 
 

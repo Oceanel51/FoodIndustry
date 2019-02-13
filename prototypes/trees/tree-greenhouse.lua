@@ -2,7 +2,7 @@ data:extend({
 
     {
         type = "recipe-category",
-        name = "fi-mod-tree-greenhouse"
+        name = "fi-tree-greenhouse"
     },
 
     ----Tree Greenhouse (Nursery)
@@ -31,7 +31,7 @@ data:extend({
         max_health = 250,
         corpse = "medium-remnants",
         dying_explosion = "medium-explosion",
-        crafting_categories = {"fi-mod-tree-greenhouse"},
+        crafting_categories = {"fi-tree-greenhouse"},
         crafting_speed = 1,
         energy_source =
 
