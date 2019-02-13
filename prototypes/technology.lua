@@ -419,17 +419,17 @@ data:extend({
     effects =
     {
         {type = "unlock-recipe", recipe = "fi_recipe_tree_greenhouse"},
-		{type = "unlock-recipe", recipe = "apple-seedling"},
-		{type = "unlock-recipe", recipe = "orange-seedling"},
+        {type = "unlock-recipe", recipe = "apple-seedling"},
+        {type = "unlock-recipe", recipe = "orange-seedling"},
     },
     unit =
     {
-      time = 40,
-      count = 15,
-      ingredients =
-      {
-		{"food-science-pack", 1},
-      },
+    time = 40,
+    count = 15,
+    ingredients =
+    {
+        {"food-science-pack", 1},
+    },
     },
     order = "w",
   },
