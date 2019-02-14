@@ -1,8 +1,8 @@
 local trees = {
 --1			2		3			4		5		6		7			8		9			10		11		12			13			14				15		16		17		18
---name, 	time, 	to plant,	plants,	result,	seeds, 	stack size,	plant?,	seed?,	edible?,	straws,	compost,	type,	debug color,	starting,	size,	result,	chance
-{"apple", 	1500, 	8,        	9,		6.0, 	2.6, 	10,			true,	true,		true,	0.0,	"3J",		"tree", {r=1,g=0.2,b=0},	20,		0.16,	5,		0.25},
-{"orange", 	1300, 	6,        	5,		4.0, 	1.8, 	10,			true,	true,		true,	0.0,	"2J",		"tree", {r=0.6,g=0.6,b=0},	20,		0.16,	4,		0.12},
+--name, 	time, 	to plant,	plants,	-,		seeds, 	stack size,	plant?,	seed?,	edible?,	straws,	compost,	type,	debug color,	starting,	size,	result,	chance
+{"apple", 	1500, 	8,			9,		0,		2.6, 	10,			true,	true,		true,	0.0,	"3J",		"tree", {r=1,g=0.2,b=0},	20,		0.16,	5,		0.25},
+{"orange", 	1300, 	6,			5,		0,		1.8, 	10,			true,	true,		true,	0.0,	"2J",		"tree", {r=0.6,g=0.6,b=0},	15,		0.16,	4,		0.12},
 }
 
 for index, crop in pairs(trees) do
@@ -15,19 +15,19 @@ for index, crop in pairs(trees) do
 			icon_size = 32,
 			flags = {"goes-to-main-inventory"},
 			subgroup = crop[1],
-			order = "a",
+			order = "w-e-"..index.."-y",
 			stack_size = 10
 		},
 		-- Fruit seeds recipe
 		{
 			type = "recipe",
 			name = crop[1].."-pick",
-			order = "w-d-b-y",
+			subgroup = crop[1],
+			order = "w-e-b-y",
 			enabled = true,
 			icon = "__FoodIndustry__/graphics/icons/foods/"..crop[1]..".png",
 			icon_size = 32,
 			category = "crafting",
-			subgroup = crop[1],
 			energy_required = 0.75,
 			hidden = true,
 			ingredients =
@@ -49,14 +49,14 @@ for index, crop in pairs(trees) do
 			icon_size = 32,
 			flags = {"goes-to-main-inventory"},
 			subgroup = crop[1],
-			order = "a",
+			order = "w-e-"..index.."-y",
 			stack_size = 100
 		},
 		-- Fruit seeds recipe
 		{
 			type = "recipe",
 			name = crop[1].."-seeds",
-			order = "w-d-b-y",
+			order = "w-e-b-y",
 			enabled = true,
 			icon = "__FoodIndustry__/graphics/icons/trees/"..crop[1].."-seeds.png",
 			icon_size = 32,
@@ -122,7 +122,7 @@ for index, crop in pairs(trees) do
 			type = "item-subgroup",
 			name = crop[1],
 			group = "food-industry-foods",
-			order = "w-d-"..index,
+			order = "w-f-"..index,
 		},
 	})
 	data:extend({
@@ -234,7 +234,7 @@ for index, crop in pairs(trees) do
 				results = {
 					{type = "item", name = "raw-wood", amount = 4 },
 					{type = "item", name = "raw-straw", amount = 3, probability = 0.8},
-					{type = "item", name = crop[1], amount = 1, probability = crop[18] }
+					{type = "item", name = crop[1], amount_min = math.floor(crop[17]*0.2), amount_max = math.floor(crop[17]) }
 				},
 			},
 			selection_box = {

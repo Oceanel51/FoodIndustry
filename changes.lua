@@ -75,8 +75,8 @@ table.insert(data.raw.technology["automation"].effects,{recipe = "compressed-str
 table.insert(data.raw.technology["automation"].effects,{recipe = "burner-fishing-inserter", type = "unlock-recipe"})
 table.insert(data.raw.technology["automation"].effects,{recipe = "burner-food-picker", type = "unlock-recipe"})
 
-table.insert(data.raw.technology["logistics"].effects,{recipe = "fishing-inserter", type = "unlock-recipe"})
-table.insert(data.raw.technology["logistics"].effects,{recipe = "food-picker", type = "unlock-recipe"})
+--table.insert(data.raw.technology["logistics"].effects,{recipe = "fishing-inserter", type = "unlock-recipe"})
+--table.insert(data.raw.technology["logistics"].effects,{recipe = "food-picker", type = "unlock-recipe"})
 
 data.raw.item["landfill"].fuel_value = "500kJ"
 data.raw.item["landfill"].fuel_category = "humus"

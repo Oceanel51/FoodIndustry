@@ -1,6 +1,6 @@
 data:extend(
 {
-  -- main
+  -------------------- FI main --------------------
   {
     type = "item-group",
     name = "food-industry",
@@ -71,7 +71,7 @@ data:extend(
 },
 
   -- TODO fix categories
-  -- foods
+  -------------------- foods --------------------
   {
     type = "item-group",
     name = "food-industry-foods",
@@ -84,39 +84,51 @@ data:extend(
     type = "item-subgroup",
     name = "foods",
     group = "food-industry-foods",
-    order = "w-e",
+    order = "w-g",
   },
-  {
+--[[   {
     type = "item-subgroup",
-    name = "foods-species",
+    name = "foods-fruit",
     group = "food-industry-foods",
-    order = "w-e",
-  },
+    order = "w-h",
+  }, ]]
   {
     type = "item-subgroup",
     name = "foods-cooked",
     group = "food-industry-foods",
-    order = "w-f",
+    order = "w-i",
   },
   {
     type = "item-subgroup",
     name = "foods-fish",
     group = "food-industry-foods",
-    order = "w-g",
+    order = "w-k",
+  },
+  {
+    type = "item-subgroup",
+    name = "foods-meat",
+    group = "food-industry-foods",
+    order = "w-l",
+  },
+  {
+    type = "item-subgroup",
+    name = "foods-species",
+    group = "food-industry-foods",
+    order = "w-m",
   },
   {
     type = "item-subgroup",
     name = "foods-substances",
     group = "food-industry-foods",
-    order = "w-g",
+    order = "w-n",
   },
   {
     type = "item-subgroup",
     name = "foods-other",
     group = "food-industry-foods",
-    order = "w-h",
+    order = "w-o",
   },
-  -- drinks
+  -------------------- drinks --------------------
   {
     type = "item-group",
     name = "food-industry-drinks",
@@ -137,18 +149,19 @@ data:extend(
     group = "food-industry-drinks",
     order = "w-b-b",
   },
-  -------------------------------------------
+
+  -------------------- recipes --------------------
   {
     type = "recipe-category",
-    name = "basic-crop-growth",	
+    name = "basic-crop-growth",
   } ,
   {
     type = "recipe-category",
-    name = "advanced-crop-growth",	
+    name = "advanced-crop-growth",
   },
   {
     type = "recipe-category",
-    name = "composting",	
+    name = "composting",
   },
   {
     type = "recipe-category",
@@ -156,7 +169,7 @@ data:extend(
   },
   {
     type = "recipe-category",
-    name = "auto-composting",	
+    name = "auto-composting",
   },
   {
     type = "recipe-category",
@@ -186,6 +199,7 @@ data:extend(
     type = "fuel-category",
     name = "humus",	 -- changed by Oceanel
   },
+
 	{
     type = "autoplace-control",
     category = "resource",
@@ -199,5 +213,5 @@ data:extend(
     name = "oil-plant",
     order = "w",
     richness = false,
-	}, 	
+	},
 })

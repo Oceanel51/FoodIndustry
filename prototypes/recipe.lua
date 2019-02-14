@@ -154,7 +154,8 @@ data:extend({
 	icon = "__FoodIndustry__/graphics/icons/foods/crystal.png",
 	icon_size = 32,
 	category = "mixing",
-	subgroup = "food-items",
+	subgroup = "foods-species",
+	order = "w-b-1",
 	energy_required = 20.0,
     ingredients =
     {
@@ -172,12 +173,12 @@ data:extend({
 {
     type = "recipe",
     name = "crystal-steam",
-	order = "w-b-e-2",
+	order = "w-b-2",
     enabled = false,
 	icon = "__FoodIndustry__/graphics/icons/recipes/crystal-steam.png",
 	icon_size = 32,
 	category = "chemistry",
-	subgroup = "food-items",
+	subgroup = "foods-species",
 	energy_required = 2.0,
     ingredients =
     {
@@ -502,7 +503,7 @@ data:extend({
     enabled = false,
 	icon = "__FoodIndustry__/graphics/icons/fluids/soy-milk.png",
 	icon_size = 32,
-	category = "crafting-with-fluid",
+	category = "advanced-cooking",
 	subgroup = "food-intermediates",
 	energy_required = 0.5,
     ingredients =

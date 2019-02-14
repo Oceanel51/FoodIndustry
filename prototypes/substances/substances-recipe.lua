@@ -1,21 +1,7 @@
 require "prototypes.tables.fi-foods-table"
 local foods = collect_all_foods_table()
 
-
-local ingredients = {
-	--1						2				3
-	--plant					energy/water	result	?
-	{"raw-straw",			3.0,			4},		--3.4
-	{"straw",				0.2,			0.1},	--0.06
-	{"compressed-straw",	15.0,			6},		--3.0
-	{"lettuce",				3.0,			6},		--5.4
-	{"cucumber",			4.5,			6},		--5.1
-	{"tomato",				2.0,			4},		--3.6
-	{"potato",				5.0,			8},		--7.0
-	{"corn",				4.0,			8},		--7.2
-	{"soy",					0.5,			1},		--0.9
-	{"rapeseed",			0.4,			0.4}	--0.32
-}
+--@ stage 1 of nutrient extraction
 
 -- TODO make recipes of substances
 for index, food in pairs(foods) do

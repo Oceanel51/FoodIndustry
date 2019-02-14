@@ -77,7 +77,7 @@ function foods_table()
 	{"advanced-health-buffer-capsule",	"special",					80,		80,		{5,5,5,3},		80,		0,		0,		{{"health_buffer",1250,2700},} },
 	{"invulnerability-capsule",			"special",					50,		50,		{0,0,0,0},		50,		0,		0,		{{"invulnerability",9750,900},} },
 
-	{"simple-neutralizing-capsule",		"special",					30,		0,		{0,0,0,0},		30,		0,		0,		{{"neutralize_effects",15},} },
+	{"simple-neutralizing-capsule",		"special",					0,		0,		{0,0,0,0},		30,		30,		0,		{{"neutralize_effects",0,900},} },
 	
 	{"simple-digestive-capsule",		"special",					20,		0,		{-1,0,0,0},		0,		0,		0,		{{"digestion",0.4,10000},} },
 	{"basic-digestive-capsule",			"special",					50,		0,		{0,0,0,0},		10,		10,		0,		{{"digestion",1,5000},} },

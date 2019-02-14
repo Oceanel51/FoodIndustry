@@ -735,7 +735,7 @@ function u_gui()
 			if global.energy[index] and global.drinks[index] and global.fullness[index] then -- if exists values in global tables
 				if player.valid and player.connected then
 					
-					figui.create(index, player)
+					--figui.create(index, player)
 					--figui.update(index, player)
 					
 					
@@ -817,7 +817,7 @@ function u_gui()
 					-- rezerved .flow8 for buttons how activate "capsule effects"
 					
 					-- initialize .flow10 - Effects
-					-- TODO перенести в figui.update_effects
+					-- TODO move to figui.update_effects(...)
 					--if global.effects[index] then
 					--	for effect,t in pairs(global.effects[index]) do
 					--		if t > 0 then

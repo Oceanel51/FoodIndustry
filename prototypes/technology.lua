@@ -412,22 +412,45 @@ data:extend({
 
   {
     type = "technology",
-    name = "trees-growth",
+    name = "trees-growth-1",
     icon = "__FoodIndustry__/graphics/technology/trees-growth.png",
     icon_size = 128,
     prerequisites = {"composting"},
     effects =
     {
-        {type = "unlock-recipe", recipe = "fi_recipe_tree_greenhouse"},
+        {type = "unlock-recipe", recipe = "fruit-scissor"},
         {type = "unlock-recipe", recipe = "apple-seedling"},
         {type = "unlock-recipe", recipe = "orange-seedling"},
     },
     unit =
     {
-    time = 40,
+    time = 30,
     count = 15,
     ingredients =
     {
+        {"food-science-pack", 1},
+    },
+    },
+    order = "w",
+  },
+  {
+    type = "technology",
+    name = "trees-growth-2",
+    icon = "__FoodIndustry__/graphics/technology/trees-growth.png",
+    icon_size = 128,
+    prerequisites = {"logistics", "trees-growth-1"},
+    effects =
+    {
+      {type = "unlock-recipe", recipe = "food-picker"},
+      {type = "unlock-recipe", recipe = "fi_recipe_tree_greenhouse"},
+    },
+    unit =
+    {
+    time = 40,
+    count = 50,
+    ingredients =
+    {
+        {"science-pack-2", 1},
         {"food-science-pack", 1},
     },
     },
@@ -497,7 +520,6 @@ data:extend({
 		{type = "unlock-recipe", recipe = "cooked-corn"},
 		{type = "unlock-recipe", recipe = "cooked-soy"},
 		{type = "unlock-recipe", recipe = "baked-potato"},
-    {type = "unlock-recipe", recipe = "cooked-fish-meat"},
 		{type = "unlock-recipe", recipe = "cooked-biter-meat"},
     },
     unit =
@@ -865,7 +887,7 @@ data:extend({
     name = "frying",
     icon = "__FoodIndustry__/graphics/technology/frying.png",
     icon_size = 128,
-    prerequisites = {"canola-oil", "potato-growth", "flour"},
+    prerequisites = {"canola-oil", "potato-growth", "flour", "fish-cooking"},
     effects =
     {  
 		{type = "unlock-recipe", recipe = "raw-fries"},
@@ -873,8 +895,8 @@ data:extend({
 		{type = "unlock-recipe", recipe = "biter-steak"},
 		{type = "unlock-recipe", recipe = "schnitzel"},
 		{type = "unlock-recipe", recipe = "popcorn"},
-    {type = "unlock-recipe", recipe = "fish-steak"},
-    {type = "unlock-recipe", recipe = "fish-and-chips"},
+        {type = "unlock-recipe", recipe = "fish-steak"},
+        {type = "unlock-recipe", recipe = "fish-and-chips"},
   },
     unit =
     {
@@ -944,7 +966,6 @@ data:extend({
 		{type = "unlock-recipe", recipe = "best-salad"},
 		{type = "unlock-recipe", recipe = "ketchup"},
 		{type = "unlock-recipe", recipe = "ketchup-fries"},
-    {type = "unlock-recipe", recipe = "fish-salad"},
   },
     unit =
     {
@@ -962,15 +983,15 @@ data:extend({
     name = "complex-foods",
     icon = "__FoodIndustry__/graphics/technology/complex-foods.png",
     icon_size = 128,
-    prerequisites = {"seasoning", "salad"},
+    prerequisites = {"seasoning", "salad", "fish-cooking"},
     effects =
     {  
-		{type = "unlock-recipe", recipe = "burger"},
-		{type = "unlock-recipe", recipe = "tofu-burger"},
 		{type = "unlock-recipe", recipe = "pizza"},
+		{type = "unlock-recipe", recipe = "burger"},
 		{type = "unlock-recipe", recipe = "tofu-pizza"},
-    {type = "unlock-recipe", recipe = "fish-burger"},
-    {type = "unlock-recipe", recipe = "fish-pizza"},
+		{type = "unlock-recipe", recipe = "tofu-burger"},
+        {type = "unlock-recipe", recipe = "fish-pizza"},
+        {type = "unlock-recipe", recipe = "fish-burger"},
   },
     unit =
     {
@@ -1304,6 +1325,56 @@ data:extend({
     },
     order = "w",
   },
+
+  -- fish technologies
+  {
+    type = "technology",
+    name = "fishing",
+    icon = "__FoodIndustry__/graphics/technology/fishing.png",
+    icon_size = 128,
+    prerequisites = {"automation"},
+    effects =
+    {
+        {type = "unlock-recipe", recipe = "fishing-inserter"},
+        {type = "unlock-recipe", recipe = "fish-meat"},
+        {type = "unlock-recipe", recipe = "cooked-fish-meat"},
+    },
+    unit =
+    {
+        time = 20,
+        count = 30,
+        ingredients =
+        {
+            {"food-science-pack", 1},
+        },
+    },
+    order = "w",
+  },
+  {
+    type = "technology",
+    name = "fish-cooking",
+    icon = "__FoodIndustry__/graphics/technology/fish-cooking.png",
+    icon_size = 128,
+    prerequisites = {"fishing", "cooking"},
+    effects =
+    {
+        {type = "unlock-recipe", recipe = "fish-meat-caviar-red"},
+        {type = "unlock-recipe", recipe = "cooked-fish-meat"},
+        {type = "unlock-recipe", recipe = "fish-salad"},
+        },
+    unit =
+    {
+        time = 30,
+        count = 40,
+        ingredients =
+        {
+            {"science-pack-2", 1},
+            {"food-science-pack", 1},
+        },
+    },
+    order = "w",
+  },
+
   -- Sleep technologies
   
 })
