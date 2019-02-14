@@ -151,7 +151,7 @@ data:extend({
     type = "recipe",
     name = "crystal",
     enabled = false,
-	icon = "__FoodIndustry__/graphics/icons/items/crystal.png",
+	icon = "__FoodIndustry__/graphics/icons/foods/crystal.png",
 	icon_size = 32,
 	category = "mixing",
 	subgroup = "food-items",
@@ -163,7 +163,9 @@ data:extend({
     },
       results = 
 	{
-		{type = "item", name = "crystal", amount = 1, probability = 0.3}
+		{type = "item", name = "crystal", amount = 1, probability = 0.2},
+		{type = "fluid", name = "water", amount = 210},
+		{ "stone", 3 }
 	},
 },
 
@@ -198,9 +200,9 @@ data:extend({
 	enabled = false,
 	icon = "__FoodIndustry__/graphics/icons/fluids/canola-oil.png",
 	icon_size = 32,
-	-- TODO разобраться почему не работает categories
+	-- TODO find out why it doesn't work categories
 	--categories = {"mixing", "chemistry"},
-	category = "mixing",
+	category = "chemistry",
 	subgroup = "food-intermediates",
 	energy_required = 2.5,
 	ingredients =

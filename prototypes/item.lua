@@ -52,8 +52,9 @@ data:extend({
     subgroup = "food-items",
     order = "w-b-d",
     stack_size = 200
-  },  
-  {
+  },
+  
+--[[   {
     type = "item",
     name = "crystal",
     icon = "__FoodIndustry__/graphics/icons/items/crystal.png",
@@ -62,7 +63,44 @@ data:extend({
     subgroup = "food-items",
     order = "w-b-e",
     stack_size = 50
-  }, 
+  }, ]]
+  { -- TODO to changelog
+    type = "capsule",
+    name = "crystal",
+    icon = "__FoodIndustry__/graphics/icons/foods/crystal.png",
+    icon_size = 32,
+    flags = {"goes-to-main-inventory"},
+    subgroup = "foods-species",
+    order = "w-a-a",
+    stack_size = 50,
+    capsule_action = {
+      attack_parameters = {
+        ammo_category = "capsule",
+        ammo_type = {
+          action = {
+            action_delivery = {
+              target_effects = {
+                damage = {
+                  amount = 0,
+                  type = "physical"
+                },
+                type = "damage"
+              },
+              type = "instant"
+            },
+            type = "direct"
+          },
+          category = "capsule",
+          target_type = "position"
+        },
+        cooldown = 0.6*60,
+        range = 0,
+        type = "projectile"
+      },
+      type = "use-on-self"
+    },
+  },
+
   {
     type = "item",
     name = "unprocessed-fertilizer",
@@ -271,7 +309,7 @@ data:extend({
     icon_size = 64,
     flags = {"goes-to-main-inventory"},
     subgroup = "drink-empty-packages",
-    order = "a-e",
+    order = "a-f",
 	  stack_size = 100,
   },
 	{
@@ -286,7 +324,7 @@ data:extend({
     fuel_emissions_multiplier = 3.4,
     --burnt_result = "",
     subgroup = "drink-empty-packages",
-    order = "a-g",
+    order = "a-h",
 	  stack_size = 200,
   },
 })

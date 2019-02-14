@@ -6,6 +6,7 @@ local foods = {
 --name,							stack,	cool,	category,				time,	amount,	type,	enabled,	ingredients,															tint for liquid color
 {"flask-pure-water",			10,		0.5,	"crafting-with-fluid",	3.0,	1,		"",		true,		{{"flask", 1}, {type="fluid", name="pure-water", amount=30}},			{r=0.0,g=0.6,b=1.0,a=0.6} },
 {"plastic-bottle-pure-water",	10,		0.5,	"crafting-with-fluid",	5.0,	1,		"",		false,		{{"plastic-bottle", 1}, {type="fluid", name="pure-water", amount=60}},	{r=0.0,g=0.5,b=1.0,a=0.5} },
+{"glass-bottle-pure-water",		10,		0.5,	"crafting-with-fluid",	6.0,	1,		"",		false,		{{"glass-bottle", 1}, {type="fluid", name="pure-water", amount=50}},	{r=0.0,g=0.5,b=1.0,a=0.8} },
 }
 
 
@@ -34,7 +35,11 @@ for i, f in pairs(foods) do
 		else
 			icon2 = "plastic-bottle-full-mask"
 		end		
+	elseif string.match(f[1], "glass%-bottle") == "glass-bottle" and data.raw.item["glass"] then
+		-- TODO add glass tara
 	end
+
+	if icon1 == "" or icon2 == "" then break end
 
 	data:extend({
 		{

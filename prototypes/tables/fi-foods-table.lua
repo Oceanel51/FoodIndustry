@@ -51,6 +51,8 @@ function foods_table()
 	{"fish-salad",						"fish",						35,		10,		{3,3,5,0},		70,		70,		40,		{} },
 	{"fish-and-chips",					"fish",						40,		-4,		{0,2,6,5},		65,		65,		45,		{} },
 	
+	{"crystal",							"salt",						10,		-20,	{-1,3,1,0},		20,		20,		-5,		{} },
+	
 	{"vegan-food-capsule",				"vegan-special",			50,		0,		{3,3,3,2},		50,		50,		100,	{{"drink_to_add_more_energy",1,180,{{"flask-pure-water",0.8}, {"plastic-bottle-pure-water",0.5},}},} },
 	{"food-capsule",					"meat-special",				50,		0,		{3,3,3,3},		50,		50,		100,	{{"drink_to_add_more_energy",1,180,{{"flask-pure-water",0.8}, {"plastic-bottle-pure-water",0.5},}},} },
 

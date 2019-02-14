@@ -29,7 +29,7 @@ for index, crop in pairs(trees) do
 			category = "crafting",
 			subgroup = crop[1],
 			energy_required = 0.75,
-			hidden=true,
+			hidden = true,
 			ingredients =
 			{
 			},
@@ -67,7 +67,7 @@ for index, crop in pairs(trees) do
 			{
 				{crop[1], 1}
 			},
-				results = 
+			results = 
 			{
 				{type = "item", name = crop[1].."-seeds", amount_min = math.floor(crop[6]-0.4), amount_max = math.floor(crop[6]+1.4)}
 			}
@@ -155,33 +155,33 @@ for index, crop in pairs(trees) do
 				minable =
 				{
 					mining_particle = "wooden-particle",
-					mining_time = 0.25,
+					mining_time = 0.35,
 					result = crop[1].."-seedling",
 					count = 1
 				},
 				emissions_per_tick = -0.0006,
 				max_health = 5,
 				collision_box = {{-0.1, -0.1}, {0.1, 0.1}},
-				selection_box = {{-0.5, -0.5}, {0.5, 0.5}},
+				selection_box = {{-0.35, -0.35}, {0.35, 0.35}},
 				subgroup = "intermediate-product",
 				vehicle_impact_sound = { filename = "__base__/sound/car-wood-impact.ogg", volume = 1.0 },
 				picture_safe =
 				{
 					filename = "__FoodIndustry__/graphics/entity/trees/"..crop[1].."-seedling_safe.png",
 					priority = "extra-high",
-					width = 200,
-					height = 163,
-					size = 0.3,
-					shift = {0, 0},
+					width = 64,
+					height = 52,
+					size = 0.8,
+					shift = {0.39, -0.662},
 				},
 				picture_set =
 				{
 					filename = "__FoodIndustry__/graphics/entity/trees/"..crop[1].."-seedling.png",
 					priority = "extra-high",
-					width = 200, -- TODO check sizes
-					height = 163,
-					size = 0.3,
-					shift = {0, 0},
+					width = 64, -- TODO check sizes
+					height = 52,
+					size = 0.8,
+					shift = {0.39, -0.662},
 				},
 				trigger_radius = 0,
 			},
@@ -250,7 +250,7 @@ for index, crop in pairs(trees) do
 			subgroup = "trees",
 			pictures = {
 				{
-					filename = "__FoodIndustry__/graphics/entity/trees/"..crop[1]..".png",
+					filename = "__FoodIndustry__/graphics/entity/trees/"..crop[1].."-fertile-tree.png",
 					priority = "high",
 					width = 945,
 					height = 771,
@@ -320,7 +320,7 @@ for index, crop in pairs(trees) do
 				{
 					filename = "__FoodIndustry__/graphics/entity/trees/"..crop[1].."-wild-tree.png",
 					priority = "high",
-					width = 945, -- TODO check sizes
+					width = 945,
 					height = 771,
 					scale = crop[16],
 					shift = {0.89, -1.71},

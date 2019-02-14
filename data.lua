@@ -38,6 +38,7 @@ require("prototypes.drinks.basic-recipe")
 
 -- substances
 require("prototypes.substances.substances-item")
+--require("prototypes.substances.substances-recipe")
 
 -- trees
 require("prototypes.trees.trees")

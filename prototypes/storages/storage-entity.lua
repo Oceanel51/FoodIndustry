@@ -38,7 +38,7 @@ data:extend(
         { position = {0, -0.95} },
         { position = {0, 0.95} }
       },
-      -- TODO set_filter = "water", "pure-water", "ketchup", "soy-milk", "soy-sauce", "canola-oil",
+      -- set_filter = "water", "pure-water", "ketchup", "soy-milk", "soy-sauce", "canola-oil",
     },
     two_direction_only = true,
     window_bounding_box = {{0.2, -0.39}, {-0.2, 0.075}},
