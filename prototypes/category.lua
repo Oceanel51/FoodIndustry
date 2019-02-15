@@ -86,6 +86,12 @@ data:extend(
     group = "food-industry-foods",
     order = "w-g",
   },
+  {
+    type = "item-subgroup",
+    name = "foods-vegan",
+    group = "food-industry-foods",
+    order = "w-g",
+  },
 --[[   {
     type = "item-subgroup",
     name = "foods-fruit",

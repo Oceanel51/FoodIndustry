@@ -45,7 +45,8 @@ data:extend({
 	icon = "__FoodIndustry__/graphics/icons/items/biter-meat.png",
 	icon_size = 32,
 	category = "crafting",
-	subgroup = "foods-other",
+	subgroup = "foods-meat",
+	order = "w-d-a",
 	energy_required = 0.5,
 	ingredients =
 	{
@@ -146,7 +147,9 @@ data:extend({
 		{type = "fluid", name = "petroleum-gas", amount = 5}
 	},
 	allow_as_intermediate = false,
-    },
+		},
+	
+	-- species
 	{
     type = "recipe",
     name = "crystal",
@@ -453,51 +456,52 @@ data:extend({
 	{
 		{"burner-cooker", 1}
 	}
-    },	
-	{
-    type = "recipe",
-    name = "electric-cooker",
-    enabled = false,
+	},
+
+  {
+	type = "recipe",
+	name = "electric-cooker",
+	enabled = false,
 	icon = "__FoodIndustry__/graphics/icons/entities/electric-cooker.png",
 	icon_size = 32,
 	category = "crafting",
 	subgroup = "food-machines",
 	energy_required = 2.5,
-    ingredients =
-    {
+	ingredients =
+	{
 		{"burner-cooker", 1},
 		{"electronic-circuit", 4},
 		{"copper-cable", 10},
 		{"steel-plate", 2},
-    },
-      results = 
+	},
+	results = 
 	{
 		{"electric-cooker", 1}
 	}
-    },	
+  },
 	
 	
-	
-		
-	{
-    type = "recipe",
-    name = "corn-flour",
-    enabled = false,
+  {
+	type = "recipe",
+	name = "corn-flour",
+	enabled = false,
 	icon = "__FoodIndustry__/graphics/icons/items/corn-flour.png",
 	icon_size = 32,
 	category = "advanced-crafting",
-	subgroup = "food-intermediates",
+	subgroup = "corn",
+	orger = "w-d-c-y", -- TODO to understand why not sorted as needed
 	energy_required = 1.0,
-    ingredients =
-    {
+	ingredients =
+	{
 		{"corn-seeds", 10},
-    },
-      results = 
+	},
+	results = 
 	{
 		{"corn-flour", 3}
 	}
-    },
-	{
+  },
+	
+  {
     type = "recipe",
     name = "soy-milk",
     enabled = false,
@@ -534,26 +538,29 @@ data:extend({
 	{
 		{type = "fluid", name = "soy-sauce", amount = 2}
 	}
-    },
-	{
-    type = "recipe",
-    name = "raw-fries",
-    enabled = false,
+  },
+
+  {
+	type = "recipe",
+	name = "raw-fries",
+	enabled = false,
 	icon = "__FoodIndustry__/graphics/icons/items/raw-fries.png",
 	icon_size = 32,
 	category = "crafting",
-	subgroup = "food-intermediates",
+	subgroup = "potato",
+	order = "w-d-c-y",
 	energy_required = 2.0,
-    ingredients =
-    {
+	ingredients =
+	{
 		{"potato", 2},
-    },
-      results = 
+	},
+	results = 
 	{
 		{"raw-fries", 1}
 	}
-    },
-	{
+  },
+
+  {
     type = "recipe",
     name = "ketchup",
     enabled = false,

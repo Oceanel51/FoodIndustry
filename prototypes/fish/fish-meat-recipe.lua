@@ -1,28 +1,5 @@
 data:extend({
 
--- fish-meat-red
-  {
-    type = "item",
-    name = "fish-meat-red",
-    icon = "__FoodIndustry__/graphics/icons/items/fish-meat-red.png",
-    icon_size = 32,
-    flags = {"goes-to-main-inventory"},
-    subgroup = "foods-fish",
-    order = "w-a-a",
-    stack_size = 50
-  },
-
-  {
-    type = "item",
-    name = "caviar-red",
-    icon = "__FoodIndustry__/graphics/icons/foods/caviar-red.png",
-    icon_size = 32,
-    flags = {"goes-to-main-inventory"},
-    subgroup = "foods-fish",
-    order = "w-a-b",
-    stack_size = 100
-  },
-
 -- fish-meat
   {
     type = "recipe",
@@ -45,12 +22,12 @@ data:extend({
     },
   },
 
--- fish-meat with caviar-red
+-- fish-meat with fish-caviar-red
   {
     type = "recipe",
-    name = "fish-meat-caviar-red",
+    name = "fish-meat-fish-caviar-red",
     enabled = false,
-    icon = "__FoodIndustry__/graphics/icons/recipes/fish-meat-caviar-red.png",
+    icon = "__FoodIndustry__/graphics/icons/recipes/fish-meat-fish-caviar-red.png",
     icon_size = 32,
     category = "crafting-with-fluid",
     subgroup = "foods-fish",
@@ -62,8 +39,8 @@ data:extend({
     },
     results = 
     {
-        {"fish-meat-red", 4},
-        {type = "item", name = "caviar-red", amount = 1, probability = 0.25},
+        {"fish-meat-red", 5},
+        {type = "item", name = "fish-caviar-red", amount = 1, probability = 0.25},
         {type = "fluid", name = "water", amount = 20},
     },
   },

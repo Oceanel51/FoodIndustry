@@ -14,48 +14,60 @@ end
 
 function foods_table()
 	local foods = {
-	--  1						  2		  3			  4		  5
-	--name,						energy,	fullness,	health,	effect
-
-	--  1								  2							  3		  4			  5			  6		  7		  8		  9
-	--name,								type,						energy,	water,	{V,M,C,F},		fullness, c_f,	health,	effect/s
-	{"corn",							"vegan",					5,		-2,		{1,2,0.5,0},	24,		24,		5,		{} },
-	{"cucumber",						"vegan",					6,		6,		{2.5,3.2,0,0},	25,		25,		10,		{} },
-	{"tomato",							"vegan",					4,		5,		{3.4,1.8,0,0},	16,		16,		12,		{} },
-	{"lettuce",							"vegan",					3,		5,		{3,2,0,0},		8,		8,		3,		{} },
-	{"cooked-corn",						"vegan",					12,		3,		{0,3.4,2,0},	35,		35,		20,		{} },
-	{"corn-bread",						"vegan-fat",				25,		-2,		{0,1,4,1},		55,		55,		30,		{} },
-	{"popcorn",							"vegan-fat",				4,		-3,		{0,0,1.5,2.2},	14,		14,		10,		{} },
-	{"basic-salad",						"vegan-gourmet",			25,		12,		{8,4,1,0},		40,		40,		40,		{} },
-	{"cooked-soy",						"vegan",					2,		-1,		{0,2,2,1},		5,		5,		5,		{} },
-	{"baked-potato",					"vegan-gourmet",			10,		0,		{2,4,2,1},		30,		0,		30,		{} },
-	{"fries",							"vegan-fat",				20,		-5,		{0,0,3,4},		55,		0,		30,		{} },
-	{"ketchup-fries",					"vegan-fat",				25,		-2,		{0,0,6,6},		70,		0,		45,		{} },
-	{"biter-meat",						"meat",						15,		-15,	{0,0,3,8},		55,		55,		-100,	{{"energy_usage",-0.5,600},} },
-	{"biter-steak",						"meat",						30,		-10,	{0,0,6,13},		70,		70,		-30,	{} },
-	{"schnitzel",						"meat",						35,		-10,	{0,0,10,15},	80,		0,		-40,	{} },
-	{"pickles",							"salt-gourmet",				5,		-5,		{1,2,1,0},		6,		0,		5,		{} },
-	{"tofu",							"vegan",					25,		0,		{3,2,7,5},		60,		0,		15,		{} },
-	{"pizza",							"meat",						70,		-9,		{1,2,6,12},		95,		95,		50,		{} },
-	{"burger",							"meat-gourmet",				75,		-10,	{1,1,10,14},	100,	100,	50,		{} },
-	{"tofu-pizza",						"vegan",					65,		-7,		{1,2,11,7},		95,		0,		70,		{} },
-	{"tofu-burger",						"vegan-gourmet",			60,		-8,		{1,2,13,9},		100,	0,		70,		{} },
-	{"best-salad",						"vegan-gourmet-healthy",	45,		18,		{14,8,6,0},		70,		0,		180,	{} },
-	{"cooked-biter-meat",				"meat",						20,		-5,		{0,1,4,10},		60,		0,		-50,	{} },
+	--  1								  2							  3		  4			  5				  6		  7		  8		  9
+	--name,								type,						energy,	water,	{V,M,C,F},			fullness, c_f,	health,	effect/s
+	{"corn",							"vegan-substance1",			5,		-2,		{1,2,0.5,0},		24,		24,		5,		{} },
+	{"cucumber",						"vegan-substance1",			6,		5,		{2.5,3.2,0,0},		25,		25,		10,		{} },
+	{"tomato",							"vegan-substance1",			4,		2,		{3.4,1.8,0,0},		16,		16,		12,		{} },
+	{"lettuce",							"vegan-substance1",			3,		1,		{2.2,1.4,0,-0.2},	8,		8,		2,		{} },
+	{"cooked-corn",						"vegan",					12,		3,		{0,3.4,2,0},		35,		35,		20,		{} },
+	{"corn-bread",						"vegan-fat",				25,		-2,		{0,1,4,1},			55,		55,		30,		{} },
+	{"popcorn",							"vegan-fat",				4,		-3,		{0,0,1.5,2.2},		14,		14,		10,		{} },
+	{"basic-salad",						"vegan-gourmet",			25,		12,		{8,4,1,0},			40,		40,		40,		{} },
+	{"cooked-soy",						"vegan",					2,		-1,		{0,2,2,1},			5,		5,		5,		{} },
+	{"baked-potato",					"vegan-gourmet",			10,		0,		{2,4,2,1},			30,		0,		30,		{} },
+	{"fries",							"vegan-fat",				20,		-5,		{0,0,3,4},			55,		0,		30,		{} },
+	{"ketchup-fries",					"vegan-fat",				25,		-2,		{0,0,6,6},			70,		0,		45,		{} },
+	{"pickles",							"salt-gourmet",				5,		-5,		{1,2,1,0},			6,		0,		5,		{} },
+	{"best-salad",						"vegan-gourmet-healthy",	45,		18,		{14,8,6,0},			70,		0,		180,	{} },
+	{"tofu",							"vegan",					25,		0,		{3,2,7,5},			60,		0,		15,		{} },
+	{"tofu-pizza",						"vegan",					65,		-7,		{1,2,11,7},			95,		0,		70,		{} },
+	{"tofu-burger",						"vegan-gourmet",			60,		-8,		{1,2,13,9},			100,	0,		70,		{} },
+	--fruit
+	{"apple",							"fruit-vegan-substance1",	5,		3,		{1.8,2.5,0,0},		16,		16,		4,		{{"add_more_drinks",0.2,180},} },
+	{"orange",							"fruit-vegan-substance1",	6,		1,		{3.5,1.4,0,0},		21,		21,		6,		{{"add_more_energy",0.2,180},} },
+	--meat
+	{"biter-meat",						"meat-substance1",			15,		-15,	{0,0,2.5,4},		45,		45,		-60,	{} },
+	{"biter-steak",						"meat",						30,		-10,	{0,0,6,13},			70,		70,		-30,	{} },
+	{"schnitzel",						"meat",						35,		-10,	{0,0,10,15},		80,		0,		-40,	{} },
+	{"cooked-biter-meat",				"meat",						20,		-5,		{0,1,4,10},			60,		0,		-50,	{} },
+	{"pizza",							"meat",						70,		-9,		{1,2,6,12},			95,		95,		50,		{} },
+	{"burger",							"meat-gourmet",				75,		-10,	{1,1,10,14},		100,	100,	50,		{} },
 	-- fishes
-	{"caviar-red",						"fish-gourmet-healthy",		35,		10,		{12,0,8,5},		30,		30,		120,	{} },
-	{"cooked-fish-meat",				"fish",						15,		-2,		{0,0,3,2},		30,		30,		20,		{} },
-	{"fish-steak",						"fish",						28,		1,		{0,1,3.5,3},	70,		70,		30,		{} },
-	{"fish-pizza",						"fish",						65,		-1,		{0,2,6,8},		95,		95,		45,		{} },
-	{"fish-burger",						"fish-gourmet",				55,		0,		{0,3,5,6},		100,	100,	50,		{} },
-	{"fish-salad",						"fish",						35,		10,		{3,3,5,0},		70,		70,		40,		{} },
-	{"fish-and-chips",					"fish",						40,		-4,		{0,2,6,5},		65,		65,		45,		{} },
-	
-	{"crystal",							"salt",						10,		-20,	{-1,3,1,0},		20,		20,		-5,		{} },
-	
-	{"vegan-food-capsule",				"vegan-special",			50,		0,		{3,3,3,2},		50,		50,		100,	{{"drink_to_add_more_energy",1,180,{{"flask-pure-water",0.8}, {"plastic-bottle-pure-water",0.5},}},} },
-	{"food-capsule",					"meat-special",				50,		0,		{3,3,3,3},		50,		50,		100,	{{"drink_to_add_more_energy",1,180,{{"flask-pure-water",0.8}, {"plastic-bottle-pure-water",0.5},}},} },
+	{"fish-meat-red",					"fish-substance1",			15,		-10,	{0,0,4,2.5},		45,		45,		-60,	{} },
+	{"fish-caviar-red",					"fish-gourmet-healthy",		35,		10,		{9,0,7,3},			30,		30,		120,	{} },
+	{"cooked-fish-meat",				"fish",						15,		-2,		{0,0,3,2},			30,		30,		20,		{} },
+	{"fish-salad",						"fish",						35,		10,		{3,3,5,0},			70,		70,		40,		{} },
+	{"fish-steak",						"fish",						28,		1,		{0,1,3.5,3},		70,		70,		30,		{} },
+	{"fish-pizza",						"fish",						65,		-1,		{0,2,6,8},			95,		95,		45,		{} },
+	{"fish-burger",						"fish-gourmet",				55,		0,		{0,3,5,6},			100,	100,	50,		{} },
+	{"fish-and-chips",					"fish",						40,		-4,		{0,2,6,5},			65,		65,		45,		{} },
+	-- species
+	{"crystal",							"salt",						10,		-20,	{-1,3,0.5,0},		20,		20,		-5,		{{"drinks_usage",-0.4,900},} },
+	-- TODO food capsules
+	{"substance-v",						"vegan-special",			-5,		-10,	{1,0,0,0},		7,		7,		0,			{} },
+	{"substance-m",						"vegan-special",			-5,		-10,	{0,1,0,0},		7,		7,		0,			{} },
+	{"substance-c",						"vegan-special",			-5,		-10,	{0,0,1,0},		7,		7,		0,			{} },
+	{"substance-f",						"vegan-special",			-5,		-10,	{0,0,0,1},		7,		7,		0,			{} },
+	{"simple-food-vm-capsule",			"vegan-special",			50,		0,		{3,3,0,0},		50,		50,		30,			{{"drink_to_add_more_energy",0.5,360,{{"flask-pure-water",0.8}, {"plastic-bottle-pure-water",0.5},}},} },
+	{"simple-food-vc-capsule",			"vegan-special",			50,		0,		{3,0,3,0},		50,		50,		30,			{{"drink_to_add_more_energy",0.5,360,{{"flask-pure-water",0.8}, {"plastic-bottle-pure-water",0.5},}},} },
+	{"simple-food-mc-capsule",			"vegan-special",			50,		0,		{0,3,3,0},		50,		50,		30,			{{"drink_to_add_more_energy",0.5,360,{{"flask-pure-water",0.8}, {"plastic-bottle-pure-water",0.5},}},} },
+	{"simple-food-cf-capsule",			"vegan-special",			50,		0,		{0,0,3,2},		60,		60,		30,			{{"drink_to_add_more_energy",0.5,360,{{"flask-pure-water",0.8}, {"plastic-bottle-pure-water",0.5},}},} },
+	{"simple-food-f-capsule",			"vegan-special",			50,		0,		{-1,0,0,3},		60,		60,		30,			{{"drink_to_add_more_energy",0.5,360,{{"flask-pure-water",0.8}, {"plastic-bottle-pure-water",0.5},}},} },
+	--{"vegan-food-capsule",			"vegan-special",			50,		0,		{3,3,3,2},		50,		50,		100,	{{"drink_to_add_more_energy",1,180,{{"flask-pure-water",0.8}, {"plastic-bottle-pure-water",0.5},}},} },
+	--{"food-capsule",					"meat-special",				50,		0,		{3,3,3,3},		50,		50,		100,	{{"drink_to_add_more_energy",1,180,{{"flask-pure-water",0.8}, {"plastic-bottle-pure-water",0.5},}},} },
 
+	-- effect capsules
 	{"simple-speed-capsule",			"special",					30,		0,		{0,0,0,0},		30,		30,		50,		{{"speed",0.25,1200},} },
 	{"simple-crafting-capsule",			"special",					30,		0,		{0,0,0,0},		30,		30,		50,		{{"crafting",4,1200},} },
 	{"simple-mining-capsule",			"special",					30,		0,		{0,0,0,0},		30,		30,		50,		{{"mining",4,3600},} },
