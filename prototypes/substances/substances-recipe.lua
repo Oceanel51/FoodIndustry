@@ -31,7 +31,6 @@ for index, food in pairs(foods) do
 				{type = "item", name = substance_type, amount = math.max(food[5][1],food[5][2],food[5][3],food[5][4]) * 0.2},
 				{type = "item", name = substance_type, amount = 1, probability = tonumber(string.format("%.1f", math.max(food[5][1],food[5][2],food[5][3],food[5][4]) * 0.2)) % 1}
 			}
-	
 		end
 
 		data:extend({
@@ -39,7 +38,7 @@ for index, food in pairs(foods) do
 			type = "recipe",
 			--      food-to-substances
 			name = food[1].."-to-substances-1",
-			enabled = true,
+			enabled = false,
 			icon = "__FoodIndustry__/graphics/icons/substances/"..substance_type..".png",
 			icon_size = 32,
 			category = "cooking",
@@ -53,7 +52,7 @@ for index, food in pairs(foods) do
 			allow_as_intermediate = false,
 			allow_intermediate = false,
 		},
-		-- TODO тут сразу сделать свою подкатегорию для рецептов
+		-- make subgroup
 		{
 			type = "item-subgroup",
 			name = "substance1",
@@ -62,6 +61,9 @@ for index, food in pairs(foods) do
 		},
 		
 		})
+		
+		-- add recipe to technology
+		table.insert(data.raw.technology["cooking"].effects,{recipe = food[1].."-to-substances-1", type = "unlock-recipe"})
 		
 	end
 
