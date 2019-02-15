@@ -38,3 +38,12 @@ data:extend({
   },
   
 })
+
+data:extend({
+  {
+    type = "custom-input",
+    name = "get-drink-click",
+    key_sequence = "mouse-button-1",
+    consuming = "none"
+  },
+})

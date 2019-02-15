@@ -12,6 +12,8 @@ require("prototypes.scripts.fruit-scissors")
 require("prototypes.scripts.cattle")
 require("prototypes.scripts.cattle-grabber")
 
+require("prototypes.drinks.get-drink")
+
 
 script.on_init(OnInit)
 script.on_load(OnLoad)
@@ -71,6 +73,7 @@ function OnInit()
 	initFruitScissors()
 	initCattle()
 	initCattleGrabber()
+	initGetDrink()
 
 	for index,player in pairs(game.players) do
 		if player.connected then

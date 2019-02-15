@@ -322,7 +322,7 @@ end
 
 
 function figui.debug_create(index, player)
-	local centerGui = player.gui.center
+	local centerGui = player.gui.left
 	
 	if centerGui.bar then
 		centerGui.bar.destroy()
@@ -384,7 +384,7 @@ function figui.debug_create(index, player)
 
 end
 function figui.debug_update(index, player)
-	local centerGui = player.gui.center
+	local centerGui = player.gui.left
 
     if player == nil then
         return
