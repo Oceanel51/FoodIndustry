@@ -169,7 +169,7 @@ for index, crop in pairs(crops) do
 			  results = 
 			{
 				{type = "item", name = crop[1]..str, amount_min = crop[4], amount_max = crop[4]*1.6},
-				{type = "item", name = "straw", amount_min = crop[11]*7, amount_max = crop[11]*9},
+				{type = "item", name = "straw", amount_min = crop[11]*9, amount_max = crop[11]*17},
 				{type = "item", name = "raw-straw", amount_min = crop[11]*2.8, amount_max = crop[11]*4.2},
 			},
 			allow_as_intermediate = false,
@@ -193,8 +193,8 @@ for index, crop in pairs(crops) do
 			  results = 
 			{
 				{type = "item", name = crop[1]..str, amount_min = crop[4]*1.2, amount_max = crop[4]*2.4},
-				{type = "item", name = "straw", amount_min = crop[11]*4.5, amount_max = crop[11]*6},
-				{type = "item", name = "raw-straw", amount_min = crop[11]*1.7, amount_max = crop[11]*3.5},
+				{type = "item", name = "straw", amount_min = crop[11]*7, amount_max = crop[11]*9},
+				{type = "item", name = "raw-straw", amount_min = crop[11]*4.5, amount_max = crop[11]*6},
 			},
 			allow_as_intermediate = false,
 		},	

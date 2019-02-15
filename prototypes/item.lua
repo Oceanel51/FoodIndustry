@@ -10,7 +10,7 @@ data:extend({
     order = "w-b-a",
     stack_size = 100,
 	fuel_category = "plant",
-	fuel_value = "5J"
+	fuel_value = "5.84J"
   }, 
   {
     type = "item",
@@ -22,7 +22,7 @@ data:extend({
     order = "w-b-b",
     stack_size = 200,
 	fuel_category = "plant",
-	fuel_value = "0.5J",
+	fuel_value = "0.76J",
 	--fuel_emission_multiplier = 1.0,
 	effectivity = 0.8,
   }, 
@@ -220,15 +220,12 @@ data:extend({
     flags = {"goes-to-main-inventory"},
     subgroup = "science-pack",
     order = "h",
-	  durability = 1,
+    durability = 1,
     stack_size = 200
-  },   
-   
-   
-   
-   
+  },
   
-	{
+  
+  {
     type = "item",
     name = "corn-flour",
     icon = "__FoodIndustry__/graphics/icons/items/corn-flour.png",
@@ -236,9 +233,9 @@ data:extend({
     flags = {"goes-to-main-inventory"},
     subgroup = "food-intermediates",
     order = "w-d",
-	  stack_size = 100,
+    stack_size = 100,
   },
-	{
+  {
     type = "item",
     name = "raw-fries",
     icon = "__FoodIndustry__/graphics/icons/items/raw-fries.png",
@@ -248,16 +245,15 @@ data:extend({
     order = "w-d",
 	  stack_size = 10,
   },
-	
-  
+
   {
     type = "capsule",
     name = "biter-meat",
     icon = "__FoodIndustry__/graphics/icons/items/biter-meat.png",
     icon_size = 32,
     flags = {"goes-to-main-inventory"},
-    subgroup = "foods",
-    order = "w-e",
+    subgroup = "foods-meat",
+    order = "w-d-a",
     stack_size = 10,
 	capsule_action = {
         attack_parameters = {

@@ -1,11 +1,11 @@
 -- main data and foods
 require("prototypes.item")
 require("prototypes.fluids")
+require("prototypes.crop")
 require("prototypes.recipe")
 require("prototypes.foods-item-recipe")
 require("prototypes.composting-recipe")
 require("prototypes.composting-auto-recipe")
-require("prototypes.crop")
 require("prototypes.entity")
 require("prototypes.technology")
 require("prototypes.category")
@@ -13,7 +13,8 @@ require("prototypes.achievements")
 require("prototypes.plants")
 
 -- fishes
-require("prototypes.fish.fish-meat-item-recipe")
+require("prototypes.fish.fish-meat-item")
+require("prototypes.fish.fish-meat-recipe")
 require("prototypes.fish.fishing-inserter")
 -- cattles
 require("prototypes.cattle.cattle-grabber")
@@ -39,7 +40,7 @@ require("prototypes.drinks.basic-recipe")
 
 -- substances
 require("prototypes.substances.substances-item")
---require("prototypes.substances.substances-recipe")
+require("prototypes.substances.substances-recipe")
 
 -- trees
 require("prototypes.trees.trees")

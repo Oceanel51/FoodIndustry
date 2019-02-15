@@ -521,6 +521,11 @@ data:extend({
 		{type = "unlock-recipe", recipe = "cooked-soy"},
 		{type = "unlock-recipe", recipe = "baked-potato"},
 		{type = "unlock-recipe", recipe = "cooked-biter-meat"},
+		{type = "unlock-recipe", recipe = "simple-food-vm-capsule"},
+		{type = "unlock-recipe", recipe = "simple-food-vc-capsule"},
+		{type = "unlock-recipe", recipe = "simple-food-mc-capsule"},
+		{type = "unlock-recipe", recipe = "simple-food-cf-capsule"},
+		{type = "unlock-recipe", recipe = "simple-food-f-capsule"},
     },
     unit =
     {
@@ -1358,7 +1363,7 @@ data:extend({
     prerequisites = {"fishing", "cooking"},
     effects =
     {
-        {type = "unlock-recipe", recipe = "fish-meat-caviar-red"},
+        {type = "unlock-recipe", recipe = "fish-meat-fish-caviar-red"},
         {type = "unlock-recipe", recipe = "cooked-fish-meat"},
         {type = "unlock-recipe", recipe = "fish-salad"},
         },
