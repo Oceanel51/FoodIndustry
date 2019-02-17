@@ -33,14 +33,21 @@ local foods = {
 {"schnitzel",						"foods-meat",		10,		0.5,	"cooking",				12.0,	1,		false,		"w-d-c",		{{"biter-meat", 1}, {"corn-flour", 1}, {type="fluid", name="canola-oil", amount=5}} },
 {"pizza",							"foods-meat",		5,		0.5,	"cooking",				5.0,	1,		false,		"w-d-d",		{{"corn-flour", 2}, {"tomato", 3}, {"biter-steak", 1}, {type="fluid", name="ketchup", amount=2}} },
 {"burger",							"foods-meat",		5,		0.5,	"cooking",				5.0,	1,		false,		"w-d-e",		{{"corn-bread", 1}, {"tomato", 2}, {"pickles", 2}, {"lettuce", 1}, {"biter-steak", 1}, {type="fluid", name="ketchup", amount=1}} },
--- capsules
-{"simple-food-vm-capsule",			"foods-cooked",		50,		0.5,	"cooking",				60.0,	1,		false,		"w-d-b",		{{"substance-v", 6}, {"substance-m", 6}} },
-{"simple-food-vc-capsule",			"foods-cooked",		50,		0.5,	"cooking",				60.0,	1,		false,		"w-d-b",		{{"substance-v", 6}, {"substance-c", 6}} },
-{"simple-food-mc-capsule",			"foods-cooked",		50,		0.5,	"cooking",				60.0,	1,		false,		"w-d-b",		{{"substance-m", 6}, {"substance-c", 6}} },
-{"simple-food-cf-capsule",			"foods-cooked",		50,		0.5,	"cooking",				60.0,	1,		false,		"w-d-b",		{{"substance-c", 6}, {"substance-f", 6}} },
-{"simple-food-f-capsule",			"foods-cooked",		50,		0.5,	"cooking",				60.0,	1,		false,		"w-d-b",		{{"substance-f", 6}} },
-
-{"vegan-food-capsule",				"foods-cooked",		50,		0.5,	"cooking",				60.0,	3,		false,	"w-d-a",			{{"fries", 1}, {"tofu-burger", 1}, {"best-salad", 1}, {"crystal", 1}} },
+-- food capsules
+{"simple-food-vmc-capsule",			"food-capsules",	50,		0.5,	"cooking",				20.0,	1,		false,		"w-cf-a",		{{"substance-v", 6}, {"substance-m", 6}, {"substance-c", 6}} },
+{"simple-food-vmf-capsule",			"food-capsules",	50,		0.5,	"cooking",				20.0,	1,		false,		"w-cf-b",		{{"substance-v", 6}, {"substance-m", 6}, {"substance-f", 5}} },
+{"simple-food-mcf-capsule",			"food-capsules",	50,		0.5,	"cooking",				20.0,	1,		false,		"w-cf-c",		{{"substance-m", 6}, {"substance-c", 6}, {"substance-f", 5}} },
+{"simple-food-vcf-capsule",			"food-capsules",	50,		0.5,	"cooking",				20.0,	1,		false,		"w-cf-d",		{{"substance-v", 6}, {"substance-c", 6}, {"substance-f", 5}} },
+{"basic-food-vm-capsule",			"food-capsules",	50,		0.5,	"advanced-cooking",		40.0,	1,		false,		"w-cf-e",		{{"substance-v", 20}, {"substance-m", 20}, {"crystal", 1}, {type="fluid", name="pure-water", amount=20}} },
+{"basic-food-vc-capsule",			"food-capsules",	50,		0.5,	"advanced-cooking",		40.0,	1,		false,		"w-cf-f",		{{"substance-v", 20}, {"substance-c", 20}, {"crystal", 1}, {type="fluid", name="pure-water", amount=20}} },
+{"basic-food-mc-capsule",			"food-capsules",	50,		0.5,	"advanced-cooking",		40.0,	1,		false,		"w-cf-g",		{{"substance-m", 20}, {"substance-c", 20}, {"crystal", 1}, {type="fluid", name="pure-water", amount=20}} },
+{"basic-food-cf-capsule",			"food-capsules",	50,		0.5,	"advanced-cooking",		40.0,	1,		false,		"w-cf-h",		{{"substance-c", 20}, {"substance-f", 20}, {"crystal", 1}, {type="fluid", name="pure-water", amount=20}} },
+{"advanced-food-v-capsule",			"food-capsules",	10,		0.5,	"advanced-cooking",		60.0,	1,		false,		"w-cf-k",		{{"substance-v", 50}, {"crystal", 4}, {type="fluid", name="pure-water", amount=60}} },
+{"advanced-food-m-capsule",			"food-capsules",	10,		0.5,	"advanced-cooking",		60.0,	1,		false,		"w-cf-l",		{{"substance-m", 50}, {"crystal", 4}, {type="fluid", name="pure-water", amount=60}} },
+{"advanced-food-c-capsule",			"food-capsules",	10,		0.5,	"advanced-cooking",		60.0,	1,		false,		"w-cf-m",		{{"substance-c", 50}, {"crystal", 4}, {type="fluid", name="pure-water", amount=60}} },
+{"advanced-food-f-capsule",			"food-capsules",	10,		0.5,	"advanced-cooking",		60.0,	1,		false,		"w-cf-n",		{{"substance-f", 50}, {"crystal", 4}, {type="fluid", name="pure-water", amount=60}} },
+-- TODO remove this capsules
+{"vegan-food-capsule",			"foods-cooked",		50,		0.5,	"cooking",				60.0,	3,		false,	"w-d-a",			{{"fries", 1}, {"tofu-burger", 1}, {"best-salad", 1}, {"crystal", 1}} },
 {"food-capsule",					"foods-cooked",		50,		0.5,	"cooking",				60.0,	3,		false,	"w-d-b",			{{"fries", 1}, {"burger", 1}, {"best-salad", 1}, {"crystal", 1}} },
 
 {"simple-speed-capsule",			"effect",			100,	0.5,	"cooking",				80.0,	3,		true,	"w-capsule-a-aa",	{{"vegan-food-capsule", 5}, {"cucumber", 5}, {"lettuce", 15}, {"inserter", 2}} },
