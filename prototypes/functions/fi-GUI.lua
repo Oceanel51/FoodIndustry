@@ -322,7 +322,7 @@ end
 
 
 function figui.debug_create(index, player)
-	local centerGui = player.gui.left
+	local centerGui = player.gui.top
 	
 	if centerGui.bar then
 		centerGui.bar.destroy()
@@ -341,14 +341,9 @@ function figui.debug_create(index, player)
 	if not centerGui.frame.flow1.label1c then
 		centerGui.frame.flow1.add({type="label", name="label1", caption="speed 1:", style = "fi-label", align="right",})
 		centerGui.frame.flow1.add({type="label", name="label1c", caption="", style = "fi-label", align="right",})
-	end
 
-	if not centerGui.frame.flow1c then
-		centerGui.frame.add{type = "flow", name = "flow1c", right_padding = 0, center_padding = 0, direction = "horizontal"}
-	end
-	if not centerGui.frame.flow1c.label2c then
-		centerGui.frame.flow1c.add({type="label", name="label2", caption="speedc 2:", style = "fi-label", align="right",})
-		centerGui.frame.flow1c.add({type="label", name="label2c", caption="", style = "fi-label", align="right",})
+		centerGui.frame.flow1.add({type="label", name="label2", caption="/ speed character:", style = "fi-label", align="right",})
+		centerGui.frame.flow1.add({type="label", name="label2c", caption="", style = "fi-label", align="right",})
 	end
 
 	-- crafting speed
@@ -384,14 +379,14 @@ function figui.debug_create(index, player)
 
 end
 function figui.debug_update(index, player)
-	local centerGui = player.gui.left
+	local centerGui = player.gui.top
 
     if player == nil then
         return
     end
 
 	centerGui.frame.flow1.label1c.caption = player.character_running_speed_modifier
-	centerGui.frame.flow1c.label2c.caption = player.force.character_running_speed_modifier
+	centerGui.frame.flow1.label2c.caption = player.force.character_running_speed_modifier
 	
 	centerGui.frame.flow2.label1c.caption = player.character_crafting_speed_modifier
 

@@ -28,13 +28,11 @@ local productivity_recipes = {
     "basic-oil-processing",
     "advanced-oil-processing"
 }
-
 for i, recipe in pairs(productivity_recipes) do
 	table.insert(data.raw.module["productivity-module"].limitation, recipe)
 	table.insert(data.raw.module["productivity-module-2"].limitation, recipe)
 	table.insert(data.raw.module["productivity-module-3"].limitation, recipe)
 end
-
 
 
 local biter_drops = {
@@ -57,8 +55,6 @@ local biter_drops = {
 	{"unit-spawner", "biter-spawner",	 "biter-meat",	1,	 	2,	4},
 	{"unit-spawner", "spitter-spawner",	 "biter-meat",	1,		2,	4},
 }
-
-
 for index,d in pairs(biter_drops) do
 	if data.raw[d[1]] then
 		if data.raw[d[1]][d[2]] then
