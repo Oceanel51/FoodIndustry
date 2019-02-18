@@ -515,26 +515,25 @@ data:extend({
     icon_size = 128,
     prerequisites = {"automation"},
     effects =
-    {  
+    {
 		{type = "unlock-recipe", recipe = "burner-cooker"},
 		{type = "unlock-recipe", recipe = "cooked-corn"},
 		{type = "unlock-recipe", recipe = "cooked-soy"},
 		{type = "unlock-recipe", recipe = "baked-potato"},
 		{type = "unlock-recipe", recipe = "cooked-biter-meat"},
-		{type = "unlock-recipe", recipe = "simple-food-vm-capsule"},
-		{type = "unlock-recipe", recipe = "simple-food-vc-capsule"},
-		{type = "unlock-recipe", recipe = "simple-food-mc-capsule"},
-		{type = "unlock-recipe", recipe = "simple-food-cf-capsule"},
-		{type = "unlock-recipe", recipe = "simple-food-f-capsule"},
+		{type = "unlock-recipe", recipe = "simple-food-vmc-capsule"},
+		{type = "unlock-recipe", recipe = "simple-food-vmf-capsule"},
+		{type = "unlock-recipe", recipe = "simple-food-mcf-capsule"},
+		{type = "unlock-recipe", recipe = "simple-food-vcf-capsule"},
     },
     unit =
     {
-      time = 10,
-      count = 10,
-      ingredients =
-      {        
-		{"science-pack-1", 1},
-      },
+        time = 10,
+        count = 10,
+        ingredients =
+        {
+            {"science-pack-1", 1},
+        },
     },
     order = "w",
   },
@@ -545,19 +544,23 @@ data:extend({
     icon_size = 128,
     prerequisites = {"steel-processing", "electronics", "cooking"},
     effects =
-    {  
-		{type = "unlock-recipe", recipe = "electric-cooker"},
+    {
+        {type = "unlock-recipe", recipe = "electric-cooker"},
+        {type = "unlock-recipe", recipe = "basic-food-vm-capsule"},
+        {type = "unlock-recipe", recipe = "basic-food-vc-capsule"},
+        {type = "unlock-recipe", recipe = "basic-food-mc-capsule"},
+        {type = "unlock-recipe", recipe = "basic-food-cf-capsule"},
     },
     unit =
     {
-      time = 60,
-      count = 15,
-      ingredients =
-      {        
-		{"science-pack-1", 2},
-		{"science-pack-2", 2},
-		{"food-science-pack", 1},
-      },
+        time = 60,
+        count = 15,
+        ingredients =
+        {
+            {"science-pack-1", 2},
+            {"science-pack-2", 2},
+            {"food-science-pack", 1},
+        },
     },
     order = "w",
   },
@@ -983,6 +986,7 @@ data:extend({
     },
     order = "w",
   },
+
   {
     type = "technology",
     name = "complex-foods",
@@ -990,25 +994,30 @@ data:extend({
     icon_size = 128,
     prerequisites = {"seasoning", "salad", "fish-cooking"},
     effects =
-    {  
+    {
 		{type = "unlock-recipe", recipe = "pizza"},
 		{type = "unlock-recipe", recipe = "burger"},
 		{type = "unlock-recipe", recipe = "tofu-pizza"},
 		{type = "unlock-recipe", recipe = "tofu-burger"},
         {type = "unlock-recipe", recipe = "fish-pizza"},
         {type = "unlock-recipe", recipe = "fish-burger"},
-  },
+        {type = "unlock-recipe", recipe = "advanced-food-v-capsule"},
+        {type = "unlock-recipe", recipe = "advanced-food-m-capsule"},
+        {type = "unlock-recipe", recipe = "advanced-food-c-capsule"},
+        {type = "unlock-recipe", recipe = "advanced-food-f-capsule"},
+    },
     unit =
     {
-      time = 60,
-      count = 200,
-      ingredients =
-      {        
-		{"food-science-pack", 1},
-      },
+        time = 60,
+        count = 200,
+        ingredients =
+        {
+            {"food-science-pack", 1},
+        },
     },
     order = "w",
   },
+
   {
     type = "technology",
     name = "advanced-nutrient-extraction",

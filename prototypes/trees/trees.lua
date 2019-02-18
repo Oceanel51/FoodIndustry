@@ -198,6 +198,7 @@ for index, crop in pairs(trees) do
 				ingredients =
 				{
 					{type="item", name=crop[1].."-seeds", amount=5},
+					{type = "fluid", name = "water", amount = 300},
 				},
 				results=
 				{

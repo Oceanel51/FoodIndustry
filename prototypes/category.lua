@@ -118,7 +118,7 @@ data:extend(
   },
   {
     type = "item-subgroup",
-    name = "foods-species",
+    name = "food-capsules",
     group = "food-industry-foods",
     order = "w-m",
   },
@@ -130,9 +130,15 @@ data:extend(
   },
   {
     type = "item-subgroup",
-    name = "foods-other",
+    name = "foods-species",
     group = "food-industry-foods",
     order = "w-o",
+  },
+  {
+    type = "item-subgroup",
+    name = "foods-other",
+    group = "food-industry-foods",
+    order = "w-p",
   },
   -------------------- drinks --------------------
   {
