@@ -1,4 +1,6 @@
-local TICKS_TO_GROW = 600
+local TICKS_TO_GROW_MIN = 30 * 60
+local TICKS_TO_GROW_MAX = 2 * 60 * 60
+
 
 local ORANGE_SEEDLING = "orange-seedling"
 local APPLE_SEEDLING = "apple-seedling"
@@ -35,7 +37,7 @@ local function addSeedling(seedling, event)
         table.insert(global.foodi.fruitSeedlings,
         {
             seedling = seedling,
-            fullgrowntick = event.tick + TICKS_TO_GROW
+            fullgrowntick = event.tick + math.random(TICKS_TO_GROW_MIN, TICKS_TO_GROW_MAX)
         })
         return true
     end

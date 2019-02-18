@@ -176,8 +176,6 @@ data:extend({
         healing_per_tick = 0.02,
         collision_box = {{-1.2, -1.2}, {1.2, 1.2}},
         selection_box = {{-1.5, -1.5}, {1.5, 1.5}},
---        collision_box = {{-3.2, -2.2}, {2.2, 2.2}},
---        selection_box = {{-3.5, -2.5}, {2.5, 2.5}},
         pollution_absorbtion_absolute = 20,
         pollution_absorbtion_proportional = 0.01,
         corpse = "spitter-spawner-corpse",
@@ -191,16 +189,6 @@ data:extend({
             spawner_idle_animation(2, spitter_spawner_tint, 3/5 ),
             spawner_idle_animation(3, spitter_spawner_tint, 3/5 )
         },
---        result_units = {
---            {
---                unit = "cattle",
---                spawn_points = { 0, 0 }
---            },
---            {
---                unit = "cattle",
---                spawn_points = { 1, 1 }
---            }
---        },
         result_units = (function()
             local res = {}
             res[1] = {"cattle", {{0.0, 0.3}, {0.35, 0}}}
@@ -211,7 +199,7 @@ data:extend({
             return res
         end)(),
         -- With zero evolution the spawn rate is 12 seconds, with max evolution it is 6 seconds
-        spawning_cooldown = {720, 360},
+        spawning_cooldown = {60*60, 6*60*60},
         spawning_radius = 10,
         spawning_spacing = 3,
         max_spawn_shift = 0,

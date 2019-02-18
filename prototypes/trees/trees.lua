@@ -24,7 +24,7 @@ for index, crop in pairs(trees) do
 			name = crop[1].."-pick",
 			subgroup = crop[1],
 			order = "w-e-b-y",
-			enabled = true,
+			enabled = false,
 			icon = "__FoodIndustry__/graphics/icons/foods/"..crop[1]..".png",
 			icon_size = 32,
 			category = "crafting",
@@ -32,6 +32,7 @@ for index, crop in pairs(trees) do
 			hidden = true,
 			ingredients =
 			{
+
 			},
 			results =
 			{
