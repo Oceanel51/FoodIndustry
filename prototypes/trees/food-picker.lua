@@ -214,7 +214,7 @@ data:extend(
             enabled = false,
             ingredients =
             {
-                {"iron-gear-wheel", 1},
+                {"fruit-scissor", 1},
                 {"burner-inserter", 1}
             },
             result = "burner-food-picker"
