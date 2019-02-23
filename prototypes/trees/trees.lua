@@ -41,6 +41,7 @@ for index, crop in pairs(trees) do
 		},
 	})
 
+	-- Fruit seeds
 	data:extend({
 		-- Fruit seeds
 		{
@@ -76,6 +77,7 @@ for index, crop in pairs(trees) do
 	})
 
 
+	-- Fruit as food
 	data:extend({
 		-- Fruit as food
 		{
@@ -118,6 +120,7 @@ for index, crop in pairs(trees) do
 		},
 	})
 
+	-- item subgroup
 	data:extend({
 		{
 			type = "item-subgroup",
@@ -126,6 +129,8 @@ for index, crop in pairs(trees) do
 			order = "w-f-"..index,
 		},
 	})
+
+	-- seedlings
 	data:extend({
 
 		-- seedlings
@@ -210,6 +215,7 @@ for index, crop in pairs(trees) do
 			},
 		})
 
+	-- trees
 	data:extend({
 		{
 			type = "tree",

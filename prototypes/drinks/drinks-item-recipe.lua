@@ -1,14 +1,22 @@
 require "libs.helper-functions"
+--	1					2			3							4			5
+--	name				type		category					amount		tint for liquid color
 
-
-local foods = {
---1								2		3		4						5		6		7		8			9																		10
---name,							stack,	cool,	category,				time,	amount,	type,	enabled,	ingredients,															tint for liquid color
-{"flask-pure-water",			10,		0.5,	"crafting-with-fluid",	3.0,	1,		"",		true,		{{"flask", 1}, {type="fluid", name="pure-water", amount=30}},			{r=0.0,g=0.6,b=1.0,a=0.6} },
-{"plastic-bottle-pure-water",	10,		0.5,	"crafting-with-fluid",	5.0,	1,		"",		false,		{{"plastic-bottle", 1}, {type="fluid", name="pure-water", amount=60}},	{r=0.0,g=0.5,b=1.0,a=0.5} },
-{"glass-bottle-pure-water",		10,		0.5,	"crafting-with-fluid",	6.0,	1,		"",		false,		{{"glass-bottle", 1}, {type="fluid", name="pure-water", amount=50}},	{r=0.0,g=0.5,b=1.0,a=0.8} },
+local ingredients = {
+	{"pure-water",		"fluid",	"crafting-with-fluid",		6,			{r=0.0,g=0.5,b=1.0,a=0.8}  },
+	{"apple",			"item",		"crafting-with-fluid",		3,			{r=1,g=0.2,b=0,a=0.6}} ,
+	{"orange",			"item",		"crafting-with-fluid",		3,			{r=0.6,g=0.6,b=0,a=0.6} },
 }
 
+for i1, di in pairs(ingredients) do
+
+local foods = {
+	--1							2		3		4			5		6		7		8			9																		10
+	--name,						stack,	cool,	category,	time,	amount,	type,	enabled,	ingredients,													tint for liquid color
+	{"flask-"..di[1],			10,		0.5,	di[3],		3.0,	1,		"",		true,		{{"flask", 1}, {type=di[2], name=di[1], amount=30}},			{r=0.0,g=0.6,b=1.0,a=0.6} },
+	{"plastic-bottle-"..di[1],	10,		0.5,	di[3],		5.0,	1,		"",		false,		{{"plastic-bottle", 1}, {type=di[2], name=di[1], amount=60}},	{r=0.0,g=0.5,b=1.0,a=0.5} },
+	{"glass-bottle-"..di[1],	10,		0.5,	di[3],		6.0,	1,		"",		false,		{{"glass-bottle", 1}, {type=di[2], name=di[1], amount=50}},		{r=0.0,g=0.5,b=1.0,a=0.8} },
+}
 
 for i, f in pairs(foods) do
 	local sg = "drinks"
@@ -50,7 +58,7 @@ for i, f in pairs(foods) do
 				{ icon = "__FoodIndustry__/graphics/icons/drinks/"..icon1..".png", },
 				{
 					icon = "__FoodIndustry__/graphics/icons/drinks/"..icon2..".png",
-					tint = f[10]
+					tint = di[5]
 					--scale = 0.7 * 32 / icon_size,
 					--shift = {0, 0},
 				},
@@ -97,7 +105,7 @@ for i, f in pairs(foods) do
 				{ icon = "__FoodIndustry__/graphics/icons/drinks/"..icon1..".png", },
 				{
 					icon = "__FoodIndustry__/graphics/icons/drinks/"..icon2..".png",
-					tint = f[10]
+					tint = di[5]
 				},
 			},
 			icon_size = 64,
@@ -108,4 +116,5 @@ for i, f in pairs(foods) do
 			results = {{f[1], f[6]}}
 		},
 	})
+end
 end
