@@ -4,6 +4,14 @@ require "libs.helper-functions"
 if not figui then figui = {} end
 
 function figui.mod_init()
+	if not settings.global["food-industry-calculate"].value then
+		local leftGui = player.gui.left
+		if not leftGui.frame then
+			leftGui.frame.destroy()
+		end
+		return
+	end
+
     --if not global.settings then global.settings = {} end
     --if not global.settings.update_delay then global.settings.update_delay = 60 end
 	for index,player in pairs(game.players) do

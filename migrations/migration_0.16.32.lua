@@ -25,11 +25,32 @@ for index, player in pairs(game.players) do
 	
 	
 	if player.connected then
+		if not global.fullness then
+			global.fullness = {}
+		end
 		if not global.fullness[index] then
 			global.fullness[index] = {}
 		end
+
+		if not global.energy_max then
+			global.energy_max = {}
+		end
 		if not global.energy_max[index] then
 			global.energy_max[index] = 100 -- set initial max Energy for connected players
+		end
+
+		if not global.effects then
+			global.effects = {}
+		end
+		if not global.effects[index] then
+			global.effects[index] = {} -- set initial max Energy for connected players
+		end
+		if not global.effects[index]["sleep"] then
+			global.effects[index]["sleep"] = {}
+			global.effects[index]["sleep"][1] = true
+			global.effects[index]["sleep"][4] = 1
+			global.effects[index]["sleep"][5] = {}
+			global.effects[index]["sleep"][5][1] = {"self_sleep_1", 1, 0, 1}
 		end
 	end
 end

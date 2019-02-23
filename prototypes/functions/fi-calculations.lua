@@ -31,7 +31,7 @@ end
 --@     1          2         3       4       5         6            7             8
 --@ {food_name, food_type, energy, water, {V,M,C,F}, fullness, fullness_digest, health,}
 function fullness_calc_on_tick(index)
-    
+
     if not global.fullness[index] then
         return
     end

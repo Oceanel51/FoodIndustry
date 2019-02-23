@@ -65,4 +65,10 @@ data:extend({
         setting_type = "runtime-global",
         default_value = true
     },
+    {
+        type = "bool-setting",
+        name = "food-industry-calculate",
+        setting_type = "runtime-global",
+        default_value = true
+    },
 })

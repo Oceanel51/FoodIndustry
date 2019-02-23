@@ -78,7 +78,16 @@ function OnInit()
 	for index,player in pairs(game.players) do
 		if player.connected then
 			fi_global_variables_init()
-			figui.create(index, player)
+			if settings.global["food-industry-calculate"].value then
+				figui.create(index, player)
+			else
+				local leftGui = player.gui.left
+				if not leftGui then
+					if not leftGui.frame then
+						leftGui.frame.destroy()
+					end
+				end
+			end
 			fi_global_variables_set(index) -- set global variables default data of connected players
 		end
 	end
@@ -97,7 +106,7 @@ script.on_event({defines.events.on_tick}, function (e)
 	end
 
 	-- TODO добавить сюда sleep modifier, это основной блок по которому считаются все расходы
-	if e.tick % 5 == 0 then
+	if e.tick % 5 == 0 and settings.global["food-industry-calculate"].value then
 		for index,player in pairs(game.players) do
 			if player.connected then
 				
@@ -527,6 +536,9 @@ local techs_on_research_finished = {
 {"fi-tech-more-energy",		5,		100,	500},
 }
 script.on_event(defines.events.on_research_finished, function(event)
+	if not settings.global["food-industry-calculate"].value then
+		return
+	end
 	if event.research.name == "food-energy-efficiency-1" then
 		local force = event.research.force
 		for index,player in pairs(game.players) do
@@ -733,6 +745,9 @@ script.on_event(defines.events.on_rocket_launched, function(event)
 
 
 function u_gui()
+	if not settings.global["food-industry-calculate"].value then
+		return
+	end
 	if global.energy and global.drinks and global.fullness then
 		for index, player in pairs(game.players) do
 			if global.energy[index] and global.drinks[index] and global.fullness[index] then -- if exists values in global tables
