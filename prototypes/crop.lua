@@ -36,6 +36,7 @@ for index, crop in pairs(crops) do
 				category = "crafting",
 				subgroup = crop[1],
 				energy_required = 2.0,
+				main_product = "",
 				ingredients =
 				{
 					{crop[1].."-plant", 1}
