@@ -26,8 +26,6 @@ local function getDrink_on_Click(event)
 
     local getDrink = isDrink[player.cursor_stack.name]
 
-    player_print(player.selected.name)
-
     if getDrink ~= nil then
        if player.selected.name == PURE_WATER then
             player.begin_crafting{ count = 1, recipe = getDrink.result }

@@ -191,11 +191,11 @@ data:extend({
         },
         result_units = (function()
             local res = {}
-            res[1] = {"cattle", {{0.0, 0.3}, {0.35, 0}}}
-            res[2] = {"cattle", {{0.25, 0.0}, {0.5, 0.3}, {0.7, 0.0}}}
-            res[3] = {"cattle", {{0.4, 0.0}, {0.7, 0.3}, {0.9, 0.1}}}
-            res[4] = {"cattle", {{0.5, 0.0}, {1.0, 0.4}}}
-            res[5] = {"cattle", {{0.9, 0.0}, {1.0, 0.3}}}
+            res[1] = {"cattle-calf", {{0.0, 0.3}, {0.35, 0}}}
+            res[2] = {"cattle-calf", {{0.25, 0.0}, {0.5, 0.3}, {0.7, 0.0}}}
+            res[3] = {"cattle-calf", {{0.4, 0.0}, {0.7, 0.3}, {0.9, 0.1}}}
+            res[4] = {"cattle-calf", {{0.5, 0.0}, {1.0, 0.4}}}
+            res[5] = {"cattle-calf", {{0.9, 0.0}, {1.0, 0.3}}}
             return res
         end)(),
         -- With zero evolution the spawn rate is 12 seconds, with max evolution it is 6 seconds
@@ -230,9 +230,9 @@ data:extend({
         minable = {mining_time = 1, result = "cattle-feeder"},
         max_health = 400,
         corpse = "small-remnants",
-        collision_box = {{-0.35, -0.35}, {0.35, 0.35}},
+        collision_box = {{-0.7, -0.7}, {0.7, 0.7}},
         fast_replaceable_group = "container",
-        selection_box = {{-0.5, -0.5}, {0.5, 0.5}},
+        selection_box = {{-1.0, -1.0}, {1.0, 1.0}},
         inventory_size = 16,
         open_sound = { filename = "__base__/sound/metallic-chest-open.ogg", volume=0.65 },
         close_sound = { filename = "__base__/sound/metallic-chest-close.ogg", volume = 0.7 },
@@ -243,8 +243,11 @@ data:extend({
             priority = "extra-high",
             width = 48,
             height = 34,
-            shift = {0.1875, 0}
+            shift = {0.1875, 0 },
+            scale=2
         },
+        height=2,
+        width=2,
         circuit_wire_connection_point = circuit_connector_definitions["chest"].points,
         circuit_connector_sprites = circuit_connector_definitions["chest"].sprites,
         circuit_wire_max_distance = default_circuit_wire_max_distance
