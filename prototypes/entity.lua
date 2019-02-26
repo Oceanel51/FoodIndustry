@@ -264,7 +264,7 @@ data:extend(
               height = 431,
               line_length = 4,
               frame_count = 12,
-              animation_speed = 0.06,
+              animation_speed = 0.09,
               shift = {-0.022, -0.008},
               scale = 0.351
 			  --run_mode = "forward-then-backward",

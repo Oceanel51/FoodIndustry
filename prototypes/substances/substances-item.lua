@@ -1,5 +1,42 @@
 data:extend({
   
+  {
+    type = "capsule",
+    name = "substances-dust",
+    icon = "__FoodIndustry__/graphics/icons/substances/substances-dust.png",
+    icon_size = 32,
+    flags = {"goes-to-main-inventory"},
+    subgroup = "foods-substances",
+    order = "w-s-a",
+    stack_size = 100,
+	capsule_action = {
+        attack_parameters = {
+			ammo_category = "capsule",
+			ammo_type = {
+				action = {
+					action_delivery = {
+						target_effects = {
+							damage = {
+								amount = 0,
+								type = "physical"
+							},
+							type = "damage"
+						},
+						type = "instant"
+					},
+					type = "direct"
+				},
+				category = "capsule",
+				target_type = "position"
+			},
+			cooldown = 120,
+			range = 0,
+			type = "projectile"
+        },
+        type = "use-on-self"
+    },
+	},
+
 --[[   {
 	type = "item",
 	name = "substance-v",
@@ -19,7 +56,7 @@ data:extend({
     icon_size = 32,
     flags = {"goes-to-main-inventory"},
     subgroup = "foods-substances",
-    order = "w-s-a",
+    order = "w-s-b",
     stack_size = 100,
 	capsule_action = {
         attack_parameters = {
@@ -68,7 +105,7 @@ data:extend({
 		icon_size = 32,
 		flags = {"goes-to-main-inventory"},
 		subgroup = "foods-substances",
-		order = "w-s-b",
+		order = "w-s-c",
 		stack_size = 100,
 		capsule_action = {
 			attack_parameters = {
@@ -117,7 +154,7 @@ data:extend({
     icon_size = 32,
     flags = {"goes-to-main-inventory"},
     subgroup = "foods-substances",
-    order = "w-s-c",
+    order = "w-s-d",
     stack_size = 100,
 	capsule_action = {
         attack_parameters = {
@@ -166,7 +203,7 @@ data:extend({
     icon_size = 32,
     flags = {"goes-to-main-inventory"},
     subgroup = "foods-substances",
-    order = "w-s-d",
+    order = "w-s-e",
     stack_size = 100,
 	capsule_action = {
         attack_parameters = {

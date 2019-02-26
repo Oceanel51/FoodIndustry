@@ -104,4 +104,20 @@ data:extend({
 		flow_to_energy_ratio = 0.59,
 		order = "w-b-i"
 	},
+
+	{
+		type = "fluid",
+		name = "gelatine-broth",
+		icon = "__FoodIndustry__/graphics/icons/fluids/gelatine-broth.png",
+		icon_size = 32,
+		subgroup = "foods-species",
+		order = "w-b-4",
+		base_color = {r = 0.73, g = 0.61, b = 0.0, a = 1},
+		flow_color = {r = 0.788, g = 0.64, b = 0.0, a = 1},
+		default_temperature = 45,
+		max_temperature = 100,
+		heat_capacity = "0.2KJ",
+		pressure_to_speed_ratio = 0.4,
+		flow_to_energy_ratio = 0.59,
+	},
 })

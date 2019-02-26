@@ -27,7 +27,7 @@ data:extend({
   {
     type = "technology",
     name = "food-energy-efficiency-2",
-    icon = "__FoodIndustry__/graphics/technology/food-energy-efficiency.png",
+    icon = "__FoodIndustry__/graphics/technology/food-energy-efficiency-2.png",
     icon_size = 128,
     prerequisites =
     {
@@ -52,7 +52,7 @@ data:extend({
   {
     type = "technology",
     name = "food-energy-efficiency-3",
-    icon = "__FoodIndustry__/graphics/technology/food-energy-efficiency.png",
+    icon = "__FoodIndustry__/graphics/technology/food-energy-efficiency-3.png",
     icon_size = 128,
     prerequisites =
     {
@@ -78,7 +78,7 @@ data:extend({
   {
     type = "technology",
     name = "food-energy-efficiency-4",
-    icon = "__FoodIndustry__/graphics/technology/food-energy-efficiency.png",
+    icon = "__FoodIndustry__/graphics/technology/food-energy-efficiency-4.png",
     icon_size = 128,
     prerequisites =
     {
@@ -104,7 +104,7 @@ data:extend({
   {
     type = "technology",
     name = "food-energy-efficiency-5",
-    icon = "__FoodIndustry__/graphics/technology/food-energy-efficiency.png",
+    icon = "__FoodIndustry__/graphics/technology/food-energy-efficiency-5.png",
     icon_size = 128,
     prerequisites =
     {
@@ -130,7 +130,7 @@ data:extend({
   {
     type = "technology",
     name = "food-energy-efficiency-6",
-    icon = "__FoodIndustry__/graphics/technology/food-energy-efficiency.png",
+    icon = "__FoodIndustry__/graphics/technology/food-energy-efficiency-6.png",
     icon_size = 128,
     prerequisites =
     {
@@ -156,7 +156,7 @@ data:extend({
   {
     type = "technology",
     name = "food-energy-efficiency-7",
-    icon = "__FoodIndustry__/graphics/technology/food-energy-efficiency.png",
+    icon = "__FoodIndustry__/graphics/technology/food-energy-efficiency-7.png",
     icon_size = 128,
     prerequisites =
     {
@@ -183,7 +183,7 @@ data:extend({
   {
     type = "technology",
     name = "food-energy-efficiency-8",
-    icon = "__FoodIndustry__/graphics/technology/food-energy-efficiency.png",
+    icon = "__FoodIndustry__/graphics/technology/food-energy-efficiency-8.png",
     icon_size = 128,
     prerequisites =
     {
@@ -210,7 +210,7 @@ data:extend({
   {
     type = "technology",
     name = "food-energy-efficiency-9",
-    icon = "__FoodIndustry__/graphics/technology/food-energy-efficiency.png",
+    icon = "__FoodIndustry__/graphics/technology/food-energy-efficiency-9.png",
     icon_size = 128,
     prerequisites =
     {
@@ -238,7 +238,7 @@ data:extend({
   {
     type = "technology",
     name = "food-energy-efficiency-10",
-    icon = "__FoodIndustry__/graphics/technology/food-energy-efficiency.png",
+    icon = "__FoodIndustry__/graphics/technology/food-energy-efficiency-10.png",
     icon_size = 128,
     prerequisites =
     {
@@ -268,7 +268,7 @@ data:extend({
   {
     type = "technology",
     name = "food-energy-efficiency-11",
-    icon = "__FoodIndustry__/graphics/technology/food-energy-efficiency.png",
+    icon = "__FoodIndustry__/graphics/technology/food-energy-efficiency-11.png",
     icon_size = 128,
     prerequisites =
     {
@@ -308,11 +308,11 @@ data:extend({
     prerequisites = {},
     effects =
     {  
-		{type = "unlock-recipe", recipe = "fi-composter"},
-    {type = "unlock-recipe", recipe = "compost-raw-straw"},
-    {type = "unlock-recipe", recipe = "compost-straw"},
-    {type = "unlock-recipe", recipe = "compost-compressed-straw"},
-		{type = "unlock-recipe", recipe = "food-science-pack"},
+        {type = "unlock-recipe", recipe = "fi-composter"},
+        {type = "unlock-recipe", recipe = "compost-raw-straw"},
+        {type = "unlock-recipe", recipe = "compost-straw"},
+        {type = "unlock-recipe", recipe = "compost-compressed-straw"},
+        {type = "unlock-recipe", recipe = "food-science-pack"},
     },
     unit =
     {
@@ -425,7 +425,7 @@ data:extend({
     unit =
     {
     time = 30,
-    count = 15,
+    count = 10,
     ingredients =
     {
         {"food-science-pack", 1},
@@ -465,22 +465,22 @@ data:extend({
     prerequisites = {"composting", "automation"},
     effects =
     {
-      {type = "unlock-recipe", recipe = "cattle-spawner"},
-      {type = "unlock-recipe", recipe = "cattle-feeder"},
-      {type = "unlock-recipe", recipe = "cattle-grabber"},
-      {type = "unlock-recipe", recipe = "cattle-butcher"},
-      {type = "unlock-recipe", recipe = "cattle-meat"},
-      {type = "unlock-recipe", recipe = "cattle-wood-fence"},
-      {type = "unlock-recipe", recipe = "cattle-wood-gate"},
+        {type = "unlock-recipe", recipe = "cattle-spawner"},
+        {type = "unlock-recipe", recipe = "cattle-feeder"},
+        {type = "unlock-recipe", recipe = "cattle-grabber"},
+        {type = "unlock-recipe", recipe = "cattle-butcher"},
+        {type = "unlock-recipe", recipe = "cattle-meat"},
+        {type = "unlock-recipe", recipe = "cattle-wood-fence"},
+        {type = "unlock-recipe", recipe = "cattle-wood-gate"},
     },
     unit =
     {
-      time = 40,
-      count = 15,
-      ingredients =
-      {
-        {"food-science-pack", 1},
-      },
+        time = 40,
+        count = 15,
+        ingredients =
+        {
+            {"food-science-pack", 1},
+        },
     },
     order = "x",
   },
@@ -516,15 +516,16 @@ data:extend({
     prerequisites = {"automation"},
     effects =
     {
-		{type = "unlock-recipe", recipe = "burner-cooker"},
-		{type = "unlock-recipe", recipe = "cooked-corn"},
-		{type = "unlock-recipe", recipe = "cooked-soy"},
-		{type = "unlock-recipe", recipe = "baked-potato"},
-		{type = "unlock-recipe", recipe = "cooked-biter-meat"},
-		{type = "unlock-recipe", recipe = "simple-food-vmc-capsule"},
-		{type = "unlock-recipe", recipe = "simple-food-vmf-capsule"},
-		{type = "unlock-recipe", recipe = "simple-food-mcf-capsule"},
-		{type = "unlock-recipe", recipe = "simple-food-vcf-capsule"},
+        {type = "unlock-recipe", recipe = "burner-cooker"},
+        {type = "unlock-recipe", recipe = "cooked-corn"},
+        {type = "unlock-recipe", recipe = "cooked-soy"},
+        {type = "unlock-recipe", recipe = "baked-potato"},
+        {type = "unlock-recipe", recipe = "cooked-biter-meat"},
+        {
+        	type = "give-item",
+        	item = "food-1-capsule",
+        	count = 1
+        }
     },
     unit =
     {
@@ -546,10 +547,6 @@ data:extend({
     effects =
     {
         {type = "unlock-recipe", recipe = "electric-cooker"},
-        {type = "unlock-recipe", recipe = "basic-food-vm-capsule"},
-        {type = "unlock-recipe", recipe = "basic-food-vc-capsule"},
-        {type = "unlock-recipe", recipe = "basic-food-mc-capsule"},
-        {type = "unlock-recipe", recipe = "basic-food-cf-capsule"},
     },
     unit =
     {
@@ -1018,6 +1015,63 @@ data:extend({
     order = "w",
   },
 
+  ------------------------ Capsule technologies ------------------------
+  {
+    type = "technology",
+    name = "nutrient-extraction",
+    icon = "__FoodIndustry__/graphics/technology/nutrient-extraction-1.png",
+    icon_size = 128,
+    prerequisites = {"cooking"},
+    effects =
+    {
+        {type = "unlock-recipe", recipe = "food-16-capsule"},
+        {type = "unlock-recipe", recipe = "food-16-to-substances"},
+        {type = "unlock-recipe", recipe = "simple-food-vmc-capsule"},
+        {type = "unlock-recipe", recipe = "simple-food-vmf-capsule"},
+        {type = "unlock-recipe", recipe = "simple-food-mcf-capsule"},
+        {type = "unlock-recipe", recipe = "simple-food-vcf-capsule"},
+    },
+    unit =
+    {
+    time = 30,
+    count = 50,
+    ingredients =
+        {
+            {"food-science-pack", 1},
+            {"science-pack-1", 1},
+        },
+    },
+    order = "w",
+  },
+  {
+    type = "technology",
+    name = "nutrient-extraction-2",
+    icon = "__FoodIndustry__/graphics/technology/nutrient-extraction-2.png",
+    icon_size = 128,
+    prerequisites = {"nutrient-extraction", "gelatine", "electric-heating", "automation-2"}, -- TODO может переделать извлечение веществ 2 на assembling-machine-2
+    effects =
+    {
+        -- TODO добавить сюда рецепты извлечения веществ 2
+        {type = "unlock-recipe", recipe = "food-12-capsule"},
+        {type = "unlock-recipe", recipe = "food-16-to-12-capsule"},
+        {type = "unlock-recipe", recipe = "food-12-to-substances"},
+        {type = "unlock-recipe", recipe = "basic-food-vm-capsule"},
+        {type = "unlock-recipe", recipe = "basic-food-vc-capsule"},
+        {type = "unlock-recipe", recipe = "basic-food-mc-capsule"},
+        {type = "unlock-recipe", recipe = "basic-food-cf-capsule"},
+    },
+    unit =
+    {
+        time = 40,
+        count = 100,
+        ingredients =
+        {
+            {"food-science-pack", 1},
+            {"science-pack-2", 1},
+        },
+    },
+    order = "w",
+  },
   {
     type = "technology",
     name = "advanced-nutrient-extraction",
@@ -1025,9 +1079,13 @@ data:extend({
     icon_size = 128,
     prerequisites = {"complex-foods", "nuclear-power"},
     effects =
-    {  
-		{type = "unlock-recipe", recipe = "food-capsule"},
-		{type = "unlock-recipe", recipe = "vegan-food-capsule"},
+    {
+        -- TODO сюда включить производство желатина с других тканей и рецепты извлечения веществ 3
+        {type = "unlock-recipe", recipe = "food-1-capsule"},
+        {type = "unlock-recipe", recipe = "food-12-to-1-capsule"},
+        {type = "unlock-recipe", recipe = "food-1-to-substances"},
+		--{type = "unlock-recipe", recipe = "food-capsule"},
+		--{type = "unlock-recipe", recipe = "vegan-food-capsule"},
     },
     unit =
     {
@@ -1043,22 +1101,80 @@ data:extend({
   },
   {
     type = "technology",
-    name = "effect-capsules-1",
-    icon = "__FoodIndustry__/graphics/technology/effect-capsules.png",
+    name = "gelatine",
+    icon = "__FoodIndustry__/graphics/technology/gelatine.png",
     icon_size = 128,
-    prerequisites = {"advanced-nutrient-extraction", "food-energy-efficiency-10"},
+    prerequisites = {"nutrient-extraction"},
     effects =
-    {  
-		{type = "unlock-recipe", recipe = "simple-long-reach-capsule-vegan-food-capsule"},
-		{type = "unlock-recipe", recipe = "simple-long-reach-capsule-food-capsule"},
-		{type = "unlock-recipe", recipe = "simple-speed-capsule-vegan-food-capsule"},
-    {type = "unlock-recipe", recipe = "simple-speed-capsule-food-capsule"},
-		{type = "unlock-recipe", recipe = "simple-crafting-capsule-vegan-food-capsule"},
-		{type = "unlock-recipe", recipe = "simple-crafting-capsule-food-capsule"},
-		{type = "unlock-recipe", recipe = "simple-mining-capsule-vegan-food-capsule"},
-		{type = "unlock-recipe", recipe = "simple-mining-capsule-food-capsule"},
-		{type = "unlock-recipe", recipe = "simple-neutralizing-capsule-vegan-food-capsule"},
-		{type = "unlock-recipe", recipe = "simple-neutralizing-capsule-food-capsule"},
+    {
+        -- TODO сюда включить желатин и 
+        {type = "unlock-recipe", recipe = "bone-gelatine-broth"},
+        {type = "unlock-recipe", recipe = "fish-bone-gelatine-broth"},
+        {type = "unlock-recipe", recipe = "mince-gelatine-broth"},
+        {type = "unlock-recipe", recipe = "gelatine-granules"},
+        {type = "unlock-recipe", recipe = "broth-gelatine-granules"},
+        {type = "unlock-recipe", recipe = "basic-shell-capsule"},
+        {type = "unlock-recipe", recipe = "advanced-shell-capsule"},
+        },
+    unit =
+    {
+        time = 30,
+        count = 40,
+        ingredients =
+        {
+            {"science-pack-2", 1},
+            {"food-science-pack", 1},
+        },
+    },
+    order = "w",
+  },
+  {
+    type = "technology",
+    name = "effect-capsules",
+    icon = "__FoodIndustry__/graphics/technology/effect-capsules-1.png",
+    icon_size = 128,
+    prerequisites = {"nutrient-extraction", "food-energy-efficiency-1"},
+    effects =
+    {
+        {type = "unlock-recipe", recipe = "simple-speed-capsule"},
+        {type = "unlock-recipe", recipe = "simple-crafting-capsule"},
+        {type = "unlock-recipe", recipe = "simple-mining-capsule"},
+        {type = "unlock-recipe", recipe = "simple-long-reach-capsule"},
+        -- TODO add other simple capsules
+        {type = "unlock-recipe", recipe = "simple-digestive-capsule"},
+        {type = "unlock-recipe", recipe = "simple-neutralizing-capsule"},
+    },
+    unit =
+    {
+        time = 40,
+        count = 200,
+        ingredients =
+        {
+            {"food-science-pack", 1},
+            {"science-pack-3", 1},
+            {"production-science-pack", 1},
+        },
+    },
+    order = "w",
+  },
+  {
+    type = "technology",
+    name = "effect-capsules-2", -- TODO make technology sprite
+    icon = "__FoodIndustry__/graphics/technology/effect-capsules-2.png",
+    icon_size = 128,
+    prerequisites = {"effect-capsules", "nutrient-extraction-2", "food-energy-efficiency-3"},
+    effects =
+    {
+        {type = "unlock-recipe", recipe = "basic-speed-capsule"},
+        {type = "unlock-recipe", recipe = "basic-crafting-capsule"},
+        {type = "unlock-recipe", recipe = "basic-mining-capsule"},
+        {type = "unlock-recipe", recipe = "basic-long-reach-capsule"},
+        {type = "unlock-recipe", recipe = "basic-digestive-capsule"},
+        -- TODO add this basic capsules
+        --{type = "unlock-recipe", recipe = "basic-neutralizing-capsule"},
+        {type = "unlock-recipe", recipe = "basic-sleep-capsule"},
+        {type = "unlock-recipe", recipe = "basic-health-buffer-capsule"},
+        {type = "unlock-recipe", recipe = "basic-regen-capsule"},
     },
     unit =
     {
@@ -1075,38 +1191,24 @@ data:extend({
   },
   {
     type = "technology",
-    name = "effect-capsules-2",
-    icon = "__FoodIndustry__/graphics/technology/effect-capsules.png",
+    name = "effect-capsules-3",
+    icon = "__FoodIndustry__/graphics/technology/effect-capsules-3.png",
     icon_size = 128,
-    prerequisites = {"advanced-nutrient-extraction", "food-energy-efficiency-10"},
+    prerequisites = {"effect-capsules-2", "advanced-nutrient-extraction", "fi-tech-more-energy-4", "food-energy-efficiency-10"},
     effects =
     {  
-    {type = "unlock-recipe", recipe = "basic-long-reach-capsule-vegan-food-capsule"},
-		{type = "unlock-recipe", recipe = "basic-long-reach-capsule-food-capsule"},
-    {type = "unlock-recipe", recipe = "advanced-long-reach-capsule-vegan-food-capsule"},
-		{type = "unlock-recipe", recipe = "advanced-long-reach-capsule-food-capsule"},
-		{type = "unlock-recipe", recipe = "basic-speed-capsule-vegan-food-capsule"},
-		{type = "unlock-recipe", recipe = "basic-speed-capsule-food-capsule"},
-		{type = "unlock-recipe", recipe = "advanced-speed-capsule-vegan-food-capsule"},
-		{type = "unlock-recipe", recipe = "advanced-speed-capsule-food-capsule"},
-		{type = "unlock-recipe", recipe = "basic-crafting-capsule-vegan-food-capsule"},
-		{type = "unlock-recipe", recipe = "basic-crafting-capsule-food-capsule"},
-		{type = "unlock-recipe", recipe = "advanced-crafting-capsule-vegan-food-capsule"},
-		{type = "unlock-recipe", recipe = "advanced-crafting-capsule-food-capsule"},
-		{type = "unlock-recipe", recipe = "basic-mining-capsule-vegan-food-capsule"},
-		{type = "unlock-recipe", recipe = "basic-mining-capsule-food-capsule"},
-		{type = "unlock-recipe", recipe = "advanced-mining-capsule-vegan-food-capsule"},
-		{type = "unlock-recipe", recipe = "advanced-mining-capsule-food-capsule"},
-		{type = "unlock-recipe", recipe = "basic-regen-capsule-vegan-food-capsule"},
-		{type = "unlock-recipe", recipe = "basic-regen-capsule-food-capsule"},
-		{type = "unlock-recipe", recipe = "advanced-regen-capsule-vegan-food-capsule"},
-		{type = "unlock-recipe", recipe = "advanced-regen-capsule-food-capsule"},
-		{type = "unlock-recipe", recipe = "basic-health-buffer-capsule-vegan-food-capsule"},
-		{type = "unlock-recipe", recipe = "basic-health-buffer-capsule-food-capsule"},
-		{type = "unlock-recipe", recipe = "advanced-health-buffer-capsule-vegan-food-capsule"},
-		{type = "unlock-recipe", recipe = "advanced-health-buffer-capsule-food-capsule"},
-		{type = "unlock-recipe", recipe = "invulnerability-capsule-advanced-health-buffer-capsule"},
-    },
+    {type = "unlock-recipe", recipe = "advanced-speed-capsule"},
+    {type = "unlock-recipe", recipe = "advanced-crafting-capsule"},
+    {type = "unlock-recipe", recipe = "advanced-mining-capsule"},
+    {type = "unlock-recipe", recipe = "advanced-long-reach-capsule"},
+    {type = "unlock-recipe", recipe = "advanced-digestive-capsule"},
+    -- TODO add this advanced capsules
+    --{type = "unlock-recipe", recipe = "advanced-neutralizing-capsule"},
+    {type = "unlock-recipe", recipe = "advanced-sleep-capsule"},
+    {type = "unlock-recipe", recipe = "advanced-health-buffer-capsule"},
+    {type = "unlock-recipe", recipe = "advanced-regen-capsule"},
+    {type = "unlock-recipe", recipe = "invulnerability-capsule"},
+},
     unit =
     {
       time = 60,
@@ -1139,8 +1241,8 @@ data:extend({
         },
         {
         	type = "give-item",
-        	item = "vegan-food-capsule",
-        	count = 3
+        	item = "simple-food-vmc-capsule",
+        	count = 2
         }
     },
     unit =
@@ -1169,8 +1271,13 @@ data:extend({
         },
         {
         	type = "give-item",
-        	item = "vegan-food-capsule",
-        	count = 5
+        	item = "simple-food-vmc-capsule",
+        	count = 2
+        },
+        {
+        	type = "give-item",
+        	item = "simple-food-mcf-capsule",
+        	count = 2
         },
         {
         	type = "give-item",
@@ -1209,13 +1316,13 @@ data:extend({
         },
         {
         	type = "give-item",
-        	item = "simple-speed-capsule",
-        	count = 2
+        	item = "basic-speed-capsule",
+        	count = 1
         },
         {
         	type = "give-item",
-        	item = "simple-crafting-capsule",
-        	count = 2
+        	item = "basic-crafting-capsule",
+        	count = 1
         }
     },
     unit =
@@ -1295,7 +1402,7 @@ data:extend({
     order = "w",
   },
   
-  -- Button technologies
+  -- TODO Button technologies
   {
     type = "technology",
     name = "fi-tech-eatout-button",
@@ -1304,7 +1411,7 @@ data:extend({
     prerequisites = {"cooking", "food-energy-efficiency-1"},
     effects =
     {  
-		{type = "unlock-recipe", recipe = "simple-mining-capsule-food-capsule"},
+		--{type = "unlock-recipe", recipe = "simple-mining-capsule-food-capsule"},
     },
     unit =
     {
@@ -1351,12 +1458,11 @@ data:extend({
     {
         {type = "unlock-recipe", recipe = "fishing-inserter"},
         {type = "unlock-recipe", recipe = "fish-meat"},
-        {type = "unlock-recipe", recipe = "cooked-fish-meat"},
     },
     unit =
     {
         time = 20,
-        count = 30,
+        count = 15,
         ingredients =
         {
             {"food-science-pack", 1},
@@ -1379,7 +1485,7 @@ data:extend({
     unit =
     {
         time = 30,
-        count = 40,
+        count = 30,
         ingredients =
         {
             {"science-pack-2", 1},
@@ -1389,6 +1495,8 @@ data:extend({
     order = "w",
   },
 
-  -- Sleep technologies
+  -- TODO Sleep technologies
+
+
   
 })

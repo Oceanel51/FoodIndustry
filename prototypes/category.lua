@@ -124,21 +124,39 @@ data:extend(
   },
   {
     type = "item-subgroup",
-    name = "foods-substances",
+    name = "foods-species",
     group = "food-industry-foods",
     order = "w-n",
   },
   {
     type = "item-subgroup",
-    name = "foods-species",
+    name = "foods-substances",
     group = "food-industry-foods",
     order = "w-o",
   },
   {
     type = "item-subgroup",
+    name = "foods-substances1",
+    group = "food-industry-foods",
+    order = "w-p-a",
+  },
+  {
+    type = "item-subgroup",
+    name = "foods-substances2",
+    group = "food-industry-foods",
+    order = "w-p-b",
+  },
+  {
+    type = "item-subgroup",
+    name = "foods-substances3",
+    group = "food-industry-foods",
+    order = "w-p-c",
+  },
+  {
+    type = "item-subgroup",
     name = "foods-other",
     group = "food-industry-foods",
-    order = "w-p",
+    order = "w-q",
   },
   -------------------- drinks --------------------
   {
@@ -157,9 +175,9 @@ data:extend(
   },
   {
     type = "item-subgroup",
-    name = "drinks",
+    name = "drinks-pure-water",
     group = "food-industry-drinks",
-    order = "w-b-b",
+    order = "w-b-b-1",
   },
 
   -------------------- recipes --------------------
@@ -202,6 +220,10 @@ data:extend(
   {
     type = "recipe-category",
     name = "mixing",	
+  },
+  {
+    type = "recipe-category",
+    name = "food-capsules",  -- for player hand crafting
   },
   {
     type = "fuel-category",

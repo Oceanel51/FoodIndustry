@@ -5,7 +5,7 @@ data:extend({
     name = "straw",
     enabled = true,
 	icon = "__FoodIndustry__/graphics/icons/items/straw.png",
-	icon_size = 32,
+	icon_size = 64,
 	category = "crafting",
 	subgroup = "food-items",
 	energy_required = 0.5,
@@ -24,7 +24,7 @@ data:extend({
 	name = "compressed-straw",
 	enabled = false,
 	icon = "__FoodIndustry__/graphics/icons/items/compressed-straw.png",
-	icon_size = 32,
+	icon_size = 64,
 	category = "advanced-crafting",
 	subgroup = "food-items",
 	energy_required = 1.5,
@@ -54,7 +54,9 @@ data:extend({
 	},
 	results = 
 	{
-		{type = "item", name = "biter-meat", amount = 1, probability = 0.2}
+		{type = "item", name = "biter-meat", amount = 1, probability = 0.25}
+		{type = "item", name = "fish-bone", amount = 2}
+		{type = "item", name = "raw-mince", amount = 1}
 	}
   },
 	
@@ -489,7 +491,7 @@ data:extend({
 	icon_size = 32,
 	category = "advanced-crafting",
 	subgroup = "corn",
-	orger = "w-d-c-y", -- TODO to understand why not sorted as needed
+	order = "w-d-c-y",
 	energy_required = 1.0,
 	ingredients =
 	{
@@ -598,6 +600,305 @@ data:extend({
 	results = 
 	{
 		{"food-science-pack", 1}
+	}
+  },
+  --[[{
+	type = "recipe",
+	name = "food-science-pack-2", -- TODO make alternative recipes of food-science-pack
+	enabled = false,
+	icon = "__FoodIndustry__/graphics/icons/items/food-science-pack.png",
+	icon_size = 32,
+	category = "crafting",
+	subgroup = "science-pack",
+	energy_required = 4.0,
+	ingredients =
+	{
+		{"substance-v", 1},
+		{"substance-m", 1},
+		{"substance-c", 1},
+		{"substance-f", 1},
+		{"substances-dust", 4},
+	},
+	results = 
+	{
+		{"food-science-pack", 1}
+	}
+  },]]
+
+  {
+	type = "recipe",
+	name = "bone-gelatine-broth",
+	enabled = false,
+	icon = "__FoodIndustry__/graphics/icons/fluids/gelatine-broth.png",
+	icon_size = 32,
+	category = "advanced-cooking",
+	subgroup = "foods-species",
+	order = "w-b-4",
+	energy_required = 10.0,
+	ingredients =
+	{
+		{"bone", 2},
+		{type = "fluid", name = "water", amount = 10},
+	},
+	results = 
+	{
+		{type = "fluid", name = "gelatine-broth", amount = 10},
+	}
+  },
+  {
+	type = "recipe",
+	name = "fish-bone-gelatine-broth",
+	enabled = false,
+	icon = "__FoodIndustry__/graphics/icons/fluids/gelatine-broth.png",
+	icon_size = 32,
+	category = "advanced-cooking",
+	subgroup = "foods-species",
+	order = "w-b-4",
+	energy_required = 8.0,
+	ingredients =
+	{
+		{"fish-bone", 2},
+		{type = "fluid", name = "water", amount = 10},
+	},
+	results = 
+	{
+		{type = "fluid", name = "gelatine-broth", amount = 10},
+	}
+  },
+  {
+	type = "recipe",
+	name = "mince-gelatine-broth",
+	enabled = false,
+	icon = "__FoodIndustry__/graphics/icons/fluids/gelatine-broth.png",
+	icon_size = 32,
+	category = "advanced-cooking",
+	subgroup = "foods-species",
+	order = "w-b-4",
+	energy_required = 12.0,
+	ingredients =
+	{
+		{"raw-mince", 4},
+		{type = "fluid", name = "water", amount = 10},
+	},
+	results = 
+	{
+		{type = "fluid", name = "gelatine-broth", amount = 10},
+	}
+  },
+  {
+	type = "recipe",
+	name = "broth-gelatine-granules",
+	enabled = false,
+	icon = "__FoodIndustry__/graphics/icons/foods/gelatine-granules.png",
+	icon_size = 32,
+	category = "advanced-cooking",
+	subgroup = "foods-species",
+	order = "w-b-5",
+	energy_required = 30.0,
+	ingredients =
+	{
+		{type = "fluid", name = "gelatine-broth", amount = 40},
+	},
+	results = 
+	{
+		{"gelatine-granules", 20},
+		{type = "fluid", name = "water", amount = 20},
+	}
+  },
+
+  {
+	type = "recipe",
+	name = "basic-shell-capsule",
+	enabled = false,
+	icon = "__FoodIndustry__/graphics/icons/items/basic-shell-capsule.png",
+	icon_size = 64,
+	category = "cooking",
+	subgroup = "foods-species",
+	order = "w-b-7",
+	energy_required = 20.0,
+	ingredients =
+	{
+		{"gelatine-granules", 1},
+	},
+	results = 
+	{
+		{"basic-shell-capsule", 5}
+	}
+  },
+  {
+	type = "recipe",
+	name = "advanced-shell-capsule",
+	enabled = false,
+	icon = "__FoodIndustry__/graphics/icons/items/advanced-shell-capsule.png",
+	icon_size = 64,
+	category = "advanced-cooking",
+	subgroup = "foods-species",
+	order = "w-b-8",
+	energy_required = 30.0,
+	ingredients =
+	{
+		{"basic-shell-capsule", 20},
+		{"iron-plate", 1},
+	},
+	results = 
+	{
+		{"advanced-shell-capsule", 10}
+	}
+  },
+
+  -- food capsules
+  {
+	type = "recipe",
+	name = "food-16-to-12-capsule",
+	enabled = false,
+	icon = "__FoodIndustry__/graphics/icons/capsules/food-16-to-12-capsule.png",
+	icon_size = 64,
+	category = "crafting",
+	subgroup = "food-capsules",
+	order = "w-cb-ab",
+	energy_required = 20.0,
+	ingredients =
+	{
+		{"food-16-capsule", 3},
+	},
+	results = 
+	{
+		{"food-12-capsule", 1}
+	}
+  },
+  {
+	type = "recipe",
+	name = "food-12-to-16-capsule",
+	enabled = true,
+	icon = "__FoodIndustry__/graphics/icons/capsules/food-12-to-16-capsule.png",
+	icon_size = 64,
+	category = "crafting",
+	subgroup = "food-capsules",
+	order = "w-cb-ad",
+	energy_required = 14.0,
+	ingredients =
+	{
+		{"food-12-capsule", 1},
+	},
+	results = 
+	{
+		{"food-16-capsule", 3}
+	}
+  },
+  {
+	type = "recipe",
+	name = "food-12-to-1-capsule",
+	enabled = false,
+	icon = "__FoodIndustry__/graphics/icons/capsules/food-12-to-1-capsule.png",
+	icon_size = 64,
+	category = "crafting",
+	subgroup = "food-capsules",
+	order = "w-cb-af",
+	energy_required = 40.0,
+	ingredients =
+	{
+		{"food-12-capsule", 2},
+	},
+	results = 
+	{
+		{"food-1-capsule", 1}
+	}
+  },
+  {
+	type = "recipe",
+	name = "food-1-to-12-capsule",
+	enabled = true,
+	icon = "__FoodIndustry__/graphics/icons/capsules/food-1-to-12-capsule.png",
+	icon_size = 64,
+	category = "crafting",
+	subgroup = "food-capsules",
+	order = "w-cb-ah",
+	energy_required = 28.0,
+	ingredients =
+	{
+		{"food-1-capsule", 1},
+	},
+	results = 
+	{
+		{"food-12-capsule", 2}
+	}
+  },
+  -- food capsules to substances
+  {
+	type = "recipe",
+	name = "food-16-to-substances",
+	enabled = false,
+	icon = "__FoodIndustry__/graphics/icons/substances/food-16-to-substances.png",
+	icon_size = 64,
+	category = "cooking",
+	subgroup = "food-capsules",
+	order = "w-cb-ac",
+	energy_required = 20.0,
+	ingredients =
+	{
+		{"food-16-capsule", 1},
+	},
+	results = 
+	{
+		{"substance-v", 1},
+		{type = "item", name = "substance-v", amount = 1, probability = 0.2},
+		{"substance-m", 1},
+		{type = "item", name = "substance-m", amount = 1, probability = 0.2},
+		{"substance-c", 1},
+		{type = "item", name = "substance-c", amount = 1, probability = 0.2},
+		{type = "item", name = "substance-f", amount = 1, probability = 0.85},
+	}
+  },
+  {
+	type = "recipe",
+	name = "food-12-to-substances",
+	enabled = false,
+	icon = "__FoodIndustry__/graphics/icons/substances/food-12-to-substances.png",
+	icon_size = 64,
+	category = "advanced-cooking",
+	subgroup = "food-capsules",
+	order = "w-cb-ag",
+	energy_required = 40.0,
+	ingredients =
+	{
+		{"food-12-capsule", 1},
+		{type = "fluid", name = "steam", amount = 30},
+	},
+	results = 
+	{
+		{"substance-v", 3},
+		{type = "item", name = "substance-v", amount = 1, probability = 0.5},
+		{"substance-m", 3},
+		{type = "item", name = "substance-m", amount = 1, probability = 0.5},
+		{"substance-c", 3},
+		{type = "item", name = "substance-c", amount = 1, probability = 0.5},
+		{type = "item", name = "substance-f", amount = 2},
+		{type = "item", name = "substance-f", amount = 1, probability = 0.55},
+		{type = "fluid", name = "pure-water", amount = 20},
+	}
+  },
+  {
+	type = "recipe",
+	name = "food-1-to-substances",
+	enabled = false,
+	icon = "__FoodIndustry__/graphics/icons/substances/food-1-to-substances.png",
+	icon_size = 64,
+	category = "advanced-cooking",
+	subgroup = "food-capsules",
+	order = "w-cb-ak",
+	energy_required = 60.0,
+	ingredients =
+	{
+		{"food-1-capsule", 1},
+		{type = "fluid", name = "steam", amount = 60},
+	},
+	results = 
+	{
+		{"substance-v", 8},
+		{"substance-m", 8},
+		{"substance-c", 8},
+		{"substance-f", 7},
+		{type = "fluid", name = "pure-water", amount = 40},
 	}
   },
 

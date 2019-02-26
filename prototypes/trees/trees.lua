@@ -1,8 +1,8 @@
 local trees = {
---1			2		3			4		5		6		7			8		9			10		11		12			13			14				15		16		17		18
---name, 	time, 	to plant,	plants,	-,		seeds, 	stack size,	plant?,	seed?,	edible?,	straws,	compost,	type,	debug color,	starting,	size,	result,	chance
-{"apple", 	1500, 	8,			9,		0,		2.6, 	10,			true,	true,		true,	0.0,	"3J",		"tree", {r=1,g=0.2,b=0},	20,		0.16,	5,		0.25},
-{"orange", 	1300, 	6,			5,		0,		1.8, 	10,			true,	true,		true,	0.0,	"2J",		"tree", {r=0.6,g=0.6,b=0},	15,		0.16,	4,		0.12},
+--1			2		3			4		5			6		7			8		9			10		11		12			13			14				15		16		17		18
+--name, 	time, 	to plant,	plants,	cool(sec),	seeds, 	stack size,	plant?,	seed?,	edible?,	straws,	compost,	type,	debug color,	starting,	size,	result,	chance
+{"apple", 	1500, 	8,			9,		0.1,		2.6, 	10,			true,	true,		true,	0.0,	"3J",		"tree", {r=1,g=0.2,b=0},	20,		0.16,	5,		0.25},
+{"orange", 	1300, 	6,			5,		0.3,		1.8, 	10,			true,	true,		true,	0.0,	"2J",		"tree", {r=0.6,g=0.6,b=0},	15,		0.16,	4,		0.12},
 }
 
 for index, crop in pairs(trees) do
@@ -43,7 +43,6 @@ for index, crop in pairs(trees) do
 
 	-- Fruit seeds
 	data:extend({
-		-- Fruit seeds
 		{
 			type = "item",
 			name = crop[1].."-seeds",
@@ -79,7 +78,6 @@ for index, crop in pairs(trees) do
 
 	-- Fruit as food
 	data:extend({
-		-- Fruit as food
 		{
 			type = "capsule",
 			name = crop[1],
@@ -109,7 +107,7 @@ for index, crop in pairs(trees) do
 						category = "capsule",
 						target_type = "position"
 					},
-					cooldown = 30,
+					cooldown = crop[5]*60,
 					range = 0,
 					type = "projectile"
 				},

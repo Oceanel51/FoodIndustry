@@ -1,7 +1,7 @@
 data:extend({
 	
 -- Packages
-{
+  {
 	type = "recipe",
 	name = "flask",
 	order = "a-b-a",
@@ -43,7 +43,28 @@ data:extend({
 	allow_as_intermediate = false,
 	allow_intermediates = false,
   },
+  -- empty recipe
+  {
+		type = "recipe",
+		name = "to-empty-flask-pure-water",
+		enabled = true,
+		icon = "__FoodIndustry__/graphics/icons/drinks/to-empty-flask-pure-water.png",
+		icon_size = 64,
+		category = "crafting-with-fluid",
+		subgroup = "drinks-pure-water",
+		order = "w-d1",
+		energy_required = 1.4,
+		ingredients = {
+			{"flask-pure-water", 1},
+		},
+		results = {
+			{"flask", 1},
+			{type="fluid", name="pure-water", amount=30}
+		},
+		allow_decomposition = true
+  },
 
+  -- plastic-bottles
   {
 	type = "recipe",
 	name = "plastic-bottle",

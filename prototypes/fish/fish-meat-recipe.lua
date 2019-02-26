@@ -18,6 +18,7 @@ data:extend({
     results = 
     {
         {"fish-meat-red", 4},
+        {"fish-bone", 1},
         {type = "fluid", name = "water", amount = 15},
     },
   },
@@ -40,6 +41,7 @@ data:extend({
     results = 
     {
         {"fish-meat-red", 5},
+        {"fish-bone", 1},
         {type = "item", name = "fish-caviar-red", amount = 1, probability = 0.25},
         {type = "fluid", name = "water", amount = 20},
     },

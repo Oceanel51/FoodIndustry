@@ -19,7 +19,7 @@ data:extend({
     flags = {"goes-to-main-inventory"},
     subgroup = "drink-empty-packages",
     order = "a-f",
-	  stack_size = 100,
+	  stack_size = 50,
   },
 	{
     type = "item",

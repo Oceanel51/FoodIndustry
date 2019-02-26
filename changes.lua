@@ -94,5 +94,7 @@ table.insert(data.raw["technology"]["fluid-handling"].effects, { type = "unlock-
 -- open recipe after research technology "fluid-handling"
 table.insert(data.raw["technology"]["plastics"].effects, { type = "unlock-recipe", recipe = "plastic-bottle" } )
 table.insert(data.raw["technology"]["plastics"].effects, { type = "unlock-recipe", recipe = "plastic-bottle-pure-water" } )
-table.insert(data.raw["technology"]["plastics"].effects, { type = "unlock-recipe", recipe = "plastic-bottle-apple" } )
-table.insert(data.raw["technology"]["plastics"].effects, { type = "unlock-recipe", recipe = "plastic-bottle-orange" } )
+
+
+-- for player hand crafting
+table.insert(data.raw["player"]["player"].crafting_categories,"food-capsules")

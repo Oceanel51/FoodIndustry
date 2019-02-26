@@ -388,24 +388,24 @@ script.on_event(defines.events.on_built_entity, function(event)
 script.on_event(defines.events.on_player_created, function(event)
 	local player = game.players[event.player_index]
 	
-	player.insert({name="vegan-food-capsule", count=10})
-	player.insert({name="simple-digestive-capsule", count=5})
+	player.insert({name="food-1-capsule", count=1})
+	player.insert({name="simple-digestive-capsule", count=3})
 	player.insert({name="simple-speed-capsule", count=3})
 	player.insert({name="simple-crafting-capsule", count=3})
 	player.insert({name="simple-mining-capsule", count=3})
-	player.insert({name="flask-pure-water", count=2})
+	player.insert({name="flask-pure-water", count=4})
 	
 	-- DEBUG remove this
-	player.insert({name="basic-digestive-capsule", count=5})
-	player.insert({name="lettuce", count=10})
-	player.insert({name="tomato", count=10})
-	player.insert({name="corn", count=10})
-	player.insert({name="popcorn", count=10})
-	player.insert({name="plastic-bottle-pure-water", count=10})
-	player.insert({name="basic-speed-capsule", count=5})
-	player.insert({name="advanced-speed-capsule", count=5})
-	player.insert({name="simple-long-reach-capsule", count=5})
-	player.insert({name="basic-long-reach-capsule", count=5})
+	--player.insert({name="basic-digestive-capsule", count=5})
+	--player.insert({name="lettuce", count=10})
+	--player.insert({name="tomato", count=10})
+	--player.insert({name="corn", count=10})
+	--player.insert({name="popcorn", count=10})
+	--player.insert({name="plastic-bottle-pure-water", count=10})
+	--player.insert({name="basic-speed-capsule", count=5})
+	--player.insert({name="advanced-speed-capsule", count=5})
+	--player.insert({name="simple-long-reach-capsule", count=5})
+	--player.insert({name="basic-long-reach-capsule", count=5})
 end
 )
 
@@ -484,7 +484,9 @@ script.on_event(defines.events.on_player_used_capsule, function(event)
 						player.insert{name = "flask", count = 1}
 					elseif string.match(event.item.name, "plastic%-bottle") == "plastic-bottle" then
 						player.insert{name = "plastic-bottle-used", count = 1}
-					end
+					elseif string.match(event.item.name, "^orange$") == "orange" or string.match(event.item.name, "^apple$") == "apple" then
+					player.insert{name = "raw-straw", count = math.random(1,3)}
+				end
 
 					---if global.energy[event.player_index] < global.energy_max[event.player_index] * 0.25 then -- if Energy level down below 25% - decrease running speed
 					---	game.players[event.player_index].character_running_speed_modifier = math.max((global.energy[event.player_index] - (global.energy_max[event.player_index] * 0.2))/global.energy_max[event.player_index],-0.99)

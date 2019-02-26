@@ -1,5 +1,16 @@
 data:extend({
 
+  {
+    type = "item",
+    name = "fish-bone",
+    icon = "__FoodIndustry__/graphics/icons/items/fish-bone.png",
+    icon_size = 64,
+    flags = {"goes-to-main-inventory"},
+    subgroup = "foods-fish",
+    order = "w-d-n",
+    stack_size = 50,
+  },
+
 -- fish-meat-red
   {
     type = "capsule",

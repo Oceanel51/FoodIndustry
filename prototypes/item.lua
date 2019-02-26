@@ -4,7 +4,7 @@ data:extend({
     type = "item",
     name = "raw-straw",
     icon = "__FoodIndustry__/graphics/icons/items/raw-straw.png",
-    icon_size = 32,
+    icon_size = 64,
     flags = {"goes-to-main-inventory"},
     subgroup = "food-items",
     order = "w-b-a",
@@ -16,7 +16,7 @@ data:extend({
     type = "item",
     name = "straw",
     icon = "__FoodIndustry__/graphics/icons/items/straw.png",
-    icon_size = 32,
+    icon_size = 64,
     flags = {"goes-to-main-inventory"},
     subgroup = "food-items",
     order = "w-b-b",
@@ -30,7 +30,7 @@ data:extend({
     type = "item",
     name = "compressed-straw",
     icon = "__FoodIndustry__/graphics/icons/items/compressed-straw.png",
-    icon_size = 32,
+    icon_size = 64,
     flags = {"goes-to-main-inventory"},
     subgroup = "food-items",
     order = "w-b-c",
@@ -232,7 +232,7 @@ data:extend({
     icon_size = 32,
     flags = {"goes-to-main-inventory"},
     subgroup = "food-intermediates",
-    order = "w-d",
+    order = "w-d-c-y",
     stack_size = 100,
   },
   {
@@ -243,7 +243,7 @@ data:extend({
     flags = {"goes-to-main-inventory"},
     subgroup = "food-intermediates",
     order = "w-d",
-	  stack_size = 10,
+    stack_size = 10,
   },
 
   {
@@ -253,7 +253,7 @@ data:extend({
     icon_size = 32,
     flags = {"goes-to-main-inventory"},
     subgroup = "foods-meat",
-    order = "w-d-a",
+    order = "w-d-d",
     stack_size = 10,
 	capsule_action = {
         attack_parameters = {
@@ -283,4 +283,46 @@ data:extend({
     },
   },
   
+  {
+    type = "item",
+    name = "basic-shell-capsule",
+    icon = "__FoodIndustry__/graphics/icons/items/basic-shell-capsule.png",
+    icon_size = 64,
+    flags = {"goes-to-main-inventory"},
+    subgroup = "food-items",
+    order = "w-b-4",
+    stack_size = 100,
+  },
+  {
+    type = "item",
+    name = "advanced-shell-capsule",
+    icon = "__FoodIndustry__/graphics/icons/items/advanced-shell-capsule.png",
+    icon_size = 64,
+    flags = {"goes-to-main-inventory"},
+    subgroup = "food-items",
+    order = "w-b-5",
+    stack_size = 50,
+  },
+  
+  {
+    type = "item",
+    name = "raw-mince",
+    icon = "__FoodIndustry__/graphics/icons/items/raw-mince.png",
+    icon_size = 64,
+    flags = {"goes-to-main-inventory"},
+    subgroup = "foods-meat",
+    order = "w-d-c",
+    stack_size = 50,
+  },
+  {
+    type = "item",
+    name = "bone",
+    icon = "__FoodIndustry__/graphics/icons/items/bone.png",
+    icon_size = 64,
+    flags = {"goes-to-main-inventory"},
+    subgroup = "foods-meat",
+    order = "w-d-c",
+    stack_size = 50,
+  },
+
 })
