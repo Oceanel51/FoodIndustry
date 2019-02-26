@@ -48,15 +48,16 @@ data:extend({
 	subgroup = "foods-meat",
 	order = "w-d-a",
 	energy_required = 0.5,
+	main_product = "biter-meat",
 	ingredients =
 	{
 		{"raw-fish", 5}
 	},
 	results = 
 	{
-		{type = "item", name = "biter-meat", amount = 1, probability = 0.25}
-		{type = "item", name = "fish-bone", amount = 2}
-		{type = "item", name = "raw-mince", amount = 1}
+		{type = "item", name = "biter-meat", amount = 1, probability = 0.25},
+		{type = "item", name = "fish-bone", amount = 2},
+		{type = "item", name = "raw-mince", amount = 1},
 	}
   },
 	

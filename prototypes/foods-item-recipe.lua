@@ -82,7 +82,7 @@ local foods = {
 {"simple-neutralizing-capsule",		"effect",			50,		0.5,	"cooking",				80.0,	1,		"w-ce-s-ca",	nil,		{{"food-1-capsule", 1}, {"crystal", 1}} },
 --{"basic-neutralizing-capsule",		"effect",			20,		0.5,	"advanced-cooking",		120.0,	1,		"w-ce-s-cb",	nil,		{{"food-1-capsule", 3}, {"crystal", 5}} },
 --{"advanced-neutralizing-capsule",		"effect",			10,		0.5,	"centrifuging",			180.0,	1,		"w-ce-s-cc",	nil,		{{"food-1-capsule", 6}, {"crystal", 10}, {"uranium-235", 1}} },
-{"invulnerability-capsule",			"effect",			10,		4.0,	"centrifuging",			360.0,	1,		"w-ce-z-ca",	nil,		{{"food-1-capsule", 40}, {"advanced-health-buffer-capsule", 1}, {"advanced-regen-capsule", 1}, {type="fluid", name="pure-water", amount=250}} },
+{"invulnerability-capsule",			"effect",			10,		4.0,	"centrifuging",			360.0,	1,		"w-ce-r-ca",	nil,		{{"food-1-capsule", 40}, {"advanced-health-buffer-capsule", 1}, {"advanced-regen-capsule", 1}, {type="fluid", name="pure-water", amount=250}} },
 }
 
 

@@ -95,14 +95,20 @@ data:extend({
         type = "recipe",
         name = "cattle-meat",
         enabled = false,
+        icon = "__FoodIndustry__/graphics/icons/items/biter-meat.png",
+        icon_size = 32,
         subgroup = "food-machines-cattle",
-        category = "food-cattle",
+        subgroup = "foods-meat",
+        order = "w-d-b",
+        main_product = "biter-meat",
         ingredients =
         {
             {"cattle", 1}
         },
         results = {
-            {"biter-meat", 5}
+            {"biter-meat", 5},
+            {"bone", 2},
+            {type = "item", name = "raw-mince", amount = 1, probability = 0.4},
         },
         order = "d",
     },
