@@ -8,7 +8,7 @@ local PURE_WATER = "pure-water"
 
 
 local isDrink = {
-    [FLASK] = { result = "flask-pure-water" },
+    [FLASK] = { result = "hand-flask-pure-water" },
     [PLASTIC_BOTTLE] = { result = "plastic-bottle-pure-water" },
     [GLASS_BOTTLE] = { result = "glass-bottle-pure-water" },
 }
