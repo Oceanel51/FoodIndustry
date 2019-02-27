@@ -16,7 +16,7 @@ data:extend({
         name = "cattle",
         icon = "__base__/graphics/icons/small-biter.png",
         icon_size = 32,
-        flags = {"goes-to-quickbar"},
+
         subgroup = "food-cattle",
         order = "d",
         stack_size = 10
@@ -123,7 +123,7 @@ data:extend({
         name = "cattle-spawner",
         icon = "__base__/graphics/icons/biter-spawner.png",
         icon_size = 32,
-        flags = {"goes-to-quickbar"},
+
         subgroup = "food-machines-cattle",
         order = "a",
         place_result = "cattle-spawner",
@@ -247,8 +247,8 @@ data:extend({
         {
             filename = "__FoodIndustry__/graphics/entity/cattle/cattle-feeder.png",
             priority = "extra-high",
-            width = 48,
-            height = 34,
+            width = 38,
+            height = 32,
             shift = {0.1875, 0 },
             scale=2
         },
@@ -264,7 +264,7 @@ data:extend({
         name = "cattle-feeder",
         icon = "__FoodIndustry__/graphics/icons/entities/cattle-feeder.png",
         icon_size = 32,
-        flags = {"goes-to-quickbar"},
+
         subgroup = "food-machines-cattle",
         order = "b",
         place_result = "cattle-feeder",
@@ -532,7 +532,7 @@ data:extend({
     name = "cattle-butcher",
     icon = "__FoodIndustry__/graphics/icons/entities/cattle-butcher.png",
     icon_size = 32,
-    flags = {"goes-to-quickbar"},
+
     subgroup = "food-machines-cattle",
     order = "d",
     place_result = "cattle-butcher",

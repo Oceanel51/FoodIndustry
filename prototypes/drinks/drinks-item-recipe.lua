@@ -56,7 +56,7 @@ for i, f in pairs(foods) do
 				},
 			},
 			icon_size = 64,
-			flags = {"goes-to-main-inventory"},
+
 			subgroup = sg,
 			order = "w-d",
 			stack_size = f[2],

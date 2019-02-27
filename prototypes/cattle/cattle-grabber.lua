@@ -6,7 +6,7 @@ data:extend(
             name = "cattle-grabber",
             icon = "__FoodIndustry__/graphics/icons/entities/cattle-grabber.png",
             icon_size = 32,
-            flags = {"goes-to-quickbar"},
+
             subgroup = "food-machines-cattle",
             order = "c",
             place_result = "cattle-grabber",
@@ -34,9 +34,9 @@ data:extend(
             selection_box = {{-0.4, -0.35}, {0.4, 0.45}},
             pickup_position = {0, -2},
             insert_position = {0, 2.2},
-            energy_per_movement = 5000,
-            energy_per_rotation = 5000,
-            rotation_speed = 0.02,
+           energy_per_movement = "5KJ",
+           energy_per_rotation = "5KJ",
+           rotation_speed = 0.02,
             extension_speed = 0.0457,
             hand_size = 1.5,
             energy_source =

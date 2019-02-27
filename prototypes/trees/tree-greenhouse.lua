@@ -11,7 +11,6 @@ data:extend({
         name= "fi-tree-greenhouse",
         icon = "__FoodIndustry__/graphics/icons/entities/tree_greenhouse.png",
         icon_size = 32,
-        flags= { "goes-to-quickbar" },
         subgroup = "food-machines-trees",
         order = "w-a-c1",
         place_result = "fi-tree-greenhouse",

@@ -5,7 +5,7 @@ data:extend({
     name = "raw-straw",
     icon = "__FoodIndustry__/graphics/icons/items/raw-straw.png",
     icon_size = 64,
-    flags = {"goes-to-main-inventory"},
+
     subgroup = "food-items",
     order = "w-b-a",
     stack_size = 100,
@@ -17,7 +17,7 @@ data:extend({
     name = "straw",
     icon = "__FoodIndustry__/graphics/icons/items/straw.png",
     icon_size = 64,
-    flags = {"goes-to-main-inventory"},
+
     subgroup = "food-items",
     order = "w-b-b",
     stack_size = 200,
@@ -31,7 +31,7 @@ data:extend({
     name = "compressed-straw",
     icon = "__FoodIndustry__/graphics/icons/items/compressed-straw.png",
     icon_size = 64,
-    flags = {"goes-to-main-inventory"},
+
     subgroup = "food-items",
     order = "w-b-c",
     stack_size = 50,
@@ -46,7 +46,7 @@ data:extend({
     name = "compost",
     icon = "__FoodIndustry__/graphics/icons/items/compost.png",
     icon_size = 32,
-    flags = {"goes-to-main-inventory"},
+
     fuel_category = "humus", -- changed by Oceanel
     fuel_value = "9000J", 
     subgroup = "food-items",
@@ -59,7 +59,7 @@ data:extend({
     name = "crystal",
     icon = "__FoodIndustry__/graphics/icons/items/crystal.png",
     icon_size = 32,
-    flags = {"goes-to-main-inventory"},
+
     subgroup = "food-items",
     order = "w-b-e",
     stack_size = 50
@@ -69,7 +69,7 @@ data:extend({
     name = "crystal",
     icon = "__FoodIndustry__/graphics/icons/foods/crystal.png",
     icon_size = 32,
-    flags = {"goes-to-main-inventory"},
+
     subgroup = "foods-species",
     order = "w-a-a",
     stack_size = 50,
@@ -106,7 +106,7 @@ data:extend({
     name = "unprocessed-fertilizer",
     icon = "__FoodIndustry__/graphics/icons/items/unprocessed-fertilizer.png",
     icon_size = 32,
-    flags = {"goes-to-main-inventory"},
+
     subgroup = "food-items",
     order = "w-b-f",
     stack_size = 20
@@ -116,7 +116,7 @@ data:extend({
     name = "fertilizer",
     icon = "__FoodIndustry__/graphics/icons/items/fertilizer.png",
     icon_size = 32,
-    flags = {"goes-to-main-inventory"},
+
     subgroup = "food-items",
     order = "w-b-g",
     stack_size = 50
@@ -126,7 +126,7 @@ data:extend({
     name = "fi-basic-farmland",
     icon = "__FoodIndustry__/graphics/icons/entities/fi-basic-farmland.png",
     icon_size = 32,
-    flags = {"goes-to-quickbar"},
+
     subgroup = "food-machines",
     order = "w-a-a",
   	place_result = "fi-basic-farmland",
@@ -137,7 +137,7 @@ data:extend({
     name = "fi-greenhouse",
     icon = "__FoodIndustry__/graphics/icons/entities/fi-greenhouse-icon.png",
     icon_size = 64,
-    flags = {"goes-to-quickbar"},
+
     subgroup = "food-machines",
     order = "w-a-b",
   	place_result = "fi-greenhouse",
@@ -148,7 +148,7 @@ data:extend({
     name = "fi-big-greenhouse",
     icon = "__FoodIndustry__/graphics/icons/entities/fi-big-greenhouse-icon.png",
     icon_size = 64,
-    flags = {"goes-to-quickbar"},
+
     subgroup = "food-machines",
     order = "w-a-c",
   	place_result = "fi-big-greenhouse",
@@ -159,7 +159,7 @@ data:extend({
     name = "fi-incubator",
     icon = "__FoodIndustry__/graphics/icons/entities/fi-incubator-icon.png",
     icon_size = 64,
-    flags = {"goes-to-quickbar"},
+
     subgroup = "food-machines",
     order = "w-a-d",
   	place_result = "fi-incubator",
@@ -170,7 +170,7 @@ data:extend({
     name = "fi-composter",
     icon = "__FoodIndustry__/graphics/icons/entities/fi-composter-icon.png",
     icon_size = 64,
-    flags = {"goes-to-quickbar"},
+
     subgroup = "food-machines",
     order = "w-a-e",
   	place_result = "fi-composter",
@@ -181,7 +181,7 @@ data:extend({
     name = "fi-electric-composter",
     icon = "__FoodIndustry__/graphics/icons/entities/fi-electric-composter-icon.png",
     icon_size = 64,
-    flags = {"goes-to-quickbar"},
+
     subgroup = "food-machines",
     order = "w-a-f",
   	place_result = "fi-electric-composter",
@@ -193,7 +193,7 @@ data:extend({
     name = "burner-cooker",
     icon = "__FoodIndustry__/graphics/icons/entities/burner-cooker.png",
     icon_size = 32,
-    flags = {"goes-to-quickbar"},
+
     subgroup = "food-machines",
     order = "w-a-g",
   	place_result = "burner-cooker",
@@ -204,7 +204,7 @@ data:extend({
     name = "electric-cooker",
     icon = "__FoodIndustry__/graphics/icons/entities/electric-cooker.png",
     icon_size = 32,
-    flags = {"goes-to-quickbar"},
+
     subgroup = "food-machines",
     order = "w-a-h",
   	place_result = "electric-cooker",
@@ -217,7 +217,7 @@ data:extend({
     name = "food-science-pack",
     icon = "__FoodIndustry__/graphics/icons/items/food-science-pack.png",
     icon_size = 32,
-    flags = {"goes-to-main-inventory"},
+
     subgroup = "science-pack",
     order = "h",
     durability = 1,
@@ -230,7 +230,7 @@ data:extend({
     name = "corn-flour",
     icon = "__FoodIndustry__/graphics/icons/items/corn-flour.png",
     icon_size = 32,
-    flags = {"goes-to-main-inventory"},
+
     subgroup = "food-intermediates",
     order = "w-d-c-y",
     stack_size = 100,
@@ -240,7 +240,7 @@ data:extend({
     name = "raw-fries",
     icon = "__FoodIndustry__/graphics/icons/items/raw-fries.png",
     icon_size = 32,
-    flags = {"goes-to-main-inventory"},
+
     subgroup = "food-intermediates",
     order = "w-d",
     stack_size = 10,
@@ -251,7 +251,7 @@ data:extend({
     name = "biter-meat",
     icon = "__FoodIndustry__/graphics/icons/items/biter-meat.png",
     icon_size = 32,
-    flags = {"goes-to-main-inventory"},
+
     subgroup = "foods-meat",
     order = "w-d-d",
     stack_size = 10,
@@ -288,7 +288,7 @@ data:extend({
     name = "basic-shell-capsule",
     icon = "__FoodIndustry__/graphics/icons/items/basic-shell-capsule.png",
     icon_size = 64,
-    flags = {"goes-to-main-inventory"},
+
     subgroup = "food-items",
     order = "w-b-4",
     stack_size = 100,
@@ -298,7 +298,7 @@ data:extend({
     name = "advanced-shell-capsule",
     icon = "__FoodIndustry__/graphics/icons/items/advanced-shell-capsule.png",
     icon_size = 64,
-    flags = {"goes-to-main-inventory"},
+
     subgroup = "food-items",
     order = "w-b-5",
     stack_size = 50,
@@ -309,7 +309,7 @@ data:extend({
     name = "raw-mince",
     icon = "__FoodIndustry__/graphics/icons/items/raw-mince.png",
     icon_size = 64,
-    flags = {"goes-to-main-inventory"},
+
     subgroup = "foods-meat",
     order = "w-d-c",
     stack_size = 50,
@@ -319,7 +319,7 @@ data:extend({
     name = "bone",
     icon = "__FoodIndustry__/graphics/icons/items/bone.png",
     icon_size = 64,
-    flags = {"goes-to-main-inventory"},
+
     subgroup = "foods-meat",
     order = "w-d-c",
     stack_size = 50,

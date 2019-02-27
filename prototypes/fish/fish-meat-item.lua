@@ -5,7 +5,7 @@ data:extend({
     name = "fish-bone",
     icon = "__FoodIndustry__/graphics/icons/items/fish-bone.png",
     icon_size = 64,
-    flags = {"goes-to-main-inventory"},
+
     subgroup = "foods-fish",
     order = "w-d-n",
     stack_size = 50,
@@ -17,7 +17,7 @@ data:extend({
     name = "fish-meat-red",
     icon = "__FoodIndustry__/graphics/icons/items/fish-meat-red.png",
     icon_size = 32,
-    flags = {"goes-to-main-inventory"},
+
     subgroup = "foods-fish",
     order = "w-a-a",
     stack_size = 10,
@@ -55,7 +55,7 @@ data:extend({
     name = "fish-caviar-red",
     icon = "__FoodIndustry__/graphics/icons/foods/fish-caviar-red.png",
     icon_size = 32,
-    flags = {"goes-to-main-inventory"},
+
     subgroup = "foods-fish",
     order = "w-a-b",
     stack_size = 20,

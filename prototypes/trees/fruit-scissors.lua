@@ -5,7 +5,7 @@ data:extend({
     name = "fruit-scissor",
     icon = "__FoodIndustry__/graphics/icons/items/fruit-scissor.png",
     icon_size = 32,
-    flags = {"goes-to-quickbar"},
+
     subgroup = "food-machines-trees",
     order = "w-a-a",
     stack_size = 1,

@@ -326,7 +326,7 @@ data:extend({
 	energy_required = 30.0,
     ingredients =
     {
-		{"iron-axe", 1},
+--		{"iron-axe", 1},
 		{"wood", 32}
     },
       results = 
@@ -595,7 +595,7 @@ data:extend({
 	energy_required = 3.0,
 	ingredients =
 	{
-		{"science-pack-1", 1},
+		{"automation-science-pack", 1},
 		{"compost", 5},
 	},
 	results = 
@@ -605,7 +605,7 @@ data:extend({
   },
   --[[{
 	type = "recipe",
-	name = "food-science-pack-2", -- TODO make alternative recipes of food-science-pack
+	name = "food-logistic-science-pack", -- TODO make alternative recipes of food-science-pack
 	enabled = false,
 	icon = "__FoodIndustry__/graphics/icons/items/food-science-pack.png",
 	icon_size = 32,

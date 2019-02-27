@@ -8,7 +8,7 @@ data:extend({
     name = "glass-bottle",
     icon = "__FoodIndustry__/graphics/icons/items/raw-straw.png",
     icon_size = 32,
-    flags = {"goes-to-main-inventory"},
+
     subgroup = "drink-empty-packages",
     order = "a-e",
     stack_size = 20,

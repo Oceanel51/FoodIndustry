@@ -21,7 +21,7 @@ for index, crop in pairs(crops) do
 				name = crop[1].."-plant",
 				icon = "__FoodIndustry__/graphics/icons/items/"..crop[1].."-plant.png",
 				icon_size = 32,
-				flags = {"goes-to-main-inventory"},
+
 				subgroup = crop[1],
 				order = "w-d-"..index.."-y",
 				stack_size = 10
@@ -58,7 +58,7 @@ for index, crop in pairs(crops) do
 				name = crop[1].."-seeds",
 				icon = "__FoodIndustry__/graphics/icons/items/"..crop[1].."-seeds.png",
 				icon_size = 32,
-				flags = {"goes-to-main-inventory"},
+
 				subgroup = crop[1],
 				order = "w-d-"..index.."-z",
 				stack_size = 100
@@ -93,7 +93,7 @@ for index, crop in pairs(crops) do
 				name = crop[1],
 				icon = "__FoodIndustry__/graphics/icons/items/"..crop[1]..".png",
 				icon_size = 32,
-				flags = {"goes-to-main-inventory"},
+
 				subgroup = crop[1],
 				order = "w-d-"..index.."-x",
 				stack_size = crop[7],
@@ -134,7 +134,7 @@ for index, crop in pairs(crops) do
 				name = crop[1],
 				icon = "__FoodIndustry__/graphics/icons/items/"..crop[1]..".png",
 				icon_size = 32,
-				flags = {"goes-to-main-inventory"},
+
 				subgroup = crop[1],
 				order = "w-d-"..index.."-x",
 				stack_size = crop[7],
