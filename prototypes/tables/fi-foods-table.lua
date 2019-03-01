@@ -107,7 +107,7 @@ function foods_table()
 	--{"advanced-neutralizing-capsule",	"special",					20,		0,		{-2,-2,-1,0},	80,		80,		-50,	{{"",0,0},} },
 	{"invulnerability-capsule",			"special",					120,	50,		{-2,-1,5,6},	160,	160,	150,	{{"invulnerability",9750,900},} },
 }
-	
+
 	return foods
 end
 

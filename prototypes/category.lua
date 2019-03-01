@@ -179,6 +179,18 @@ data:extend(
     group = "food-industry-drinks",
     order = "w-b-b-1",
   },
+  {
+    type = "item-subgroup",
+    name = "drinks-orange",
+    group = "food-industry-drinks",
+    order = "w-b-b-2",
+  },
+  {
+    type = "item-subgroup",
+    name = "drinks-apple",
+    group = "food-industry-drinks",
+    order = "w-b-b-3",
+  },
 
   -------------------- recipes --------------------
   {
