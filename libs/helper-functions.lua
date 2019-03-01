@@ -107,7 +107,7 @@ end
 
 
 -- https://stackoverflow.com/questions/1252539/most-efficient-way-to-determine-if-a-lua-table-is-empty-contains-no-entries
-function table.empty (self)
+function table.empty(self)
     for _, _ in pairs(self) do
         return false
     end
@@ -227,6 +227,32 @@ function table.findTree(t, val, recursive, metatables, keys, returnBool)
         return r ~= nil
     end
     return r
+end
+
+
+-- https://stackoverflow.com/a/664557
+--@ higher-order list-searching function:
+function table.find(f, l) -- find element v of l satisfying f(v)
+    for _, v in ipairs(l) do
+        if f(v) then
+            return v
+        end
+    end
+    return nil
+end
+
+
+-- https://stackoverflow.com/a/23015741
+function valid(data, array)
+    local valid = {}
+    for i = 1, #array do
+        valid[array[i]] = true
+    end
+    if valid[data] then
+        return false
+    else
+        return true
+    end
 end
 
 

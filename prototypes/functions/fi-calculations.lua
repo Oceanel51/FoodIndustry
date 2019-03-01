@@ -82,29 +82,29 @@ function fullness_calc_on_tick(index)
                 -- Substances subtraction and summation or destroy excess of Substances
                 if global.substances[index]["v"] + ( food[5][1] - ( food[5][1] * 100 / food[6] ) * ( food[6] - fullness_diff ) / 100 ) > 100 then
                     global.substances[index]["v"] = 100
-				elseif global.substances[index]["v"] + ( food[5][1] - ( food[5][1] * 100 / food[6] ) * ( food[6] - fullness_diff ) / 100 ) <= 0 then
-                    global.substances[index]["v"] = 0
+				elseif global.substances[index]["v"] + ( food[5][1] - ( food[5][1] * 100 / food[6] ) * ( food[6] - fullness_diff ) / 100 ) <= -10 then
+                    global.substances[index]["v"] = -10
                 else
                     global.substances[index]["v"] = global.substances[index]["v"] + ( food[5][1] - ( food[5][1] * 100 / food[6] ) * ( food[6] - fullness_diff ) / 100 )
                 end
                 if global.substances[index]["m"] + ( food[5][2] - ( food[5][2] * 100 / food[6] ) * ( food[6] - fullness_diff ) / 100 ) > 100 then
                     global.substances[index]["m"] = 100
-				elseif global.substances[index]["m"] + ( food[5][2] - ( food[5][2] * 100 / food[6] ) * ( food[6] - fullness_diff ) / 100 ) <= 0 then
-                    global.substances[index]["m"] = 0
+				elseif global.substances[index]["m"] + ( food[5][2] - ( food[5][2] * 100 / food[6] ) * ( food[6] - fullness_diff ) / 100 ) <= -10 then
+                    global.substances[index]["m"] = -10
                 else
                     global.substances[index]["m"] = global.substances[index]["m"] + ( food[5][2] - ( food[5][2] * 100 / food[6] ) * ( food[6] - fullness_diff ) / 100 )
                 end
                 if global.substances[index]["c"] + ( food[5][3] - ( food[5][3] * 100 / food[6] ) * ( food[6] - fullness_diff ) / 100 ) > 100 then
                     global.substances[index]["c"] = 100
-				elseif global.substances[index]["c"] + ( food[5][3] - ( food[5][3] * 100 / food[6] ) * ( food[6] - fullness_diff ) / 100 ) <= 0 then
-                    global.substances[index]["c"] = 0
+				elseif global.substances[index]["c"] + ( food[5][3] - ( food[5][3] * 100 / food[6] ) * ( food[6] - fullness_diff ) / 100 ) <= -10 then
+                    global.substances[index]["c"] = -10
                 else
                     global.substances[index]["c"] = global.substances[index]["c"] + ( food[5][3] - ( food[5][3] * 100 / food[6] ) * ( food[6] - fullness_diff ) / 100 )
                 end
                 if global.substances[index]["f"] + ( food[5][4] - ( food[5][4] * 100 / food[6] ) * ( food[6] - fullness_diff ) / 100 ) > 100 then
                     global.substances[index]["f"] = 100
-				elseif global.substances[index]["f"] + ( food[5][4] - ( food[5][4] * 100 / food[6] ) * ( food[6] - fullness_diff ) / 100 ) <= 0 then
-                    global.substances[index]["f"] = 0
+				elseif global.substances[index]["f"] + ( food[5][4] - ( food[5][4] * 100 / food[6] ) * ( food[6] - fullness_diff ) / 100 ) <= -10 then
+                    global.substances[index]["f"] = -10
                 else
                     global.substances[index]["f"] = global.substances[index]["f"] + ( food[5][4] - ( food[5][4] * 100 / food[6] ) * ( food[6] - fullness_diff ) / 100 )
                 end
@@ -202,28 +202,47 @@ end
 
 -- Substances usage
 function substances_reduction(index)
+	-- maintain levels not lower than -10
+	-- and if levels lower than -10 - restore to 0
+	if global.substances[index]["v"] - 1 >= 1 then
+		global.substances[index]["v"] = global.substances[index]["v"] - 1
+	elseif global.substances[index]["v"] - 1 <= -1.01 then
+		global.substances[index]["v"] = global.substances[index]["v"] + 1
+	elseif global.substances[index]["v"] - 1 <= -10 then
+		global.substances[index]["v"] = -10
+	else
+		global.substances[index]["v"] = 0
+	end
+	
+	if global.substances[index]["m"] - 1 >= 1 then
+		global.substances[index]["m"] = global.substances[index]["m"] - 1
+	elseif global.substances[index]["m"] - 1 <= -1.01 then
+		global.substances[index]["m"] = global.substances[index]["m"] + 1
+	elseif global.substances[index]["m"] - 1 <= -10 then
+		global.substances[index]["m"] = -10
+	else
+		global.substances[index]["m"] = 0
+	end
 
-    if global.substances[index]["v"] - 1 >= 0 then
-        global.substances[index]["v"] = global.substances[index]["v"] - 1
-    else
-        global.substances[index]["v"] = 0
-    end
-    if global.substances[index]["m"] - 1 >= 0 then
-        global.substances[index]["m"] = global.substances[index]["m"] - 1
-    else
-        global.substances[index]["m"] = 0
-    end
-    if global.substances[index]["c"] - 1 >= 0 then
-        global.substances[index]["c"] = global.substances[index]["c"] - 1
-    else
-        global.substances[index]["c"] = 0
-    end
-    if global.substances[index]["f"] - 1 >= 0 then
-        global.substances[index]["f"] = global.substances[index]["f"] - 1
-    else
-        global.substances[index]["f"] = 0
-    end
-    
+	if global.substances[index]["c"] - 1 >= 1 then
+		global.substances[index]["c"] = global.substances[index]["c"] - 1
+	elseif global.substances[index]["c"] - 1 <= -1.01 then
+		global.substances[index]["c"] = global.substances[index]["c"] + 1
+	elseif global.substances[index]["c"] - 1 <= -10 then
+		global.substances[index]["c"] = -10
+	else
+		global.substances[index]["c"] = 0
+	end
+
+	if global.substances[index]["f"] - 1 >= 1 then
+		global.substances[index]["f"] = global.substances[index]["f"] - 1
+	elseif global.substances[index]["f"] - 1 <= -1.01 then
+		global.substances[index]["f"] = global.substances[index]["f"] + 1
+	elseif global.substances[index]["f"] - 1 <= -10 then
+		global.substances[index]["f"] = -10
+	else
+		global.substances[index]["f"] = 0
+	end
 end
 
 
@@ -292,7 +311,7 @@ function effects_add(index, item_name, effect_data)
 		--	writeDebug("No effects for fi '"..effect_data[1].."', insert new ")
 		--	effects_fi_add_insert(index, item_name, effect_data)
 		--else
-			writeDebug("No effects for vanilla '"..effect_data[1].."', insert new ")
+			writeDebug("No effects for '"..effect_data[1].."', insert new ")
 			effects_add_insert(index, item_name, effect_data)
 		--end
 		--return
@@ -502,7 +521,9 @@ function effects_time_reduction(index) -- after -60 ticks
 				for i5,e5 in pairs(effect[5]) do
 					if e5[3] > 0 and e5[3] - 60 > 0 then
 						e5[3] = e5[3] - 60
-					else
+					elseif e5[3] <= -100000 then
+					-- TODO skip effect
+				else
 						e5[3] = 0
 						--if string.match(i, "fi_") == "fi_" then
 						--	writeDebug("to remove fi: "..e5[1])
@@ -559,12 +580,56 @@ function effects_calc_on_tick(index, player)
 			global.effects[index]["drinks_for_energy_usage"][5][1]={"code_drinks_is_0",0,0}
 		end
 	end
+	-- TODO разработать!
+	if global.drinks[index] >= global.drinks_max[index] * 0.9 then -- >= 90%
+		-- activate speed effect to 0.1
+		if global.effects[index]["speed"] and global.effects[index]["speed"][2] >= 0 then
+			if table.maxn(global.effects[index]["speed"][5]) > 0 then
+				local founded = false
+				for i,ef in pairs(global.effects[index]["speed"][5]) do
+					if ef == "code_drinks_above_90" then
+						founded = true
+					end
+				end
+				if founded then
+					effects_add_insert(index, "code_drinks_above_90%", {"speed",0.1,-100000})
+					--global.effects[index]["speed"][1] = true
+					--global.effects[index]["speed"][2] = global.effects[index]["speed"][2] + 0.1
+					--table.insert(global.effects[index]["speed"][5], {"code_drinks_above_90%",global.effects[index]["speed"][2],-100000})
+					writeDebug("[Debug]: activate global.effects["..index.."][speed] by +"..global.effects[index]["speed"][2])
+				end
+			else
+				effects_add_insert(index, "code_drinks_above_90%", {"speed",0.1,-100000})
+				--if not global.effects[index]["speed"][1] then
+				--	global.effects[index]["speed"][1] = true
+				--	global.effects[index]["speed"][2] = global.effects[index]["speed"][2] + 0.1
+				--	table.insert(global.effects[index]["speed"][5], {"code_drinks_above_90%",global.effects[index]["speed"][2],-100000})
+					writeDebug("[Debug]: activate first global.effects["..index.."][speed] by +"..global.effects[index]["speed"][2])
+				--end
+			end
+		end
+	elseif global.drinks[index] < global.drinks_max[index] * 0.9 then -- >= 90%
+		if global.effects[index]["speed"] and global.effects[index]["speed"][2] > 0 then
+			for i,ef in pairs(global.effects[index]["speed"][5]) do
+				if ef == "code_drinks_above_90" then
+					global.effects[index]["speed"][2] = global.effects[index]["speed"][2] - 0.1
+					table.remove(global.effects[index]["speed"][5], i)
+					if table.maxn(global.effects[index]["speed"][5]) == 0 then
+						global.effects[index]["speed"][1] = false
+						global.effects[index]["speed"][2] = 0
+					end
+					writeDebug("[Debug]: deactivate global.effects["..index.."][speed] ="..global.effects[index]["speed"][2])
+				end
+			end
+		end
+	end
+	-------------------
 
 
     ----------------- consider the effect Substances fullness on the Energy consumption ---------------
 	substances_for_energy_ussage_modifier = -1 * (settings.global["food-industry-substances-modifier"].value / 100)
 	
-	-- reduce Energy usage when substances >80% additionaly reduce for 10%
+	-- reduce Energy usage when substances >80% additionaly reduce by 10%
 	if global.substances[index]["v"] > 80 and global.substances[index]["m"] > 80 and global.substances[index]["c"] > 80 and global.substances[index]["f"] > 80 then
 		if global.effects[index]["substances_for_energy_usage"] and global.effects[index]["substances_for_energy_usage"][3] == 2 then
 			global.effects[index]["substances_for_energy_usage"][1] = true
@@ -578,7 +643,7 @@ function effects_calc_on_tick(index, player)
 				global.fi_energy_ussage_modifier[index] = global.fi_energy_ussage_modifier[index] - 0.1
 			end
 		end
-	-- reduce Energy usage when substances >50% additionaly reduce for 10%
+	-- reduce Energy usage when substances >50% additionaly reduce by 10%
 	elseif global.substances[index]["v"] > 50 and global.substances[index]["m"] > 50 and global.substances[index]["c"] > 50 and global.substances[index]["f"] > 50 then
 		if global.effects[index]["substances_for_energy_usage"] and global.effects[index]["substances_for_energy_usage"][3] == 1 then
 			global.effects[index]["substances_for_energy_usage"][1] = true

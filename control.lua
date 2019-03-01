@@ -78,6 +78,7 @@ function OnInit()
 	for index,player in pairs(game.players) do
 		if player.connected then
 			fi_global_variables_init()
+			fi_global_variables_set(index) -- set global variables default data of connected players
 			if settings.global["food-industry-calculate"].value then
 				figui.create(index, player)
 			else
@@ -88,7 +89,6 @@ function OnInit()
 					end
 				end
 			end
-			fi_global_variables_set(index) -- set global variables default data of connected players
 		end
 	end
 end
@@ -134,7 +134,7 @@ script.on_event({defines.events.on_tick}, function (e)
 					end
 
 				else ---- calculate character Energy usage data
-					figui.create(index, player)
+					--figui.create(index, player)
 					
 					local slots = 0
 					local durability = 0
@@ -159,15 +159,16 @@ script.on_event({defines.events.on_tick}, function (e)
 						global.usage[index] = 1.5 + settings.global["food-industry-slots"].value * slots + settings.global["food-industry-durability"].value * durability * 0.001 -- calculate usage data
 					elseif player.mining_state.mining then -- if mining, if player have mining-tool in player_tools - get it mining speed
 						mining_speed = 1.6
-						if player.get_inventory(defines.inventory.player_tools) and player.get_inventory(defines.inventory.player_tools).valid then
-							if player.get_inventory(defines.inventory.player_tools).get_item_count() > 0 and player.get_inventory(defines.inventory.player_tools)[1] and player.get_inventory(defines.inventory.player_tools)[1].valid then
-								local tool = player.get_inventory(defines.inventory.player_tools)[1]
-								if tool and tool.prototype then
-									mining_speed = tool.prototype.speed
-								end
-							end
-						end
-						global.usage[index] = math.ceil((0.125 * mining_speed + 1) / 0.01) / 100
+						--if player.get_inventory(defines.inventory.player_tools) and player.get_inventory(defines.inventory.player_tools).valid then
+						--	if player.get_inventory(defines.inventory.player_tools).get_item_count() > 0 and player.get_inventory(defines.inventory.player_tools)[1] and player.get_inventory(defines.inventory.player_tools)[1].valid then
+						--		local tool = player.get_inventory(defines.inventory.player_tools)[1]
+						--		if tool and tool.prototype then
+						--			mining_speed = tool.prototype.speed
+						--		end
+						--	end
+						--end
+						--global.usage[index] = math.ceil((0.125 * mining_speed + 1) / 0.01) / 100
+						global.usage[index] = math.ceil(mining_speed)
 						-- player.print("mining with speed " .. mining_speed)
 					--elseif player.riding_state.riding.acceleration then ---- if riding
 					elseif player.driving then -- if driving
@@ -287,8 +288,7 @@ script.on_event({defines.events.on_tick}, function (e)
 					----------------------- substances update -----------------------
 					figui.update_substances(index, player)
 					-- DEBUG увеличить расход Substances до -1 в 40 сек.
-					--if e.tick % 2880 == 0 then
-					if e.tick % 600 == 0 then
+					if e.tick % 2880 == 0 then
 						substances_reduction(index)
 					end
 					
@@ -375,12 +375,12 @@ script.on_event(defines.events.on_built_entity, function(event)
 	local_on_added(event)
 	
 	-- TODO Fix this! removed this as it seems to be buggy
-	--local entity = event.created_entity
-	--	if (entity.name == "fi-basic-farmland") and entity.burner and entity.burner.remaining_burning_fuel then 
-	--		event.created_entity.burner.currently_burning="wood"
-	--		event.created_entity.burner.remaining_burning_fuel=2000000
-	--	end
+	local entity = event.created_entity
+	if (entity.name == "fi-basic-farmland") and entity.burner and entity.burner.remaining_burning_fuel then 
+		event.created_entity.burner.currently_burning="wood"
+		event.created_entity.burner.remaining_burning_fuel=2000000
 	end
+end
 )
 
 
@@ -649,6 +649,7 @@ script.on_event(defines.events.on_research_finished, function(event)
 							player.print({'print.fi-tech-more-energy', "150"})
 							--leftGui.frame.flow1.energylabel.tooltip = 'label.energylabel_tooltip' .. " - " .. "150" .. 'label.energylabelunits_tooltip'
 							leftGui.frame.flow1.energylabel.tooltip = {'label.label-energylabel-tooltip', global.energy_max[index]}
+							leftGui.frame.flow22.drinkslabel.tooltip = {'label.label-drinkslabel-tooltip', global.drinks_max[index]}
 							--u_gui()
 						end
 					end
@@ -665,6 +666,7 @@ script.on_event(defines.events.on_research_finished, function(event)
 						global.drinks_max[index] = 200
 						player.print({'print.fi-tech-more-energy', "200"})
 						leftGui.frame.flow1.energylabel.tooltip = {'label.label-energylabel-tooltip', global.energy_max[index]}
+						leftGui.frame.flow22.drinkslabel.tooltip = {'label.label-drinkslabel-tooltip', global.drinks_max[index]}
 					end
 				end
 			end
@@ -679,6 +681,7 @@ script.on_event(defines.events.on_research_finished, function(event)
 						global.drinks_max[index] = 300
 						player.print({'print.fi-tech-more-energy', "300"})
 						leftGui.frame.flow1.energylabel.tooltip = {'label.label-energylabel-tooltip', global.energy_max[index]}
+						leftGui.frame.flow22.drinkslabel.tooltip = {'label.label-drinkslabel-tooltip', global.drinks_max[index]}
 					end
 				end
 			end
@@ -693,6 +696,7 @@ script.on_event(defines.events.on_research_finished, function(event)
 						global.drinks_max[index] = 400
 						player.print({'print.fi-tech-more-energy', "400"})
 						leftGui.frame.flow1.energylabel.tooltip = {'label.label-energylabel-tooltip', global.energy_max[index]}
+						leftGui.frame.flow22.drinkslabel.tooltip = {'label.label-drinkslabel-tooltip', global.drinks_max[index]}
 					end
 				end
 			end
@@ -707,6 +711,7 @@ script.on_event(defines.events.on_research_finished, function(event)
 						global.drinks_max[index] = 500
 						player.print({'print.fi-tech-more-energy', "500"})
 						leftGui.frame.flow1.energylabel.tooltip = {'label.label-energylabel-tooltip', global.energy_max[index]}
+						leftGui.frame.flow22.drinkslabel.tooltip = {'label.label-drinkslabel-tooltip', global.drinks_max[index]}
 					end
 				end
 			end
@@ -825,7 +830,7 @@ function u_gui()
 						leftGui.frame.hungerspeedbar.value = -(global.energy[index] - global.energy_max[index] * 0.25)/global.energy_max[index]
 						if player.character then
 							--leftGui.frame.flow7.hungerspeedlabel.caption = "Hunger slowness: " .. math.max(global.energy[index] - 25,-99) .."%"
-							leftGui.frame.flow7.hungerspeedlabel.caption = math.max(global.energy[index] - global.energy_max[index] * 0.25,-99)
+							leftGui.frame.flow7.hungerspeedlabel.caption = math.floor(math.max(global.energy[index] - global.energy_max[index] * 0.25,-99))
 						end
 						
 					elseif leftGui.frame.hungerspeedbar and leftGui.frame.flow7.hungerspeedlabel then

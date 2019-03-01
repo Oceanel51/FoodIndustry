@@ -6,7 +6,7 @@ data:extend({
     icon = "__FoodIndustry__/graphics/icons/substances/substances-dust.png",
     icon_size = 32,
 
-
+    subgroup = "foods-substances",
     order = "w-s-a",
     stack_size = 100,
 	capsule_action = {
@@ -42,8 +42,8 @@ data:extend({
 	name = "substance-v",
 	icon = "__FoodIndustry__/graphics/icons/substances/substance-v.png",
 	icon_size = 32,
-
-
+	flags = {"goes-to-main-inventory"},
+    subgroup = "foods-substances",
 	order = "w-s-a",
 	stack_size = 100,
 	fuel_category = "plant",
@@ -55,7 +55,7 @@ data:extend({
     icon = "__FoodIndustry__/graphics/icons/substances/substance-v.png",
     icon_size = 32,
 
-
+    subgroup = "foods-substances",
     order = "w-s-b",
     stack_size = 100,
 	capsule_action = {
@@ -91,8 +91,8 @@ data:extend({
 	name = "substance-m",
 	icon = "__FoodIndustry__/graphics/icons/substances/substance-m.png",
 	icon_size = 32,
-
-
+	flags = {"goes-to-main-inventory"},
+	subgroup = "foods-substances",
 	order = "w-s-b",
 	stack_size = 100,
 	fuel_category = "plant",
@@ -104,7 +104,7 @@ data:extend({
 		icon = "__FoodIndustry__/graphics/icons/substances/substance-m.png",
 		icon_size = 32,
 
-
+		subgroup = "foods-substances",
 		order = "w-s-c",
 		stack_size = 100,
 		capsule_action = {
@@ -140,8 +140,8 @@ data:extend({
 	name = "substance-c",
 	icon = "__FoodIndustry__/graphics/icons/substances/substance-c.png",
 	icon_size = 32,
-
-
+	flags = {"goes-to-main-inventory"},
+	subgroup = "foods-substances",
 	order = "w-s-c",
 	stack_size = 100,
 	fuel_category = "plant",
@@ -153,7 +153,7 @@ data:extend({
     icon = "__FoodIndustry__/graphics/icons/substances/substance-c.png",
     icon_size = 32,
 
-
+    subgroup = "foods-substances",
     order = "w-s-d",
     stack_size = 100,
 	capsule_action = {
@@ -189,8 +189,8 @@ data:extend({
 	name = "substance-f",
 	icon = "__FoodIndustry__/graphics/icons/substances/substance-f.png",
 	icon_size = 32,
-
-
+	flags = {"goes-to-main-inventory"},
+	subgroup = "foods-substances",
 	order = "w-s-d",
 	stack_size = 100,
 	fuel_category = "plant",
@@ -202,7 +202,7 @@ data:extend({
     icon = "__FoodIndustry__/graphics/icons/substances/substance-f.png",
     icon_size = 32,
 
-
+    subgroup = "foods-substances",
     order = "w-s-e",
     stack_size = 100,
 	capsule_action = {

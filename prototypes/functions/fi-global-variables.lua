@@ -133,10 +133,12 @@ function fi_global_variables_set(index)
 		global.effects[index]["drinks_for_energy_usage"]		 = {false,		0,			0,					0,		{{"drinks_is_0",0,0},}}		-- init basic value of modifier when +Drinks affect for Energy usage
 		global.effects[index]["substances_for_energy_usage"]	 = {false,		0,			0,					0,		{{"vmcf_is_0",0,0},}}		-- init basic value of modifier when +VMCF Substances affect for Energy usage
 		
-		--															enabled,				time,						influencing factors (table)
+		--															enabled,	-,			time,				-,		influencing factors (table)
 		global.effects[index]["drink_to_add_more_energy"]		 = {false,		0,			0,					0,		{}}							-- init empty value of modifier when Pllayer drink after use item
 		global.effects[index]["add_more_energy"]				 = {false,		0,			0,					0,		{}}							-- init empty value of More Energy
 		global.effects[index]["add_more_drinks"]				 = {false,		0,			0,					0,		{}}							-- init empty value of More Drinks
+		global.effects[index]["energy_usage"]					 = {false,		0,			0,					0,		{}}							-- init empty value of Energy usage
+		global.effects[index]["drinks_usage"]					 = {false,		0,			0,					0,		{}}							-- init empty value of Drinks usage
 		
 		global.effects[index]["digestion"]						 = {false,		0,			0,					0,		{}}							-- init empty value of Digestions
 		global.effects[index]["thirst"]							 = {false,		0,			14400,				0,		{}}							-- init basic value of Thirst

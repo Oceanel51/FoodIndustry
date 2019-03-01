@@ -72,7 +72,7 @@ function figui.create(index, player)
 		-- "Energy: " .. energylabel .. " (usage: ".. usagelabel .."%)"
 		leftGui.frame.flow1.add({type="label", name="label_energy", caption={'label.label-energy', ": "}, style = "fi-label", align="right",})
 		--leftGui.frame.flow1.add({type="label", name="label_energy1", caption=": ", style = "fi-label", align="left",})
-		leftGui.frame.flow1.add({type="label", name="energylabel", caption="", tooltip = {'label.label-energylabel-tooltip', global.energy_max[index]},})
+		leftGui.frame.flow1.add({type="label", name="energylabel", caption="", tooltip = {'label.label-energylabel-tooltip', global.energy_max[index]}, style = "fi-label"})
 		--leftGui.frame.flow1.energylabel.tooltip = {'label.label-energylabel-tooltip', global.energy_max[index]}
 		--leftGui.frame.flow1.add({type="label", name="label_usage1", caption=" (", left_padding=0, right_padding=0,})
 		leftGui.frame.flow1.add({type="label", name="label_usage", caption={'label.label-usage', " (", ": "}, style = "fi-label",})
@@ -96,7 +96,7 @@ function figui.create(index, player)
 	if not leftGui.frame.flow22.drinkslabel then
 		-- "Drinks: " .. drinklabel .. " (usage: ".. usagelabel .."%)"
 		leftGui.frame.flow22.add({type="label", name="label_drinks", caption={'label.label-drinks', ": "}, style = "fi-label", align="right",})
-		leftGui.frame.flow22.add({type="label", name="drinkslabel", caption="", tooltip = {'label.label-drinkslabel-tooltip', global.drinks_max[index]},})
+		leftGui.frame.flow22.add({type="label", name="drinkslabel", caption="", tooltip = {'label.label-drinkslabel-tooltip', global.drinks_max[index]}, style = "fi-label"})
 		leftGui.frame.add({type="progressbar", name="drinksbar"})
 		leftGui.frame.drinksbar.style.width = 200
 		leftGui.frame.drinksbar.style.color = {r=0.2, g=0.2, b=1, a=1}
@@ -129,46 +129,46 @@ function figui.create(index, player)
 		if not leftGui.frame.flow3.flow33 then
 			leftGui.frame.flow3.add{type="flow", name="flow33", direction="vertical"}
 			--leftGui.frame.flow3.flow33.style.left_padding=10
-			leftGui.frame.flow3.flow33.add({type="label", name="label_substances", caption={'label.label-substances', ": "},})
+			leftGui.frame.flow3.flow33.add({type="label", name="label_substances", caption={'label.label-substances', ": "}, tooltip={'label.label-substances-tooltip',"-10","100"}})
 		end
 		
 		if not leftGui.frame.flow3.flow33.flow331 then
-			leftGui.frame.flow3.flow33.add{type="flow", name="flow331", tooltip={'label.label-substancesbar_v-tooltip',"100"}, style="fi-substances-flow"}
+			leftGui.frame.flow3.flow33.add{type="flow", name="flow331", tooltip={'label.label-substancesbar_v-tooltip'}, style="fi-substances-flow"}
 			if not leftGui.frame.flow3.flow33.flow331.substancesbar_v then
 				--leftGui.frame.flow3.flow33.flow331.add({type="label", name="label_substancesbar_v", caption={'label.label-substancesbar_v'},})
 				leftGui.frame.flow3.flow33.flow331.add({type="progressbar", name="substancesbar_v", style="fi-substances-bar"})
 				leftGui.frame.flow3.flow33.flow331.substancesbar_v.style.color = {r=0.388235294, g=1, b=0.317647059, a=1}
-				leftGui.frame.flow3.flow33.flow331.add({type="label", name="label_substancesbar_v", caption="0", tooltip={'label.label-substancesbar_v-tooltip',"100"}, style="fi-label-mini"})
+				leftGui.frame.flow3.flow33.flow331.add({type="label", name="label_substancesbar_v", caption="0", tooltip={'label.label-substancesbar_v-tooltip'}, style="fi-label-mini"})
 				leftGui.frame.flow3.flow33.flow331.label_substancesbar_v.style.font_color = {r=0.388235294, g=1, b=0.317647059, a=1}
 			end
 		end
 		if not leftGui.frame.flow3.flow33.flow332 then
-			leftGui.frame.flow3.flow33.add{type = "flow", name = "flow332", tooltip={'label.label-substancesbar_m-tooltip',"100"}, style="fi-substances-flow"}
+			leftGui.frame.flow3.flow33.add{type = "flow", name = "flow332", tooltip={'label.label-substancesbar_m-tooltip'}, style="fi-substances-flow"}
 			if not leftGui.frame.flow3.flow33.flow332.substancesbar_m then
 				--leftGui.frame.flow3.flow33.flow332.add({type="label", name="label_substancesbar_m", caption={'label.label-substancesbar_m'},})
 				leftGui.frame.flow3.flow33.flow332.add({type="progressbar", name="substancesbar_m", style="fi-substances-bar"})
 				leftGui.frame.flow3.flow33.flow332.substancesbar_m.style.color = {r=1, g=0.996078431, b=0.047058824, a=1}
-				leftGui.frame.flow3.flow33.flow332.add({type="label", name="label_substancesbar_m", caption="0", tooltip={'label.label-substancesbar_m-tooltip',"100"}, style="fi-label-mini"})
+				leftGui.frame.flow3.flow33.flow332.add({type="label", name="label_substancesbar_m", caption="0", tooltip={'label.label-substancesbar_m-tooltip'}, style="fi-label-mini"})
 				leftGui.frame.flow3.flow33.flow332.label_substancesbar_m.style.font_color = {r=1, g=0.996078431, b=0.047058824, a=1}
 			end
 		end
 		if not leftGui.frame.flow3.flow33.flow333 then
-			leftGui.frame.flow3.flow33.add{type = "flow", name = "flow333", tooltip={'label.label-substancesbar_c-tooltip',"100"}, style="fi-substances-flow"}
+			leftGui.frame.flow3.flow33.add{type = "flow", name = "flow333", tooltip={'label.label-substancesbar_c-tooltip'}, style="fi-substances-flow"}
 			if not leftGui.frame.flow3.flow33.flow333.substancesbar_c then
 				--leftGui.frame.flow3.flow33.flow333.add({type="label", name="label_substancesbar_c", caption={'label.label-substancesbar_c'},})
 				leftGui.frame.flow3.flow33.flow333.add({type="progressbar", name="substancesbar_c", style="fi-substances-bar"})
 				leftGui.frame.flow3.flow33.flow333.substancesbar_c.style.color = {r=1, g=0.552941176, b=0.937254902, a=1}
-				leftGui.frame.flow3.flow33.flow333.add({type="label", name="label_substancesbar_c", caption="0", tooltip={'label.label-substancesbar_c-tooltip',"100"}, style="fi-label-mini"})
+				leftGui.frame.flow3.flow33.flow333.add({type="label", name="label_substancesbar_c", caption="0", tooltip={'label.label-substancesbar_c-tooltip'}, style="fi-label-mini"})
 				leftGui.frame.flow3.flow33.flow333.label_substancesbar_c.style.font_color = {r=1, g=0.552941176, b=0.937254902, a=1}
 			end
 		end
 		if not leftGui.frame.flow3.flow33.flow334 then
-			leftGui.frame.flow3.flow33.add{type = "flow", name = "flow334", tooltip={'label.label-substancesbar_f-tooltip',"100"}, style="fi-substances-flow"}
+			leftGui.frame.flow3.flow33.add{type = "flow", name = "flow334", tooltip={'label.label-substancesbar_f-tooltip'}, style="fi-substances-flow"}
 			if not leftGui.frame.flow3.flow33.flow334.substancesbar_f then
 				--leftGui.frame.flow3.flow33.flow334.add({type="label", name="label_substancesbar_f", caption={'label.label-substancesbar_f'},})
 				leftGui.frame.flow3.flow33.flow334.add({type="progressbar", name="substancesbar_f", style="fi-substances-bar"})
 				leftGui.frame.flow3.flow33.flow334.substancesbar_f.style.color = {r=0.301960784, g=0.882352941, b=0.984313725, a=1}
-				leftGui.frame.flow3.flow33.flow334.add({type="label", name="label_substancesbar_f", caption="0", tooltip={'label.label-substancesbar_f-tooltip',"100"}, style="fi-label-mini"})
+				leftGui.frame.flow3.flow33.flow334.add({type="label", name="label_substancesbar_f", caption="0", tooltip={'label.label-substancesbar_f-tooltip'}, style="fi-label-mini"})
 				leftGui.frame.flow3.flow33.flow334.label_substancesbar_f.style.font_color = {r=0.301960784, g=0.882352941, b=0.984313725, a=1}
 			end
 		end
@@ -247,6 +247,24 @@ function figui.update(index, player)
 	if leftGui.frame.flow22.drinkslabel then
 		leftGui.frame.flow22.drinkslabel.caption = math.floor(global.drinks[index])
 		leftGui.frame.drinksbar.value = math.abs(global.drinks[index]/global.drinks_max[index])
+		if global.drinks[index] >= global.drinks_max[index] * 0.91 then -- >=91%
+			leftGui.frame.drinksbar.style.color = {r=0.227450980, g=0, b=0.745098039, a=1}
+		elseif global.drinks[index] >= global.drinks_max[index] * 0.5 then -- >=50%
+			leftGui.frame.drinksbar.style.color = {r=0.2, g=0.2, b=1, a=1}
+		elseif global.drinks[index] >= global.drinks_max[index] * 0.4 then -- >=40%
+			leftGui.frame.drinksbar.style.color = {r=0.2, g=0.2, b=1, a=0.9}
+		elseif global.drinks[index] >= global.drinks_max[index] * 0.3 then -- >=30%
+			leftGui.frame.drinksbar.style.color = {r=0.2, g=0.2, b=1, a=0.8}
+		elseif global.drinks[index] >= global.drinks_max[index] * 0.2 then -- >=20%
+			leftGui.frame.drinksbar.style.color = {r=0.2, g=0.2, b=1, a=0.7}
+		elseif global.drinks[index] >= global.drinks_max[index] * 0.1 then -- >=10%
+			leftGui.frame.drinksbar.style.color = {r=0.2, g=0.2, b=1, a=0.6}
+		elseif global.drinks[index] >= 0 then
+			leftGui.frame.drinksbar.style.color = {r=0.2, g=0.2, b=1, a=0.5}
+		else 
+			-- TODO add thirst viewing
+			leftGui.frame.drinksbar.style.color = {r = 1, a = 1}
+		end
 	end
 
 
@@ -284,22 +302,95 @@ function figui.update_substances(index, player)
 		return
 	end
 	
-	-- TODO Update GUI Substances
+	-- if substances > 0 then a=0.7
+	-- if substances < 0 then make bar darker
+	-- else (include substances = 0) then make font grayer
 	if leftGui.frame.flow3.flow33.flow331.substancesbar_v then
-		leftGui.frame.flow3.flow33.flow331.label_substancesbar_v.caption = math.floor(global.substances[index]["v"])
 		leftGui.frame.flow3.flow33.flow331.substancesbar_v.value = math.abs(global.substances[index]["v"]/100)
+		leftGui.frame.flow3.flow33.flow331.label_substancesbar_v.caption = math.floor(global.substances[index]["v"])
+		if global.substances[index]["v"] > 60 then
+			leftGui.frame.flow3.flow33.flow331.substancesbar_v.style.color = {r=0.388235294, g=1, b=0.317647059, a=1}
+		elseif global.substances[index]["v"] > 40 then
+			leftGui.frame.flow3.flow33.flow331.substancesbar_v.style.color = {r=0.388235294, g=1, b=0.317647059, a=0.9}
+		elseif global.substances[index]["v"] > 20 then
+			leftGui.frame.flow3.flow33.flow331.substancesbar_v.style.color = {r=0.388235294, g=1, b=0.317647059, a=0.8}
+		elseif global.substances[index]["v"] > 0 then
+			leftGui.frame.flow3.flow33.flow331.substancesbar_v.style.color = {r=0.388235294, g=1, b=0.317647059, a=0.7}
+			leftGui.frame.flow3.flow33.flow331.label_substancesbar_v.style.font_color = {r=0.388235294, g=1, b=0.317647059, a=1}
+		elseif global.substances[index]["v"] < 0 then
+			leftGui.frame.flow3.flow33.flow331.substancesbar_v.value = math.abs(global.substances[index]["v"]/100*10)
+			leftGui.frame.flow3.flow33.flow331.substancesbar_v.style.color = {r=0.388235294, g=0.549019608, b=0.317647059, a=0.9} -- darker bar
+			leftGui.frame.flow3.flow33.flow331.label_substancesbar_v.style.font_color = {r=1.0, g=0.17, b=0, a=1}
+		else
+			leftGui.frame.flow3.flow33.flow331.substancesbar_v.style.color = {r=0.388235294, g=1, b=0.317647059, a=1}
+			leftGui.frame.flow3.flow33.flow331.label_substancesbar_v.style.font_color = {r=0.152941176, g=0.388235294, b=0.121568627, a=1} -- grey font
+		end
 	end
+
 	if leftGui.frame.flow3.flow33.flow332.substancesbar_m then
 		leftGui.frame.flow3.flow33.flow332.label_substancesbar_m.caption = math.floor(global.substances[index]["m"])
 		leftGui.frame.flow3.flow33.flow332.substancesbar_m.value = math.abs(global.substances[index]["m"]/100)
+		if global.substances[index]["m"] > 60 then
+			leftGui.frame.flow3.flow33.flow332.substancesbar_m.style.color = {r=1, g=0.996078431, b=0.047058824, a=1}
+		elseif global.substances[index]["m"] > 40 then
+			leftGui.frame.flow3.flow33.flow332.substancesbar_m.style.color = {r=1, g=0.996078431, b=0.047058824, a=0.9}
+		elseif global.substances[index]["m"] > 20 then
+			leftGui.frame.flow3.flow33.flow332.substancesbar_m.style.color = {r=1, g=0.996078431, b=0.047058824, a=0.8}
+		elseif global.substances[index]["m"] > 0 then
+			leftGui.frame.flow3.flow33.flow332.substancesbar_m.style.color = {r=1, g=0.996078431, b=0.047058824, a=0.7}
+			leftGui.frame.flow3.flow33.flow332.label_substancesbar_m.style.font_color = {r=1, g=0.996078431, b=0.047058824, a=1}
+		elseif global.substances[index]["m"] < 0 then
+			leftGui.frame.flow3.flow33.flow332.substancesbar_m.value = math.abs(global.substances[index]["m"]/100*10)
+			leftGui.frame.flow3.flow33.flow332.substancesbar_m.style.color = {r=1, g=0.470588235, b=0.047058824, a=0.9} -- darker bar
+			leftGui.frame.flow3.flow33.flow332.label_substancesbar_m.style.font_color = {r=1.0, g=0.17, b=0, a=1}
+		else
+			leftGui.frame.flow3.flow33.flow332.substancesbar_m.style.color = {r=1, g=0.996078431, b=0.047058824, a=1}
+			leftGui.frame.flow3.flow33.flow332.label_substancesbar_m.style.font_color = {r=0.447058824, g=0.439215686, b=0.019607843, a=1} -- grey font
+		end
 	end
+
 	if leftGui.frame.flow3.flow33.flow333.substancesbar_c then
 		leftGui.frame.flow3.flow33.flow333.label_substancesbar_c.caption = math.floor(global.substances[index]["c"])
 		leftGui.frame.flow3.flow33.flow333.substancesbar_c.value = math.abs(global.substances[index]["c"]/100)
+		if global.substances[index]["c"] > 60 then
+			leftGui.frame.flow3.flow33.flow333.substancesbar_c.style.color = {r=1, g=0.552941176, b=0.937254902, a=1}
+		elseif global.substances[index]["c"] > 40 then
+			leftGui.frame.flow3.flow33.flow333.substancesbar_c.style.color = {r=1, g=0.552941176, b=0.937254902, a=0.9}
+		elseif global.substances[index]["c"] > 20 then
+			leftGui.frame.flow3.flow33.flow333.substancesbar_c.style.color = {r=1, g=0.552941176, b=0.937254902, a=0.8}
+		elseif global.substances[index]["c"] > 0 then
+			leftGui.frame.flow3.flow33.flow333.substancesbar_c.style.color = {r=1, g=0.552941176, b=0.937254902, a=0.7}
+			leftGui.frame.flow3.flow33.flow333.label_substancesbar_c.style.font_color = {r=1, g=0.552941176, b=0.937254902, a=1}
+		elseif global.substances[index]["c"] < 0 then
+			leftGui.frame.flow3.flow33.flow333.substancesbar_c.value = math.abs(global.substances[index]["c"]/100*10)
+			leftGui.frame.flow3.flow33.flow333.substancesbar_c.style.color = {r=0.760784314, g=0.607843137, b=0.937254902, a=0.9} -- darker bar
+			leftGui.frame.flow3.flow33.flow333.label_substancesbar_c.style.font_color = {r=1.0, g=0.17, b=0, a=1}
+		else
+			leftGui.frame.flow3.flow33.flow333.substancesbar_c.style.color = {r=1, g=0.552941176, b=0.937254902, a=1}
+			leftGui.frame.flow3.flow33.flow333.label_substancesbar_c.style.font_color = {r=0.509803922, g=0.290196078, b=0.478431373, a=1} -- grey font
+		end
 	end
+	
 	if leftGui.frame.flow3.flow33.flow334.substancesbar_f then
 		leftGui.frame.flow3.flow33.flow334.label_substancesbar_f.caption = math.floor(global.substances[index]["f"])
 		leftGui.frame.flow3.flow33.flow334.substancesbar_f.value = math.abs(global.substances[index]["f"]/100)
+		if global.substances[index]["f"] > 60 then
+			leftGui.frame.flow3.flow33.flow334.substancesbar_f.style.color = {r=0.301960784, g=0.882352941, b=0.984313725, a=1}
+		elseif global.substances[index]["f"] > 40 then
+			leftGui.frame.flow3.flow33.flow334.substancesbar_f.style.color = {r=0.301960784, g=0.882352941, b=0.984313725, a=0.9}
+		elseif global.substances[index]["f"] > 20 then
+			leftGui.frame.flow3.flow33.flow334.substancesbar_f.style.color = {r=0.301960784, g=0.882352941, b=0.984313725, a=0.8}
+		elseif global.substances[index]["f"] > 0 then
+			leftGui.frame.flow3.flow33.flow334.substancesbar_f.style.color = {r=0.301960784, g=0.882352941, b=0.984313725, a=0.7}
+			leftGui.frame.flow3.flow33.flow334.label_substancesbar_f.style.font_color = {r=0.301960784, g=0.882352941, b=0.984313725, a=1}
+		elseif global.substances[index]["f"] < 0 then
+			leftGui.frame.flow3.flow33.flow334.substancesbar_f.value = math.abs(global.substances[index]["f"]/100*10)
+			leftGui.frame.flow3.flow33.flow334.substancesbar_f.style.color = {r=0.301960784, g=0.443137255, b=0.984313725, a=0.9} -- darker bar
+			leftGui.frame.flow3.flow33.flow334.label_substancesbar_f.style.font_color = {r=1.0, g=0.17, b=0, a=1}
+		else
+			leftGui.frame.flow3.flow33.flow334.substancesbar_f.style.color = {r=0.301960784, g=0.882352941, b=0.984313725, a=1}
+			leftGui.frame.flow3.flow33.flow334.label_substancesbar_f.style.font_color = {r=0.137254902, g=0.4, b=0.439215686, a=1} -- grey font
+		end
 	end
 	
 

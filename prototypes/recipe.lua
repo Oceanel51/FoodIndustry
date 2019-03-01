@@ -326,7 +326,7 @@ data:extend({
 	energy_required = 30.0,
     ingredients =
     {
---		{"iron-axe", 1},
+		{"iron-plate", 6},
 		{"wood", 32}
     },
       results = 
@@ -605,7 +605,7 @@ data:extend({
   },
   --[[{
 	type = "recipe",
-	name = "food-logistic-science-pack", -- TODO make alternative recipes of food-science-pack
+	name = "substance-to-food-science-pack", -- TODO make alternative recipes of food-science-pack
 	enabled = false,
 	icon = "__FoodIndustry__/graphics/icons/items/food-science-pack.png",
 	icon_size = 32,
@@ -776,7 +776,7 @@ data:extend({
 	category = "crafting",
 	subgroup = "food-capsules",
 	order = "w-cb-ad",
-	energy_required = 14.0,
+	energy_required = 8.0,
 	ingredients =
 	{
 		{"food-12-capsule", 1},
@@ -814,7 +814,7 @@ data:extend({
 	category = "crafting",
 	subgroup = "food-capsules",
 	order = "w-cb-ah",
-	energy_required = 28.0,
+	energy_required = 14.0,
 	ingredients =
 	{
 		{"food-1-capsule", 1},
