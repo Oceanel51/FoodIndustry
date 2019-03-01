@@ -30,7 +30,7 @@ local local_cattle_feeder_process = function(feeder)
                 end
                 calf.count = calf.count - 1
                 inventory.remove({name="straw", count=1})
-                player_print("feed "..#calfs.." straw "..inventory.get_item_count("straw").." count "..calf.count)
+                --player_print("feed "..#calfs.." straw "..inventory.get_item_count("straw").." count "..calf.count)
                 if calf.count <= 0 then
                     table.remove(global.foodi.cattle, i)
                     local calfPosition = calf.entity.position

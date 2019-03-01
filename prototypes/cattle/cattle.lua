@@ -98,7 +98,7 @@ data:extend({
         icon = "__FoodIndustry__/graphics/icons/items/biter-meat.png",
         icon_size = 32,
         subgroup = "food-machines-cattle",
-        subgroup = "foods-meat",
+        category = "food-cattle",
         order = "w-d-b",
         main_product = "biter-meat",
         ingredients =
@@ -117,6 +117,7 @@ data:extend({
 -- cattle spawner
 spitter_spawner_tint = {r=0.99, g=0.09, b=0.09, a=1}
 
+-- cattle spawner
 data:extend({
     {
         type = "item",
@@ -225,7 +226,7 @@ data:extend({
     },
     })
 
-
+-- cattle-feeder
 data:extend({
     {
         type = "container",
@@ -283,237 +284,8 @@ data:extend({
     },
 })
 
-local pipe_left = {
-    south = {
-        filename = "__FoodIndustry__/graphics/entity/cattle-butcher/bottom-left.png",
-        priority = "low",
-        width = 160,
-        height = 248
-    }
-}
-
-local pipe_right = {
-    south = {
-        filename = "__FoodIndustry__/graphics/entity/cattle-butcher/bottom-right.png",
-        priority = "low",
-        width = 160,
-        height = 248
-    }
-}
-
-function PipesEmpty_picture()
-    return {
-        filename = '__core__/graphics/empty.png',
-        priority = 'extra-high',
-        width = 1,
-        height = 1
-    }
-end
-
---Define pipe connection pipe pictures, not all entities use these. This function needs some work though.
-function PipesPictures(pictures, shift_north, shift_south, shift_west, shift_east, replacements)
-    local new_pictures = {
-        north = shift_north and
-                {
-                    filename = '__base__/graphics/entity/' .. pictures .. '/' .. pictures .. '-pipe-N.png',
-                    priority = 'extra-high',
-                    width = 35,
-                    height = 18,
-                    shift = shift_north
-                } or
-                PipesEmpty_picture(),
-        south = shift_south and
-                {
-                    filename = '__base__/graphics/entity/' .. pictures .. '/' .. pictures .. '-pipe-S.png',
-                    priority = 'extra-high',
-                    width = 44,
-                    height = 31,
-                    shift = shift_south
-                } or
-                PipesEmpty_picture(),
-        west = shift_west and
-                {
-                    filename = '__base__/graphics/entity/' .. pictures .. '/' .. pictures .. '-pipe-W.png',
-                    priority = 'extra-high',
-                    width = 19,
-                    height = 37,
-                    shift = shift_west
-                } or
-                PipesEmpty_picture(),
-        east = shift_east and
-                {
-                    filename = '__base__/graphics/entity/' .. pictures .. '/' .. pictures .. '-pipe-E.png',
-                    priority = 'extra-high',
-                    width = 20,
-                    height = 38,
-                    shift = shift_east
-                } or
-                PipesEmpty_picture()
-    }
-    for direction, image in pairs(replacements or {}) do
-        if not (new_pictures[direction].filename == '__core__/graphics/empty.png') then
-            new_pictures[direction].filename = image.filename
-            new_pictures[direction].width = image.width
-            new_pictures[direction].height = image.height
-            new_pictures[direction].priority = image.priority or new_pictures[direction].priority
-        end
-    end
-    return new_pictures
-end
-
-function PipesCovers(n, s, w, e)
-    if (n == nil and s == nil and w == nil and e == nil) then
-        n, s, e, w = true, true, true, true
-    end
-
-    n =
-    n and
-            {
-                layers = {
-                    {
-                        filename = '__base__/graphics/entity/pipe-covers/pipe-cover-north.png',
-                        priority = 'extra-high',
-                        width = 64,
-                        height = 64,
-                        hr_version = {
-                            filename = '__base__/graphics/entity/pipe-covers/hr-pipe-cover-north.png',
-                            priority = 'extra-high',
-                            width = 128,
-                            height = 128,
-                            scale = 0.5
-                        }
-                    },
-                    {
-                        filename = '__base__/graphics/entity/pipe-covers/pipe-cover-north-shadow.png',
-                        priority = 'extra-high',
-                        width = 64,
-                        height = 64,
-                        draw_as_shadow = true,
-                        hr_version = {
-                            filename = '__base__/graphics/entity/pipe-covers/hr-pipe-cover-north-shadow.png',
-                            priority = 'extra-high',
-                            width = 128,
-                            height = 128,
-                            scale = 0.5,
-                            draw_as_shadow = true
-                        }
-                    }
-                }
-            } or
-            PipesEmpty_picture()
-    e =
-    e and
-            {
-                layers = {
-                    {
-                        filename = '__base__/graphics/entity/pipe-covers/pipe-cover-east.png',
-                        priority = 'extra-high',
-                        width = 64,
-                        height = 64,
-                        hr_version = {
-                            filename = '__base__/graphics/entity/pipe-covers/hr-pipe-cover-east.png',
-                            priority = 'extra-high',
-                            width = 128,
-                            height = 128,
-                            scale = 0.5
-                        }
-                    },
-                    {
-                        filename = '__base__/graphics/entity/pipe-covers/pipe-cover-east-shadow.png',
-                        priority = 'extra-high',
-                        width = 64,
-                        height = 64,
-                        draw_as_shadow = true,
-                        hr_version = {
-                            filename = '__base__/graphics/entity/pipe-covers/hr-pipe-cover-east-shadow.png',
-                            priority = 'extra-high',
-                            width = 128,
-                            height = 128,
-                            scale = 0.5,
-                            draw_as_shadow = true
-                        }
-                    }
-                }
-            } or
-            PipesEmpty_picture()
-    s =
-    s and
-            {
-                layers = {
-                    {
-                        filename = '__base__/graphics/entity/pipe-covers/pipe-cover-south.png',
-                        priority = 'extra-high',
-                        width = 64,
-                        height = 64,
-                        hr_version = {
-                            filename = '__base__/graphics/entity/pipe-covers/hr-pipe-cover-south.png',
-                            priority = 'extra-high',
-                            width = 128,
-                            height = 128,
-                            scale = 0.5
-                        }
-                    },
-                    {
-                        filename = '__base__/graphics/entity/pipe-covers/pipe-cover-south-shadow.png',
-                        priority = 'extra-high',
-                        width = 64,
-                        height = 64,
-                        draw_as_shadow = true,
-                        hr_version = {
-                            filename = '__base__/graphics/entity/pipe-covers/hr-pipe-cover-south-shadow.png',
-                            priority = 'extra-high',
-                            width = 128,
-                            height = 128,
-                            scale = 0.5,
-                            draw_as_shadow = true
-                        }
-                    }
-                }
-            } or
-            PipesEmpty_picture()
-    w =
-    w and
-            {
-                layers = {
-                    {
-                        filename = '__base__/graphics/entity/pipe-covers/pipe-cover-west.png',
-                        priority = 'extra-high',
-                        width = 64,
-                        height = 64,
-                        hr_version = {
-                            filename = '__base__/graphics/entity/pipe-covers/hr-pipe-cover-west.png',
-                            priority = 'extra-high',
-                            width = 128,
-                            height = 128,
-                            scale = 0.5
-                        }
-                    },
-                    {
-                        filename = '__base__/graphics/entity/pipe-covers/pipe-cover-west-shadow.png',
-                        priority = 'extra-high',
-                        width = 64,
-                        height = 64,
-                        draw_as_shadow = true,
-                        hr_version = {
-                            filename = '__base__/graphics/entity/pipe-covers/hr-pipe-cover-west-shadow.png',
-                            priority = 'extra-high',
-                            width = 128,
-                            height = 128,
-                            scale = 0.5,
-                            draw_as_shadow = true
-                        }
-                    }
-                }
-            } or
-            PipesEmpty_picture()
-
-    return {north = n, south = s, east = e, west = w}
-end
-
-
+-- cattle butcher
 data:extend({
-
-
 {
     type = "recipe",
     name = "cattle-butcher",
@@ -594,70 +366,6 @@ data:extend({
             }
         }
     },
---    fluid_boxes = {
---        --1
---        {
---            production_type = "input",
---            pipe_picture = PipesPictures("assembling-machine-2", nil, {-1.0, -4.04}, nil, nil, pipe_right),
---            pipe_covers = PipesCovers(false, true, true, true),
---            base_area = 10,
---            base_level = -1,
---            pipe_connections = {{type = "input", position = {1.0, 3.0}}}
---        },
---        {
---            production_type = "input",
---            pipe_picture = PipesPictures("assembling-machine-2", nil, {-1.0, -4.04}, nil, nil, pipe_right),
---            pipe_covers = PipesCovers(false, true, true, true),
---            base_area = 10,
---            base_level = -1,
---            pipe_connections = {{type = "input", position = {-1.0, -3.0}}}
---        },
---        {
---            production_type = "input",
---            pipe_picture = PipesPictures("assembling-machine-2", nil, {-1.0, -4.04}, nil, nil, pipe_right),
---            pipe_covers = PipesCovers(false, true, true, true),
---            base_area = 10,
---            base_level = -1,
---            pipe_connections = {{type = "input", position = {3.0, -1.0}}}
---        },
---        {
---            production_type = "input",
---            pipe_picture = PipesPictures("assembling-machine-2", nil, {-1.0, -4.04}, nil, nil, pipe_right),
---            pipe_covers = PipesCovers(false, true, true, true),
---            base_area = 10,
---            base_level = -1,
---            pipe_connections = {{type = "input", position = {-3.0, 1.0}}}
---        },
---        {
---            production_type = "output",
---            pipe_picture = PipesPictures("assembling-machine-2", nil, {1.0, -4.04}, nil, nil, pipe_left),
---            pipe_covers = PipesCovers(false, true, true, true),
---            base_level = 1,
---            pipe_connections = {{type = "output", position = {-1.0, 3.0}}}
---        },
---        {
---            production_type = "output",
---            pipe_picture = PipesPictures("assembling-machine-2", nil, {1.0, -4.04}, nil, nil, pipe_left),
---            pipe_covers = PipesCovers(false, true, true, true),
---            base_level = 1,
---            pipe_connections = {{type = "output", position = {-3.0, -1.0}}}
---        },
---        {
---            production_type = "output",
---            pipe_picture = PipesPictures("assembling-machine-2", nil, {1.0, -4.04}, nil, nil, pipe_left),
---            pipe_covers = PipesCovers(false, true, true, true),
---            base_level = 1,
---            pipe_connections = {{type = "output", position = {1.0, -3.0}}}
---        },
---        {
---            production_type = "output",
---            pipe_picture = PipesPictures("assembling-machine-2", nil, {1.0, -4.04}, nil, nil, pipe_left),
---            pipe_covers = PipesCovers(false, true, true, true),
---            base_level = 1,
---            pipe_connections = {{type = "output", position = {3.0, 1.0}}}
---        },
---        off_when_no_fluid_recipe = true
---    },
     vehicle_impact_sound = {filename = "__base__/sound/car-metal-impact.ogg", volume = 0.65},
     working_sound = {
         sound = {filename = "__FoodIndustry__/sounds/cattle-butcher.ogg", volume = 0.8},
