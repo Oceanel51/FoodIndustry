@@ -6,6 +6,8 @@ require "prototypes.functions.fi-calculations"
 require "libs.helper-functions"
 
 require("prototypes.scripts.fishing-inserter")
+require("prototypes.fish.fishing-boat-control")
+
 require("prototypes.scripts.food-picker")
 require("prototypes.scripts.fruittrees")
 require("prototypes.scripts.fruit-scissors")
@@ -54,6 +56,8 @@ function setupFi()
 	if not foodi.on_mod_item_opened then foodi.on_mod_item_opened = {} end
 	if not foodi.on_selected_entity_changed then foodi.on_selected_entity_changed = {} end
 	if not foodi.on_player_selected_area then foodi.on_player_selected_area = {} end
+	if not foodi.on_changedPosition then foodi.on_changedPosition = {} end
+
 	if not foodi.on_pick_up then foodi.on_pick_up = {} end
 
 	if global ~= nil then
@@ -68,6 +72,7 @@ function OnInit()
 	setupFi()
 	
 	initFishingInserter()
+	initFishingBoatNet()
 	initFoodPicker()
 	initFruitTrees()
 	initFruitScissors()
@@ -926,6 +931,13 @@ local player_selected_area = function(event)
 	end
 end
 
+local OnPlayerChangedPosition = function(event)
+	for k=1, #foodi.on_changedPosition do
+		local v = foodi.on_changedPosition[k]
+		v(event)
+	end
+end
+
 local selected_entity_changed = function(event)
 	if foodi == nil then return end
 	for k=1, #foodi.on_selected_entity_changed do
@@ -939,6 +951,9 @@ local remove_events = {defines.events.on_entity_died,defines.events.on_robot_pre
 script.on_event(defines.events.on_robot_built_entity, local_on_added)
 script.on_event(remove_events, local_on_removed)
 script.on_event(defines.events.on_mod_item_opened, mod_item_opened)
+
 script.on_event(defines.events.on_player_selected_area, player_selected_area)
+script.on_event(defines.events.on_player_changed_position, OnPlayerChangedPosition)
+
 script.on_event(defines.events.on_selected_entity_changed, selected_entity_changed)
 

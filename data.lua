@@ -16,6 +16,9 @@ require("prototypes.plants")
 require("prototypes.fish.fish-meat-item")
 require("prototypes.fish.fish-meat-recipe")
 require("prototypes.fish.fishing-inserter")
+require("prototypes.fish.fishing-boat")
+require("prototypes.fish.fish-spawner")
+
 -- cattles
 require("prototypes.cattle.cattle-grabber")
 require("prototypes.cattle.cattle")

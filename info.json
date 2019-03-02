@@ -8,6 +8,7 @@
     "factorio_version": "0.17",
     "dependencies": ["base >= 0.17",
                      "?omnimatter_wood",
-                     "?alien-biomes"],
+                     "?alien-biomes",
+                     "?Cargo Ships"],
     "description": "This mod adds hunger and ways to produce food.\nGraphics for composter and basic farm by darkfrei, other farms and mashines by Oceanel51.\nNew consumption system invented and implemented by Oceanel51, cattles and some trees ideas by jonkeda."
 }

@@ -1482,6 +1482,7 @@ data:extend({
     {
         {type = "unlock-recipe", recipe = "fishing-inserter"},
         {type = "unlock-recipe", recipe = "fish-meat"},
+        {type = "unlock-recipe", recipe = "fish-farm"},
     },
     unit =
     {
