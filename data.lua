@@ -46,6 +46,7 @@ require("prototypes.substances.substances-recipe")
 require("prototypes.trees.trees")
 require("prototypes.trees.food-picker")
 require("prototypes.trees.tree-greenhouse")
+require("prototypes.trees.hydroponics-building")
 require("prototypes.trees.fruit-scissors")
 
 -- other

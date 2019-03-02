@@ -927,6 +927,7 @@ local player_selected_area = function(event)
 end
 
 local selected_entity_changed = function(event)
+	if foodi == nil then return end
 	for k=1, #foodi.on_selected_entity_changed do
 		local v = foodi.on_selected_entity_changed[k]
 		v(event)

@@ -14,7 +14,7 @@ data:extend({
         subgroup = "food-machines-trees",
         order = "w-a-c1",
         place_result = "fi-tree-greenhouse",
-        stack_size= 10,
+        stack_size= 50,
     },
 
     ------ Tree Greenhouse
@@ -33,7 +33,6 @@ data:extend({
         crafting_categories = {"fi-tree-greenhouse"},
         crafting_speed = 1,
         energy_source =
-
         {
             type = "electric",
             usage_priority = "primary-input",

@@ -456,7 +456,31 @@ data:extend({
     },
     order = "w",
   },
-  
+
+  {
+    type = "technology",
+    name = "trees-growth-3",
+    icon = "__FoodIndustry__/graphics/technology/trees-growth.png",
+    icon_size = 128,
+    prerequisites = {"fertilization-2", "trees-growth-2"},
+    effects =
+    {
+      {type = "unlock-recipe", recipe = "fi-hydroponics-building"},
+    },
+    unit =
+    {
+      time = 40,
+      count = 150,
+      ingredients =
+      {
+        {"logistic-science-pack", 1},
+        {"chemical-science-pack", 1},
+        {"food-science-pack", 1},
+      },
+    },
+    order = "w",
+  },
+
   {
     type = "technology",
     name = "cattle",
