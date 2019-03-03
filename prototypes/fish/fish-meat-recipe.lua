@@ -35,14 +35,14 @@ data:extend({
     energy_required = 40.0,
     ingredients =
     {
-        {"raw-fish", 1},
+        {"fi-raw-sturgeon", 1},
         {type = "fluid", name = "pure-water", amount = 20},
     },
     results = 
     {
-        {"fish-meat-red", 5},
-        {"fish-bone", 1},
-        {type = "item", name = "fish-caviar-red", amount = 1, probability = 0.25},
+        {"fish-meat-red", 25},
+        {"fish-bone", 5},
+        {type = "item", name = "fish-caviar-red", amount = 1, probability = 0.50},
         {type = "fluid", name = "water", amount = 20},
     },
   },

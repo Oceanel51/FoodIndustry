@@ -16,11 +16,16 @@ local function on_changedPosition(event)
 
     local tiles = 8
     local fishes = player.surface.find_entities_filtered(
-        { name = "fish", area = {{player.position.x-tiles, player.position.y-tiles}, {player.position.x+tiles, player.position.y+tiles}}})
+        { type = "fish", area = {{player.position.x-tiles, player.position.y-tiles}, {player.position.x+tiles, player.position.y+tiles}}})
     local inv = player.vehicle.get_inventory(defines.inventory.car_trunk)
     if inv.get_item_count("fishing-boat-net") > 0 then
         for i,c in pairs(fishes) do
-            inv.insert({name="raw-fish", count=1})
+            if c.prototype.mineable_properties.products ~= nil then
+                for _, r in ipairs(c.prototype.mineable_properties.products) do
+                    inv.insert({ name = r.name, count = r.amount })
+                end
+            end
+
             c.destroy()
         end
     end

@@ -17,3 +17,6 @@ for i=1,4 do
 		log("Compabillities for Bob's chemical-plant-"..i)
 	end
 end
+
+data.raw["fish"]["fish"].autoplace.min_influence = 0.01
+data.raw["fish"]["fish"].autoplace.max_influence = 0.02

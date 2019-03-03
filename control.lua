@@ -7,6 +7,7 @@ require "libs.helper-functions"
 
 require("prototypes.scripts.fishing-inserter")
 require("prototypes.fish.fishing-boat-control")
+require("prototypes.fish.shovel-control")
 
 require("prototypes.scripts.food-picker")
 require("prototypes.scripts.fruittrees")
@@ -79,6 +80,7 @@ function OnInit()
 	initCattle()
 	initCattleGrabber()
 	initGetDrink()
+	initShovel()
 
 	for index,player in pairs(game.players) do
 		if player.connected then

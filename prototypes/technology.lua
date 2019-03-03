@@ -1483,6 +1483,10 @@ data:extend({
         {type = "unlock-recipe", recipe = "fishing-inserter"},
         {type = "unlock-recipe", recipe = "fish-meat"},
         {type = "unlock-recipe", recipe = "fish-farm"},
+        {type = "unlock-recipe", recipe = "sturgeon-farm"},
+        {type = "unlock-recipe", recipe = "fi-watertile"},
+        {type = "unlock-recipe", recipe = "fi-deepwatertile"},
+        {type = "unlock-recipe", recipe = "fi-shovel"},
     },
     unit =
     {

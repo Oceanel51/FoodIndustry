@@ -12,8 +12,13 @@ local local_try_pickup_fish_at_position = function(inserter,entity)
 		}
 		inserter.direction = inserter.direction
 		if distance(inserter.held_stack_position.x,inserter.held_stack_position.y,entity.position.x,entity.position.y) <= catchDistance then
+			if entity.prototype.mineable_properties.products ~= nil then
+				for _, r in ipairs(entity.prototype.mineable_properties.products) do
+					inserter.held_stack.set_stack({name=r.name, count=r.amount})
+					break
+				end
+			end
 			entity.destroy()
-			inserter.held_stack.set_stack({name="raw-fish", count=1})
 		end
 	end
 end
@@ -38,7 +43,7 @@ local local_fishing_inserter_process = function(entity)
 	local target_dist = 100
 	if fish ~= nil then
 		for i, ent in pairs(fish) do
-			if ent.prototype.name == "fish" then	
+			if ent.prototype.type == "fish" then
 				fish_count = fish_count + 1	
 				local dist = distance(entity.held_stack_position.x,entity.held_stack_position.y,ent.position.x,ent.position.y)
 				if dist > current_dist then
