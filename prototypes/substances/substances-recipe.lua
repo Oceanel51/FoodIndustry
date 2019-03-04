@@ -8,6 +8,7 @@ for index, food in pairs(foods) do
 	-- 20% of one max substance is extracted substance, remaining 80% is substances-dust
 	-- also 20% of Energy/3 and Drinks/6 is substances-dust, remaining 80% is raw-straw
 	local substance_name = ""
+	local substance_order = 0
 	local substances1_max = 0
 	local substancesdust1_val = 0
 	local rawstraw1_name = "raw-straw"
@@ -18,12 +19,16 @@ for index, food in pairs(foods) do
 
 	if substances1_max == food[5][1] then
 		substance_name = "substance-v"
+		substance_order = 1
 	elseif substances1_max == food[5][2] then
 		substance_name = "substance-m"
+		substance_order = 2
 	elseif substances1_max == food[5][3] then
 		substance_name = "substance-c"
+		substance_order = 3
 	elseif substances1_max == food[5][4] then
 		substance_name = "substance-f"
+		substance_order = 4
 	end
 	if string.match(food[2], "meat") == "meat" or string.match(food[2], "fish") == "fish" then
 		rawstraw1_name = "raw-mince"
@@ -83,7 +88,7 @@ for index, food in pairs(foods) do
 			icon_size = 32,
 			category = "cooking",
 			subgroup = "foods-substances1",
-			order = "w-s1-"..index,
+			order = "w-s1-"..substance_order,
 			energy_required = food[6],
 			ingredients = {
 				--{type = "fluid", name = "compost-water", amount = ingredient[2]*10},

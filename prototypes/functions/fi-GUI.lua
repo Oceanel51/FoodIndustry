@@ -97,6 +97,7 @@ function figui.create(index, player)
 		-- "Drinks: " .. drinklabel .. " (usage: ".. usagelabel .."%)"
 		leftGui.frame.flow22.add({type="label", name="label_drinks", caption={'label.label-drinks', ": "}, style = "fi-label", align="right",})
 		leftGui.frame.flow22.add({type="label", name="drinkslabel", caption="", tooltip = {'label.label-drinkslabel-tooltip', global.drinks_max[index]}, style = "fi-label"})
+		--leftGui.frame.flow22.add({type="label", name="thirstlabel", caption="")
 		leftGui.frame.add({type="progressbar", name="drinksbar"})
 		leftGui.frame.drinksbar.style.width = 200
 		leftGui.frame.drinksbar.style.color = {r=0.2, g=0.2, b=1, a=1}
@@ -245,25 +246,32 @@ function figui.update(index, player)
 
 	
 	if leftGui.frame.flow22.drinkslabel then
-		leftGui.frame.flow22.drinkslabel.caption = math.floor(global.drinks[index])
-		leftGui.frame.drinksbar.value = math.abs(global.drinks[index]/global.drinks_max[index])
-		if global.drinks[index] >= global.drinks_max[index] * 0.91 then -- >=91%
-			leftGui.frame.drinksbar.style.color = {r=0.227450980, g=0, b=0.745098039, a=1}
-		elseif global.drinks[index] >= global.drinks_max[index] * 0.5 then -- >=50%
-			leftGui.frame.drinksbar.style.color = {r=0.2, g=0.2, b=1, a=1}
-		elseif global.drinks[index] >= global.drinks_max[index] * 0.4 then -- >=40%
-			leftGui.frame.drinksbar.style.color = {r=0.2, g=0.2, b=1, a=0.9}
-		elseif global.drinks[index] >= global.drinks_max[index] * 0.3 then -- >=30%
-			leftGui.frame.drinksbar.style.color = {r=0.2, g=0.2, b=1, a=0.8}
-		elseif global.drinks[index] >= global.drinks_max[index] * 0.2 then -- >=20%
-			leftGui.frame.drinksbar.style.color = {r=0.2, g=0.2, b=1, a=0.7}
-		elseif global.drinks[index] >= global.drinks_max[index] * 0.1 then -- >=10%
-			leftGui.frame.drinksbar.style.color = {r=0.2, g=0.2, b=1, a=0.6}
-		elseif global.drinks[index] >= 0 then
-			leftGui.frame.drinksbar.style.color = {r=0.2, g=0.2, b=1, a=0.5}
-		else 
+		if global.drinks[index] >= 0 then
+			leftGui.frame.flow22.drinkslabel.caption = math.floor(global.drinks[index])
+			leftGui.frame.drinksbar.value = math.abs(global.drinks[index]/global.drinks_max[index])
+			if global.drinks[index] >= global.drinks_max[index] * 0.91 then -- >=91%
+				leftGui.frame.drinksbar.style.color = {r=0.227450980, g=0, b=0.745098039, a=1}
+			elseif global.drinks[index] >= global.drinks_max[index] * 0.5 then -- >=50%
+				leftGui.frame.drinksbar.style.color = {r=0.2, g=0.2, b=1, a=1}
+			elseif global.drinks[index] >= global.drinks_max[index] * 0.4 then -- >=40%
+				leftGui.frame.drinksbar.style.color = {r=0.2, g=0.2, b=1, a=0.9}
+			elseif global.drinks[index] >= global.drinks_max[index] * 0.3 then -- >=30%
+				leftGui.frame.drinksbar.style.color = {r=0.2, g=0.2, b=1, a=0.8}
+			elseif global.drinks[index] >= global.drinks_max[index] * 0.2 then -- >=20%
+				leftGui.frame.drinksbar.style.color = {r=0.2, g=0.2, b=1, a=0.7}
+			elseif global.drinks[index] >= global.drinks_max[index] * 0.1 then -- >=10%
+				leftGui.frame.drinksbar.style.color = {r=0.2, g=0.2, b=1, a=0.6}
+			elseif global.drinks[index] >= 0 then
+				leftGui.frame.drinksbar.style.color = {r=0.2, g=0.2, b=1, a=0.5}
+			end
+		else
+			leftGui.frame.flow22.drinkslabel.caption = 0
 			-- TODO add thirst viewing
-			leftGui.frame.drinksbar.style.color = {r = 1, a = 1}
+			if global.effects[index]["thirst"][1] and global.effects[index]["thirst"][2] == 1 then -- preparation
+				leftGui.frame.drinksbar.style.color = {r=0.5, g=0.5, b=0.5, a = 0.6}
+			else
+				leftGui.frame.drinksbar.style.color = {r = 1, a = 1}
+			end
 		end
 	end
 
@@ -420,6 +428,7 @@ function figui.update_effects(index, player)
 end
 
 
+-- --------------- debugging GUI -----------------------
 function figui.debug_create(index, player)
 	local centerGui = player.gui.top
 	
@@ -433,7 +442,7 @@ function figui.debug_create(index, player)
 		centerGui.add{type = "frame", name = "frame", direction = "vertical"}
 	end
 
-	
+	-- moving speed
 	if not centerGui.frame.flow1 then
 		centerGui.frame.add{type = "flow", name = "flow1", right_padding = 0, center_padding = 0, direction = "horizontal"}
 	end
@@ -444,7 +453,6 @@ function figui.debug_create(index, player)
 		centerGui.frame.flow1.add({type="label", name="label2", caption="/ speed character:", style = "fi-label", align="right",})
 		centerGui.frame.flow1.add({type="label", name="label2c", caption="", style = "fi-label", align="right",})
 	end
-
 	-- crafting speed
 	if not centerGui.frame.flow2 then
 		centerGui.frame.add{type = "flow", name = "flow2", right_padding = 0, center_padding = 0, direction = "horizontal"}
@@ -453,7 +461,6 @@ function figui.debug_create(index, player)
 		centerGui.frame.flow2.add({type="label", name="label1", caption="crafting 1:", style = "fi-label", align="right",})
 		centerGui.frame.flow2.add({type="label", name="label1c", caption="", style = "fi-label", align="right",})
 	end
-
 	-- mining speed
 	if not centerGui.frame.flow3 then
 		centerGui.frame.add{type = "flow", name = "flow3", right_padding = 0, center_padding = 0, direction = "horizontal"}
@@ -462,7 +469,6 @@ function figui.debug_create(index, player)
 		centerGui.frame.flow3.add({type="label", name="label1", caption="mining 1:", style = "fi-label", align="right",})
 		centerGui.frame.flow3.add({type="label", name="label1c", caption="", style = "fi-label", align="right",})
 	end
-
 	-- long reach
 	if not centerGui.frame.flow4 then
 		centerGui.frame.add{type = "flow", name = "flow4", right_padding = 0, center_padding = 0, direction = "horizontal"}
@@ -474,6 +480,15 @@ function figui.debug_create(index, player)
 		centerGui.frame.flow4.add({type="label", name="label2c", caption="", style = "fi-label", align="right",})
 		centerGui.frame.flow4.add({type="label", name="label3", caption="reach_distance 1:", style = "fi-label", align="right",})
 		centerGui.frame.flow4.add({type="label", name="label3c", caption="", style = "fi-label", align="right",})
+	end
+
+	-- effects table
+	if not centerGui.frame.flow5 then
+		centerGui.frame.add{type = "flow", name = "flow5", right_padding = 0, center_padding = 0, direction = "vertical"}
+	end
+	if not centerGui.frame.flow5.label51 then
+		centerGui.frame.flow5.add({type="label", name="label51", caption="global.effects table: ", style = "fi-label", align="right",})
+		centerGui.frame.flow5.add({type="label", name="etable5", caption="", style = "fi-label", align="right",})
 	end
 
 end
@@ -494,4 +509,6 @@ function figui.debug_update(index, player)
 	centerGui.frame.flow4.label1c.caption = player.character_build_distance_bonus
 	centerGui.frame.flow4.label2c.caption = player.character_item_drop_distance_bonus
 	centerGui.frame.flow4.label3c.caption = player.character_reach_distance_bonus
+
+	centerGui.frame.flow5.etable5.caption = dump(global.effects[index]["thirst"])
 end

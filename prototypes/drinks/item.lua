@@ -6,7 +6,6 @@ data:extend({
     name = "flask",
     icon = "__FoodIndustry__/graphics/icons/items/flask.png",
     icon_size = 64,
-
     subgroup = "drink-empty-packages",
     order = "a-d",
 	  stack_size = 20,
@@ -16,7 +15,6 @@ data:extend({
     name = "plastic-bottle",
     icon = "__FoodIndustry__/graphics/icons/items/plastic-bottle.png",
     icon_size = 64,
-
     subgroup = "drink-empty-packages",
     order = "a-f",
 	  stack_size = 50,
@@ -27,7 +25,6 @@ data:extend({
     icon = "__FoodIndustry__/graphics/icons/items/plastic-bottle-used.png",
     icon_size = 64,
     --dark_background_icon = "__base__/graphics/icons/coal-dark-background.png",
-
     fuel_category = "chemical",
     fuel_value = "5kJ",
     fuel_emissions_multiplier = 3.4,

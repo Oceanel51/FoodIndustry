@@ -289,13 +289,14 @@ script.on_event({defines.events.on_tick}, function (e)
 					end
 					
 					---------------------- thirst calculation -----------------------
+					thirst_reduction(index,5)
 					
 					----------------------- fats calculation ------------------------
 					
 					----------------------- substances update -----------------------
 					figui.update_substances(index, player)
 					-- DEBUG увеличить расход Substances до -1 в 40 сек.
-					if e.tick % 2880 == 0 then
+					if e.tick % 60 * settings.global["food-industry-substances-update"].value == 0 then
 						substances_reduction(index)
 					end
 					
@@ -304,7 +305,7 @@ script.on_event({defines.events.on_tick}, function (e)
 						effects_time_reduction(index)
 						--effects_remove(index)
 					end
-					if e.tick % 600 == 0 then
+					if e.tick % 60 * settings.global["food-industry-effects-update"].value == 0 then
 						effects_calc_on_tick(index, player)
 						--writeDebug(dump(global.effects[index]))
 						figui.update_effects(index, player)

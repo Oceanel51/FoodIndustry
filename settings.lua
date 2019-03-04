@@ -71,4 +71,20 @@ data:extend({
         setting_type = "runtime-global",
         default_value = true
     },
+    {
+        type = "int-setting",
+        name = "food-industry-effects-update",
+        setting_type = "runtime-global",
+        default_value = 10,
+        minimum_value = 1,
+        maximum_value = 30,
+    },
+    {
+        type = "int-setting",
+        name = "food-industry-substances-update",
+        setting_type = "runtime-global",
+        default_value = 48,
+        minimum_value = 1,
+        maximum_value = 300,
+    },
 })

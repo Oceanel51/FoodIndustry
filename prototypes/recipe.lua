@@ -523,7 +523,7 @@ data:extend({
 		{type = "fluid", name = "soy-milk", amount = 1}
 	}
     },
-	{
+  {
     type = "recipe",
     name = "soy-sauce",
     enabled = false,
@@ -532,12 +532,12 @@ data:extend({
 	category = "chemistry",
 	subgroup = "food-intermediates",
 	energy_required = 0.5,
-    ingredients =
-    {
+	ingredients =
+	{
 		{"soy", 30},
 		{type = "fluid", name = "water", amount = 1}
-    },
-      results = 
+	},
+	results = 
 	{
 		{type = "fluid", name = "soy-sauce", amount = 2}
 	}

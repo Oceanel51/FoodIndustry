@@ -156,7 +156,8 @@ function fi_global_variables_set(index)
 		
 		global.effects[index]["health_buffer"]					 = {false,		0,			0,					0,		{}}							-- init empty value of Health Buffer effect
 		global.effects[index]["invulnerability"]				 = {false,		0,			0,					0,		{}}							-- init empty value of Invulnerability effect
-		-- TODO add other effects variables
+		
+		global.effects[index]["neutralize_active_effects"]		 = {false,		0,			0,					0,		{}}							-- init empty value of Neutralize effect 1 level
 	end
 	if not global.substances[index] then
 		global.substances[index] = {v=0,m=0,c=0,f=0} -- values of substances {V,M,C,F} of connected player (new!)

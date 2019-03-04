@@ -1482,6 +1482,7 @@ data:extend({
     {
         {type = "unlock-recipe", recipe = "fishing-inserter"},
         {type = "unlock-recipe", recipe = "fish-meat"},
+        {type = "unlock-recipe", recipe = "sturgeon-meat"},
         {type = "unlock-recipe", recipe = "fish-farm"},
         {type = "unlock-recipe", recipe = "sturgeon-farm"},
         {type = "unlock-recipe", recipe = "fi-watertile"},
@@ -1508,6 +1509,7 @@ data:extend({
     effects =
     {
         {type = "unlock-recipe", recipe = "fish-meat-fish-caviar-red"},
+        {type = "unlock-recipe", recipe = "sturgeon-fish-meat-fish-caviar-red"},
         {type = "unlock-recipe", recipe = "cooked-fish-meat"},
         {type = "unlock-recipe", recipe = "fish-salad"},
         },

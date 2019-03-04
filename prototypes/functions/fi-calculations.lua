@@ -72,11 +72,17 @@ function fullness_calc_on_tick(index)
                     global.drinks[index] = global.drinks_max[index]
                     -- добавляем излишки Energy к fat только уменьшив в 40 раз
                     global.fi_character_fat_modifier[index] = global.fi_character_fat_modifier[index] + ( food[4] - ( food[4] * 100 / food[6] ) * ( food[6] - fullness_diff ) / 100 ) / 40
-                else
+				elseif global.drinks[index] + ( food[4] - ( food[4] * 100 / food[6] ) * ( food[6] - fullness_diff ) / 100 ) < 0 then
                     -- TODO excess -Drinks affect to Thirst x2
-                    --@                               thirst %, ticks, bool
-                    --@ global.effects[index]["thirst"] = {0, -14400, false}
-                    global.drinks[index] = global.drinks[index] + ( food[4] - ( food[4] * 100 / food[6] ) * ( food[6] - fullness_diff ) / 100 )
+					--@ global.effects[index]["thirst"] = {false, 0, -14400, 0, {}}
+					if ( food[4] - ( food[4] * 100 / food[6] ) * ( food[6] - fullness_diff ) / 100 ) > 0 then
+
+					else
+						-- reduce time with 2x values drinks
+						global.effects[index]["thirst"][3] = global.effects[index]["thirst"][3] + ( food[4] - ( food[4] * 100 / food[6] ) * ( food[6] - fullness_diff ) / 100 ) * 2
+					end
+                else
+					global.drinks[index] = global.drinks[index] + ( food[4] - ( food[4] * 100 / food[6] ) * ( food[6] - fullness_diff ) / 100 )
                 end
 
                 -- Substances subtraction and summation or destroy excess of Substances
@@ -242,6 +248,13 @@ function substances_reduction(index)
 		global.substances[index]["f"] = -10
 	else
 		global.substances[index]["f"] = 0
+	end
+end
+
+
+function thirst_reduction(index,reduce_value)
+	if not global.effects[index]["thirst"][1] and global.effects[index]["thirst"][3] > 0 then
+		global.effects[index]["thirst"][3] = global.effects[index]["thirst"][3] - reduce_value -- preparation countdown
 	end
 end
 
@@ -579,6 +592,26 @@ function effects_calc_on_tick(index, player)
 			global.effects[index]["drinks_for_energy_usage"][3] = 0
 			global.effects[index]["drinks_for_energy_usage"][5][1]={"code_drinks_is_0",0,0}
 		end
+
+		-- -------------------------- Thirst ----------------------------------
+		-- enable predisposition to Thirst
+		if not global.effects[index]["thirst"][1] and global.effects[index]["thirst"][1] == 0 and global.effects[index]["thirst"][3] < 0 then
+			global.effects[index]["thirst"][1] = true
+			global.effects[index]["thirst"][2] = 1
+			global.effects[index]["thirst"][3] = 14400
+		-- enable Thirst
+		elseif global.effects[index]["thirst"][1] and global.effects[index]["thirst"][2] == 1 and global.drinks[index] < 0 then
+			global.effects[index]["thirst"][1] = true
+			global.effects[index]["thirst"][2] = 2
+			-- TODO speed -0.2, crafting -1, mining -1
+
+		-- disable Thirst
+		elseif global.effects[index]["thirst"][1] and global.drinks[index] > 0 then
+			global.effects[index]["thirst"][1] = false
+			global.effects[index]["thirst"][2] = 0
+			global.effects[index]["thirst"][3] = 14400
+		end
+
 	end
 	-- TODO разработать!
 	if global.drinks[index] >= global.drinks_max[index] * 0.9 then -- >= 90%
@@ -612,6 +645,8 @@ function effects_calc_on_tick(index, player)
 		if global.effects[index]["speed"] and global.effects[index]["speed"][2] > 0 then
 			for i,ef in pairs(global.effects[index]["speed"][5]) do
 				if ef == "code_drinks_above_90" then
+					--effects_remove(index, effect_index,"speed", 0.1)
+					
 					global.effects[index]["speed"][2] = global.effects[index]["speed"][2] - 0.1
 					table.remove(global.effects[index]["speed"][5], i)
 					if table.maxn(global.effects[index]["speed"][5]) == 0 then
