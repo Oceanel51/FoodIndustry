@@ -12,7 +12,7 @@ data:extend({
         name = "food-industry-bottom",
         setting_type = "runtime-per-user",
         default_value = false
-    },	
+    },
 	{
         type = "int-setting",
         name = "food-industry-hunger-speed",
@@ -75,7 +75,7 @@ data:extend({
         type = "int-setting",
         name = "food-industry-effects-update",
         setting_type = "runtime-global",
-        default_value = 10,
+        default_value = 1,
         minimum_value = 1,
         maximum_value = 30,
     },
@@ -86,5 +86,11 @@ data:extend({
         default_value = 48,
         minimum_value = 1,
         maximum_value = 300,
+    },
+    {
+        type = "bool-setting",
+        name = "food-industry-debug-gui",
+        setting_type = "runtime-per-user",
+        default_value = false
     },
 })

@@ -67,19 +67,22 @@ function fullness_calc_on_tick(index)
                 end
 
                 -- Water subtraction and summation
-                -- add excess of Drinks to fat_modifier
                 if global.drinks[index] + ( food[4] - ( food[4] * 100 / food[6] ) * ( food[6] - fullness_diff ) / 100 ) > global.drinks_max[index] then
                     global.drinks[index] = global.drinks_max[index]
-                    -- добавляем излишки Energy к fat только уменьшив в 40 раз
-                    global.fi_character_fat_modifier[index] = global.fi_character_fat_modifier[index] + ( food[4] - ( food[4] * 100 / food[6] ) * ( food[6] - fullness_diff ) / 100 ) / 40
+                	-- add excess of Drinks/20 to fat_modifier
+                    global.fi_character_fat_modifier[index] = global.fi_character_fat_modifier[index] + ( food[4] - ( food[4] * 100 / food[6] ) * ( food[6] - fullness_diff ) / 100 ) / 20
 				elseif global.drinks[index] + ( food[4] - ( food[4] * 100 / food[6] ) * ( food[6] - fullness_diff ) / 100 ) < 0 then
                     -- TODO excess -Drinks affect to Thirst x2
-					--@ global.effects[index]["thirst"] = {false, 0, -14400, 0, {}}
 					if ( food[4] - ( food[4] * 100 / food[6] ) * ( food[6] - fullness_diff ) / 100 ) > 0 then
-
+						-- when thirst add drinks*2
+						global.drinks[index] = global.drinks[index] + ( food[4] - ( food[4] * 100 / food[6] ) * ( food[6] - fullness_diff ) / 100 ) * 2
+						-- append time when thirst with 10x values drinks
+						global.effects[index]["thirst"][3] = global.effects[index]["thirst"][3] + ( food[4] - ( food[4] * 100 / food[6] ) * ( food[6] - fullness_diff ) / 100 ) * 800
 					else
-						-- reduce time with 2x values drinks
-						global.effects[index]["thirst"][3] = global.effects[index]["thirst"][3] + ( food[4] - ( food[4] * 100 / food[6] ) * ( food[6] - fullness_diff ) / 100 ) * 2
+						-- when thirst remove drinks/3
+						global.drinks[index] = global.drinks[index] + ( food[4] - ( food[4] * 100 / food[6] ) * ( food[6] - fullness_diff ) / 100 ) / 3
+						-- reduce time when thirst with 5x values drinks
+						global.effects[index]["thirst"][3] = global.effects[index]["thirst"][3] + ( food[4] - ( food[4] * 100 / food[6] ) * ( food[6] - fullness_diff ) / 100 ) * 200
 					end
                 else
 					global.drinks[index] = global.drinks[index] + ( food[4] - ( food[4] * 100 / food[6] ) * ( food[6] - fullness_diff ) / 100 )
@@ -154,19 +157,6 @@ function energy_reduction(index, player)
             --writeDebug("global.energy["..index.."] "..global.energy[index])
             --writeDebug("global.fi_energy_ussage_modifier["..index.."] "..global.fi_energy_ussage_modifier[index])
         end
-        
-
-        -- TODO это преобразовать в Effect
-        --if global.energy[index] < global.energy_max[index] * 0.25 then -- if Energy level down below 25% - decrease running speed
-        --    --player.character_running_speed_modifier = (global.energy[index] - 25)/100
-        --    player.character_running_speed_modifier = (global.energy[index] - (global.energy_max[index] * 0.2))/global.energy_max[index]
-        --else
-        --    player.character_running_speed_modifier = 0
-        --end
-        --if global.effects[index]["Speed"] and global.effects[index]["Speed"] > 0 then
-        --    player.character_running_speed_modifier = (player.character_running_speed_modifier+1)*1.75-1
-        --end
-          
     end
 
 end
@@ -175,34 +165,41 @@ end
 -- Drinks usage
 function drinks_reduction(index, player)
 	local default_delay = 10000 / settings.global["food-industry-hunger-speed"].value -- default 10000 / 100 = 100%
-	--writeDebug("default_delay "..default_delay)
-	--writeDebug("global.used[index] "..global.used[index])
-	--writeDebug("global.update_delay[index] "..global.update_delay[index])
 	
-	-- TODO проверить работу -Drinks
-    global.drinks_used[index] = global.drinks_used[index] + global.usage[index]
-	--writeDebug("global.drinks_used[index] "..global.drinks_used[index].." + global.usage"..global.usage[index])
+	global.drinks_used[index] = global.drinks_used[index] + global.usage[index]
 	
 	-- drinks ussage в отличии от energy usage не зависит от global.update_delay, который исследуется с помощью technology
-	-- зависит только от global.usage.
-	-- TODO Но может сделать его постоянным? @medium
-    if global.drinks_used[index] >= (default_delay * (1 - global.fi_drinks_ussage_modifier[index])) then
-        global.drinks_used[index] = global.drinks_used[index] - (default_delay * (1 - global.fi_drinks_ussage_modifier[index]))
-        if global.drinks[index] <= 0 then
-            -- TODO Add Thirst effect @high
-			-- Thirst preparation (4 min)
-			global.drinks[index] = 0
+	-- depends only from global.usage
+	if global.drinks_used[index] >= (default_delay * (1 - global.fi_drinks_ussage_modifier[index])) then
+		global.drinks_used[index] = global.drinks_used[index] - (default_delay * (1 - global.fi_drinks_ussage_modifier[index]))
+		if global.drinks[index] <= 0 then
+			if global.effects[index]["thirst"][1] and global.effects[index]["thirst"][2] == 1 then -- if thirst preparation (6 min)
+				global.drinks[index] = global.drinks[index] - 0.55
+			elseif global.effects[index]["thirst"][1] and global.effects[index]["thirst"][2] == 2 then -- if thirst active (30 min)
+				if math.ceil(math.abs(global.effects[index]["thirst"][3])/108000*100) >= 40 then
+					global.drinks[index] = global.drinks[index] - 1.25
+				elseif math.ceil(math.abs(global.effects[index]["thirst"][3])/108000*100) >= 20 then
+					global.drinks[index] = global.drinks[index] - 1.0
+				else
+					global.drinks[index] = global.drinks[index] - 0.75
+				end
+			else -- before thirst preparation (4 min)
+				global.drinks[index] = global.drinks[index] - 0.1
+			end
+			-- drinks could not be lower then -drinks_max
+			if global.drinks[index] < global.drinks_max[index] * -1 then
+				global.drinks[index] = global.drinks_max[index] * -1
+			end
 		else
-			if global.drinks[index] > -100 then
+			if global.drinks[index] > global.drinks_max[index] * -1 then
 				global.drinks[index] = global.drinks[index] - 1
 				if global.drinks[index] < 0 then
 					global.drinks[index] = 0
 				end
-				--writeDebug("global.drinks[index] "..global.drinks[index])
 			end
-        end
-    end
-    
+		end
+	end
+
 end
 
 
@@ -253,8 +250,10 @@ end
 
 
 function thirst_reduction(index,reduce_value)
-	if not global.effects[index]["thirst"][1] and global.effects[index]["thirst"][3] > 0 then
-		global.effects[index]["thirst"][3] = global.effects[index]["thirst"][3] - reduce_value -- preparation countdown
+	if global.drinks[index] <= 0 then
+		global.effects[index]["thirst"][3] = global.effects[index]["thirst"][3] - reduce_value * global.usage[index] -- countdown to thirst
+	elseif global.drinks[index] > 0 and global.effects[index]["thirst"][2] == 0 and global.effects[index]["thirst"][3] < 14400 then
+		global.effects[index]["thirst"][3] = global.effects[index]["thirst"][3] + reduce_value -- restore thirst preparation timer
 	end
 end
 
@@ -310,24 +309,12 @@ function effects_add(index, item_name, effect_data)
 	--@ - 															- если время вышло - эффект удаляется и го значение/модификатор отнимается с общей суммы в своей глобальной переменной
 	--@ - а обрабатываться эфект effects_calc_on_tick(index, player):
 	--@ - 															- тут проверяются эфекты зашитые в коде
-	--writeDebug("---------------0")
-	--writeDebug("item_name "..item_name)
-	--writeDebug(dump(global.effects[index]))
-	--writeDebug(dump(effect_data))
-	--writeDebug("item_name="..item_name)
-	--writeDebug("---------------1")
 
 	-- OPTIMIZE find effect key in a table
 	if table.maxn(global.effects[index][effect_data[1]][5]) <= 0 then
 		-- insert first new effect
-		--if string.match(effect_data[1], "fi_") == "fi_" then
-		--	writeDebug("No effects for fi '"..effect_data[1].."', insert new ")
-		--	effects_fi_add_insert(index, item_name, effect_data)
-		--else
-			writeDebug("No effects for '"..effect_data[1].."', insert new ")
-			effects_add_insert(index, item_name, effect_data)
-		--end
-		--return
+		writeDebug("No effects for '"..effect_data[1].."', insert new ")
+		effects_add_insert(index, item_name, effect_data)
 
 	elseif table.maxn(global.effects[index][effect_data[1]][5]) > 0 then
 		for i5,e5 in pairs(global.effects[index][effect_data[1]][5]) do
@@ -362,23 +349,9 @@ function effects_add(index, item_name, effect_data)
 		end
 	end
 
-	writeDebug("---------------2")
-	--writeDebug("global.effects[digestion] is:")
-	writeDebug(dump(global.effects[index]["digestion"]))
-
 end
 
 
---function effects_fi_add_update(index, item_name, effect_data, i5)
---	global.effects[index][effect_data[1]][1] = true
---	global.effects[index][effect_data[1]][3] = global.effects[index][effect_data[1]][3] + effect_data[3]
---	global.effects[index][effect_data[1]][5][i5][2] = effect_data[2]
---	global.effects[index][effect_data[1]][5][i5][3] = effect_data[3]
---	-- TODO check with delay
---	global.effects[index][effect_data[1]][4] = global.effects[index][effect_data[1]][4] + table.maxn(global.effects[index][effect_data[1]][5]) * 20
---	
---	global.effects[index][effect_data[1]][2] = global.effects[index][effect_data[1]][2] + effect_data[2]
---end
 function effects_add_update(index, item_name, effect_data, i5)
 	global.effects[index][effect_data[1]][1] = true
 	global.effects[index][effect_data[1]][3] = global.effects[index][effect_data[1]][3] + effect_data[3]
@@ -421,15 +394,6 @@ function effects_add_insert(index, item_name, effect_data)
 	-- add 1 effect count
 	effects_counter_add_or_remove(true, index, 1)
 end
---function effects_add_insert(index, item_name, effect_data)
---	global.effects[index][effect_data[1]][1] = true
---	global.effects[index][effect_data[1]][3] = global.effects[index][effect_data[1]][3] + effect_data[3]
---	-- TODO check with delay
---	global.effects[index][effect_data[1]][4] = global.effects[index][effect_data[1]][4] + table.maxn(global.effects[index][effect_data[1]][5]) * 20
---	
---	table.insert(global.effects[index][effect_data[1]][5], {item_name, effect_data[2], effect_data[3]})
---	effects_vanilla_add_or_remove(true, index, effect_data[1], effect_data[2])
---end
 
 
 -- remove effect data when time is left
@@ -487,7 +451,6 @@ function effects_vanilla_add_or_remove(add_bool, index, effect_name, effect_modi
 		end
 	elseif effect_name == "long_reach" then
 		if add_bool then
-			--writeDebug("[.dev] long_reach - not done yet...")
 			--if character_build_distance_bonus = 100%
 			game.players[index].character_build_distance_bonus = game.players[index].character_build_distance_bonus + effect_modifier					-- if this is 100%
 			game.players[index].character_item_drop_distance_bonus = game.players[index].character_item_drop_distance_bonus + effect_modifier * 0.2		-- then this = 20%
@@ -496,7 +459,6 @@ function effects_vanilla_add_or_remove(add_bool, index, effect_name, effect_modi
 			game.players[index].character_build_distance_bonus = game.players[index].character_build_distance_bonus - effect_modifier					-- if this is 100%
 			game.players[index].character_item_drop_distance_bonus = game.players[index].character_item_drop_distance_bonus - effect_modifier * 0.2		-- then this = 20%
 			game.players[index].character_reach_distance_bonus = game.players[index].character_reach_distance_bonus - effect_modifier * 1.2				-- then this = 120%
-		-- TODO add other
 		end
 	elseif effect_name == "health_buffer" or effect_name == "invulnerability"  then
 		if add_bool then
@@ -510,16 +472,6 @@ end
 
 -- reduce effects time values
 function effects_time_reduction(index) -- after -60 ticks
-	--local function reduce_time(effect)
-	--	for i,ef in pairs(effect) do
-	--		if ef[3] > 0 and ef[3] - 60 > 0 then
-	--			ef[3] = ef[3] - 60
-	--		else
-	--			ef[3] = 0
-	--			effects_fi_remove(index, i, ef[1], ef[2])
-	--		end
-	--	end
-	--end
 
 	for i,effect in pairs(global.effects[index]) do
 		--writeDebug(i)
@@ -530,38 +482,38 @@ function effects_time_reduction(index) -- after -60 ticks
 			end
 			--writeDebug(global.effects[index][i][3])
 			if effect[5] ~= nil then
-				--reduce_time(effect[5])
 				for i5,e5 in pairs(effect[5]) do
 					if e5[3] > 0 and e5[3] - 60 > 0 then
 						e5[3] = e5[3] - 60
 					elseif e5[3] <= -100000 then
 					-- TODO skip effect
-				else
+					else
 						e5[3] = 0
-						--if string.match(i, "fi_") == "fi_" then
-						--	writeDebug("to remove fi: "..e5[1])
-						--	effects_fi_remove(index, i5, i, e5[2])
-						--else
-							writeDebug("to remove: "..e5[1])
-							effects_remove(index, i5, i, e5[2])
-						--end
+						writeDebug("to remove: "..e5[1])
+						effects_remove(index, i5, i, e5[2])
 					end
 				end
 			end
 		end
-			
-		if i == "digestion" then
-			--writeDebug(dump(effect))
-		end
-		if i == "speed" then
-			--writeDebug(dump(effect))
-		end
+		
 	end
 end
 -- calculate effect usages
 --@ table contents is:
 --@ effect_name_key={item or event, modifier, action time}
 function effects_calc_on_tick(index, player)
+	
+	-- reduce speed when Energy is below 20%
+	if global.energy[index] <= global.energy_max[index] * 0.20 then -- energy <= 20%
+		effects_add(index, "code_energy_below_20%", {"speed",-0.4,-100000})
+	else
+		for i,ef in pairs(global.effects[index]["speed"][5]) do
+			if ef[1] == "code_thirst_above_20%" then
+				effects_remove(index, i,"speed", -0.2)
+			end
+		end
+	end
+	
 	
 	----------------- consider the effect Drinks fullness on the Energy consumption ---------------
 	local drinks_for_energy_ussage_modifier = -1 * (settings.global["food-industry-drinks-modifier"].value / 100)
@@ -578,6 +530,13 @@ function effects_calc_on_tick(index, player)
 				global.fi_energy_ussage_modifier[index] = global.fi_energy_ussage_modifier[index] + drinks_for_energy_ussage_modifier
 			end
 		end
+		-- disable Thirst
+		if global.effects[index]["thirst"][1] then
+			--writeDebug("[Debug]: deactivate Thirst.")
+			global.effects[index]["thirst"][1] = false
+			global.effects[index]["thirst"][2] = 0
+			global.effects[index]["thirst"][3] = 14400
+		end
 	elseif global.drinks[index] <= 0 then
 		-- reset effect value
 		if global.effects[index]["drinks_for_energy_usage"] and global.effects[index]["drinks_for_energy_usage"][3] == 1 then
@@ -593,72 +552,89 @@ function effects_calc_on_tick(index, player)
 			global.effects[index]["drinks_for_energy_usage"][5][1]={"code_drinks_is_0",0,0}
 		end
 
-		-- -------------------------- Thirst ----------------------------------
 		-- enable predisposition to Thirst
-		if not global.effects[index]["thirst"][1] and global.effects[index]["thirst"][1] == 0 and global.effects[index]["thirst"][3] < 0 then
+		if not global.effects[index]["thirst"][1] and global.effects[index]["thirst"][2] == 0 and global.effects[index]["thirst"][3] <= 0 then
+			--writeDebug("[Debug]: activate Thirst preparation")
 			global.effects[index]["thirst"][1] = true
 			global.effects[index]["thirst"][2] = 1
-			global.effects[index]["thirst"][3] = 14400
+			global.effects[index]["thirst"][3] = 21600
 		-- enable Thirst
-		elseif global.effects[index]["thirst"][1] and global.effects[index]["thirst"][2] == 1 and global.drinks[index] < 0 then
+		elseif global.effects[index]["thirst"][1] and global.effects[index]["thirst"][2] == 1 and global.effects[index]["thirst"][3] <= 0 then
+			--writeDebug("[Debug]: activate Thirst!")
 			global.effects[index]["thirst"][1] = true
 			global.effects[index]["thirst"][2] = 2
-			-- TODO speed -0.2, crafting -1, mining -1
-
-		-- disable Thirst
-		elseif global.effects[index]["thirst"][1] and global.drinks[index] > 0 then
-			global.effects[index]["thirst"][1] = false
-			global.effects[index]["thirst"][2] = 0
-			global.effects[index]["thirst"][3] = 14400
 		end
-
 	end
-	-- TODO разработать!
+
+		-- ----------------------- Thirst effects -------------------------------
+	if global.effects[index]["thirst"][1] and global.effects[index]["thirst"][2] == 2 and math.ceil(math.abs(global.effects[index]["thirst"][3])/108000*100) >= 20 then
+		-- speed -0.2, crafting -0.2, mining -0.4
+		effects_add(index, "code_thirst_above_20%", {"speed",-0.2,-100000})
+		effects_add(index, "code_thirst_above_20%", {"crafting",-0.2,-100000})
+		effects_add(index, "code_thirst_above_20%", {"mining",-0.4,-100000})
+	else
+		for i,ef in pairs(global.effects[index]["speed"][5]) do
+			if ef[1] == "code_thirst_above_20%" then
+				effects_remove(index, i,"speed", -0.2)
+			end
+		end
+		for i,ef in pairs(global.effects[index]["crafting"][5]) do
+			if ef[1] == "code_thirst_above_20%" then
+				effects_remove(index, i,"crafting", -0.2)
+			end
+		end
+		for i,ef in pairs(global.effects[index]["mining"][5]) do
+			if ef[1] == "code_thirst_above_20%" then
+				effects_remove(index, i,"mining", -0.4)
+			end
+		end
+	end
+	if global.effects[index]["thirst"][1] and global.effects[index]["thirst"][2] == 2 and math.ceil(math.abs(global.effects[index]["thirst"][3])/108000*100) >= 80 then
+		-- TODO add when ready - energy_usage +2
+		effects_add(index, "code_thirst_above_80%", {"digestion",-0.5,-100000})
+	else
+		for i,ef in pairs(global.effects[index]["digestion"][5]) do
+			if ef[1] == "code_thirst_above_80%" then
+				effects_remove(index, i,"digestion", -0.5)
+			end
+		end
+	end
+
+
+	-- more speed when drinks >= 90%!
 	if global.drinks[index] >= global.drinks_max[index] * 0.9 then -- >= 90%
 		-- activate speed effect to 0.1
 		if global.effects[index]["speed"] and global.effects[index]["speed"][2] >= 0 then
 			if table.maxn(global.effects[index]["speed"][5]) > 0 then
 				local founded = false
 				for i,ef in pairs(global.effects[index]["speed"][5]) do
-					if ef == "code_drinks_above_90" then
+					if ef[1] == "code_drinks_above_90%" then
 						founded = true
 					end
 				end
 				if founded then
+					--effects_add_update(index, "code_drinks_above_90%", {"speed",0.1,-100000}, i)
+					effects_add(index, "code_drinks_above_90%", {"speed",0.1,-100000})
+					--writeDebug("[Debug]: update global.effects["..index.."][speed] by +"..global.effects[index]["speed"][2])
+				else
 					effects_add_insert(index, "code_drinks_above_90%", {"speed",0.1,-100000})
-					--global.effects[index]["speed"][1] = true
-					--global.effects[index]["speed"][2] = global.effects[index]["speed"][2] + 0.1
-					--table.insert(global.effects[index]["speed"][5], {"code_drinks_above_90%",global.effects[index]["speed"][2],-100000})
-					writeDebug("[Debug]: activate global.effects["..index.."][speed] by +"..global.effects[index]["speed"][2])
+					--writeDebug("[Debug]: activate global.effects["..index.."][speed] by +"..global.effects[index]["speed"][2])
 				end
 			else
 				effects_add_insert(index, "code_drinks_above_90%", {"speed",0.1,-100000})
-				--if not global.effects[index]["speed"][1] then
-				--	global.effects[index]["speed"][1] = true
-				--	global.effects[index]["speed"][2] = global.effects[index]["speed"][2] + 0.1
-				--	table.insert(global.effects[index]["speed"][5], {"code_drinks_above_90%",global.effects[index]["speed"][2],-100000})
-					writeDebug("[Debug]: activate first global.effects["..index.."][speed] by +"..global.effects[index]["speed"][2])
-				--end
+				--writeDebug("[Debug]: activate first global.effects["..index.."][speed] by +"..global.effects[index]["speed"][2])
 			end
 		end
 	elseif global.drinks[index] < global.drinks_max[index] * 0.9 then -- >= 90%
 		if global.effects[index]["speed"] and global.effects[index]["speed"][2] > 0 then
 			for i,ef in pairs(global.effects[index]["speed"][5]) do
-				if ef == "code_drinks_above_90" then
-					--effects_remove(index, effect_index,"speed", 0.1)
-					
-					global.effects[index]["speed"][2] = global.effects[index]["speed"][2] - 0.1
-					table.remove(global.effects[index]["speed"][5], i)
-					if table.maxn(global.effects[index]["speed"][5]) == 0 then
-						global.effects[index]["speed"][1] = false
-						global.effects[index]["speed"][2] = 0
-					end
-					writeDebug("[Debug]: deactivate global.effects["..index.."][speed] ="..global.effects[index]["speed"][2])
+				if ef[1] == "code_drinks_above_90%" then
+					effects_remove(index, i,"speed", 0.1)
+					--writeDebug("[Debug]: deactivate global.effects["..index.."][speed] ="..global.effects[index]["speed"][2])
 				end
 			end
 		end
 	end
-	-------------------
 
 
     ----------------- consider the effect Substances fullness on the Energy consumption ---------------

@@ -225,10 +225,17 @@ script.on_event({defines.events.on_tick}, function (e)
 						end
 						global.usage[index] = 1.6 + settings.global["food-industry-slots"].value * slots + settings.global["food-industry-durability"].value * durability * 0.001
 						-- player.print("repairing...")
-					elseif (not player.crafting_queue == nil) and (player.crafting_queue.count < 0) then -- if manual crafting
-						-- увеличивается в зависимости от количества предметов в очереди крафта, не сильно +0.05% за единицу
+					elseif  player.crafting_queue_size > 0 then -- if manual crafting
 						global.usage[index] = 1.5
-						player.print("manual crafting...")
+						-- также увеличивается дополнительно в зависимости от количества предметов в очереди крафта, не сильно +0.05% за единицу
+						for craft_index,craft_item in pairs(player.crafting_queue) do
+							global.usage[index] = 1.5 + ( craft_item["count"] * 0.05 )
+						end
+						-- TODO в идеале извлечь время текущего рецепта и от него вычислять расход Энергии
+						--writeDebug(player.crafting_queue[1].recipe)
+						--writeDebug(data.raw.recipe[player.crafting_queue[1].recipe].energy_required)
+						--global.usage[index] = 1.5 + ( data.raw.recipe[player.crafting_queue[1].recipe].energy_required / 10 )
+						--player.print("manual crafting "..player.crafting_queue_size.." items")
 					else
 						global.usage[index] = 1
 					end
@@ -244,39 +251,8 @@ script.on_event({defines.events.on_tick}, function (e)
 					end
 					
 					-------------------- used energy calculation --------------------
-					-- TODO уменьшить Energy usage for -10%, как-то так:
-					--if e.tick % 8 == 0 then
-						energy_reduction(index, player)
-					--end
+					energy_reduction(index, player)
 					drinks_reduction(index, player)
-					--if e.tick % 60 == 0 then
-					--	writeDebug("global.energy["..index.."] "..math.floor(global.energy[index]).."  global.drinks["..index.."] "..math.floor(global.drinks[index]).."  tick "..e.tick)
-					--	writeDebug("global.energy["..index.."] "..global.energy[index].."  global.drinks["..index.."] "..global.drinks[index].."  tick "..e.tick)
-					--	writeDebug("energy["..index.."] "..global.energy[index].."  drinks["..index.."] "..global.drinks[index].."  tick "..e.tick)
-					--	writeDebug("global.drinks["..index.."] "..math.floor(global.drinks[index]).." tick "..e.tick)
-					--	global.fi_debug[index][1] = global.energy[index]
-					--	global.fi_debug[index][3] = global.drinks[index]
-					--	global.fi_debug[index][5] = e.tick
-					--	if global.fi_debug[index][2] > global.fi_debug[index][1] then
-					--		local energy1 = global.fi_debug[index][2] - global.fi_debug[index][1]
-					--		global.fi_debug[index][2] = global.fi_debug[index][1]
-					--		local drinks1 = global.fi_debug[index][4] - global.fi_debug[index][3]
-					--		global.fi_debug[index][4] = global.fi_debug[index][3]
-					--		
-					--		local tick1 = global.fi_debug[index][6] - global.fi_debug[index][5]
-					--		global.fi_debug[index][6] = global.fi_debug[index][5]
-					--		writeDebug(dump(global.fi_debug[index]))
-					--	end
-					--end
-					-------------------- fat modifier calculation -------------------
-					if global.fi_character_fat_modifier and global.fi_character_fat_modifier[index] then
-						-- DEBUG потестировать сколько нужно для уменьшения Fat effect
-						--if e.tick % 600 == 0 then
-						if e.tick % 120 == 0 then
-							local reduce_value = 1 * global.usage[index]
-							fat_modifier_reduction(index,reduce_value)
-						end
-					end
 					
 					---------------------- starving calculation ---------------------
 					if e.tick % 30 == 0 and global.energy[index] < 0 then
@@ -291,12 +267,19 @@ script.on_event({defines.events.on_tick}, function (e)
 					---------------------- thirst calculation -----------------------
 					thirst_reduction(index,5)
 					
-					----------------------- fats calculation ------------------------
+					------------------------ fat calculation ------------------------
+					if global.fi_character_fat_modifier and global.fi_character_fat_modifier[index] then
+						-- DEBUG потестировать сколько нужно для уменьшения Fat effect
+						if e.tick % 120 == 0 then
+							local reduce_value = 1 * global.usage[index]
+							fat_modifier_reduction(index,reduce_value)
+						end
+					end
 					
 					----------------------- substances update -----------------------
 					figui.update_substances(index, player)
 					-- DEBUG увеличить расход Substances до -1 в 40 сек.
-					if e.tick % 60 * settings.global["food-industry-substances-update"].value == 0 then
+					if e.tick % ( 60 * settings.global["food-industry-substances-update"].value ) == 0 then
 						substances_reduction(index)
 					end
 					
@@ -305,7 +288,7 @@ script.on_event({defines.events.on_tick}, function (e)
 						effects_time_reduction(index)
 						--effects_remove(index)
 					end
-					if e.tick % 60 * settings.global["food-industry-effects-update"].value == 0 then
+					if e.tick % ( 60 * settings.global["food-industry-effects-update"].value ) == 0 then
 						effects_calc_on_tick(index, player)
 						--writeDebug(dump(global.effects[index]))
 						figui.update_effects(index, player)

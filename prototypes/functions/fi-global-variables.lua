@@ -114,7 +114,7 @@ function fi_global_variables_set(index)
 	--	global.overweight_full_time[index] = 0
 	--end
 	if not global.update_delay[index] then
-		global.update_delay[index] = 1 -- values of technology energy reduce modifier [1 ... unlim]
+		global.update_delay[index] = 1 -- values of technology for Energy reduce modifier [1 ... unlim]
 	end
 	if not global.used[index] then
 		global.used[index] = 0
@@ -126,7 +126,6 @@ function fi_global_variables_set(index)
 		global.usage[index] = 1
 	end
 	if not global.effects[index] then
-		--game.players[index].print("global.effects["..index.."] set")
 		global.effects_active[index] = {} -- values of current active effects from food {affecting item or event, effect_name, modifier, action time}
 		global.effects[index] = {} -- values of current active effects modifiers
 		--						key									enabled,	modifier,	time/stage/level,	delay,	influencing factors (table)
@@ -141,12 +140,13 @@ function fi_global_variables_set(index)
 		global.effects[index]["drinks_usage"]					 = {false,		0,			0,					0,		{}}							-- init empty value of Drinks usage
 		
 		global.effects[index]["digestion"]						 = {false,		0,			0,					0,		{}}							-- init empty value of Digestions
+		--															enabled,	stage,		time to next,		-,		influencing factors (table)
 		global.effects[index]["thirst"]							 = {false,		0,			14400,				0,		{}}							-- init basic value of Thirst
 		
 		--															enabled,	modifier,	active time,		value
-		global.effects[index]["fat"]							 = {false,		0,			0,					-78		}							-- init empty value of Fat
+		global.effects[index]["fat"]							 = {false,		1,			0,					-78		}							-- init empty value of Fat
 		--															enabled,	modifier,	time to next,		stage,	influencing factors (table)
-		global.effects[index]["sleep"]							 = {false,		0,			14400,				0,		{}}							-- init basic values of Sleep state
+		global.effects[index]["sleep"]							 = {false,		1,			14400,				0,		{}}							-- init basic values of Sleep state
 		
 		--															enabled,				time,				delay,	influencing factors (table)
 		global.effects[index]["speed"]							 = {false,		0,			0,					0,		{}}							-- init empty value of runing Speed
@@ -177,9 +177,9 @@ function fi_global_variables_set(index)
 	if not global.fi_drinks_ussage_modifier[index] then
 		global.fi_drinks_ussage_modifier[index] = 0                 -- values of drinks ussage modifier [-unlim ... 0.0 ... 1]
 	end
-	if not global.fi_character_sleep_modifier[index] then
-		global.fi_character_sleep_modifier[index] = 0               -- values of sleep [0%-100%]
-	end
+	--if not global.fi_character_sleep_modifier[index] then
+	--	global.fi_character_sleep_modifier[index] = 1               -- values of sleep [0%-100%]
+	--end
 	--if not global.fi_character_digestion_modifier[index] then
 	--	global.fi_character_digestion_modifier[index] = 0           -- values of digestion modifier [-unlim ... 0.0 ... 1]
 	--end

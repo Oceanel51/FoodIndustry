@@ -174,20 +174,18 @@ for index, crop in pairs(trees) do
 					filename = "__FoodIndustry__/graphics/entity/trees/"..crop[1].."-seedling_safe.png",
 					priority = "extra-high",
 					width = 64,
-					height = 52
---					,
---					size = 0.8,
---					shift = {0.39, -0.662},
+					height = 52,
+					--size = 0.8,
+					shift = {0.39, -0.662},
 				},
 				picture_set =
 				{
 					filename = "__FoodIndustry__/graphics/entity/trees/"..crop[1].."-seedling.png",
 					priority = "extra-high",
 					width = 64, -- TODO check sizes
-					height = 52
---					,
---					size = 0.8,
---					shift = {0.39, -0.662},
+					height = 52,
+					--size = 0.8,
+					shift = {0.39, -0.662},
 				},
 				trigger_radius = 0,
 			},
