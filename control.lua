@@ -403,20 +403,16 @@ end
 
 script.on_event(defines.events.on_player_used_capsule, function(event)
 	-- some warnings of using food
+	local player = game.players[event.player_index]
 	if event.item.name == "raw-fish" then
-		local player = game.players[event.player_index]
 		player.insert{name = "raw-fish", count = 1}
 		--player.print("There are bones in this, you don't want to eat this.")
 		player.print({'print.dont-eat-raw-fish'})
 		return
-	end
-	
-	
-    -- check "neutralizing" effects
-	if event.item.name == "simple-neutralizing-capsule" then
-		for effect,t in pairs(global.effects[event.player_index]) do
-			global.effects[event.player_index][effect] = 0
-		end
+	elseif event.item.name == "fi-raw-sturgeon" then
+		player.insert{name = "fi-raw-sturgeon", count = 1}
+		player.print({'print.dont-eat-raw-fish'})
+		return
 	end
 	
 	
@@ -471,12 +467,29 @@ script.on_event(defines.events.on_player_used_capsule, function(event)
 					
 					--TODO перенести в eat_food(
 					--local player = game.players[event.player_index]
+					local item_count = 0
 					if string.match(event.item.name, "flask") == "flask" then
 						player.insert{name = "flask", count = 1}
 					elseif string.match(event.item.name, "plastic%-bottle") == "plastic-bottle" then
 						player.insert{name = "plastic-bottle-used", count = 1}
-					elseif string.match(event.item.name, "^orange$") == "orange" or string.match(event.item.name, "^apple$") == "apple" then
-					player.insert{name = "raw-straw", count = math.random(1,3)}
+					elseif string.match(event.item.name, "^apple$") == "apple" then
+						item_count = math.floor(math.random(8,30)/10)
+						if item_count ~= 0 then
+							player.insert{name = "raw-straw", count = item_count}
+						end
+						item_count = math.floor(math.random(2,14)/10)
+						if item_count ~= 0 then
+							player.insert{name = "apple-seeds", count = item_count}
+						end
+					elseif string.match(event.item.name, "^orange$") == "orange" then
+						item_count = math.floor(math.random(16,34)/10)
+						if item_count ~= 0 then
+							player.insert{name = "raw-straw", count = item_count}
+						end
+						item_count = math.floor(math.random(1,21)/10)
+						if item_count ~= 0 then
+							player.insert{name = "orange-seeds", count = item_count}
+						end
 				end
 
 					---if global.energy[event.player_index] < global.energy_max[event.player_index] * 0.25 then -- if Energy level down below 25% - decrease running speed
@@ -493,7 +506,8 @@ script.on_event(defines.events.on_player_used_capsule, function(event)
 					-- figui.update(index, player)
 					
 					-- play some eated food sounds
-					if string.find(food[1], "food") == 1 or string.find(food[1], "food") == 7 then
+					if string.match(event.item.name, "food") == "food" then
+					--if string.find(food[1], "food") == 1 or string.find(food[1], "food") == 7 then
 						--player.print("You eat "..food[1])
 						player.play_sound({path = "use-food-capsule-sound",volume_modifier = 0.7}) -- play sound when eat food-capsule
 					end

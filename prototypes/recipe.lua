@@ -776,7 +776,7 @@ data:extend({
 	category = "crafting",
 	subgroup = "food-capsules",
 	order = "w-cb-ad",
-	energy_required = 8.0,
+	energy_required = 10.0,
 	ingredients =
 	{
 		{"food-12-capsule", 1},
@@ -814,7 +814,7 @@ data:extend({
 	category = "crafting",
 	subgroup = "food-capsules",
 	order = "w-cb-ah",
-	energy_required = 14.0,
+	energy_required = 6.0,
 	ingredients =
 	{
 		{"food-1-capsule", 1},

@@ -1,2 +1,3 @@
-require("prototypes.packages.glass")
-
+if mods["bobplates"] then
+    require("prototypes.packages.glass")
+end

@@ -87,11 +87,15 @@ end
 
 -- open recipe after research technology "optics"
 table.insert(data.raw["technology"]["optics"].effects, { type = "unlock-recipe", recipe = "fi-table-logo-lamp" } )
--- open recipe after research technology "fluid-handling"
-table.insert(data.raw["technology"]["fluid-handling"].effects, { type = "unlock-recipe", recipe = "fi-fluid-tank" } )
 
+-- open recipe after research technology "fluid-handling" or Bob "water-miner-1"
+if data.raw["technology"]["water-miner-1"] or mods["bobmining"] then
+	table.insert(data.raw["technology"]["water-miner-1"].effects, { type = "unlock-recipe", recipe = "fi-fluid-tank" } )
+else
+	table.insert(data.raw["technology"]["fluid-handling"].effects, { type = "unlock-recipe", recipe = "fi-fluid-tank" } )
+end
 
--- open recipe after research technology "fluid-handling"
+-- open recipe after research technology "plastics"
 table.insert(data.raw["technology"]["plastics"].effects, { type = "unlock-recipe", recipe = "plastic-bottle" } )
 table.insert(data.raw["technology"]["plastics"].effects, { type = "unlock-recipe", recipe = "plastic-bottle-pure-water" } )
 table.insert(data.raw["technology"]["plastics"].effects, { type = "unlock-recipe", recipe = "plastic-bottle-apple" } )

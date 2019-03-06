@@ -59,7 +59,7 @@ function fullness_calc_on_tick(index)
                 if global.energy[index] + ( food[3] - ( food[3] * 100 / food[6] ) * ( food[6] - fullness_diff ) / 100 ) > global.energy_max[index] then
                     global.energy[index] = global.energy_max[index]
                     -- добавляем излишки Energy к fat только уменьшив в 10 раз
-                    global.fi_character_fat_modifier[index] = global.fi_character_fat_modifier[index] + ( food[3] - ( food[3] * 100 / food[6] ) * ( food[6] - fullness_diff ) / 100 ) / 10
+                    global.effects[index]["fat"][4] = global.effects[index]["fat"][4] + ( food[3] - ( food[3] * 100 / food[6] ) * ( food[6] - fullness_diff ) / 100 ) / 10
                 else
                 -- добавляем к global Energy разницу в процентах от единицы Fullness
                 -- if Energy is 3 and Fullness is 8 then Energy=Energy+(3-(3*100/8)*(8-1)/100)
@@ -70,7 +70,7 @@ function fullness_calc_on_tick(index)
                 if global.drinks[index] + ( food[4] - ( food[4] * 100 / food[6] ) * ( food[6] - fullness_diff ) / 100 ) > global.drinks_max[index] then
                     global.drinks[index] = global.drinks_max[index]
                 	-- add excess of Drinks/20 to fat_modifier
-                    global.fi_character_fat_modifier[index] = global.fi_character_fat_modifier[index] + ( food[4] - ( food[4] * 100 / food[6] ) * ( food[6] - fullness_diff ) / 100 ) / 20
+                    global.effects[index]["fat"][4] = global.effects[index]["fat"][4] + ( food[4] - ( food[4] * 100 / food[6] ) * ( food[6] - fullness_diff ) / 100 ) / 20
 				elseif global.drinks[index] + ( food[4] - ( food[4] * 100 / food[6] ) * ( food[6] - fullness_diff ) / 100 ) < 0 then
                     -- TODO excess -Drinks affect to Thirst x2
 					if ( food[4] - ( food[4] * 100 / food[6] ) * ( food[6] - fullness_diff ) / 100 ) > 0 then
@@ -259,12 +259,10 @@ end
 
 
 function fat_modifier_reduction(index,reduce_value)
-    -- TODO доделать расход global.fi_character_fat_modifier[index]
-    if global.fi_character_fat_modifier[index] < 0 then
-        global.fi_character_fat_modifier[index] = 0
-    else
-        global.fi_character_fat_modifier[index] = global.fi_character_fat_modifier[index] - reduce_value
-    end
+	-- TODO доделать расход "fat"
+	if global.effects[index]["fat"][4] > -78 then
+		global.effects[index]["fat"][4] = global.effects[index]["fat"][4] - reduce_value
+	end
 end
 
 
@@ -310,41 +308,41 @@ function effects_add(index, item_name, effect_data)
 	--@ - а обрабатываться эфект effects_calc_on_tick(index, player):
 	--@ - 															- тут проверяются эфекты зашитые в коде
 
+	-- check "neutralizing" effects
+	if effect_data[1] == "neutralize_active_effects" then
+		neutralize_active_effects(index, item_name, effect_data)
+		return
+	end
+	
 	-- OPTIMIZE find effect key in a table
 	if table.maxn(global.effects[index][effect_data[1]][5]) <= 0 then
 		-- insert first new effect
 		writeDebug("No effects for '"..effect_data[1].."', insert new ")
 		effects_add_insert(index, item_name, effect_data)
-
+		return
 	elseif table.maxn(global.effects[index][effect_data[1]][5]) > 0 then
+		local founded = false
 		for i5,e5 in pairs(global.effects[index][effect_data[1]][5]) do
 			--writeDebug("i5="..i5..",")
-			writeDebug(dump(e5))
-			if e5[1] == item_name then
-				-- update effect
-				--if string.match(effect_data[1], "fi_") == "fi_" then
-				--	writeDebug("update fi "..effect_data[1])
-				--	effects_fi_add_update(index, item_name, effect_data, i5)
-				--else
-				writeDebug("update "..effect_data[1])
-				--end
+			--writeDebug(dump(e5))
+			--writeDebug("==")
+			if e5[1] == item_name then -- update effect
+				founded = true
+				--writeDebug("update "..effect_data[1])
 				effects_add_update(index, item_name, effect_data, i5)
 			
-			elseif string.match(e5[1], "%w+%-%w+$") == string.match(item_name, "%w+%-%w+$") then
-				writeDebug("update capsule "..effect_data[1])
+			elseif string.match(e5[1], "%w+%-%w+$") == string.match(item_name, "%w+%-%w+$") then -- update effect if capsule
+				founded = true
+				--writeDebug("update capsule "..effect_data[1])
 				
-				writeDebug(index..", "..i5..", "..effect_data[1]..", "..e5[2])
+				--writeDebug(index..", "..i5..", "..effect_data[1]..", "..e5[2])
 				effects_remove(index, i5, effect_data[1], e5[2]) -- remove old data
 				effects_add_insert(index, item_name, effect_data)
-			else
+			end
+			if not founded then
 				-- insert effect
-				--if string.match(effect_data[1], "fi_") == "fi_" then
-				--	writeDebug("insert fi "..effect_data[1])
-				--	effects_fi_add_insert(index, item_name, effect_data)
-				--else
-					writeDebug("insert "..effect_data[1])
-					effects_add_insert(index, item_name, effect_data)
-				--end
+				--writeDebug("insert "..effect_data[1])
+				effects_add_insert(index, item_name, effect_data)
 			end
 		end
 	end
@@ -397,11 +395,6 @@ end
 
 
 -- remove effect data when time is left
-function effects_fi_remove(index, effect_index, effect_name, effect_modifier)
-	--global.effects[index][effect_name][2] = global.effects[index][effect_name][2] - effect_modifier
-	--table.remove(global.effects[index][effect_name][5], effect_index)
-	
-end
 function effects_remove(index, effect_index, effect_name, effect_modifier)
 	writeDebug("removed - "..index..", "..effect_index..", "..effect_name..", "..effect_modifier)
 	
@@ -505,11 +498,11 @@ function effects_calc_on_tick(index, player)
 	
 	-- reduce speed when Energy is below 20%
 	if global.energy[index] <= global.energy_max[index] * 0.20 then -- energy <= 20%
-		effects_add(index, "code_energy_below_20%", {"speed",-0.4,-100000})
+		effects_add(index, "code_energy_below_20%", {"speed",-0.3,-100000})
 	else
 		for i,ef in pairs(global.effects[index]["speed"][5]) do
 			if ef[1] == "code_thirst_above_20%" then
-				effects_remove(index, i,"speed", -0.2)
+				effects_remove(index, i,"speed", -0.3)
 			end
 		end
 	end
@@ -876,4 +869,17 @@ function sleep_calc_on_tick(index, player)
 
 	--writeDebug("sleep is:")
 	--writeDebug(dump(global.effects[index]["sleep"]))
+end
+
+
+function neutralize_active_effects(index, item_name, effect_data)
+	writeDebug("[Debug] Used neutralize_active_effects")
+	-- TODO simple-neutralizing-capsule function
+	--Проверяет эффекты
+	--Проверяет коэффициенты
+	--Учитывает время срабатывания нейтрализирующего эффекта
+	
+		--for effect,t in pairs(global.effects[event.player_index]) do
+		--	global.effects[event.player_index][effect] = 0
+		--end
 end

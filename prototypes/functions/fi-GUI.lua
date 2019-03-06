@@ -418,6 +418,15 @@ function figui.update_substances(index, player)
 end
 
 
+function figui.add_effect_to_gui(index, player)
+	local leftGui = player.gui.left
+	-- новый flow
+		-- добавить иконку в зависимости от типа эфекта
+		-- добавить время действия эфекта
+	
+end
+function figui.remove_effect_from_gui(index, player)
+end
 
 -- Update GUI gadgets: Effects
 function figui.update_effects(index, player)

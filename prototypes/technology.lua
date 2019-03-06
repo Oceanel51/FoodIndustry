@@ -419,8 +419,6 @@ data:extend({
     effects =
     {
         {type = "unlock-recipe", recipe = "fruit-scissor"},
-        {type = "unlock-recipe", recipe = "apple-seedling"},
-        {type = "unlock-recipe", recipe = "orange-seedling"},
     },
     unit =
     {
@@ -443,7 +441,9 @@ data:extend({
     {
       {type = "unlock-recipe", recipe = "food-picker"},
       {type = "unlock-recipe", recipe = "fi_recipe_tree_greenhouse"},
-    },
+      {type = "unlock-recipe", recipe = "apple-seedling"},
+      {type = "unlock-recipe", recipe = "orange-seedling"},
+  },
     unit =
     {
     time = 40,

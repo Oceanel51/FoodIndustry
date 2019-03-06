@@ -1,8 +1,8 @@
 local trees = {
 --1			2		3			4		5			6		7			8		9			10		11		12			13			14				15			16		17		18
 --name, 	time, 	to plant,	plants,	cool(sec),	seeds, 	stack size,	plant?,	seed?,	edible?,	straws,	compost,	type,	debug map color,	starting,	size,	result,	chance
-{"apple", 	1500, 	8,			9,		0.1,		2.6, 	10,			true,	true,		true,	0.0,	"3J",		"tree", {r=1,g=0.2,b=0},	20,			0.16,	5,		0.25},
-{"orange", 	1300, 	6,			5,		0.3,		1.8, 	10,			true,	true,		true,	0.0,	"2J",		"tree", {r=0.6,g=0.6,b=0},	15,			0.16,	4,		0.12},
+{"apple", 	1300, 	5,			9,		0.1,		2.6, 	10,			true,	true,		true,	3.0,	"3J",		"tree", {r=1,g=0.2,b=0},	20,			0.16,	5,		0.25},
+{"orange", 	1570, 	8,			5,		0.3,		1.8, 	10,			true,	true,		true,	5.0,	"2J",		"tree", {r=0.6,g=0.6,b=0},	15,			0.16,	4,		0.12},
 }
 
 for index, crop in pairs(trees) do
@@ -134,84 +134,113 @@ for index, crop in pairs(trees) do
 		-- seedlings
 		-- seedling item
 		---- Seedling
-			{
-				type = "item",
-				name = crop[1].."-seedling",
-				icon = "__FoodIndustry__/graphics/icons/trees/"..crop[1].."-seedling-icon.png",
-				icon_size = 32,
+		{
+			type = "item",
+			name = crop[1].."-seedling",
+			icon = "__FoodIndustry__/graphics/icons/trees/"..crop[1].."-seedling-icon.png",
+			icon_size = 32,
 
-				subgroup = crop[1],
-				order = "b",
-				place_result=crop[1].."-seedling",
-				fuel_value = "1MJ",
-				fuel_category = "chemical",
-				stack_size= 400
-			},
+			subgroup = crop[1],
+			order = "b",
+			place_result=crop[1].."-seedling",
+			fuel_value = "1MJ",
+			fuel_category = "chemical",
+			stack_size= 400
+		},
 
 		 --seedling entity
+		{
+			type = "land-mine",
+			name = crop[1].."-seedling",
+			icon = "__FoodIndustry__/graphics/icons/trees/"..crop[1].."-seedling-icon.png",
+			icon_size = 32,
+			order = "b",
+			flags = {"placeable-neutral", "placeable-player", "player-creation", "breaths-air",},
+			minable =
 			{
-				type = "land-mine",
-				name = crop[1].."-seedling",
-				icon = "__FoodIndustry__/graphics/icons/trees/"..crop[1].."-seedling-icon.png",
-				icon_size = 32,
-				order = "b",
-				flags = {"placeable-neutral", "placeable-player", "player-creation", "breaths-air",},
-				minable =
-				{
-					mining_particle = "wooden-particle",
-					mining_time = 0.35,
-					result = crop[1].."-seedling",
-					count = 1
-				},
-				emissions_per_tick = -0.0006,
-				max_health = 5,
-				collision_box = {{-0.1, -0.1}, {0.1, 0.1}},
-				selection_box = {{-0.35, -0.35}, {0.35, 0.35}},
-				subgroup = "intermediate-product",
-				vehicle_impact_sound = { filename = "__base__/sound/car-wood-impact.ogg", volume = 1.0 },
-				picture_safe =
-				{
-					filename = "__FoodIndustry__/graphics/entity/trees/"..crop[1].."-seedling_safe.png",
-					priority = "extra-high",
-					width = 64,
-					height = 52,
-					--size = 0.8,
-					shift = {0.39, -0.662},
-				},
-				picture_set =
-				{
-					filename = "__FoodIndustry__/graphics/entity/trees/"..crop[1].."-seedling.png",
-					priority = "extra-high",
-					width = 64, -- TODO check sizes
-					height = 52,
-					--size = 0.8,
-					shift = {0.39, -0.662},
-				},
-				trigger_radius = 0,
+				mining_particle = "wooden-particle",
+				mining_time = 0.35,
+				result = crop[1].."-seedling",
+				count = 1
 			},
+			emissions_per_tick = -0.0006,
+			max_health = 5,
+			collision_box = {{-0.1, -0.1}, {0.1, 0.1}},
+			selection_box = {{-0.35, -0.35}, {0.35, 0.35}},
+			subgroup = "intermediate-product",
+			vehicle_impact_sound = { filename = "__base__/sound/car-wood-impact.ogg", volume = 1.0 },
+			picture_safe =
+			{
+				filename = "__FoodIndustry__/graphics/entity/trees/"..crop[1].."-seedling_safe.png",
+				priority = "extra-high",
+				width = 64,
+				height = 52,
+				--size = 0.8,
+				shift = {0.39, -0.662},
+			},
+			picture_set =
+			{
+				filename = "__FoodIndustry__/graphics/entity/trees/"..crop[1].."-seedling.png",
+				priority = "extra-high",
+				width = 64, -- TODO check sizes
+				height = 52,
+				--size = 0.8,
+				shift = {0.39, -0.662},
+			},
+			trigger_radius = 0,
+		},
 
-		-- seedling recipe
+		-- basic seedling growing recipe
+		{
+			type = "recipe",
+			name = crop[1].."-growth-seedling",
+			order = "w-d-a-a",
+			enabled = false,
+			icon = "__FoodIndustry__/graphics/icons/trees/"..crop[1].."-seedling-icon.png",
+			icon_size = 32,
+			category = "basic-crop-growth",
+			subgroup = crop[1],
+			energy_required = crop[2],
+			ingredients =
 			{
-				type = "recipe",
-				name = crop[1].."-seedling",
-				icon = "__FoodIndustry__/graphics/icons/trees/"..crop[1].."-seedling-icon.png",
-				icon_size = 32,
-				category = "fi-tree-greenhouse",
-				energy_required = 50,
-				ingredients =
-				{
-					{type="item", name=crop[1].."-seeds", amount=5},
-					{type = "fluid", name = "water", amount = 300},
-				},
-				results=
-				{
-					{type="item", name=crop[1].."-seedling", amount=5},
-				},
-				enabled = false,
-				always_show_made_in = true,
-				allow_decomposition = false,
+				{type="item", name=crop[1].."-seeds", amount=crop[3]},
 			},
-		})
+			  results = 
+			{
+				{type="item", name=crop[1].."-seedling", amount=1, probability = 0.25},
+				{type="item", name=crop[1].."-seedling", amount=1, probability = 0.25},
+				{type = "item", name = "straw", amount_min = crop[11]*9, amount_max = crop[11]*17},
+				{type = "item", name = "raw-straw", amount_min = crop[11]*2.8, amount_max = crop[11]*4.2},
+			},
+			allow_as_intermediate = false,
+		},	
+		table.insert(data.raw.technology["trees-growth-1"].effects,{recipe = crop[1].."-growth-seedling", type = "unlock-recipe"})
+	})
+
+	data:extend({
+		-- seedling recipe
+		{
+			type = "recipe",
+			name = crop[1].."-seedling",
+			icon = "__FoodIndustry__/graphics/icons/trees/"..crop[1].."-seedling-icon.png",
+			icon_size = 32,
+			category = "fi-tree-greenhouse",
+			energy_required = crop[2] / 2,
+			ingredients =
+			{
+				{type="item", name=crop[1].."-seeds", amount=5},
+				{type = "fluid", name = "water", amount = 300},
+			},
+			results=
+			{
+				{type="item", name=crop[1].."-seedling", amount=5},
+			},
+			enabled = false,
+			always_show_made_in = true,
+			allow_decomposition = false,
+		},
+		
+	})
 
 	-- trees
 	data:extend({
