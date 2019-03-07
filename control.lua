@@ -181,6 +181,8 @@ script.on_event({defines.events.on_tick}, function (e)
 					elseif player.driving then -- if driving
 						global.usage[index] = 0.4
 						--player.print("driving...")
+					-- TODO make shooting_state
+					--@ https://lua-api.factorio.com/latest/LuaControl.html#LuaControl.shooting_state
 					--elseif player.shooting_state.state and player.shooting_state.state(defines.shooting.shooting_selected).valid then ---- if shooting selected
 					--elseif player.shooting_state.state and player.shooting_state.state(defines.shooting.shooting_enemies).valid then ---- if shooting enemies
 						--defines.shooting.not_shooting	
@@ -226,13 +228,16 @@ script.on_event({defines.events.on_tick}, function (e)
 						global.usage[index] = 1.6 + settings.global["food-industry-slots"].value * slots + settings.global["food-industry-durability"].value * durability * 0.001
 						-- player.print("repairing...")
 					elseif  player.crafting_queue_size > 0 then -- if manual crafting
-						global.usage[index] = 1.5
 						-- также увеличивается дополнительно в зависимости от количества предметов в очереди крафта, не сильно +0.05% за единицу
+						local crafting_counts = 0
+						--writeDebug(dump(player.crafting_queue))
+						--writeDebug(serpent.block(player.crafting_queue))
+						--writeDebug("======================")
 						for craft_index,craft_item in pairs(player.crafting_queue) do
-							global.usage[index] = 1.5 + ( craft_item["count"] * 0.05 )
+							crafting_counts = crafting_counts + ( craft_item["count"] * 0.05 )
 						end
+						global.usage[index] = 1.5 + crafting_counts
 						-- TODO в идеале извлечь время текущего рецепта и от него вычислять расход Энергии
-						--writeDebug(player.crafting_queue[1].recipe)
 						--writeDebug(data.raw.recipe[player.crafting_queue[1].recipe].energy_required)
 						--global.usage[index] = 1.5 + ( data.raw.recipe[player.crafting_queue[1].recipe].energy_required / 10 )
 						--player.print("manual crafting "..player.crafting_queue_size.." items")

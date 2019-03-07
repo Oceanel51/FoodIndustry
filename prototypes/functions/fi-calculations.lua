@@ -317,7 +317,7 @@ function effects_add(index, item_name, effect_data)
 	-- OPTIMIZE find effect key in a table
 	if table.maxn(global.effects[index][effect_data[1]][5]) <= 0 then
 		-- insert first new effect
-		writeDebug("No effects for '"..effect_data[1].."', insert new ")
+		--writeDebug("No effects for '"..effect_data[1].."', insert new ")
 		effects_add_insert(index, item_name, effect_data)
 		return
 	elseif table.maxn(global.effects[index][effect_data[1]][5]) > 0 then
@@ -339,11 +339,11 @@ function effects_add(index, item_name, effect_data)
 				effects_remove(index, i5, effect_data[1], e5[2]) -- remove old data
 				effects_add_insert(index, item_name, effect_data)
 			end
-			if not founded then
-				-- insert effect
-				--writeDebug("insert "..effect_data[1])
-				effects_add_insert(index, item_name, effect_data)
-			end
+		end
+		if not founded then
+			-- insert effect
+			--writeDebug("insert "..effect_data[1])
+			effects_add_insert(index, item_name, effect_data)
 		end
 	end
 
@@ -352,7 +352,9 @@ end
 
 function effects_add_update(index, item_name, effect_data, i5)
 	global.effects[index][effect_data[1]][1] = true
-	global.effects[index][effect_data[1]][3] = global.effects[index][effect_data[1]][3] + effect_data[3]
+	if effect_data[3] ~= -100000 then
+		global.effects[index][effect_data[1]][3] = global.effects[index][effect_data[1]][3] + effect_data[3]
+	end
 	global.effects[index][effect_data[1]][5][i5][2] = effect_data[2]
 	global.effects[index][effect_data[1]][5][i5][3] = effect_data[3]
 	-- TODO check with delay
@@ -368,7 +370,9 @@ function effects_add_insert(index, item_name, effect_data)
 	--local new_table_line = {item_name, effect_data[2], effect_data[3]}
 	global.effects[index][effect_data[1]][1] = true
 	global.effects[index][effect_data[1]][2] = global.effects[index][effect_data[1]][2] + effect_data[2]
-	global.effects[index][effect_data[1]][3] = global.effects[index][effect_data[1]][3] + effect_data[3]
+	if effect_data[3] ~= -100000 then
+		global.effects[index][effect_data[1]][3] = global.effects[index][effect_data[1]][3] + effect_data[3]
+	end
 	--@ effect_data[4] may be = nil or table or number
 	if effect_data[4] ~= nil and type(effect_data[4]) == "number" then
 		global.effects[index][effect_data[1]][4] = effect_data[4]
@@ -391,6 +395,9 @@ function effects_add_insert(index, item_name, effect_data)
 
 	-- add 1 effect count
 	effects_counter_add_or_remove(true, index, 1)
+	-- add 1 effect sprite
+	local player = game.players[index]
+	figui.add_effect_to_gui(index, player, effect_data[1])
 end
 
 
@@ -409,14 +416,14 @@ end
 function effects_counter_add_or_remove(add_bool, index, value)
 	-- remove counter
 	local leftGui = game.players[index].gui.left
-	if leftGui.frame.flow3.flow34.label_effects_count then
+	if leftGui.frame.flow3.flow34.flow341.label_effects_count then
 		if add_bool then
-			leftGui.frame.flow3.flow34.label_effects_count.caption = leftGui.frame.flow3.flow34.label_effects_count.caption + value
+			leftGui.frame.flow3.flow34.flow341.label_effects_count.caption = leftGui.frame.flow3.flow34.flow341.label_effects_count.caption + value
 		else
-			if leftGui.frame.flow3.flow34.label_effects_count.caption - value < 0 then
-				leftGui.frame.flow3.flow34.label_effects_count.caption = 0
+			if leftGui.frame.flow3.flow34.flow341.label_effects_count.caption - value < 0 then
+				leftGui.frame.flow3.flow34.flow341.label_effects_count.caption = 0
 			else
-				leftGui.frame.flow3.flow34.label_effects_count.caption = leftGui.frame.flow3.flow34.label_effects_count.caption - value
+				leftGui.frame.flow3.flow34.flow341.label_effects_count.caption = leftGui.frame.flow3.flow34.flow341.label_effects_count.caption - value
 			end
 		end
 	end
@@ -501,7 +508,7 @@ function effects_calc_on_tick(index, player)
 		effects_add(index, "code_energy_below_20%", {"speed",-0.3,-100000})
 	else
 		for i,ef in pairs(global.effects[index]["speed"][5]) do
-			if ef[1] == "code_thirst_above_20%" then
+			if ef[1] == "code_energy_below_20%" then
 				effects_remove(index, i,"speed", -0.3)
 			end
 		end

@@ -174,15 +174,21 @@ function figui.create(index, player)
 			end
 		end
 
+		-- Effects display
 		if not leftGui.frame.flow3.flow34 then
-			leftGui.frame.flow3.add{type="flow", name="flow34", direction="horizontal"}
-			--leftGui.frame.flow3.flow34.style.left_padding=0
-			leftGui.frame.flow3.flow34.style.maximal_width=80
-			leftGui.frame.flow3.flow34.add({type="label", name="label_effects", caption={'label.label-effects', ": "},})
-			leftGui.frame.flow3.flow34.add({type="label", name="label_effects_count", caption="0",})
+			leftGui.frame.flow3.add{type="flow", name="flow34", direction="vertical"}
+		end
+		if not leftGui.frame.flow3.flow34.flow341 then
+			leftGui.frame.flow3.flow34.add{type="flow", name="flow341", direction="horizontal"}
+			leftGui.frame.flow3.flow34.flow341.style.maximal_width=80
+			leftGui.frame.flow3.flow34.flow341.add({type="label", name="label_effects", caption={'label.label-effects', ": "},})
+			leftGui.frame.flow3.flow34.flow341.add({type="label", name="label_effects_count", caption="0",})
 		end
 		-- TODO Add Effects icons function
-
+		if not leftGui.frame.flow3.flow34.flow342 then
+			leftGui.frame.flow3.flow34.add{type="flow", name="flow342", direction="horizontal"}
+			leftGui.frame.flow3.flow34.flow342.style.maximal_width=80
+		end
 		
 		-- initialize labels and bars of .flow6
 		if not leftGui.frame.flow6 then
@@ -294,14 +300,24 @@ function figui.update(index, player)
 			leftGui.frame.flow2.label_fullness.caption = ({'label.label-overeating', ": "})
 			leftGui.frame.flow2.fullnesslabel.caption = math.ceil(global.fullness[index] - 100)
 			leftGui.frame.fullnessbar.value = (global.fullness[index] - 100)/100
-			leftGui.frame.fullnessbar.style.color = {r = 1, a = 1}
+			leftGui.frame.fullnessbar.style.color = {r=1, a=1}
 		-- here normal Fullness
-		elseif global.fullness[index] < 100 then
+		elseif global.fullness[index] < 90 then
 			--writeDebug("fullnesslabel "..global.fullness[index])
 			leftGui.frame.flow2.label_fullness.caption = ({'label.label-fullness', ": "})
 			leftGui.frame.flow2.fullnesslabel.caption = math.abs(math.ceil(global.fullness[index]))
 			leftGui.frame.fullnessbar.value = global.fullness[index]/100
-			leftGui.frame.fullnessbar.style.color = {r = 1, g = 0.6, a = 1}
+			leftGui.frame.fullnessbar.style.color = {r=1, g=0.6, a=1}
+			if global.fullness[index] < 20 then
+				--writeDebug("fullness "..global.fullness[index].." < 20")
+				leftGui.frame.fullnessbar.style.color = {r=127/255, g=76/255, a=1}
+			elseif global.fullness[index] < 40 then
+				leftGui.frame.fullnessbar.style.color = {r=153/255, g=91/255, a=1}
+			elseif global.fullness[index] < 60 then
+				leftGui.frame.fullnessbar.style.color = {r=188/255, g=113/255, a=1}
+			elseif global.fullness[index] < 80 then
+				leftGui.frame.fullnessbar.style.color = {r=229/255, g=137/255, a=1}
+			end
 		--else
 		--	game.players[index].print("[Debug] Warning: Fullness "..fullness_storage.." - is not good!")
 		--	return
@@ -418,11 +434,18 @@ function figui.update_substances(index, player)
 end
 
 
-function figui.add_effect_to_gui(index, player)
+function figui.add_effect_to_gui(index, player, effect_name)
 	local leftGui = player.gui.left
-	-- новый flow
+	local new_flow = ''
+	-- new sub flow of current effect
+	if not leftGui.frame.flow3.flow34.flow342.effect_name then
+		leftGui.frame.flow3.flow34.flow342.add{type="flow", name=effect_name, direction="vertical"}
+
 		-- добавить иконку в зависимости от типа эфекта
+		--new_flow = 'leftGui.frame.flow3.flow34.flow342.'..effect_name..'.add({type="sprite", name="unknown_gray", tooltip=""})'
 		-- добавить время действия эфекта
+		--new_flow = 'leftGui.frame.flow3.flow34.flow342.'..effect_name..'.add({type="label", name="label_"..effect_name, caption="--:--", style="fi-substances-bar"})'
+	end
 	
 end
 function figui.remove_effect_from_gui(index, player)
@@ -552,6 +575,7 @@ function figui.debug_create(index, player)
 	if not centerGui.frame.flow8.label82 then
 		centerGui.frame.flow8.add({type="label", name="label82", caption="global.effects[speed]: ", style = "fi-label", align="right",})
 		centerGui.frame.flow8.add({type="label", name="etable8", caption="", style = "fi-label", align="right",})
+		centerGui.frame.flow8.add({type="label", name="etable8a", caption="", style = "fi-label", align="right",})
 	end
 
 end
@@ -579,5 +603,7 @@ function figui.debug_update(index, player)
 	centerGui.frame.flow6.etable6.caption = dump(global.effects[index]["sleep"])
 	centerGui.frame.flow7.label73.caption = global.fi_character_fat_modifier[index]
 	centerGui.frame.flow7.etable7.caption = dump(global.effects[index]["fat"])
-	centerGui.frame.flow8.etable8.caption = dump(global.effects[index]["speed"])
+	--centerGui.frame.flow8.etable8.caption = dump(global.effects[index]["speed"])
+	centerGui.frame.flow8.etable8.caption = tostring(global.effects[index]["speed"][1])..", "..global.effects[index]["speed"][2]..", "..global.effects[index]["speed"][3]..", "..global.effects[index]["speed"][4]
+	centerGui.frame.flow8.etable8a.caption = serpent.block(global.effects[index]["speed"][5])
 end

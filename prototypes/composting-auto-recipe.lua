@@ -21,7 +21,7 @@ for index, ingredient in pairs(ingredients) do
 			name = "compost-auto-"..ingredient[1],
 			enabled = false,
 			icon = "__FoodIndustry__/graphics/icons/items/compost.png",
-			icon_size = 32,
+			icon_size = 64,
 			category = "auto-composting",
 			subgroup = "food-composting",
 			energy_required = ingredient[2],
