@@ -1,13 +1,13 @@
 local crops = {
---1			2		3			4		5		6		7			8		9			10		11		12
---name, 	time, 	to plant,	plants,	result,	seeds, 	stack size,	plant?,	seed?,	edible?,	straws,	fuel for compost
-{"lettuce", 300, 	5,        	6,		0.6, 	0.0, 	10,			false,	false,		true,	0.8,	"4J"},
-{"cucumber",600, 	60,        	4,		2.4, 	8.5, 	10,			true,	true,		true,	1.4,	"8J"},
-{"tomato", 	800, 	30,        	6,		3.2, 	2.0, 	10,			true,	true,		true,	1.0,	"6J"},
-{"potato", 	1200, 	8,        	10,		1.0, 	0.0, 	10,			true,	false,		false,	4.0,	"10J"},
-{"corn", 	1200, 	35,        	4,		3.7, 	4.5, 	10,			true,	true,		true,	3.5,	"10J"},
-{"soy", 	2400, 	50,        	6,		9.8, 	0.0, 	50,			true,	false,		false,	6.0,	"3J"},
-{"rapeseed",900, 	90,        	8,		11.5, 	0.0, 	100,		true,	false,		false,	6.0,	"1J"},
+--1			2		3			4		5		6		7			8		9			10		11		12					13
+--name, 	time, 	to plant,	plants,	result,	seeds, 	stack size,	plant?,	seed?,	edible?,	straws,	fuel for compost,	stack
+{"lettuce", 300, 	5,        	6,		0.6, 	0.0, 	10,			false,	false,		true,	1.1,	"4J",				},
+{"cucumber",600, 	60,        	4,		2.4, 	8.5, 	10,			true,	true,		true,	2.7,	"8J",				120},
+{"tomato", 	800, 	30,        	6,		3.2, 	2.0, 	10,			true,	true,		true,	2.3,	"6J",				90},
+{"potato", 	1200, 	8,        	10,		1.0, 	0.0, 	10,			true,	false,		false,	4.0,	"10J",				},
+{"corn", 	1200, 	35,        	4,		3.7, 	4.5, 	10,			true,	true,		true,	3.5,	"10J",				35*3},
+{"soy", 	2400, 	50,        	6,		9.8, 	0.0, 	50,			true,	false,		false,	6.0,	"3J",				},
+{"rapeseed",900, 	90,        	8,		11.5, 	0.0, 	100,		true,	false,		false,	6.0,	"1J",				},
 }
 
 for index, crop in pairs(crops) do
@@ -61,7 +61,7 @@ for index, crop in pairs(crops) do
 
 				subgroup = crop[1],
 				order = "w-d-"..index.."-z",
-				stack_size = 100
+				stack_size = crop[13]
 			},
 			{
 				type = "recipe",

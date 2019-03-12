@@ -98,8 +98,6 @@ end
 -- open recipe after research technology "plastics"
 table.insert(data.raw["technology"]["plastics"].effects, { type = "unlock-recipe", recipe = "plastic-bottle" } )
 table.insert(data.raw["technology"]["plastics"].effects, { type = "unlock-recipe", recipe = "plastic-bottle-pure-water" } )
-table.insert(data.raw["technology"]["plastics"].effects, { type = "unlock-recipe", recipe = "plastic-bottle-apple" } )
-table.insert(data.raw["technology"]["plastics"].effects, { type = "unlock-recipe", recipe = "plastic-bottle-orange" } )
 
 
 -- for player hand crafting

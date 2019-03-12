@@ -35,9 +35,9 @@ local foods = {
 {"pizza",							"foods-meat",		5,		0.5,	"cooking",				5.0,	1,		"w-d-i",		nil,		{{"corn-flour", 2}, {"tomato", 3}, {"biter-steak", 1}, {type="fluid", name="ketchup", amount=2}} },
 {"burger",							"foods-meat",		5,		0.5,	"cooking",				5.0,	1,		"w-d-k",		nil,		{{"corn-bread", 1}, {"tomato", 2}, {"pickles", 2}, {"lettuce", 1}, {"biter-steak", 1}, {type="fluid", name="ketchup", amount=1}} },
 -- food capsules
-{"food-1-capsule",					"food-capsules",	10,		0.5,	"food-capsules",		12.0,	1,		"w-cb-ai",		nil,		{{"substances-dust", 60}, {"gelatine-granules", 20}} },
-{"food-12-capsule",					"food-capsules",	30,		0.5,	"food-capsules",		6.0,	1,		"w-cb-ae",		nil,		{{"substances-dust", 30}, {"gelatine-granules", 6}} },
-{"food-16-capsule",					"food-capsules",	120,	0.5,	"food-capsules",		2.0,	1,		"w-cb-aa",		nil,		{{"substances-dust", 10}} },
+{"food-1-capsule",					"food-capsules",	10,		0.5,	"food-capsules",		12.0,	1,		"w-cb-ai",		nil,		{{"substances-dust", 110}, {"gelatine-granules", 20}} },
+{"food-12-capsule",					"food-capsules",	30,		0.5,	"food-capsules",		6.0,	1,		"w-cb-ae",		nil,		{{"substances-dust", 54}, {"gelatine-granules", 6}} },
+{"food-16-capsule",					"food-capsules",	120,	0.5,	"food-capsules",		2.0,	1,		"w-cb-aa",		nil,		{{"substances-dust", 20}} },
 {"simple-food-vmc-capsule",			"food-capsules",	50,		0.5,	"food-capsules",		20.0,	1,		"w-cf-ba",		nil,		{{"substance-v", 6}, {"substance-m", 6}, {"substance-c", 6}} },
 {"simple-food-vmf-capsule",			"food-capsules",	50,		0.5,	"food-capsules",		20.0,	1,		"w-cf-bb",		nil,		{{"substance-v", 6}, {"substance-m", 6}, {"substance-f", 5}} },
 {"simple-food-mcf-capsule",			"food-capsules",	50,		0.5,	"food-capsules",		20.0,	1,		"w-cf-bc",		nil,		{{"substance-m", 6}, {"substance-c", 6}, {"substance-f", 5}} },
@@ -79,9 +79,9 @@ local foods = {
 {"basic-sleep-capsule",				"effect",			50,		1.0,	"advanced-cooking",		120.0,	1,		"w-ce-f-ba",	nil,		{{"substance-m", 20}, {"substance-c", 20}, {"advanced-shell-capsule", 3}, {type="fluid", name="pure-water", amount=50}} },
 {"advanced-sleep-capsule",			"effect",			10,		2.0,	"centrifuging",			180.0,	1,		"w-ce-f-ca",	nil,		{{"substance-m", 40}, {"substance-c", 40}, {"advanced-shell-capsule", 3}, {type="fluid", name="pure-water", amount=100}} },
 
-{"simple-neutralizing-capsule",		"effect",			50,		0.5,	"cooking",				80.0,	1,		"w-ce-s-ca",	nil,		{{"food-1-capsule", 1}, {"crystal", 1}} },
---{"basic-neutralizing-capsule",		"effect",			20,		0.5,	"advanced-cooking",		120.0,	1,		"w-ce-s-cb",	nil,		{{"food-1-capsule", 3}, {"crystal", 5}} },
---{"advanced-neutralizing-capsule",		"effect",			10,		0.5,	"centrifuging",			180.0,	1,		"w-ce-s-cc",	nil,		{{"food-1-capsule", 6}, {"crystal", 10}, {"uranium-235", 1}} },
+{"simple-neutralizing-capsule",		"effect",			50,		0.5,	"cooking",				80.0,	1,		"w-ce-s-ca",	nil,		{{"food-16-capsule", 6}, {"crystal", 1}, {"advanced-shell-capsule", 1}} },
+--{"basic-neutralizing-capsule",		"effect",			20,		0.5,	"advanced-cooking",		120.0,	1,		"w-ce-s-cb",	nil,		{{"food-1-capsule", 3}, {"crystal", 5}, {"advanced-shell-capsule", 2}} },
+--{"advanced-neutralizing-capsule",		"effect",			10,		0.5,	"centrifuging",			180.0,	1,		"w-ce-s-cc",	nil,		{{"food-1-capsule", 6}, {"crystal", 10}, {"uranium-235", 1}, {"advanced-shell-capsule", 3}} },
 {"invulnerability-capsule",			"effect",			10,		4.0,	"centrifuging",			360.0,	1,		"w-ce-r-ca",	nil,		{{"food-1-capsule", 40}, {"advanced-health-buffer-capsule", 1}, {"advanced-regen-capsule", 1}, {type="fluid", name="pure-water", amount=250}} },
 }
 
@@ -90,8 +90,8 @@ for i, f in pairs(foods) do
 	--local sg = "foods"
 	local rname = f[1]
 	local iconsize = 32
-	if f[12] then
-		rname = f[1].."-"..f[12]
+	if f[9] then
+		rname = f[1].."-"..f[9]
 	end
 	--if f[8] then
 	--	sg = "effect"

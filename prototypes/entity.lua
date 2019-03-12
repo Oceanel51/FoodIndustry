@@ -865,9 +865,9 @@ data:extend(
         type = "acid",
         percent = 20
       }
-    },    
-    selection_box = {{-0.75, -0.75}, {0.75, 0.75}}, 
-    collision_box = {{-0.75, -0.75}, {0.75, 0.75}},    
+    },
+    selection_box = {{-0.75, -0.75}, {0.75, 0.75}},
+    collision_box = {{-0.75, -0.75}, {0.75, 0.75}},
 	collision_mask = {"item-layer", "object-layer", "water-tile", "player-layer"},
 	animation =
 	{
@@ -1009,7 +1009,7 @@ data:extend(
 		type = "burner",
 		usage_priority = "secondary-input",	
 		fuel_categories = {"plant"},
-		fuel_inventory_size = 1,
+		fuel_inventory_size = 2,
 		light_flicker = { intensity = 0, size = 0}, color = { r = 0.0, g = 0.0, b = 0.0 },
     },
     energy_usage = "1W",

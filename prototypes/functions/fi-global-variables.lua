@@ -94,7 +94,8 @@ function fi_global_variables_set(index)
 		global.drinks[index] = 0 -- values of current Drinking energy of connected player (new!)
 	end
 	if not global.foods_eaten[index] then
-		global.foods_eaten[index] = {} -- values of current Foods Eaten of connected player (new!)
+		--							foods,	eaten Energy,	drinks,	drunk fluids,	used substances,	types of used food
+		global.foods_eaten[index] =	{0,		0,				0,		0,				{v=0,m=0,c=0,f=0},	{}} -- values of current Foods Eaten of connected player (new!)
 	end
 	if not global.fullness_stomach[index] then
 		--                                                                                                     1          2        3       4        5         6            7             8
@@ -143,6 +144,8 @@ function fi_global_variables_set(index)
 		--															enabled,	stage,		time to next,		-,		influencing factors (table)
 		global.effects[index]["thirst"]							 = {false,		0,			14400,				0,		{}}							-- init basic value of Thirst
 		
+		--															enabled,	-,			time left,			value
+		global.effects[index]["overeating"]						 = {false,		0,			0,					0		}							-- init empty value of Overeating
 		--															enabled,	modifier,	active time,		value
 		global.effects[index]["fat"]							 = {false,		1,			0,					-78		}							-- init empty value of Fat
 		--															enabled,	modifier,	time to next,		stage,	influencing factors (table)

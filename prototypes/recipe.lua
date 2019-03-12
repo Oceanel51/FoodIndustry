@@ -639,7 +639,7 @@ data:extend({
 	ingredients =
 	{
 		{"bone", 2},
-		{type = "fluid", name = "water", amount = 10},
+		{type = "fluid", name = "pure-water", amount = 10},
 	},
 	results = 
 	{
@@ -659,7 +659,7 @@ data:extend({
 	ingredients =
 	{
 		{"fish-bone", 2},
-		{type = "fluid", name = "water", amount = 10},
+		{type = "fluid", name = "pure-water", amount = 10},
 	},
 	results = 
 	{
@@ -679,7 +679,7 @@ data:extend({
 	ingredients =
 	{
 		{"raw-mince", 4},
-		{type = "fluid", name = "water", amount = 10},
+		{type = "fluid", name = "pure-water", amount = 10},
 	},
 	results = 
 	{
@@ -698,12 +698,12 @@ data:extend({
 	energy_required = 30.0,
 	ingredients =
 	{
-		{type = "fluid", name = "gelatine-broth", amount = 40},
+		{type = "fluid", name = "gelatine-broth", amount = 20},
 	},
 	results = 
 	{
-		{"gelatine-granules", 20},
-		{type = "fluid", name = "water", amount = 20},
+		{"gelatine-granules", 10},
+		{type = "fluid", name = "water", amount = 15},
 	}
   },
 
@@ -723,7 +723,7 @@ data:extend({
 	},
 	results = 
 	{
-		{"basic-shell-capsule", 5}
+		{"basic-shell-capsule", 2}
 	}
   },
   {
@@ -738,12 +738,12 @@ data:extend({
 	energy_required = 30.0,
 	ingredients =
 	{
-		{"basic-shell-capsule", 20},
+		{"basic-shell-capsule", 10},
 		{"iron-plate", 1},
 	},
 	results = 
 	{
-		{"advanced-shell-capsule", 10}
+		{"advanced-shell-capsule", 5}
 	}
   },
 

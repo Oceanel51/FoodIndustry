@@ -112,4 +112,46 @@ data:extend({
 	}
   },
 
+
+  -- juices fluids
+  {
+	type = "recipe",
+	name = "raw-apple-juice",
+	enabled = false,
+	icon = "__FoodIndustry__/graphics/icons/fluids/raw-apple-juice.png",
+	icon_size = 32,
+	category = "crafting-with-fluid",
+	--categories = {"crafting-with-fluid", "advanced-cooking"},
+	subgroup = "drinks-apple",
+	order = "w-d1",
+	energy_required = 0.85,
+	ingredients = {
+		{"apple", 1},
+	},
+	results = {
+		{type="fluid", name="raw-apple-juice", amount=2},
+		{type="item", name="raw-straw", amount_min=1, amount_max=3},
+	},
+	allow_decomposition = true
+  },
+  {
+	type = "recipe",
+	name = "apple-juice",
+	enabled = false,
+	icon = "__FoodIndustry__/graphics/icons/fluids/apple-juice.png",
+	icon_size = 32,
+	category = "chemistry",
+	subgroup = "drinks-apple",
+	order = "w-d2",
+	energy_required = 0.6,
+	ingredients = {
+		{type="fluid", name="raw-apple-juice", amount=10},
+		{type="fluid", name="pure-water", amount=6},
+	},
+	results = {
+		{type="fluid", name="apple-juice", amount=16},
+	},
+	allow_decomposition = true
+  },
+  
 })

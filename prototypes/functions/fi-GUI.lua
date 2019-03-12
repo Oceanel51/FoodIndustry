@@ -295,17 +295,25 @@ function figui.update(index, player)
 		--player.print("[Debug] fullness: "..global.fullness[index])
 		-- here Overeating
 		local fullness_storage = global.fullness[index]
-		if global.fullness[index] > 101 then
+		if global.fullness[index] > 100 then
 			--writeDebug("fullnesslabel "..global.fullness[index])
-			leftGui.frame.flow2.label_fullness.caption = ({'label.label-overeating', ": "})
-			leftGui.frame.flow2.fullnesslabel.caption = math.ceil(global.fullness[index] - 100)
+			--leftGui.frame.flow2.label_fullness.caption = ({'label.label-overeating', ": "})
+			leftGui.frame.flow2.fullnesslabel.caption = {'label.label-overeating', math.ceil(global.fullness[index]), "%", math.ceil(global.effects[index]["overeating"][4])}
+			leftGui.frame.flow2.fullnesslabel.style.font_color = {r=1, g=38/255, b=45/255, a=1}
+			leftGui.frame.flow2.label_percent.style.font_color = {r=1, g=38/255, b=45/255, a=1}
 			leftGui.frame.fullnessbar.value = (global.fullness[index] - 100)/100
 			leftGui.frame.fullnessbar.style.color = {r=1, a=1}
 		-- here normal Fullness
-		elseif global.fullness[index] < 90 then
-			--writeDebug("fullnesslabel "..global.fullness[index])
-			leftGui.frame.flow2.label_fullness.caption = ({'label.label-fullness', ": "})
-			leftGui.frame.flow2.fullnesslabel.caption = math.abs(math.ceil(global.fullness[index]))
+		elseif global.fullness[index] <= 100 then
+			if global.effects[index]["overeating"][4] > 0 then
+				leftGui.frame.flow2.fullnesslabel.caption = {'label.label-overeating', math.ceil(global.fullness[index]), "%", math.ceil(global.effects[index]["overeating"][4])}
+				leftGui.frame.flow2.fullnesslabel.style.font_color = {r=255/255, g=76/255, b=82/255, a=1}
+				leftGui.frame.flow2.label_percent.style.font_color = {r=255/255, g=76/255, b=82/255, a=1}
+			else
+				leftGui.frame.flow2.fullnesslabel.caption = math.ceil(math.abs(global.fullness[index]))
+				leftGui.frame.flow2.fullnesslabel.style.font_color = {r=1, g=1, b=1, a=1}
+				leftGui.frame.flow2.label_percent.style.font_color = {r=1, g=1, b=1, a=1}
+			end
 			leftGui.frame.fullnessbar.value = global.fullness[index]/100
 			leftGui.frame.fullnessbar.style.color = {r=1, g=0.6, a=1}
 			if global.fullness[index] < 20 then
@@ -438,8 +446,13 @@ function figui.add_effect_to_gui(index, player, effect_name)
 	local leftGui = player.gui.left
 	local new_flow = ''
 	-- new sub flow of current effect
+	if effect_name == "speed" then
+		--leftGui.frame.flow3.flow34.flow342.add{type="flow", name="speed", direction="vertical"}
+		--leftGui.frame.flow3.flow34.flow342.speed.add({type="sprite", name="unknown_gray", tooltip=""})
+		--leftGui.frame.flow3.flow34.flow342.speed.add({type="label", name="label_"..effect_name, caption="--:--", style="fi-substances-bar"})
+	end
 	if not leftGui.frame.flow3.flow34.flow342.effect_name then
-		leftGui.frame.flow3.flow34.flow342.add{type="flow", name=effect_name, direction="vertical"}
+		--leftGui.frame.flow3.flow34.flow342.add{type="flow", name=effect_name, direction="vertical"}
 
 		-- добавить иконку в зависимости от типа эфекта
 		--new_flow = 'leftGui.frame.flow3.flow34.flow342.'..effect_name..'.add({type="sprite", name="unknown_gray", tooltip=""})'
@@ -577,6 +590,14 @@ function figui.debug_create(index, player)
 		centerGui.frame.flow8.add({type="label", name="etable8", caption="", style = "fi-label", align="right",})
 		centerGui.frame.flow8.add({type="label", name="etable8a", caption="", style = "fi-label", align="right",})
 	end
+	----------------
+	if not centerGui.frame.flow9 then
+		centerGui.frame.add{type = "flow", name = "flow9", right_padding = 0, center_padding = 0, direction = "horizontal"}
+	end
+	if not centerGui.frame.flow9.label92 then
+		centerGui.frame.flow9.add({type="label", name="label92", caption="global.effects[overeating]: ", style = "fi-label", align="right",})
+		centerGui.frame.flow9.add({type="label", name="etable9", caption="", style = "fi-label", align="right",})
+	end
 
 end
 function figui.debug_update(index, player)
@@ -606,4 +627,5 @@ function figui.debug_update(index, player)
 	--centerGui.frame.flow8.etable8.caption = dump(global.effects[index]["speed"])
 	centerGui.frame.flow8.etable8.caption = tostring(global.effects[index]["speed"][1])..", "..global.effects[index]["speed"][2]..", "..global.effects[index]["speed"][3]..", "..global.effects[index]["speed"][4]
 	centerGui.frame.flow8.etable8a.caption = serpent.block(global.effects[index]["speed"][5])
+	centerGui.frame.flow9.etable9.caption = dump(global.effects[index]["overeating"])
 end

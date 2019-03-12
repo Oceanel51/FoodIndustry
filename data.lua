@@ -39,10 +39,14 @@ require("prototypes.storages.storage-recipe")
 require("prototypes.storages.storage-item")
 
 -- drinks
-require("prototypes.drinks.item")
+require("prototypes.drinks.drinks-item")
 require("prototypes.pure-water.fluid")
 require("prototypes.drinks.drinks-item-recipe")
-require("prototypes.drinks.basic-recipe")
+require("prototypes.drinks.drinks-recipe")
+require("prototypes.drinks.drinks-fluid")
+-- drinks tara
+--require("prototypes.packages.paper-packaging-item-recipe")
+--require("prototypes.packages.paper-packaging-technology")
 
 -- substances
 require("prototypes.substances.substances-item")

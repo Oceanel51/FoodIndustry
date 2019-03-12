@@ -62,8 +62,8 @@ function foods_table()
 	{"substance-c",						"vegan-special",			-5,		-10,	{0,0,1,0},			7,		7,		0,		{} },
 	{"substance-f",						"vegan-special",			-5,		-10,	{-0.2,0,0,1},		7,		7,		0,		{} },
 	-- food capsules
-	{"food-1-capsule",					"special",					408,	-48,	{-5,0,0,0},			180,	180,	200,	{} },
-	{"food-12-capsule",					"special",					204,	-24,	{-2.5,0,0,0},		90,		90,		100,	{} },
+	{"food-1-capsule",					"special",					408,	-48,	{-5,0,0,0},			150,	150,	200,	{} },
+	{"food-12-capsule",					"special",					204,	-24,	{-2.5,0,0,0},		80,		80,		100,	{} },
 	{"food-16-capsule",					"special",					68,		-8,		{-0.8,0,0,0},		30,		30,		25,		{} },
 	{"simple-food-vmc-capsule",			"vegan-special",			0,		-2,		{3,3,3,0},			35,		35,		0,		{} },
 	{"simple-food-vmf-capsule",			"vegan-special",			0,		-2,		{3,3,0,2},			35,		35,		0,		{} },
@@ -114,16 +114,25 @@ end
 
 function drinks_table()
 	local drinks = {
-	--  1								  2					  3		  4		  5				  6		  7		  8		  9
-	--name,								type,				energy,	water,	{V,M,C,F},		fullness,c_f,	health,	effect/s
-	{"flask-pure-water",				"water",			1,		30,		{0,0,0,0},		30,		30,		3,		{} },
-	{"plastic-bottle-pure-water",		"water",			0,		60,		{-1,0,0,0},		60,		60,		0,		{} },
+	--  1								  2					  3		  4		  5					  6		  7		  8		  9
+	--name,								type,				energy,	water,	{V,M,C,F},			fullness,c_f,	health,	effect/s
+	{"flask-pure-water",				"water",			1,		30,		{0,0,0,0},			30,		30,		3,		{} },
+	{"plastic-bottle-pure-water",		"water",			0,		60,		{-1,0,0,0},			60,		60,		0,		{} },
+	{"glass-bottle-pure-water",			"healthy",			2,		50,		{0,0.8,0,-0.2},		50,		50,		4,		{} },
+	
+	{"plastic-bottle-apple-juice",		"juice",			5,		55,		{3.4,4.2,0,0},		60,		60,		5,		{} },
+	{"glass-bottle-apple-juice",		"juice-healthy",	15,		45,		{6.7,8,0,0},		50,		50,		15,		{} },
+	{"paper-package-apple-juice",		"juice-healthy",	25,		35,		{8.2,10.8,-0.4,0},	40,		40,		20,		{} },
+	{"plastic-bottle-orange-juice",		"juice",			8,		50,		{4.6,3.7,0,0},		60,		60,		6,		{} },
+	{"glass-bottle-orange-juice",		"juice-healthy",	18,		40,		{8.5,6.4,0,-0.3},	50,		50,		17,		{} },
+	{"paper-package-orange-juice",		"juice-healthy",	30,		30,		{11.6,9.2,0,-0.8},	40,		40,		24,		{} },
+	{"glass-bottle-tomato-juice",		"juice-healthy",	15,		45,		{7.4,9,0,0},		50,		50,		18,		{} },
+	{"paper-package-tomato-juice",		"juice-healthy",	20,		40,		{10.2,12,-0.5,0},	40,		40,		25,		{} },
 	-- TODO ad new drinks
-	{"glass-bottle-pure-water",			"healthy",			4,		50,		{0,1,-1,-0.5},	50,		50,		4,		{} },
-	{"tea-cup-with-sugar", 				"sweet",			10,		25,		{0,2,1,0},		30,		0,		5,		{{"crafting",1,12000},{"mining",0.5,12000},{"water-usage",-0.02,12000},} },
-	{"tea-cup", 						"",					10,		30,		{0,2,0,0},		30,		0,		5,		{{"crafting",1,12000},{"mining",0.5,12000},{"water-usage",-0.02,12000},} },
-	{"coffee-cup-with-sugar",			"sweet",			20,		15,		{0,1,2,1},		30,		0,		10,		{{"speed",0.4,18000},{"crafting",2,18000},{"mining",1,18000},{"energy-usage",0.05,18000},} },
-	{"coffee-cup", 						"",					20,		20,		{0,1,1,0},		30,		0,		10,		{{"speed",0.4,18000},{"crafting",2,18000},{"mining",1,18000},{"energy-usage",0.05,18000},} },
+	{"tea-cup-with-sugar", 				"sweet",			10,		25,		{0,2,1,0},			30,		0,		5,		{{"crafting",1,12000},{"mining",0.5,12000},{"water-usage",-0.02,12000},} },
+	{"tea-cup", 						"",					10,		30,		{0,2,0,0},			30,		0,		5,		{{"crafting",1,12000},{"mining",0.5,12000},{"water-usage",-0.02,12000},} },
+	{"coffee-cup-with-sugar",			"sweet",			20,		15,		{0,1,2,1},			30,		0,		10,		{{"speed",0.4,18000},{"crafting",2,18000},{"mining",1,18000},{"energy-usage",0.05,18000},} },
+	{"coffee-cup", 						"",					20,		20,		{0,1,1,0},			30,		0,		10,		{{"speed",0.4,18000},{"crafting",2,18000},{"mining",1,18000},{"energy-usage",0.05,18000},} },
 	}
 	
 	return drinks

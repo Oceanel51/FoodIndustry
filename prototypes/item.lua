@@ -34,9 +34,9 @@ data:extend({
     stack_size = 50,
 	fuel_category = "chemical",
 	fuel_value = "16MJ",
-	fuel_acceleration_multiplier = 1.1,
-  fuel_top_speed_multiplier = 1.3,
-  fuel_emission_multiplier = 0.9,
+	fuel_acceleration_multiplier = 0.8,
+  fuel_top_speed_multiplier = 0.9,
+  fuel_emission_multiplier = 0.4,
   },
   {
     type = "item",

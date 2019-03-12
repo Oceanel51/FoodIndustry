@@ -1022,10 +1022,6 @@ data:extend({
 		{type = "unlock-recipe", recipe = "tofu-burger"},
         {type = "unlock-recipe", recipe = "fish-pizza"},
         {type = "unlock-recipe", recipe = "fish-burger"},
-        {type = "unlock-recipe", recipe = "advanced-food-v-capsule"},
-        {type = "unlock-recipe", recipe = "advanced-food-m-capsule"},
-        {type = "unlock-recipe", recipe = "advanced-food-c-capsule"},
-        {type = "unlock-recipe", recipe = "advanced-food-f-capsule"},
     },
     unit =
     {
@@ -1101,13 +1097,17 @@ data:extend({
     name = "advanced-nutrient-extraction",
     icon = "__FoodIndustry__/graphics/technology/advanced-nutrient-extraction.png",
     icon_size = 128,
-    prerequisites = {"complex-foods", "nuclear-power"},
+    prerequisites = {"nutrient-extraction-2", "complex-foods", "nuclear-power"},
     effects =
     {
         -- TODO сюда включить производство желатина с других тканей и рецепты извлечения веществ 3
         {type = "unlock-recipe", recipe = "food-1-capsule"},
         {type = "unlock-recipe", recipe = "food-12-to-1-capsule"},
         {type = "unlock-recipe", recipe = "food-1-to-substances"},
+        {type = "unlock-recipe", recipe = "advanced-food-v-capsule"},
+        {type = "unlock-recipe", recipe = "advanced-food-m-capsule"},
+        {type = "unlock-recipe", recipe = "advanced-food-c-capsule"},
+        {type = "unlock-recipe", recipe = "advanced-food-f-capsule"},
 		--{type = "unlock-recipe", recipe = "food-capsule"},
 		--{type = "unlock-recipe", recipe = "vegan-food-capsule"},
     },
@@ -1157,12 +1157,15 @@ data:extend({
     name = "effect-capsules",
     icon = "__FoodIndustry__/graphics/technology/effect-capsules-1.png",
     icon_size = 128,
-    prerequisites = {"nutrient-extraction", "food-energy-efficiency-1"},
+    prerequisites = {"gelatine", "nutrient-extraction", "food-energy-efficiency-1"},
     effects =
     {
         {type = "unlock-recipe", recipe = "simple-speed-capsule"},
+        {type = "unlock-recipe", recipe = "simple-speed-capsule-2"},
         {type = "unlock-recipe", recipe = "simple-crafting-capsule"},
+        {type = "unlock-recipe", recipe = "simple-crafting-capsule-2"},
         {type = "unlock-recipe", recipe = "simple-mining-capsule"},
+        {type = "unlock-recipe", recipe = "simple-mining-capsule-2"},
         {type = "unlock-recipe", recipe = "simple-long-reach-capsule"},
         -- TODO add other simple capsules
         {type = "unlock-recipe", recipe = "simple-digestive-capsule"},
@@ -1174,9 +1177,9 @@ data:extend({
         count = 200,
         ingredients =
         {
+            {"logistic-science-pack", 1},
             {"food-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
+            {"automation-science-pack", 1},
         },
     },
     order = "w",
@@ -1272,7 +1275,7 @@ data:extend({
     unit =
     {
       time = 30,
-      count = 10,
+      count = 20,
       ingredients =
       {        
 		{"automation-science-pack", 1},
@@ -1317,10 +1320,10 @@ data:extend({
     unit =
     {
       time = 30,
-      count = 25,
+      count = 40,
       ingredients =
       {        
-		{"automation-science-pack", 1},
+		{"automation-science-pack", 2},
 		{"food-science-pack", 1},
       },
     },
@@ -1430,7 +1433,7 @@ data:extend({
   {
     type = "technology",
     name = "fi-tech-eatout-button",
-    icon = "__FoodIndustry__/graphics/technology/advanced-nutrient-extraction.png",
+    icon = "__FoodIndustry__/graphics/technology/fi-tech-eatout-button.png",
     icon_size = 128,
     prerequisites = {"cooking", "food-energy-efficiency-1"},
     effects =
@@ -1452,7 +1455,7 @@ data:extend({
   {
     type = "technology",
     name = "fi-tech-eating-button",
-    icon = "__FoodIndustry__/graphics/technology/advanced-nutrient-extraction.png",
+    icon = "__FoodIndustry__/graphics/technology/fi-tech-eating-button.png",
     icon_size = 128,
     prerequisites = {"cooking", "fi-tech-eatout-button"},
     effects = {},
@@ -1482,8 +1485,28 @@ data:extend({
     {
         {type = "unlock-recipe", recipe = "fishing-inserter"},
         {type = "unlock-recipe", recipe = "fish-meat"},
-        {type = "unlock-recipe", recipe = "sturgeon-meat"},
         {type = "unlock-recipe", recipe = "fish-farm"},
+    },
+    unit =
+    {
+        time = 20,
+        count = 20,
+        ingredients =
+        {
+            {"food-science-pack", 1},
+        },
+    },
+    order = "w",
+  },
+  {
+    type = "technology",
+    name = "fishing-2",
+    icon = "__FoodIndustry__/graphics/technology/fishing-2.png",
+    icon_size = 128,
+    prerequisites = {"fishing"},
+    effects =
+    {
+        {type = "unlock-recipe", recipe = "sturgeon-meat"},
         {type = "unlock-recipe", recipe = "sturgeon-farm"},
         {type = "unlock-recipe", recipe = "fi-watertile"},
         {type = "unlock-recipe", recipe = "fi-deepwatertile"},
@@ -1491,10 +1514,11 @@ data:extend({
     },
     unit =
     {
-        time = 20,
-        count = 15,
+        time = 30,
+        count = 100,
         ingredients =
         {
+            {"logistic-science-pack", 1},
             {"food-science-pack", 1},
         },
     },
@@ -1521,6 +1545,33 @@ data:extend({
         {
             {"logistic-science-pack", 1},
             {"food-science-pack", 1},
+        },
+    },
+    order = "w",
+  },
+
+  {
+    type = "technology",
+    name = "fruit-juicing",
+    icon = "__FoodIndustry__/graphics/technology/fruit-juicing.png",
+    icon_size = 128,
+    prerequisites = {"electric-heating", "oil-processing"},
+    effects =
+    {
+        {type = "unlock-recipe", recipe = "raw-apple-juice"},
+        {type = "unlock-recipe", recipe = "apple-juice"},
+        -- tara with fruit juices insert to this tech on prototypes\drinks\drinks-item-recipe.lua
+        --{type = "unlock-recipe", recipe = "plastic-bottle-apple-juice"},
+    },
+    unit =
+    {
+        time = 50,
+        count = 50,
+        ingredients =
+        {
+            {"food-science-pack", 3},
+            {"logistic-science-pack", 2},
+            {"chemical-science-pack", 1},
         },
     },
     order = "w",

@@ -1,5 +1,9 @@
 if data.raw.item["glass"] then
 
+    -- replace "glass" icon with new
+    data.raw.item["glass"].icon = "__FoodIndustry__/graphics/icons/items/glass.png"
+    data.raw.item["glass"].icon_size = 64
+
 data:extend({
   
   --TODO add glass tara: item, recipes
@@ -93,3 +97,6 @@ data:extend({
 })
 
 end
+
+
+

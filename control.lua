@@ -234,7 +234,7 @@ script.on_event({defines.events.on_tick}, function (e)
 						--writeDebug(serpent.block(player.crafting_queue))
 						--writeDebug("======================")
 						for craft_index,craft_item in pairs(player.crafting_queue) do
-							crafting_counts = crafting_counts + ( craft_item["count"] * 0.05 )
+							crafting_counts = crafting_counts + ( craft_item["count"] * 0.02 )
 						end
 						global.usage[index] = 1.5 + crafting_counts
 						-- TODO в идеале извлечь время текущего рецепта и от него вычислять расход Энергии
@@ -247,11 +247,10 @@ script.on_event({defines.events.on_tick}, function (e)
 					
 					---------------------- fullness calculation ---------------------
 					fullness_calc_on_tick(index)
-					figui.update(index, player)
 
 					------------------------- sleep marking -------------------------
 					if e.tick % 1200 == 0 then
-						sleep_trg_on_tick(index, player) -- start or stop Sleep
+						sleep_trg_on_tick(index, player) -- start or reset Sleep
 						sleep_calc_on_tick(index, player)
 					end
 					
@@ -277,8 +276,11 @@ script.on_event({defines.events.on_tick}, function (e)
 						-- DEBUG потестировать сколько нужно для уменьшения Fat effect
 						if e.tick % 120 == 0 then
 							local reduce_value = 1 * global.usage[index]
-							fat_modifier_reduction(index,reduce_value)
+							fat_reduction(index,reduce_value)
 						end
+					end
+					if e.tick % 60 == 0 then
+						overeating_reduction(index,60)
 					end
 					
 					----------------------- substances update -----------------------
@@ -301,6 +303,7 @@ script.on_event({defines.events.on_tick}, function (e)
 					
 					
 					u_gui()
+					figui.update(index, player)
 
 					-- for achievement "overweight" > 90% for 30 minutes
 					if global.energy[index] > global.energy_max[index] * 0.9 then

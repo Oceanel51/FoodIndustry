@@ -181,13 +181,13 @@ data:extend(
   },
   {
     type = "item-subgroup",
-    name = "drinks-orange",
+    name = "drinks-apple",
     group = "food-industry-drinks",
     order = "w-b-b-2",
   },
   {
     type = "item-subgroup",
-    name = "drinks-apple",
+    name = "drinks-orange",
     group = "food-industry-drinks",
     order = "w-b-b-3",
   },
