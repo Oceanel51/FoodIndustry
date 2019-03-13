@@ -859,37 +859,36 @@ data:extend({
     icon_size = 128,
     prerequisites = {"fertilization-2", "advanced-material-processing-2", "speed-module-2"},
     effects =
-    {  
-		{type = "unlock-recipe", recipe = "fi-electric-composter"},
-		{type = "unlock-recipe", recipe = "compost-auto-raw-straw"},
-		{type = "unlock-recipe", recipe = "compost-auto-straw"},
-		{type = "unlock-recipe", recipe = "compost-auto-compressed-straw"},
-		{type = "unlock-recipe", recipe = "compost-auto-lettuce"},
-		{type = "unlock-recipe", recipe = "compost-auto-cucumber"},
-		{type = "unlock-recipe", recipe = "compost-auto-tomato"},
-		{type = "unlock-recipe", recipe = "compost-auto-potato"},
-		{type = "unlock-recipe", recipe = "compost-auto-corn"},
-		{type = "unlock-recipe", recipe = "compost-auto-soy"},
-		{type = "unlock-recipe", recipe = "compost-auto-rapeseed"},
+    {
+        {type = "unlock-recipe", recipe = "fi-electric-composter"},
+        {type = "unlock-recipe", recipe = "compost-auto-raw-straw"},
+        {type = "unlock-recipe", recipe = "compost-auto-straw"},
+        {type = "unlock-recipe", recipe = "compost-auto-compressed-straw"},
+        {type = "unlock-recipe", recipe = "compost-auto-lettuce"},
+        {type = "unlock-recipe", recipe = "compost-auto-cucumber"},
+        {type = "unlock-recipe", recipe = "compost-auto-tomato"},
+        {type = "unlock-recipe", recipe = "compost-auto-potato"},
+        {type = "unlock-recipe", recipe = "compost-auto-corn"},
+        {type = "unlock-recipe", recipe = "compost-auto-soy"},
+        {type = "unlock-recipe", recipe = "compost-auto-rapeseed"},
     },
     unit =
     {
-      time = 60,
-      count = 450,
-      ingredients =
-      {        
-		{"automation-science-pack", 1},
-		{"logistic-science-pack", 1},
-		{"chemical-science-pack", 1},
-		{"production-science-pack", 1},
-		{"food-science-pack", 1},
-      },
+        time = 60,
+        count = 450,
+        ingredients =
+        {
+            {"automation-science-pack", 1},
+            {"logistic-science-pack", 1},
+            {"chemical-science-pack", 1},
+            {"production-science-pack", 1},
+            {"food-science-pack", 1},
+        },
     },
     order = "w",
   },
   
-  
-  
+
   {
     type = "technology",
     name = "salad",
@@ -897,20 +896,22 @@ data:extend({
     icon_size = 128,
     prerequisites = {"cooking"},
     effects =
-    {  
-		{type = "unlock-recipe", recipe = "basic-salad"},
+    {
+        {type = "unlock-recipe", recipe = "basic-salad"},
+        {type = "unlock-recipe", recipe = "fish-salad"},
     },
     unit =
     {
-      time = 20,
-      count = 10,
-      ingredients =
-      {   		
-		{"food-science-pack", 1},
-      },
+        time = 20,
+        count = 40,
+        ingredients =
+        {
+            {"food-science-pack", 1},
+        },
     },
     order = "w",
   },
+
   {
     type = "technology",
     name = "frying",
@@ -918,23 +919,22 @@ data:extend({
     icon_size = 128,
     prerequisites = {"canola-oil", "potato-growth", "flour", "fish-cooking"},
     effects =
-    {  
-		{type = "unlock-recipe", recipe = "raw-fries"},
-		{type = "unlock-recipe", recipe = "fries"},
-		{type = "unlock-recipe", recipe = "biter-steak"},
-		{type = "unlock-recipe", recipe = "schnitzel"},
-		{type = "unlock-recipe", recipe = "popcorn"},
+    {
+        {type = "unlock-recipe", recipe = "raw-fries"},
+        {type = "unlock-recipe", recipe = "fries"},
+        {type = "unlock-recipe", recipe = "biter-steak"},
+        {type = "unlock-recipe", recipe = "schnitzel"},
+        {type = "unlock-recipe", recipe = "popcorn"},
         {type = "unlock-recipe", recipe = "fish-steak"},
-        {type = "unlock-recipe", recipe = "fish-and-chips"},
-  },
+    },
     unit =
     {
-      time = 20,
-      count = 30,
-      ingredients =
-      {   		
-		{"food-science-pack", 1},
-      },
+        time = 20,
+        count = 70,
+        ingredients =
+        {
+            {"food-science-pack", 1},
+        },
     },
     order = "w",
   },
@@ -1016,12 +1016,13 @@ data:extend({
     prerequisites = {"seasoning", "salad", "fish-cooking"},
     effects =
     {
-		{type = "unlock-recipe", recipe = "pizza"},
-		{type = "unlock-recipe", recipe = "burger"},
-		{type = "unlock-recipe", recipe = "tofu-pizza"},
-		{type = "unlock-recipe", recipe = "tofu-burger"},
+        {type = "unlock-recipe", recipe = "pizza"},
+        {type = "unlock-recipe", recipe = "burger"},
+        {type = "unlock-recipe", recipe = "tofu-pizza"},
+        {type = "unlock-recipe", recipe = "tofu-burger"},
         {type = "unlock-recipe", recipe = "fish-pizza"},
         {type = "unlock-recipe", recipe = "fish-burger"},
+        {type = "unlock-recipe", recipe = "fish-and-chips"},
     },
     unit =
     {
@@ -1535,7 +1536,6 @@ data:extend({
         {type = "unlock-recipe", recipe = "fish-meat-fish-caviar-red"},
         {type = "unlock-recipe", recipe = "sturgeon-fish-meat-fish-caviar-red"},
         {type = "unlock-recipe", recipe = "cooked-fish-meat"},
-        {type = "unlock-recipe", recipe = "fish-salad"},
         },
     unit =
     {

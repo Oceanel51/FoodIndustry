@@ -225,7 +225,7 @@ end
 function substances_reduction(index)
 	-- append 1% of Energy if vmcf > 1
 	if global.substances[index]["v"] > 1 and global.substances[index]["m"] > 1 and global.substances[index]["c"] > 1 and global.substances[index]["f"] > 1 then
-		global.energy[index] = global.energy[index] + global.energy_max[index] / 100
+		global.energy[index] = global.energy[index] + global.energy_max[index] / 100 * 1
 	end
 
 	-- maintain levels not lower than -10
@@ -248,6 +248,10 @@ function substances_reduction(index)
 		global.substances[index]["m"] = -10
 	else
 		global.substances[index]["m"] = 0
+	end
+	-- add_more_drinks +0.2% when vm_above_5%
+	if global.substances[index]["v"] > 5 and global.substances[index]["m"] > 5 then
+		global.drinks[index] = global.drinks[index] + global.drinks_max[index] / 100 * 0.17
 	end
 
 	if global.substances[index]["c"] - 1 >= 1 then
@@ -294,10 +298,10 @@ end
 function overeating_reduction(index,reduce_time)
 	if global.effects[index]["overeating"][3] > 0 and global.effects[index]["overeating"][4] > 0 then
 		if global.effects[index]["overeating"][3] - reduce_time > 0 then
-			writeDebug("to overeating "..global.effects[index]["overeating"][3].."-"..reduce_time)
+			--writeDebug("to overeating "..global.effects[index]["overeating"][3].."-"..reduce_time)
 			global.effects[index]["overeating"][3] = global.effects[index]["overeating"][3]
 			global.effects[index]["overeating"][4] = (global.effects[index]["overeating"][3]) * 80 / 7200
-			writeDebug("overeating "..global.effects[index]["overeating"][3].." "..global.effects[index]["overeating"][4])
+			--writeDebug("overeating "..global.effects[index]["overeating"][3].." "..global.effects[index]["overeating"][4])
 		else
 			global.effects[index]["overeating"][3] = 0
 			global.effects[index]["overeating"][4] = 0

@@ -269,7 +269,8 @@ data:extend(
               scale = 0.351
 			  --run_mode = "forward-then-backward",
             }
-        }
+        },
+        light = {intensity = 0.27, size = 10, shift = {0.25, -0.3}, color = {r = 234/255, g = 231/255, b = 68/255}}
       },
       {
         animation =
@@ -477,7 +478,8 @@ data:extend(
               scale = 0.43
 			  --run_mode = "forward-then-backward",
             }
-        }
+        },
+        light = {intensity = 0.3, size = 20, shift = {0.25, -0.3}, color = {r = 232/255, g = 1.0, b = 66/255}}
       },
       {
         animation =

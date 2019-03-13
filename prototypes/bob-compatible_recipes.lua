@@ -3,7 +3,7 @@
 if data.raw.item.glass then
 	bobmods.lib.recipe.add_new_ingredient ("fi-greenhouse", {type="item", name="glass", amount=10})
 	bobmods.lib.recipe.add_new_ingredient ("fi-big-greenhouse", {type="item", name="glass", amount=25})
-	bobmods.lib.recipe.add_new_ingredient ("fi-incubator", {type="item", name="glass", amount=20})
+	bobmods.lib.recipe.add_new_ingredient ("fi-incubator", {type="item", name="glass", amount=40})
 end
 
 if data.raw.item["silver-plate"] then

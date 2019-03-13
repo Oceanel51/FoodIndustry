@@ -7,12 +7,12 @@ local foods = {
 {"cooked-corn",						"foods-vegan",		10,		0.5,	"cooking",				4.0,	1,		"w-d-a",		nil,		{{"corn", 1}, {type="fluid", name="pure-water", amount=20}} },
 {"corn-bread",						"foods-vegan",		10,		0.5,	"cooking",				8.0,	1,		"w-d-c",		nil,		{{"corn-flour", 2}, {type="fluid", name="pure-water", amount=10}} },
 {"popcorn",							"foods-vegan",		50,		0.2,	"cooking",				1.5,	1,		"w-d-d",		nil,		{{"corn-seeds", 1}, {type="fluid", name="canola-oil", amount=1}} },
-{"basic-salad",						"foods-vegan",		10,		0.5,	"cooking",				1.5,	1,		"w-d-b",		nil,		{{"tomato", 2}, {"cucumber", 1}, {"lettuce", 2}} },
+{"basic-salad",						"foods-vegan",		10,		0.5,	"cooking",				1.5,	1,		"w-d-b",		nil,		{{"tomato", 2}, {"cucumber", 1}, {"lettuce", 3}} },
 {"cooked-soy",						"foods-vegan",		50,		0.2,	"cooking",				3.0,	5,		"w-d-e",		nil,		{{"soy", 5}, {type="fluid", name="pure-water", amount=20}} },
 {"baked-potato",					"foods-vegan",		10,		0.5,	"cooking",				6.0,	1,		"w-d-f",		nil,		{{"potato", 1}} },
 {"fries",							"foods-vegan",		10,		0.5,	"cooking",				6.0,	1,		"w-d-g",		nil,		{{"raw-fries", 1}, {type="fluid", name="canola-oil", amount=6}} },
 {"ketchup-fries",					"foods-vegan",		10,		0.5,	"advanced-cooking",		0.5,	1,		"w-d-i",		nil,		{{"fries", 1}, {type="fluid", name="ketchup", amount=1}} },
-{"pickles",							"foods-vegan",		50,		0.3,	"cooking",				40.0,	10,		"w-d-h",		nil,		{{"cucumber", 5}, {"crystal", 2}, {type="fluid", name="pure-water", amount=60}} },
+{"pickles",							"foods-vegan",		50,		0.3,	"cooking",				40.0,	5,		"w-d-h",		nil,		{{"cucumber", 5}, {"crystal", 1}, {type="fluid", name="pure-water", amount=35}} },
 {"best-salad",						"foods-vegan",		5,		0.5,	"advanced-cooking",		1.5,	1,		"w-d-n",		nil,		{{"lettuce", 4}, {"tomato", 3}, {"pickles", 1}, {"corn-seeds", 2}, {type="fluid", name="soy-sauce", amount=1}} },
 {"tofu",							"foods-vegan",		10,		0.5,	"chemistry",			4.0,	2,		"w-d-l",		nil,		{{"crystal", 1}, {type="fluid", name="soy-milk", amount=24}, {type="fluid", name="sulfuric-acid", amount=1}} },
 {"tofu-pizza",						"foods-vegan",		5,		0.5,	"cooking",				5.0,	1,		"w-d-m",		nil,		{{"corn-flour", 2}, {"tomato", 3}, {"tofu", 1}, {type="fluid", name="ketchup", amount=2}} }, -- TODO add carton package
@@ -23,7 +23,7 @@ local foods = {
 {"gelatine-granules",				"foods-species",	200,	0.6,	"advanced-cooking",		80.0,	10,		"w-b-6",		nil,		{{"substance-c", 3},} },
 -- fish
 {"cooked-fish-meat",				"foods-fish",		10,		0.3,	"cooking",				3.0,	1,		"w-d-a1",		nil,		{{"fish-meat-red", 1}, {"corn-flour", 1},} },
-{"fish-salad",						"foods-fish",		5,		0.5,	"advanced-cooking",		1.5,	1,		"w-d-a2",		nil,		{{"lettuce", 4}, {"tomato", 3}, {"pickles", 1}, {"corn-seeds", 2}, {"fish-steak", 1},} },
+{"fish-salad",						"foods-fish",		5,		0.5,	"advanced-cooking",		1.5,	1,		"w-d-a2",		nil,		{{"tomato", 2}, {"cucumber", 1}, {"lettuce", 4}, {"corn-seeds", 2}, {"cooked-fish-meat", 1},} },
 {"fish-steak",						"foods-fish",		10,		0.5,	"cooking",				12.0,	1,		"w-d-a3",		nil,		{{"fish-meat-red", 1}, {"corn-flour", 1}, {type="fluid", name="canola-oil", amount=2},} },
 {"fish-and-chips",					"foods-fish",		5,		0.5,	"cooking",				1.5,	1,		"w-d-b1",		nil,		{{"fish-steak", 1}, {"fries", 1},} },
 {"fish-pizza",						"foods-fish",		5,		0.5,	"cooking",				5.0,	1,		"w-d-b2",		nil,		{{"corn-flour", 2}, {"tomato", 3}, {"fish-steak", 1}, {type="fluid", name="ketchup", amount=2},} },
