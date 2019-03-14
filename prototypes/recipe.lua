@@ -743,7 +743,7 @@ data:extend({
 	},
 	results = 
 	{
-		{"advanced-shell-capsule", 5}
+		{"advanced-shell-capsule", 4}
 	}
   },
 
@@ -761,6 +761,7 @@ data:extend({
 	ingredients =
 	{
 		{"food-16-capsule", 3},
+		{"gelatine-granules", 1},
 	},
 	results = 
 	{
@@ -799,6 +800,7 @@ data:extend({
 	ingredients =
 	{
 		{"food-12-capsule", 2},
+		{"gelatine-granules", 2},
 	},
 	results = 
 	{

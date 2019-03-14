@@ -37,7 +37,7 @@ function foods_table()
 	{"apple",							"fruit-vegan-substances1",	4,		2,		{1.6,2.2,0,-0.2},	14,		14,		3,		{{"add_more_drinks",0.2,360},} },
 	{"orange",							"fruit-vegan-substances1",	5,		1,		{2.4,1.2,0,-0.2},	18,		18,		5,		{{"add_more_energy",0.2,180},} },
 	--meat
-	{"biter-meat",						"meat-substances1",			10,		-12,	{0,0,2.2,3.1},		35,		35,		-60,	{} },
+	{"biter-meat",						"meat-substances1",			10,		-12,	{-0.4,0,2.2,3.1},	35,		35,		-60,	{} },
 	{"cooked-biter-meat",				"meat",						20,		-5,		{0,1,4,10},			60,		60,		-50,	{} },
 	{"biter-steak",						"meat",						30,		-10,	{0,0,6,13},			70,		70,		-30,	{} },
 	{"schnitzel",						"meat",						35,		-10,	{0,0,10,15},		80,		80,		-40,	{} },

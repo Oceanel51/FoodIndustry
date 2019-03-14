@@ -1158,7 +1158,7 @@ data:extend({
     name = "effect-capsules",
     icon = "__FoodIndustry__/graphics/technology/effect-capsules-1.png",
     icon_size = 128,
-    prerequisites = {"gelatine", "nutrient-extraction", "food-energy-efficiency-1"},
+    prerequisites = {"gelatine", "nutrient-extraction"},
     effects =
     {
         {type = "unlock-recipe", recipe = "simple-speed-capsule"},
@@ -1190,7 +1190,7 @@ data:extend({
     name = "effect-capsules-2", -- TODO make technology sprite
     icon = "__FoodIndustry__/graphics/technology/effect-capsules-2.png",
     icon_size = 128,
-    prerequisites = {"effect-capsules", "nutrient-extraction-2", "food-energy-efficiency-3"},
+    prerequisites = {"effect-capsules", "nutrient-extraction-2", "food-energy-efficiency-2"},
     effects =
     {
         {type = "unlock-recipe", recipe = "basic-speed-capsule"},
@@ -1222,7 +1222,7 @@ data:extend({
     name = "effect-capsules-3",
     icon = "__FoodIndustry__/graphics/technology/effect-capsules-3.png",
     icon_size = 128,
-    prerequisites = {"effect-capsules-2", "advanced-nutrient-extraction", "fi-tech-more-energy-4", "food-energy-efficiency-10"},
+    prerequisites = {"effect-capsules-2", "advanced-nutrient-extraction", "fi-tech-more-energy-4", "food-energy-efficiency-5"},
     effects =
     {  
     {type = "unlock-recipe", recipe = "advanced-speed-capsule"},
