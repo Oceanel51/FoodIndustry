@@ -62,12 +62,12 @@ data:extend({
                 percent = 60
             }
         },
+        pollution_absorption_absolute = 20,
+        pollution_absorption_proportional = 0.01,
         healing_per_tick = 0.02,
         collision_mask = {'object-layer'},
         collision_box = {{-0.7, -0.7}, {0.7, 0.7}},
         selection_box = {{-0.9, -0.9}, {0.9, 0.9}},
-        pollution_absorbtion_absolute = 20,
-        pollution_absorbtion_proportional = 0.01,
         corpse = "spitter-spawner-corpse",
         dying_explosion = "blood-explosion-huge",
         max_count_of_owned_units = 7,

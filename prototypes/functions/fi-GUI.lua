@@ -43,6 +43,13 @@ end
 -- creation or recreation FI GUI
 function figui.create(index, player)
 	local leftGui = player.gui.left
+	if not settings.global["food-industry-calculate"].value then
+		if not leftGui.frame then
+			leftGui.frame.destroy()
+		end
+		return
+	end
+
 	
 	if leftGui.bar then
 		leftGui.bar.destroy()
