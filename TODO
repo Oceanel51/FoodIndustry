@@ -19,13 +19,14 @@ Features:
     ✔ Remake Fullness system: now it's like a stomach in the human body, You put the food and its digestion takes place in turns. @done(19-01-30 12:28)
     ✔ Apple, seed, sapling @done(19-03-01 14:48)
     ✔ Orange, seed, sapling @done(19-03-01 14:48)
-  ☐ @today Add "Overeating" effect:
-    ☐ Add "Fat" effect
+  ✔ @today Add "Overeating" effect: @done(19-03-14 16:45)
+    ✔ Add "Fat" effect @done(19-03-14 16:45)
+    ☐ Check "Fullness" values
   ✔ Add "Drinks consumption" system and some basic fluids: @done(19-02-01 15:06)
     ☐ Add "pure-water" on map with autoplace reachness balance
     ☐ Add "pure-water" recipe filtration 
     ✔ Add drink "pure-water" @done(19-01-31 12:28)
-    ☐ @today Add "Thirst" effect. This is not exactly the thirst we know ;)
+    ✔ Add "Thirst" effect. This is not exactly the thirst we know ;) @done(19-03-14 16:43)
   ✔ Implement bonus effects values to add and remove from modifiers instead of overwriting @done(19-03-01 14:48)
   ✔ Add fish-meat and fish-caviar-red technologies @done(19-02-14 17:04)
   ✘ Add hr spritesheets for fi-basic-farmland @cancelled(19-01-31 12:31)
@@ -42,7 +43,7 @@ Fixes:
   ✔ Changed compost fuel_value from 2500J to 6000J (6kJ) @done(19-01-31 10:26)
   ☐ Corrected food values in localization files (from google sheet)
   ☐ Remade icons for:
-    ☐ raw-straw
+    ✔ raw-straw @done(19-03-14 16:43)
     ☐ compost
     ☐ fertilyser
   ☐ Fix migration file

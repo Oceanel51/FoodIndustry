@@ -114,30 +114,31 @@ script.on_event({defines.events.on_tick}, function (e)
 
 	-- TODO добавить сюда sleep modifier, это основной блок по которому считаются все расходы
 	if e.tick % 5 == 0 and settings.global["food-industry-calculate"].value then
-		for index,player in pairs(game.players) do
-			if player.connected then
+		for index,player in pairs(game.connected_players) do
+			--if player.connected then
 				
-				fi_global_variables_set(index) -- set global variables default data of connected players
+				--fi_global_variables_set(index) -- set global variables default data of connected players
 				-----------------------------------------------------
 				
 				if not player.character then -- for sandbox mode
-					global.energy_max[index] = 100
+					--global.energy_max[index] = 100
 					global.energy[index] = 50
-					global.drinks_max[index] = 100
+					--global.drinks_max[index] = 100
 					global.drinks[index] = 0
-					global.foods_eaten[index] = {}
+					--global.foods_eaten[index] = {}
 					global.fullness[index] = 0
 					global.used[index] = 0
 					global.usage[index] = 0
 					global.substances[index] = {v=0,m=0,c=0,f=0}
-					for effect,t in pairs(global.effects[index]) do
-						global.effects[index][effect] = 0
-					end
+					--for effect,t in pairs(global.effects[index]) do
+					--	global.effects[index][effect] = 0
+					--end
 					if player.gui.left.frame.flow1.usagelabel then
 						player.gui.left.frame.flow1.energylabel.caption = global.energy[index]
 						player.gui.left.frame.energybar.value = global.energy[index]/100
 						player.gui.left.frame.flow1.usagelabel.caption = "---"
 						player.gui.left.frame.flow22.drinkslabel.caption = "0"
+						player.gui.left.frame.drinksbar.value = global.drinks[index]/100
 					end
 
 				else ---- calculate character Energy usage data
@@ -269,6 +270,7 @@ script.on_event({defines.events.on_tick}, function (e)
 					end
 					
 					---------------------- thirst calculation -----------------------
+					--writeDebug(dump(global.effects[index]["thirst"]))
 					thirst_reduction(index,5)
 					
 					------------------------ fat calculation ------------------------
@@ -285,7 +287,6 @@ script.on_event({defines.events.on_tick}, function (e)
 					
 					----------------------- substances update -----------------------
 					figui.update_substances(index, player)
-					-- DEBUG увеличить расход Substances до -1 в 40 сек.
 					if e.tick % ( 60 * settings.global["food-industry-substances-update"].value ) == 0 then
 						substances_reduction(index)
 					end
@@ -293,7 +294,6 @@ script.on_event({defines.events.on_tick}, function (e)
 					--------------------- effects calculation -----------------------
 					if e.tick % 60 == 0 then
 						effects_time_reduction(index)
-						--effects_remove(index)
 					end
 					if e.tick % ( 60 * settings.global["food-industry-effects-update"].value ) == 0 then
 						effects_calc_on_tick(index, player)
@@ -317,7 +317,7 @@ script.on_event({defines.events.on_tick}, function (e)
 					end
 					
 				end
-			end
+			--end
 		end
 	end
 	
