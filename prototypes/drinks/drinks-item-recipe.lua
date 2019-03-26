@@ -8,10 +8,12 @@ local foods = {
 	{"plastic-bottle-pure-water",	10,		0.5,	"crafting-with-fluid",	5.0,	1,		"drinks-pure-water",	false,		{{"plastic-bottle", 1}, {type="fluid", name="pure-water", amount=60}},		{r=0.0,g=0.5,b=1.0,a=0.5} },
 	--{"glass-bottle-pure-water",		10,		0.5,	"crafting-with-fluid",	6.0,	1,		"drinks-pure-water",	false,		{{"glass-bottle", 1}, {type="fluid", name="pure-water", amount=50}},		{r=0.0,g=0.5,b=1.0,a=0.8} },
 	-- juices
-	{"plastic-bottle-apple-juice",	10,		0.8,	"crafting-with-fluid",	5.5,	1,		"drinks-apple",			false,		{{"plastic-bottle", 1}, {type="fluid", name="apple-juice", amount=60}},		{r=213/255, g=141/255, b=65/255, a=221/255} },
+	{"plastic-bottle-apple-juice",	10,		0.8,	"crafting-with-fluid",	5.5,	1,		"drinks-apple",			false,		{{"plastic-bottle", 1}, {type="fluid", name="apple-juice", amount=60}},		{r=213/255, g=141/255, b=65/255, a=155/255} },
+	{"plastic-bottle-orange-juice",	10,		0.8,	"crafting-with-fluid",	5.5,	1,		"drinks-orange",		false,		{{"plastic-bottle", 1}, {type="fluid", name="orange-juice", amount=60}},	{r=245/255, g=161/255, b=0, a=229/255} },
 	-- TODO add other juices
-	--{"glass-bottle-apple-juice",	10,		0.7,	"crafting-with-fluid",	6.5,	1,		"drinks-apple",			false,		{{"plastic-bottle", 1}, {type="fluid", name="apple-juice", amount=50}},		{r=213/255, g=141/255, b=65/255, a=221/255} },
+	--{"glass-bottle-apple-juice",	10,		0.7,	"crafting-with-fluid",	6.5,	1,		"drinks-apple",			false,		{{"glass-bottle", 1}, {type="fluid", name="apple-juice", amount=50}},		{r=213/255, g=141/255, b=65/255, a=221/255} },
 	--{"paper-package-apple-juice",	10,		0.6,	"crafting-with-fluid",	7.5,	1,		"drinks-apple",			false,		{{"paper-packaging", 1}, {type="fluid", name="apple-juice", amount=40}},	{r=213/255, g=141/255, b=65/255, a=221/255} },
+	--{"glass-bottle-tomato-juice",	10,		0.8,	"crafting-with-fluid",	5.5,	1,		"drinks-orange",		false,		{{"glass-bottle", 1}, {type="fluid", name="tomato-juice", amount=60}},		{r=219/255, g=56/255, b=48/255, a=236/255} },
 }
 
 
@@ -121,6 +123,8 @@ for i, f in pairs(foods) do
 	if string.match(f[1], "juice$") == "juice" then
 		--log("[FI Debug] recipe - "..f[1].." insert to fruit-juicing tech")
 		table.insert(data.raw.technology["fruit-juicing"].effects,{recipe = f[1], type = "unlock-recipe"})
+	--elseif string.match(f[1], "^plastic") == "plastic" then
+	--	table.insert(data.raw.technology["plastics"].effects,{recipe = f[1], type = "unlock-recipe"})
 	end
 
 end

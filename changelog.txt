@@ -1,4 +1,15 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.8.60 (preview 2.0, beta 0.8.60)
+Date: 26.03.2019
+  Features:
+    - Added orange-juice
+    - Added thumbnail.png (for beta)
+  Balances:
+    - Changed Basic capsules recipes and category
+  Fixes:
+    - Added incompatible dependency for omnimatter_fluid to info.json
+    - Small fixes
+---------------------------------------------------------------------------------------------------
 Version: 1.8.59 (preview 2.0, beta 0.8.59)
 Date: 25.03.2019
   Fixes:

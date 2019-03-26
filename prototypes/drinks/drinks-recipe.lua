@@ -129,7 +129,7 @@ data:extend({
 		{"apple", 1},
 	},
 	results = {
-		{type="fluid", name="raw-apple-juice", amount=2},
+		{type="fluid", name="raw-apple-juice", amount=3},
 		{type="item", name="raw-straw", amount_min=1, amount_max=3},
 	},
 	allow_decomposition = true
@@ -154,4 +154,82 @@ data:extend({
 	allow_decomposition = true
   },
   
+  {
+	type = "recipe",
+	name = "raw-orange-juice",
+	enabled = false,
+	icon = "__FoodIndustry__/graphics/icons/fluids/raw-orange-juice.png",
+	icon_size = 32,
+	category = "crafting-with-fluid",
+	subgroup = "drinks-orange",
+	order = "w-d1",
+	energy_required = 0.85,
+	ingredients = {
+		{"orange", 1},
+	},
+	results = {
+		{type="fluid", name="raw-orange-juice", amount=2},
+		{type="item", name="raw-straw", amount_min=1, amount_max=3},
+	},
+	allow_decomposition = true
+  },
+  {
+	type = "recipe",
+	name = "orange-juice",
+	enabled = false,
+	icon = "__FoodIndustry__/graphics/icons/fluids/orange-juice.png",
+	icon_size = 32,
+	category = "chemistry",
+	subgroup = "drinks-orange",
+	order = "w-d2",
+	energy_required = 0.6,
+	ingredients = {
+		{type="fluid", name="raw-orange-juice", amount=10},
+		{type="fluid", name="pure-water", amount=10},
+	},
+	results = {
+		{type="fluid", name="orange-juice", amount=20},
+	},
+	allow_decomposition = true
+  },
+
+  {
+	type = "recipe",
+	name = "raw-tomato-juice",
+	enabled = false,
+	icon = "__FoodIndustry__/graphics/icons/fluids/raw-tomato-juice.png",
+	icon_size = 32,
+	category = "crafting-with-fluid",
+	subgroup = "drinks-tomato",
+	order = "w-d1",
+	energy_required = 0.85,
+	ingredients = {
+		{"tomato", 1},
+	},
+	results = {
+		{type="fluid", name="raw-tomato-juice", amount=3},
+		{type="item", name="raw-straw", amount_min=1, amount_max=4},
+	},
+	allow_decomposition = true
+  },
+  {
+	type = "recipe",
+	name = "tomato-juice",
+	enabled = false,
+	icon = "__FoodIndustry__/graphics/icons/fluids/tomato-juice.png",
+	icon_size = 32,
+	category = "chemistry",
+	subgroup = "drinks-tomato",
+	order = "w-d2",
+	energy_required = 0.6,
+	ingredients = {
+		{type="fluid", name="raw-tomato-juice", amount=10},
+		{type="fluid", name="pure-water", amount=8},
+	},
+	results = {
+		{type="fluid", name="tomato-juice", amount=18},
+	},
+	allow_decomposition = true
+  },
+
 })

@@ -1560,8 +1560,11 @@ data:extend({
     {
         {type = "unlock-recipe", recipe = "raw-apple-juice"},
         {type = "unlock-recipe", recipe = "apple-juice"},
-        -- tara with fruit juices insert to this tech on prototypes\drinks\drinks-item-recipe.lua
-        --{type = "unlock-recipe", recipe = "plastic-bottle-apple-juice"},
+        {type = "unlock-recipe", recipe = "raw-orange-juice"},
+        {type = "unlock-recipe", recipe = "orange-juice"},
+        {type = "unlock-recipe", recipe = "raw-tomato-juice"},
+        {type = "unlock-recipe", recipe = "tomato-juice"},
+       -- tara with fruit juices insert to this tech on prototypes\drinks\drinks-item-recipe.lua
     },
     unit =
     {

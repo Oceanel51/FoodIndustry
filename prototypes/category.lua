@@ -191,6 +191,12 @@ data:extend(
     group = "food-industry-drinks",
     order = "w-b-b-3",
   },
+  {
+    type = "item-subgroup",
+    name = "drinks-tomato",
+    group = "food-industry-drinks",
+    order = "w-b-b-4",
+  },
 
   -------------------- recipes --------------------
   {

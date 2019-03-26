@@ -7,10 +7,11 @@
     "homepage": "https://github.com/Oceanel51/FoodIndustry",
     "factorio_version": "0.17",
     "dependencies": ["base >= 0.17.12",
-                     "?bobmining >= 0.17.2",
-                     "?bobplates >= 0.17.2",
-                     "?Cargo Ships >= 0.0.34",
-                     "?omnimatter_wood",
-                     "?alien-biomes"],
+                     "? bobmining >= 0.17.2",
+                     "? bobplates >= 0.17.2",
+                     "? Cargo Ships >= 0.0.34",
+                     "? omnimatter_wood",
+                     "? alien-biomes",
+                     "! omnimatter_fluid"],
     "description": "This mod adds hunger and ways to produce foods and drinks. From grown foods can be obtained effect capsules.\nGraphics for composter and basic farm by darkfrei, other farms and mashines by Oceanel51.\nNew consumption system invented and implemented by Oceanel51, cattles and some trees ideas by jonkeda."
 }
