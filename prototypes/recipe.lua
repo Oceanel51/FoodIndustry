@@ -174,6 +174,7 @@ data:extend({
 		{type = "fluid", name = "water", amount = 210},
 		{ "stone", 3 }
 	},
+	allow_decomposition = true
 },
 
 {

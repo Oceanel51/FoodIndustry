@@ -264,8 +264,8 @@ function substances_reduction(index)
 		global.substances[index]["c"] = 0
 	end
 
-	if global.substances[index]["f"] - 1 >= 1 then
-		global.substances[index]["f"] = global.substances[index]["f"] - 1
+	if global.substances[index]["f"] - 0.8 >= 0.8 then
+		global.substances[index]["f"] = global.substances[index]["f"] - 0.8
 	elseif global.substances[index]["f"] - 1 <= -1.01 then
 		global.substances[index]["f"] = global.substances[index]["f"] + 1
 	elseif global.substances[index]["f"] - 1 <= -10 then

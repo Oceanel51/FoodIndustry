@@ -1274,7 +1274,7 @@ data:extend(
         base_level = -2,
         pipe_connections = {{ type="input", position = {1.5, 0.5}}}
       },
-      off_when_no_fluid_recipe = false
+      off_when_no_fluid_recipe = true
     },
 	animation = {
         layers = {
@@ -1412,7 +1412,7 @@ data:extend(
         base_level = 1,
         pipe_connections = {{ type="output", position = {-1.5, -0.5}}}
       },
-      off_when_no_fluid_recipe = false
+      off_when_no_fluid_recipe = true
     },
 	animation =
 	{

@@ -1,4 +1,12 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.8.61 (preview 2.0, beta 0.8.61)
+Date: --.--.2019
+  Balances:
+    - Changed reduction ratio for global.substances[index]["f"] from 1 to 0.8
+  Fixes:
+    - Changed "off_when_no_fluid_recipe = true" for burner-cooker and electric-cooker
+    - Added allow_decomposition to "crystal" recipe
+---------------------------------------------------------------------------------------------------
 Version: 1.8.60 (preview 2.0, beta 0.8.60)
 Date: 26.03.2019
   Features:
@@ -33,6 +41,8 @@ Date: 14.03.2019
       - plastic-bottle-pure-water.
     - Added "Thirst" effect. This is not exactly the thirst we know ;)
     - Implemented bonus effects values to add and remove from game modifiers instead of overwriting.
+    - Added Energy usage when Player is:
+      - crafting (factor=1.5 + 0.02 for each item in the craft queue);
     - Added other many things: items, recipes, trees and resource.
     - Remaded some plants, foods sprites and icons.
   Fixes:
@@ -47,7 +57,7 @@ Date: 14.03.2019
 ---------------------------------------------------------------------------------------------------
 Version: 0.16.31
 Date: 22.12.2018
-  Changes:
+  Features:
     - Added new item: fi-fluid-tank, storage for food fluids.
     - Added new technology: fi-tech-more-energy (5 tiers) with some item bonuses. Basicaly adds 100 Energy for Player character, then research up to 500.
     - Added Energy usage when Player is:
@@ -55,35 +65,38 @@ Date: 22.12.2018
       - driving (factor=0.4, always constant);
       - picking (factor=1.4, increase when equiped armor and its durability, also equipment in grid);
       - repairing (factor=1.6, increase when equiped armor and its durability, also equipment in grid).
-    - Changed when Player is created/joined, in his inventory additionally insert: crafting-capsule=2, speed-capsule=2, mining-capsule=2. That helps on early game.
-    - Mirrored capsules icon for best view expirience
-    - Improved and rerendered sprites for fi-table-logo-lamp and fi-table-logo
     - Added new sprite for fi-table-logo-lamp light effect
-    - Changed to get the recipe fi-table-logo-lamp need to research "optics" technology
-    - Improved icon for fi-incubator
-    - Improved icon for food-science-pack
-    - Changed some technology icons
-    - Changed recipe burner-cooker: results = 1 (old value 2).
-    - Added more yellow to corn-seeds sprite
-    - Added more springgreen to lettuce item sprite
     - Added localization keys for some GUI labels. If UI looks somehow wrong, can use the command: /c game.player.gui.left.frame.destroy()
     - Added localization keys for some print messages.
     - Added sound effect when use food-capsules
+  Balances:
+    - Changed when Player is created/joined, in his inventory additionally insert: crafting-capsule=2, speed-capsule=2, mining-capsule=2. That helps on early game.
+    - Changed recipe burner-cooker: results = 1 (old value 2).
+  Fixes:
+    - Changed to get the recipe fi-table-logo-lamp need to research "optics" technology
+    - Improved and rerendered sprites for fi-table-logo-lamp and fi-table-logo
+    - Mirrored capsules icon for best view expirience
+    - Improved icon for fi-incubator
+    - Improved icon for food-science-pack
+    - Changed some technology icons
+    - Added more yellow to corn-seeds sprite
+    - Added more springgreen to lettuce item sprite
     - Fixed some bugs
 ---------------------------------------------------------------------------------------------------
 Version: 0.16.30
 Date: 05.11.2018
-  Changes:
+  Features:
     - Added new graphics for entity: fi-incubator
     - Added glow for fi-incubator
-    - Changed scale of fi-mashines-propeller1
     - Added new sprite fi-mashines-propeller2 (for fi-incubator)
     - Added new sprite fi-mashines-propeller3 (for fi-electric-composter)
+  Fixes:
+    - Changed scale of fi-mashines-propeller1
     - Fixed bugs
 ---------------------------------------------------------------------------------------------------
 Version: 0.16.29
 Date: 26.10.2018
-  Changes:
+  Features:
     - New FI logo (discussions and suggestions are welcome in https://mods.factorio.com/mod/FoodIndustry/discussion or in https://github.com/Oceanel51/Food-Industry/issues)
     - Added new graphics for entity: fi-electric-composter, fi-greenhouse, fi-big-greenhouse, fi-incubator (prototype)
     - Added simple animation to fi-basic-farmland
@@ -93,17 +106,20 @@ Date: 26.10.2018
     - Added fi-table-wood1 of "FI logo" on fi-composter and fi-basic-farmland
     - Added smoke and stone-furnace-fire animations for burner-cooker
     - Added electric-furnace-heater scale 0.7 and light glowing for electric-cooker
+    - Added emissions: fi-greenhouse -6PU, fi-big-greenhouse -14PU, fi-incubator -20PU
+  Balances:
+    - Ballanced drain energy for farms
+  Fixes:
     - Compressed all graphics (17,0 > 3,57 Mb) via https://forums.factorio.com/viewtopic.php?f=70&t=30591#p250171
     - Changed technology name electric-composter to electric-composting
-    - Ballanced drain energy for farms
-    - Added emissions: fi-greenhouse -6PU, fi-big-greenhouse -14PU, fi-incubator -20PU
     - Fixed some bugs
     - Added changelog into mod directory
 ---------------------------------------------------------------------------------------------------
 Version: 0.16.28
 Date: 04.10.2018
-  Changes:
+  Features:
     - Added compost as fuel to fi-basic-farmland
+  Fixes:
     - Fixed names: fi-basic-farmland, fi-greenhouse, fi-big-greenhouse, fi-incubator
     - More green
 ---------------------------------------------------------------------------------------------------
