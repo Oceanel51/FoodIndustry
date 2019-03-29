@@ -433,7 +433,7 @@ script.on_event(defines.events.on_player_used_capsule, function(event)
 			
 			local player = game.players[event.player_index]
 			--if player.connected and player.character and global.effects[event.player_index] then
-				if global.fullness[event.player_index] and global.fullness[event.player_index] > 180 then
+				if global.fullness[event.player_index] and global.fullness[event.player_index] + food[6] > 180 then
 				-- TODO потеря сознания персонажа выше Fullness 181 единниц
 				--if global.fullness[event.player_index] + food[3] > 100 then
 					player.insert{name = food[1], count = 1}

@@ -1,11 +1,14 @@
 ---------------------------------------------------------------------------------------------------
-Version: 1.8.61 (preview 2.0, beta 0.8.61)
+Version: 1.8.62 (preview 2.0, beta 0.8.62)
 Date: --.--.2019
   Balances:
     - Changed reduction ratio for global.substances[index]["f"] from 1 to 0.8
+    - Balanced some raw food
   Fixes:
     - Changed "off_when_no_fluid_recipe = true" for burner-cooker and electric-cooker
     - Added allow_decomposition to "crystal" recipe
+    - Changed emissions to emissions_per_second_per_watt for some entities
+    - More than 180% you can not Overeat!
 ---------------------------------------------------------------------------------------------------
 Version: 1.8.60 (preview 2.0, beta 0.8.60)
 Date: 26.03.2019

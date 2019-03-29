@@ -129,7 +129,8 @@ data:extend(
 		usage_priority = "secondary-input",
 		fuel_categories = {"humus"},		-- changed by Oceanel
 		fuel_inventory_size = 1,
-		emissions = -0.02,
+    --emissions = -0.02,
+    emissions_per_second_per_watt = -1.4 / 100000,
 		light_flicker = { intensity = 0, size = 0}, color = { r = 0.0, g = 0.0, b = 0.0 },
     },
     energy_usage = "500W", 
@@ -319,7 +320,8 @@ data:extend(
 		type = "electric",
 		usage_priority = "secondary-input",
         drain = "25kW",
-        emissions = -0.06, -- the "-" means it eats pollution. Absorbs about 6 PU
+        --emissions = -0.06,
+        emissions_per_second_per_watt = -6 / 100000, -- the "-" means it eats pollution. Absorbs about 6 PU
     },
     energy_usage = "150kW", 
 	ingredient_count = 1,
@@ -554,7 +556,8 @@ data:extend(
 		type = "electric",
 		usage_priority = "secondary-input",
         drain = "50kW",
-        emissions = -0.14, -- the "-" means it eats pollution. Absorbs about 14 PU
+		--emissions = -0.14,
+		emissions_per_second_per_watt = -14 / 100000, -- the "-" means it eats pollution. Absorbs about 14 PU
     },
     energy_usage = "360kW", 
 	ingredient_count = 1,
@@ -834,7 +837,8 @@ data:extend(
 		type = "electric",
 		usage_priority = "secondary-input",
         drain = "100kW",
-        emissions = -0.2, -- the "-" means it eats pollution. Absorbs about 20PU
+		--emissions = -0.2,
+		emissions_per_second_per_watt = -20 / 100000, -- the "-" means it eats pollution. Absorbs about 20PU
     },
     energy_usage = "1MW", 
 	ingredient_count = 1,
@@ -1231,7 +1235,8 @@ data:extend(
 		type = "electric",
 		usage_priority = "secondary-input",
         drain = "45kW",
-		emissions = 0.004
+		--emissions = 0.004
+		emissions_per_second_per_watt = 4 / 1000000
     },
     energy_usage = "800kW",
     module_specification =
@@ -1353,7 +1358,8 @@ data:extend(
 		fuel_categories = {"chemical"},
 		fuel_inventory_size = 1,
 		light_flicker = { intensity = 0, size = 0}, color = { r = 1.0, g = 0.9, b = 0.8 },
-		emissions = 0.015,
+		--emissions = 0.015,
+		emissions_per_second_per_watt = 15 / 1000000,
 		smoke =
 		{
 			{
@@ -1479,7 +1485,8 @@ working_visualisations =
     {
 		type = "electric",
 		usage_priority = "secondary-input",
-		emissions = 0.004
+		--emissions = 0.004
+		emissions_per_second_per_watt = 4 / 1000000
     },
     energy_usage = "50kW",
     ingredient_count = 8,

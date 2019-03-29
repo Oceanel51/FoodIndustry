@@ -89,6 +89,14 @@ function figui.create(index, player)
 		--leftGui.frame.flow1.add({type="label", name="label_percent", caption={'label.label-percent', "%)"}, style = "fi-label",})
 		leftGui.frame.flow1.add({type="label", name="label_percent", caption="%)", style = "fi-label",})
 		--leftGui.frame.flow1.add({type="label", name="label_percent1", caption=")", left_padding=0, right_padding=0,})
+		-- TODO make fat icon
+		--if not leftGui.frame.flow12 then
+		--	leftGui.frame.add{type = "flow", name = "flow12", right_padding = 0, left_padding = 0, direction = "horizontal"}
+		--end
+		--if not leftGui.frame.flow1.flow12.label_fat then
+		--	leftGui.frame.flow1.flow12.add({type="sprite", name="sprite_fat", sprite=)
+		--	leftGui.frame.flow1.flow12.add({type="label", name="label_fat", caption="")
+		--end
 	end
 	if not leftGui.frame.energybar then
 		leftGui.frame.add({type="progressbar", name="energybar"})

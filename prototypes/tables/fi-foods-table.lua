@@ -19,7 +19,7 @@ function foods_table()
 	{"corn",							"vegan-substances1",		3,		-2,		{0,1.6,0,0.5},		24,		24,		-1,		{} },
 	{"cucumber",						"vegan-substances1",		5,		4,		{2,2.2,0,-0.2},		20,		20,		7,		{} },
 	{"tomato",							"vegan-substances1",		5,		2,		{2.8,1.6,0,-0.2},	16,		16,		8,		{} },
-	{"lettuce",							"vegan-substances1",		3,		1,		{1.8,1.4,0,-0.2},	8,		8,		2,		{} },
+	{"lettuce",							"vegan-substances1",		3,		1,		{1.5,1.1,0,-0.2},	8,		8,		2,		{} },
 	{"cooked-corn",						"vegan",					12,		3,		{0,2.8,2,0},		35,		35,		20,		{} },
 	{"corn-bread",						"vegan-fat",				20,		-2,		{0,1,3.2,1},		45,		45,		25,		{} },
 	{"popcorn",							"vegan-fat",				4,		-3,		{0,0,1.5,2.2},		14,		14,		10,		{} },
