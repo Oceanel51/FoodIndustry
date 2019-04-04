@@ -23,10 +23,10 @@ local foods = {
 {"gelatine-granules",				"foods-species",	200,	0.6,	"advanced-cooking",		80.0,	10,		"w-b-6",		nil,		{{"substance-c", 3},} },
 -- fish
 {"cooked-fish-meat",				"foods-fish",		10,		0.3,	"cooking",				3.0,	1,		"w-d-a1",		nil,		{{"fish-meat-red", 1}, {"corn-flour", 1},} },
-{"fish-salad",						"foods-fish",		5,		0.5,	"advanced-cooking",		1.5,	1,		"w-d-a2",		nil,		{{"tomato", 2}, {"cucumber", 1}, {"lettuce", 4}, {"corn-seeds", 2}, {"cooked-fish-meat", 1},} },
+{"fish-salad",						"foods-fish",		5,		0.5,	"cooking",				1.5,	1,		"w-d-a2",		nil,		{{"tomato", 2}, {"cucumber", 1}, {"lettuce", 4}, {"corn-seeds", 2}, {"cooked-fish-meat", 1},} },
 {"fish-steak",						"foods-fish",		10,		0.5,	"cooking",				12.0,	1,		"w-d-a3",		nil,		{{"fish-meat-red", 1}, {"corn-flour", 1}, {type="fluid", name="canola-oil", amount=2},} },
 {"fish-and-chips",					"foods-fish",		5,		0.5,	"cooking",				1.5,	1,		"w-d-b1",		nil,		{{"fish-steak", 1}, {"fries", 1},} },
-{"fish-pizza",						"foods-fish",		5,		0.5,	"cooking",				5.0,	1,		"w-d-b2",		nil,		{{"corn-flour", 2}, {"tomato", 3}, {"fish-steak", 1}, {type="fluid", name="ketchup", amount=2},} },
+{"fish-pizza",						"foods-fish",		5,		0.5,	"advanced-cooking",		5.0,	1,		"w-d-b2",		nil,		{{"corn-flour", 2}, {"tomato", 3}, {"fish-steak", 1}, {type="fluid", name="ketchup", amount=2},} },
 {"fish-burger",						"foods-fish",		5,		0.5,	"advanced-cooking",		5.0,	1,		"w-d-b3",		nil,		{{"corn-bread", 1}, {"tomato", 2}, {"pickles", 2}, {"lettuce", 1}, {"fish-steak", 1}, {type="fluid", name="ketchup", amount=1},} },
 -- meat
 {"cooked-biter-meat",				"foods-meat",		10,		0.5,	"cooking",				12.0,	1,		"w-d-f",		nil,		{{"biter-meat", 1}, {type="fluid", name="pure-water", amount=7}} },

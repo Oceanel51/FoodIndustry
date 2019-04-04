@@ -92,7 +92,7 @@ end
 table.insert(data.raw["technology"]["optics"].effects, { type = "unlock-recipe", recipe = "fi-table-logo-lamp" } )
 
 -- open recipe after research technology "fluid-handling" or Bob "water-miner-1"
-if data.raw["technology"]["water-miner-1"] or mods["bobmining"] then
+if data.raw["technology"]["water-miner-1"] and mods["bobmining"] then
 	table.insert(data.raw["technology"]["water-miner-1"].effects, { type = "unlock-recipe", recipe = "fi-fluid-tank" } )
 else
 	table.insert(data.raw["technology"]["fluid-handling"].effects, { type = "unlock-recipe", recipe = "fi-fluid-tank" } )

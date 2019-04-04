@@ -1,9 +1,17 @@
 require "prototypes.tables.fi-foods-table"
 local foods = collect_all_foods_table()
 
+-- each food have
+--  1		  2						  3		  4			  5			  6		  7		  8		  9
+--name,		type,					energy,	drinks,	{V,M,C,F},		fullness, c_f,	health,	effect/s
+--@"corn",	"vegan-substances1",	3,		-2,		{0,1.6,0,0.5},	24,		24,		-1,		{}
+-- where:
+--@ energy / 3 = substances dust
+--@ drinks / 12 = substances dust
+--@ every balance V,M,C,F gives its value of substance
+--@ other raw-straw
 
 for index, food in pairs(foods) do
-
 	----------------------- stage 1 of nutrient extraction - only growth items -----------------------
 	-- 20% of one max substance is extracted substance, remaining 80% is substances-dust
 	-- also 20% of Energy/3 and Drinks/6 is substances-dust, remaining 80% is raw-straw
@@ -35,8 +43,8 @@ for index, food in pairs(foods) do
 	end
 
 	if food[3] > food[4] and string.match(food[2], "substances1") == "substances1" then -- make dust
-		substancesdust1_val = (food[3] / 3 + food[4] / 6) * 0.2 + substances1_max * 0.8
-		rawstraw1_val = (food[3] / 3 + food[4] / 6) * 0.8
+		substancesdust1_val = (food[3] / 3 + food[4] / 12) * 0.2 + substances1_max * 0.8
+		rawstraw1_val = (food[3] / 3 + food[4] / 12) * 0.8
 
 		if substances1_max * 0.2 == math.floor(substances1_max * 0.2) then -- integer
 			substances_results = 

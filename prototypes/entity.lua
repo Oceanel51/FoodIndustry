@@ -1338,12 +1338,12 @@ data:extend(
     {
       sound = {
         {
-          filename = "__base__/sound/chemical-plant.ogg",
-          volume = 1.0
+            filename = "__FoodIndustry__/sounds/cooking/cooking-frying.ogg",
+            volume = 0.9
         },
-		{
-          filename = "__base__/sound/furnace.ogg",
-          volume = 0.8
+        {
+            filename = "__FoodIndustry__/sounds/cooking/cooking-frying-bekon.ogg",
+            volume = 0.8
         }
       },
       idle_sound = { filename = "__base__/sound/idle1.ogg", volume = 0.0 },
@@ -1472,8 +1472,12 @@ working_visualisations =
     {
       sound = {
         {
-          filename = "__base__/sound/chemical-plant.ogg",
-          volume = 1.0
+            filename = "__FoodIndustry__/sounds/cooking/cooking-frying.ogg",
+            volume = 0.8
+        },
+        {
+            filename = "__FoodIndustry__/sounds/cooking/cooking-frying-bekon.ogg",
+            volume = 0.7
         }
       },
       idle_sound = { filename = "__base__/sound/idle1.ogg", volume = 0.0 },
