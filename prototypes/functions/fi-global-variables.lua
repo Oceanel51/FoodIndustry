@@ -158,6 +158,7 @@ function fi_global_variables_set(index)
 		global.effects[index]["long_reach"]						 = {false,		0,			0,					0,		{}}							-- init empty value of Long reach distance
 		
 		global.effects[index]["health_buffer"]					 = {false,		0,			0,					0,		{}}							-- init empty value of Health Buffer effect
+		global.effects[index]["regeneration"]					 = {false,		0,			0,					0,		{}}							-- init empty value of Regeneration effect
 		global.effects[index]["invulnerability"]				 = {false,		0,			0,					0,		{}}							-- init empty value of Invulnerability effect
 		
 		global.effects[index]["neutralize_active_effects"]		 = {false,		0,			0,					0,		{}}							-- init empty value of Neutralize effect 1 level

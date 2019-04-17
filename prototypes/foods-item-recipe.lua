@@ -4,7 +4,7 @@ require "libs.helper-functions"
 local foods = {
 --1									2					3		4		5						6		7		8				9			11
 --name,								subgroup,			stack,	cool,	crafting category,		time,	amount,	order,			recipe_version,	ingredients
-{"cooked-corn",						"foods-vegan",		10,		0.5,	"cooking",				4.0,	1,		"w-d-a",		nil,		{{"corn", 1}, {type="fluid", name="pure-water", amount=20}} },
+{"cooked-corn",						"foods-vegan",		10,		0.5,	"cooking",				4.0,	1,		"w-d-a",		nil,		{{"corn", 1}, {type="fluid", name="pure-water", amount=5}} },
 {"corn-bread",						"foods-vegan",		10,		0.5,	"cooking",				8.0,	1,		"w-d-c",		nil,		{{"corn-flour", 2}, {type="fluid", name="pure-water", amount=10}} },
 {"popcorn",							"foods-vegan",		50,		0.2,	"cooking",				1.5,	1,		"w-d-d",		nil,		{{"corn-seeds", 1}, {type="fluid", name="canola-oil", amount=1}} },
 {"basic-salad",						"foods-vegan",		10,		0.5,	"cooking",				1.5,	1,		"w-d-b",		nil,		{{"tomato", 2}, {"cucumber", 1}, {"lettuce", 3}} },

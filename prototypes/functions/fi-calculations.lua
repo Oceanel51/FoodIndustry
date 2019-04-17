@@ -14,7 +14,7 @@ function eat_food(player, index, food, food_item)
 			-- check and overwrite overeating
 			if global.fullness[index] > 101 and global.fullness[index] > global.effects[index]["overeating"][4] then
 				global.effects[index]["overeating"][4] = global.fullness[index] - 100 -- set new overeating value
-				global.effects[index]["overeating"][3] = (global.fullness[index] - 100) * 7200 / 80 -- set overeating time if 80% decrease along 2 min = 7200 ticks
+				global.effects[index]["overeating"][3] = (global.fullness[index] - 100) * 10800 / 80 -- set overeating time if 80% decrease along 3 min = 10800 ticks
 			end
 
 			--local new_food = table.deepcopy(food)
@@ -76,8 +76,8 @@ function fullness_calc_on_tick(index)
                 -- add excess of Energy to fat_modifier
                 if global.energy[index] + ( food[3] - ( food[3] * 100 / food[6] ) * ( food[6] - fullness_diff ) / 100 ) > global.energy_max[index] then
                     global.energy[index] = global.energy_max[index]
-                    -- добавляем излишки Energy к fat только уменьшив в 10 раз
-                    global.effects[index]["fat"][4] = global.effects[index]["fat"][4] + ( food[3] - ( food[3] * 100 / food[6] ) * ( food[6] - fullness_diff ) / 100 ) / 10
+                    -- добавляем излишки Energy к fat только уменьшив в 6 раз
+                    global.effects[index]["fat"][4] = global.effects[index]["fat"][4] + ( food[3] - ( food[3] * 100 / food[6] ) * ( food[6] - fullness_diff ) / 100 ) / 6
                 else
                 -- добавляем к global Energy разницу в процентах от единицы Fullness
                 -- if Energy is 3 and Fullness is 8 then Energy=Energy+(3-(3*100/8)*(8-1)/100)
@@ -288,9 +288,14 @@ end
 function fat_reduction(index,reduce_value)
 	if global.effects[index]["fat"][4] > 0 and global.effects[index]["overeating"][4] <= 0 then
 		global.effects[index]["fat"][4] = global.effects[index]["fat"][4] - reduce_value
+	-- when a "starve" fat can go down to -100
 	elseif global.effects[index]["fat"][4] > -100 and global.energy[index] < global.energy_max[index] * 0.25 then
 		global.effects[index]["fat"][4] = global.effects[index]["fat"][4] - reduce_value
+	
 	-- TODO доделать расход "fat"
+	-- а так +fat стремится до 0
+
+	-- increase fat when "overeating"
 	elseif global.effects[index]["overeating"][4] > 0 then
 		global.effects[index]["fat"][4] = global.effects[index]["fat"][4] + global.effects[index]["overeating"][4] / 100 * reduce_value
 	end
@@ -455,21 +460,29 @@ function effects_remove(index, effect_index, effect_name, effect_modifier)
 	table.remove(global.effects[index][effect_name][5], effect_index)
 	effects_vanilla_add_or_remove(false, index, effect_name, effect_modifier)
 	
+	-- set effect to false if empty affects table5
+	if not next(global.effects[index][effect_name][5]) then
+		effects_remove_last(index, effect_name)
+	end
+
 	-- remove 1 effect count
 	effects_counter_add_or_remove(false, index, 1)
 end
-function effects_remove_last(index, effect_index, effect_name, effect_modifier)
-	
-	if table.maxn(global.effects[index][effect_name][5]) then
-		-- reset effects values to:
-		--@ "speed", 
-		if global.effects[index][effect_name][5][1] and effect_name == "speed" then
-			global.effects[index][effect_name][5][1] = false
-			global.effects[index][effect_name][5][2] = 0
-			global.effects[index][effect_name][5][3] = 0
-			global.effects[index][effect_name][5][4] = 0
-			writeDebug("[Debug]: Data for effect: "..effect_name.." is cleared.")
-		end
+function effects_remove_last(index, effect_name)
+	-- reset effects values to:
+	--@ "speed", 
+	if global.effects[index][effect_name][5][1] and effect_name == "speed" then
+		global.effects[index][effect_name][5][1] = false
+		global.effects[index][effect_name][5][2] = 0
+		global.effects[index][effect_name][5][3] = 0
+		global.effects[index][effect_name][5][4] = 0
+		writeDebug("[Debug]: Data for effect: "..effect_name.." is reset.")
+	elseif global.effects[index][effect_name][5][1] and effect_name == "regeneration" then
+		global.effects[index][effect_name][5][1] = false
+		global.effects[index][effect_name][5][2] = 0
+		global.effects[index][effect_name][5][3] = 0
+		global.effects[index][effect_name][5][4] = 0
+		writeDebug("[Debug]: Data for effect: "..effect_name.." is reset.")
 	end
 end
 

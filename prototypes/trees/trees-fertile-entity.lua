@@ -110,7 +110,8 @@ data:extend(
 		usage_priority = "secondary-input",
 		fuel_categories = {"humus"},		-- changed by Oceanel
 		fuel_inventory_size = 1,
-		emissions = -0.02,
+		--emissions = -0.02,
+		emissions_per_minute = -2 / 100 * 30,
 		light_flicker = { intensity = 0, size = 0}, color = { r = 0.0, g = 0.0, b = 0.0 },
     },
     energy_usage = "500W", 

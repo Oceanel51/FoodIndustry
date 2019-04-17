@@ -894,7 +894,7 @@ data:extend({
     name = "salad",
     icon = "__FoodIndustry__/graphics/technology/salad.png",
     icon_size = 128,
-    prerequisites = {"cooking"},
+    prerequisites = {"cooking", "fish-cooking"},
     effects =
     {
         {type = "unlock-recipe", recipe = "basic-salad"},
@@ -1484,9 +1484,7 @@ data:extend({
     prerequisites = {"automation"},
     effects =
     {
-        {type = "unlock-recipe", recipe = "fishing-inserter"},
         {type = "unlock-recipe", recipe = "fish-meat"},
-        {type = "unlock-recipe", recipe = "fish-farm"},
     },
     unit =
     {
@@ -1501,14 +1499,60 @@ data:extend({
   },
   {
     type = "technology",
-    name = "fishing-2",
-    icon = "__FoodIndustry__/graphics/technology/fishing-2.png",
+    name = "fish-breeding",
+    icon = "__FoodIndustry__/graphics/technology/fish-breeding.png",
     icon_size = 128,
     prerequisites = {"fishing"},
     effects =
     {
-        {type = "unlock-recipe", recipe = "sturgeon-meat"},
+        {type = "unlock-recipe", recipe = "fishing-inserter"},
+        {type = "unlock-recipe", recipe = "fish-farm"},
+    },
+    unit =
+    {
+        time = 30,
+        count = 50,
+        ingredients =
+        {
+            {"food-science-pack", 1},
+            {"logistic-science-pack", 1},
+        },
+    },
+    order = "w",
+  },
+  {
+    type = "technology",
+    name = "fish-breeding-2",
+    icon = "__FoodIndustry__/graphics/technology/fish-breeding-2.png",
+    icon_size = 128,
+    prerequisites = {"fish-breeding"},
+    effects =
+    {
         {type = "unlock-recipe", recipe = "sturgeon-farm"},
+        {type = "unlock-recipe", recipe = "sturgeon-meat"},
+        {type = "unlock-recipe", recipe = "sturgeon-fish-meat-fish-caviar-red"},
+    },
+    unit =
+    {
+        time = 50,
+        count = 150,
+        ingredients =
+        {
+            {"food-science-pack", 2},
+            {"logistic-science-pack", 1},
+            {"chemical-science-pack", 1},
+        },
+    },
+    order = "w",
+  },
+  {
+    type = "technology",
+    name = "fishing-2",
+    icon = "__FoodIndustry__/graphics/technology/fishing-2.png",
+    icon_size = 128,
+    prerequisites = {"fish-breeding"},
+    effects =
+    {
         {type = "unlock-recipe", recipe = "fi-watertile"},
         {type = "unlock-recipe", recipe = "fi-deepwatertile"},
         {type = "unlock-recipe", recipe = "fi-shovel"},
@@ -1520,7 +1564,8 @@ data:extend({
         ingredients =
         {
             {"logistic-science-pack", 1},
-            {"food-science-pack", 1},
+            {"food-science-pack", 2},
+            {"chemical-science-pack", 1},
         },
     },
     order = "w",
@@ -1534,7 +1579,6 @@ data:extend({
     effects =
     {
         {type = "unlock-recipe", recipe = "fish-meat-fish-caviar-red"},
-        {type = "unlock-recipe", recipe = "sturgeon-fish-meat-fish-caviar-red"},
         {type = "unlock-recipe", recipe = "cooked-fish-meat"},
         },
     unit =

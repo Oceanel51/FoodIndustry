@@ -35,7 +35,7 @@ data:extend({
 	collision_box = {{-0.2,-0.2},{0.2,0.2}},
 	collision_mask = {"item-layer", "object-layer", "water-tile"},
 	darkness_of_burnt_tree = 0.5,
-	emissions_per_tick = -0.001,
+	emissions_per_second = -0.001 * 60,
 	flags = {
 		"placeable-neutral",
 		"placeable-off-grid",

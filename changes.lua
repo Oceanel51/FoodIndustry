@@ -4,9 +4,16 @@ end
 
 -- add new type of science-pack to labs
 for i,p in pairs(data.raw.lab) do
-	table.insert(p.inputs, "food-science-pack")
+	insert = true
+	for j,k in pairs(p.inputs) do
+		if k == "food-science-pack" then
+			insert = false
+		end
+	end
+	if insert then
+		table.insert(p.inputs, "food-science-pack")
+	end
 end
-
 
 -- add new crafting_categories for chemical-plants
 if data.raw["assembling-machine"]["chemical-plant"] then

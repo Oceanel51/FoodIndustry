@@ -10,7 +10,7 @@ data:extend(
     height = 32,
   },
   
-  -- Effects icon
+  -- Effects icons
   {
     type = "sprite",
     name = "unknown_red",
@@ -67,5 +67,105 @@ data:extend(
     flags = {"icon"},
   },
 
+  -- GUI icons:
+  -- foods,
+  {
+    type = "sprite",
+    name = "foods_icon_blue",
+    filename = "__FoodIndustry__/graphics/gui/foods/foods_icon_blue.png",
+    priority = "medium",
+    width = 16,
+    height = 16,
+    flags = {"icon"},
+  },
+  {
+    type = "sprite",
+    name = "foods_icon_gray",
+    filename = "__FoodIndustry__/graphics/gui/foods/foods_icon_gray.png",
+    priority = "medium",
+    width = 16,
+    height = 16,
+    flags = {"icon"},
+  },
+  {
+    type = "sprite",
+    name = "foods_icon_red",
+    filename = "__FoodIndustry__/graphics/gui/foods/foods_icon_red.png",
+    priority = "medium",
+    width = 16,
+    height = 16,
+    flags = {"icon"},
+  },
+  -- drinks,
+  {
+    type = "sprite",
+    name = "drinks_icon_blue",
+    filename = "__FoodIndustry__/graphics/gui/drinks/drinks_icon_blue.png",
+    priority = "medium",
+    width = 16,
+    height = 16,
+    flags = {"icon"},
+  },
+  {
+    type = "sprite",
+    name = "drinks_icon_gray",
+    filename = "__FoodIndustry__/graphics/gui/drinks/drinks_icon_gray.png",
+    priority = "medium",
+    width = 16,
+    height = 16,
+    flags = {"icon"},
+  },
+  {
+    type = "sprite",
+    name = "drinks_icon_red",
+    filename = "__FoodIndustry__/graphics/gui/drinks/drinks_icon_red.png",
+    priority = "medium",
+    width = 16,
+    height = 16,
+    flags = {"icon"},
+  },
 
 })
+
+
+-- extends Fat sprites
+fat_states = {}
+for i = 0, 5 do
+	table.insert(fat_states, {
+		type = "sprite",
+    name = "fat_state_" .. tostring(i),
+    filename = "__FoodIndustry__/graphics/gui/fat/fat-state-" .. tostring(i) .. ".png",
+    priority = "extra-high",
+    width = 9,
+    height = 16,
+	})
+end
+data:extend(fat_states)
+
+-- extends foods_icons sprites
+foods_icon = {}
+for i = 0, 4 do
+	table.insert(foods_icon, {
+		type = "sprite",
+    name = "foods_icon" .. tostring(i),
+    filename = "__FoodIndustry__/graphics/gui/foods/foods_icon" .. tostring(i) .. ".png",
+    priority = "extra-high",
+    width = 16,
+    height = 16,
+	})
+end
+data:extend(foods_icon)
+
+-- extends drinks_icon sprites
+drinks_icon = {}
+for i = 0, 5 do
+	table.insert(drinks_icon, {
+		type = "sprite",
+    name = "drinks_icon" .. tostring(i),
+    filename = "__FoodIndustry__/graphics/gui/drinks/drinks_icon" .. tostring(i) .. ".png",
+    priority = "extra-high",
+    width = 16,
+    height = 16,
+	})
+end
+data:extend(drinks_icon)

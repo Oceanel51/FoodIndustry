@@ -37,7 +37,8 @@ data:extend({
             type = "electric",
             usage_priority = "primary-input",
             drain = "15kW",
-            emissions = -0.1, -- the "-" means it eats pollution. Absorbs about 10 PU
+            --emissions = -0.1,
+            emissions_per_minute = -10 / 100 * 30, -- the "-" means it eats pollution. Absorbs about 10 PU per second
         },
 
         energy_usage = "50kW",

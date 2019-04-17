@@ -16,7 +16,7 @@ function foods_table()
 	local foods = {
 	--  1								  2								  3		  4			  5				  6		  7		  8		  9
 	--name,								type,							energy,	drinks,	{V,M,C,F},			fullness, c_f,	health,	effect/s
-	{"corn",							"vegan-substances1",			3,		-2,		{0,1.6,0,0.5},		24,		24,		-1,		{} },
+	{"corn",							"vegan-substances1",			3,		-2,		{0,1.6,0,0.8},		24,		24,		-1,		{} },
 	{"cucumber",						"vegan-substances1",			5,		4,		{2,2.2,0,-0.2},		20,		20,		7,		{} },
 	{"tomato",							"vegan-substances1",			5,		2,		{2.8,1.6,0,-0.2},	16,		16,		8,		{} },
 	{"lettuce",							"vegan-substances1",			3,		1,		{1.5,1.1,0,-0.2},	8,		8,		2,		{} },

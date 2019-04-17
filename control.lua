@@ -133,10 +133,10 @@ script.on_event({defines.events.on_tick}, function (e)
 					--for effect,t in pairs(global.effects[index]) do
 					--	global.effects[index][effect] = 0
 					--end
-					if player.gui.left.frame.flow1.usagelabel then
-						player.gui.left.frame.flow1.energylabel.caption = global.energy[index]
+					if player.gui.left.frame.flow1.flow12.usagelabel then
+						player.gui.left.frame.flow1.flow11.energylabel.caption = global.energy[index]
 						player.gui.left.frame.energybar.value = global.energy[index]/100
-						player.gui.left.frame.flow1.usagelabel.caption = "---"
+						player.gui.left.frame.flow1.flow12.usagelabel.caption = "---"
 						player.gui.left.frame.flow22.drinkslabel.caption = "0"
 						player.gui.left.frame.drinksbar.value = global.drinks[index]/100
 					end
@@ -283,6 +283,9 @@ script.on_event({defines.events.on_tick}, function (e)
 					end
 					if e.tick % 60 == 0 then
 						overeating_reduction(index,60)
+					end
+					if e.tick % 600 == 0 then
+						figui.update_show_fat(index, player)
 					end
 					
 					----------------------- substances update -----------------------
@@ -671,8 +674,8 @@ script.on_event(defines.events.on_research_finished, function(event)
 							global.energy_max[index] = 150
 							global.drinks_max[index] = 150
 							player.print({'print.fi-tech-more-energy', "150"})
-							--leftGui.frame.flow1.energylabel.tooltip = 'label.energylabel_tooltip' .. " - " .. "150" .. 'label.energylabelunits_tooltip'
-							leftGui.frame.flow1.energylabel.tooltip = {'label.label-energylabel-tooltip', global.energy_max[index]}
+							--leftGui.frame.flow1.flow11.energylabel.tooltip = 'label.energylabel_tooltip' .. " - " .. "150" .. 'label.energylabelunits_tooltip'
+							leftGui.frame.flow1.flow11.energylabel.tooltip = {'label.label-energylabel-tooltip', global.energy_max[index]}
 							leftGui.frame.flow22.drinkslabel.tooltip = {'label.label-drinkslabel-tooltip', global.drinks_max[index]}
 							--u_gui()
 						end
@@ -689,7 +692,7 @@ script.on_event(defines.events.on_research_finished, function(event)
 						global.energy_max[index] = 200
 						global.drinks_max[index] = 200
 						player.print({'print.fi-tech-more-energy', "200"})
-						leftGui.frame.flow1.energylabel.tooltip = {'label.label-energylabel-tooltip', global.energy_max[index]}
+						leftGui.frame.flow1.flow11.energylabel.tooltip = {'label.label-energylabel-tooltip', global.energy_max[index]}
 						leftGui.frame.flow22.drinkslabel.tooltip = {'label.label-drinkslabel-tooltip', global.drinks_max[index]}
 					end
 				end
@@ -704,7 +707,7 @@ script.on_event(defines.events.on_research_finished, function(event)
 						global.energy_max[index] = 300
 						global.drinks_max[index] = 300
 						player.print({'print.fi-tech-more-energy', "300"})
-						leftGui.frame.flow1.energylabel.tooltip = {'label.label-energylabel-tooltip', global.energy_max[index]}
+						leftGui.frame.flow1.flow11.energylabel.tooltip = {'label.label-energylabel-tooltip', global.energy_max[index]}
 						leftGui.frame.flow22.drinkslabel.tooltip = {'label.label-drinkslabel-tooltip', global.drinks_max[index]}
 					end
 				end
@@ -719,7 +722,7 @@ script.on_event(defines.events.on_research_finished, function(event)
 						global.energy_max[index] = 400
 						global.drinks_max[index] = 400
 						player.print({'print.fi-tech-more-energy', "400"})
-						leftGui.frame.flow1.energylabel.tooltip = {'label.label-energylabel-tooltip', global.energy_max[index]}
+						leftGui.frame.flow1.flow11.energylabel.tooltip = {'label.label-energylabel-tooltip', global.energy_max[index]}
 						leftGui.frame.flow22.drinkslabel.tooltip = {'label.label-drinkslabel-tooltip', global.drinks_max[index]}
 					end
 				end
@@ -734,7 +737,7 @@ script.on_event(defines.events.on_research_finished, function(event)
 						global.energy_max[index] = 500
 						global.drinks_max[index] = 500
 						player.print({'print.fi-tech-more-energy', "500"})
-						leftGui.frame.flow1.energylabel.tooltip = {'label.label-energylabel-tooltip', global.energy_max[index]}
+						leftGui.frame.flow1.flow11.energylabel.tooltip = {'label.label-energylabel-tooltip', global.energy_max[index]}
 						leftGui.frame.flow22.drinkslabel.tooltip = {'label.label-drinkslabel-tooltip', global.drinks_max[index]}
 					end
 				end
@@ -792,14 +795,14 @@ function u_gui()
 					
 					
 					--if pcall(function () leftGui.frame.energylabel.caption = "Energy: " .. global.energy[index] .. " (usage: ".. (math.floor((100 * settings.global["food-industry-hunger-speed"].value * global.usage[index] / global.update_delay[index]) + 0.5) * 0.01) .."%)" end) then
-					---if pcall(function () leftGui.frame.flow1.usagelabel.caption = (math.floor((100 * settings.global["food-industry-hunger-speed"].value * global.usage[index] / global.update_delay[index]) + 0.5) * 0.01) end) then
+					---if pcall(function () leftGui.frame.flow1.flow12.usagelabel.caption = (math.floor((100 * settings.global["food-industry-hunger-speed"].value * global.usage[index] / global.update_delay[index]) + 0.5) * 0.01) end) then
 					---	--old leftGui.frame.energylabel.caption = "Energy: " .. global.energy[index] .. " (usage: ".. (math.floor((100 * settings.global["food-industry-hunger-speed"].value * global.usage[index] / global.update_delay[index]) + 0.5) * 0.01) .."%)"
-					---	leftGui.frame.flow1.energylabel.caption = global.energy[index]
-					---	leftGui.frame.flow1.usagelabel.caption = (math.floor((100 * settings.global["food-industry-hunger-speed"].value * global.usage[index] / global.update_delay[index]) + 0.5) * 0.01)
+					---	leftGui.frame.flow1.flow11.energylabel.caption = global.energy[index]
+					---	leftGui.frame.flow1.flow12.usagelabel.caption = (math.floor((100 * settings.global["food-industry-hunger-speed"].value * global.usage[index] / global.update_delay[index]) + 0.5) * 0.01)
 					---else
 					---	-- old  leftGui.frame.energylabel.caption = "Energy: " .. global.energy[index] .. " (usage: ---%)"
-					---	leftGui.frame.flow1.energylabel.caption = global.energy[index]
-					---	leftGui.frame.flow1.usagelabel.caption = "---"
+					---	leftGui.frame.flow1.flow11.energylabel.caption = global.energy[index]
+					---	leftGui.frame.flow1.flow12.usagelabel.caption = "---"
 					---end
 					---leftGui.frame.energybar.value = math.abs(global.energy[index]/global.energy_max[index])
 					

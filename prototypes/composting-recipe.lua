@@ -2,7 +2,7 @@ local ingredients = {
 	--1						2				3				4
 	--plant					ingredients,	energy/water,	result	?
 	-- TODO set compost receipts
-	{"raw-straw",			10,				25.0,			20},		--basic
+	{"raw-straw",			10,				25.0,			25},		--basic
 	{"straw",				100,			10.0,			2},			--0
 	{"compressed-straw",	1,				15.0,			6},			--0
 	--{"lettuce",				0,				3.0,			6},		--5.4

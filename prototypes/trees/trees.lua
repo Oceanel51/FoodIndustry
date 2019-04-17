@@ -1,7 +1,7 @@
 local trees = {
 --1			2		3			4		5			6		7			8		9			10		11		12			13			14				15			16		17		18
 --name, 	time, 	to plant,	plants,	cool(sec),	seeds, 	stack size,	plant?,	seed?,	edible?,	straws,	compost,	type,	debug map color,	starting,	size,	result,	chance
-{"apple", 	1300, 	5,			5,		0.1,		2.6, 	10,			true,	true,		true,	3.0,	"3J",		"tree", {r=1,g=0.2,b=0},	20,			0.16,	5,		0.25},
+{"apple", 	1300, 	5,			5,		0.1,		2.6, 	10,			true,	true,		true,	3.0,	"3J",		"tree", {r=1,g=0.2,b=0},	20,			0.16,	6,		0.25},
 {"orange", 	1570, 	8,			4,		0.3,		1.8, 	10,			true,	true,		true,	5.0,	"2J",		"tree", {r=0.6,g=0.6,b=0},	15,			0.16,	4,		0.12},
 }
 
@@ -32,11 +32,13 @@ for index, crop in pairs(trees) do
 			hidden = true,
 			ingredients =
 			{
-
 			},
 			results =
 			{
-				{type = "item", name = crop[1], amount_min = 1, amount_max = 2}
+				{type = "item", name = "wood", amount = 1, probability = 0.15},
+				{type = "item", name = "raw-straw", amount = 1, probability = 0.5},
+				--{type = "item", name = crop[1], amount_min = 1, amount_max = 2}
+				{type = "item", name = crop[1], amount = 1, probability = math.floor(crop[18])}
 			}
 		},
 	})
@@ -163,8 +165,8 @@ for index, crop in pairs(trees) do
 				result = crop[1].."-seedling",
 				count = 1
 			},
-			emissions_per_tick = -0.0006,
-			max_health = 5,
+			emissions_per_second = -0.0006 * 60,
+			max_health = 40,
 			collision_box = {{-0.1, -0.1}, {0.1, 0.1}},
 			selection_box = {{-0.35, -0.35}, {0.35, 0.35}},
 			subgroup = "intermediate-product",
@@ -254,7 +256,7 @@ for index, crop in pairs(trees) do
 			collision_box = {{-0.2,-0.2},{0.2,0.2}},
 			collision_mask = {"item-layer", "object-layer", "water-tile"},
 			darkness_of_burnt_tree = 0.5,
-			emissions_per_tick = -0.001,
+			emissions_per_second = -0.001 * 60,
 			flags = {
 				"placeable-neutral",
 				"placeable-off-grid",
@@ -264,15 +266,15 @@ for index, crop in pairs(trees) do
 			},
 			icon = "__FoodIndustry__/graphics/icons/trees/"..crop[1].."-tree.png",
 			icon_size = 32,
-			max_health = 5,
+			max_health = 150,
 			minable = {
 				count = crop[17],
 				mining_hardness = 0.1,
 				mining_time = 0.5,
 				results = {
-					{type = "item", name = "wood", amount = 4 },
+					{type = "item", name = "wood", amount_min = 8, amount_max = 15},
 					{type = "item", name = "raw-straw", amount = 3, probability = 0.8},
-					{type = "item", name = crop[1], amount_min = math.floor(crop[17]*0.2), amount_max = math.floor(crop[17]) }
+					{type = "item", name = crop[1], amount_min = math.floor(crop[17]), amount_max = math.floor(crop[17]*2.2) }
 				},
 			},
 			selection_box = {
@@ -322,7 +324,7 @@ for index, crop in pairs(trees) do
 			collision_box = {{-0.2,-0.2},{0.2,0.2}},
 			collision_mask = {"item-layer", "object-layer", "water-tile"},
 			darkness_of_burnt_tree = 0.5,
-			emissions_per_tick = -0.001,
+			emissions_per_second = -0.001 * 60,
 			flags = {
 				"placeable-neutral",
 				"placeable-off-grid",
@@ -330,7 +332,7 @@ for index, crop in pairs(trees) do
 			},
 			icon = "__FoodIndustry__/graphics/icons/trees/"..crop[1].."-tree.png",
 			icon_size = 32,
-			max_health = 5,
+			max_health = 120,
 			healing_per_tick = 0,
 			repair_speed_modifier = 0,
 			minable = {
@@ -338,9 +340,10 @@ for index, crop in pairs(trees) do
 				mining_hardness = 0.1,
 				mining_time = 0.5,
 				results = {
-					{type = "item", name = "wood", amount = 4 },
-					{type = "item", name = "raw-straw", amount = 3, probability = 0.8},
-					{type = "item", name = crop[1], amount = 1, probability = crop[18] }
+					{type = "item", name = "wood", amount_min = 6, amount_max = 12},
+					--{type = "item", name = "raw-straw", amount = 3, probability = 0.8},
+					{type = "item", name = "raw-straw", amount_min = 15, amount_max = 45},
+					{type = "item", name = crop[1], amount_min = math.floor(crop[17]), amount_max = math.floor(crop[17]*1.6) }
 				},
 			},
 			selection_box = {
