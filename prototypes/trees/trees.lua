@@ -269,8 +269,8 @@ for index, crop in pairs(trees) do
 			max_health = 150,
 			minable = {
 				count = crop[17],
-				mining_hardness = 0.1,
-				mining_time = 0.5,
+				mining_hardness = 1,
+				mining_time = 2.5,
 				results = {
 					{type = "item", name = "wood", amount_min = 8, amount_max = 15},
 					{type = "item", name = "raw-straw", amount = 3, probability = 0.8},
@@ -321,7 +321,7 @@ for index, crop in pairs(trees) do
 				starting_area_amount = 1600,
 				starting_area_size = crop[15]
 			},
-			collision_box = {{-0.2,-0.2},{0.2,0.2}},
+			collision_box = {{-0.2, -0.2}, {0.2, 0.2}},
 			collision_mask = {"item-layer", "object-layer", "water-tile"},
 			darkness_of_burnt_tree = 0.5,
 			emissions_per_second = -0.001 * 60,
@@ -337,8 +337,8 @@ for index, crop in pairs(trees) do
 			repair_speed_modifier = 0,
 			minable = {
 				count = crop[17],
-				mining_hardness = 0.1,
-				mining_time = 0.5,
+				mining_hardness = 1,
+				mining_time = 3.5,
 				results = {
 					{type = "item", name = "wood", amount_min = 6, amount_max = 12},
 					--{type = "item", name = "raw-straw", amount = 3, probability = 0.8},

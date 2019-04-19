@@ -6,6 +6,6 @@ if data.raw.item.glass then
 	bobmods.lib.recipe.add_new_ingredient ("fi-incubator", {type="item", name="glass", amount=40})
 end
 
-if data.raw.item["silver-plate"] then
+if data.raw.item["silver-plate"] and mods["bobplates"] then
 	bobmods.lib.recipe.replace_ingredient("advanced-shell-capsule", "iron-plate", "silver-plate")
 end
