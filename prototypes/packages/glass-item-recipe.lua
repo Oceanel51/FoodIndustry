@@ -1,8 +1,12 @@
-if data.raw.item["glass"] then
+if data.raw.item["glass"] and not mods["angelssmelting"] then
 
     -- replace "glass" icon with new
     data.raw.item["glass"].icon = "__FoodIndustry__/graphics/icons/items/glass.png"
     data.raw.item["glass"].icon_size = 64
+
+end
+
+if data.raw.item["glass"] then
 
 data:extend({
   

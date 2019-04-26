@@ -1087,8 +1087,9 @@ data:extend({
         count = 100,
         ingredients =
         {
-            {"food-science-pack", 1},
-            {"logistic-science-pack", 1},
+          {"logistic-science-pack", 1},
+          {"chemical-science-pack", 1},
+          {"food-science-pack", 1},
         },
     },
     order = "w",
@@ -1325,6 +1326,7 @@ data:extend({
       ingredients =
       {        
 		{"automation-science-pack", 2},
+		{"logistic-science-pack", 1},
 		{"food-science-pack", 1},
       },
     },
@@ -1575,7 +1577,7 @@ data:extend({
     name = "fish-cooking",
     icon = "__FoodIndustry__/graphics/technology/fish-cooking.png",
     icon_size = 128,
-    prerequisites = {"fishing", "cooking"},
+    prerequisites = {"fishing", "cooking", "flour"},
     effects =
     {
         {type = "unlock-recipe", recipe = "fish-meat-fish-caviar-red"},

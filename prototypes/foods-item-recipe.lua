@@ -9,7 +9,7 @@ local foods = {
 {"popcorn",							"foods-vegan",		50,		0.2,	"cooking",				1.5,	1,		"w-d-d",		nil,		{{"corn-seeds", 1}, {type="fluid", name="canola-oil", amount=1}} },
 {"basic-salad",						"foods-vegan",		10,		0.5,	"cooking",				1.5,	1,		"w-d-b",		nil,		{{"tomato", 2}, {"cucumber", 1}, {"lettuce", 3}} },
 {"cooked-soy",						"foods-vegan",		50,		0.2,	"cooking",				3.0,	5,		"w-d-e",		nil,		{{"soy", 5}, {type="fluid", name="pure-water", amount=20}} },
-{"baked-potato",					"foods-vegan",		10,		0.5,	"cooking",				6.0,	1,		"w-d-f",		nil,		{{"potato", 1}} },
+{"baked-potato",					"foods-vegan",		10,		0.5,	"cooking",				7.0,	1,		"w-d-f",		nil,		{{"potato", 1}} },
 {"fries",							"foods-vegan",		10,		0.5,	"cooking",				6.0,	1,		"w-d-g",		nil,		{{"raw-fries", 1}, {type="fluid", name="canola-oil", amount=6}} },
 {"ketchup-fries",					"foods-vegan",		10,		0.5,	"advanced-cooking",		0.5,	1,		"w-d-i",		nil,		{{"fries", 1}, {type="fluid", name="ketchup", amount=1}} },
 {"pickles",							"foods-vegan",		50,		0.3,	"cooking",				40.0,	5,		"w-d-h",		nil,		{{"cucumber", 5}, {"crystal", 1}, {type="fluid", name="pure-water", amount=35}} },

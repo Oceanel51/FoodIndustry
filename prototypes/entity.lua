@@ -9,8 +9,8 @@ data:extend(
     icon = "__FoodIndustry__/graphics/icons/entities/fi-basic-farmland.png",
     icon_size = 32,
     flags = {"placeable-neutral", "placeable-player", "player-creation", "not-repairable"},
-    minable = {hardness = 0.2, mining_time = 0.5},
-    max_health = 100,
+    minable = {hardness = 0.2, mining_time = 0.5, result = "wood", count = 22},
+	max_health = 100,
     resistances =
     {
       {
