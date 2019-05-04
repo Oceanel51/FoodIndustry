@@ -147,9 +147,9 @@ script.on_event({defines.events.on_tick}, function (e)
 					local slots = 0
 					local durability = 0
 					if player.walking_state.walking then -- if walking
-						if player.get_inventory(defines.inventory.player_armor) and player.get_inventory(defines.inventory.player_armor).valid then
-							if player.get_inventory(defines.inventory.player_armor).get_item_count() > 0 and player.get_inventory(defines.inventory.player_armor)[1] and player.get_inventory(defines.inventory.player_armor)[1].valid then
-								local armor = player.get_inventory(defines.inventory.player_armor)[1]
+						if player.get_inventory(defines.inventory.character_armor) and player.get_inventory(defines.inventory.character_armor).valid then
+							if player.get_inventory(defines.inventory.character_armor).get_item_count() > 0 and player.get_inventory(defines.inventory.character_armor)[1] and player.get_inventory(defines.inventory.character_armor)[1].valid then
+								local armor = player.get_inventory(defines.inventory.character_armor)[1]
 								if armor and armor.prototype then
 									durability = armor.prototype.durability
 								end
@@ -189,9 +189,9 @@ script.on_event({defines.events.on_tick}, function (e)
 						--defines.shooting.not_shooting	
 						--player.print("shooting enemy...")
 					elseif player.picking_state then -- if picking
-						if player.get_inventory(defines.inventory.player_armor) and player.get_inventory(defines.inventory.player_armor).valid then
-							if player.get_inventory(defines.inventory.player_armor).get_item_count() > 0 and player.get_inventory(defines.inventory.player_armor)[1] and player.get_inventory(defines.inventory.player_armor)[1].valid then
-								local armor = player.get_inventory(defines.inventory.player_armor)[1]
+						if player.get_inventory(defines.inventory.character_armor) and player.get_inventory(defines.inventory.character_armor).valid then
+							if player.get_inventory(defines.inventory.character_armor).get_item_count() > 0 and player.get_inventory(defines.inventory.character_armor)[1] and player.get_inventory(defines.inventory.character_armor)[1].valid then
+								local armor = player.get_inventory(defines.inventory.character_armor)[1]
 								if armor and armor.prototype then
 									durability = armor.prototype.durability
 								end
@@ -209,9 +209,9 @@ script.on_event({defines.events.on_tick}, function (e)
 						global.usage[index] = 1.4 + settings.global["food-industry-slots"].value * slots + settings.global["food-industry-durability"].value * durability * 0.001
 						-- player.print("picking...")
 					elseif player.repair_state.repairing then -- if repairing
-						if player.get_inventory(defines.inventory.player_armor) and player.get_inventory(defines.inventory.player_armor).valid then
-							if player.get_inventory(defines.inventory.player_armor).get_item_count() > 0 and player.get_inventory(defines.inventory.player_armor)[1] and player.get_inventory(defines.inventory.player_armor)[1].valid then
-								local armor = player.get_inventory(defines.inventory.player_armor)[1]
+						if player.get_inventory(defines.inventory.character_armor) and player.get_inventory(defines.inventory.character_armor).valid then
+							if player.get_inventory(defines.inventory.character_armor).get_item_count() > 0 and player.get_inventory(defines.inventory.character_armor)[1] and player.get_inventory(defines.inventory.character_armor)[1].valid then
+								local armor = player.get_inventory(defines.inventory.character_armor)[1]
 								if armor and armor.prototype then
 									durability = armor.prototype.durability
 								end

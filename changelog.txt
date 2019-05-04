@@ -6,6 +6,7 @@ Date: 00.00.2019
     - Added 22 wood when "fi-basic-farmland" is mined
     - Balanced and updated some food values
   Fixes:
+    - Compatibility fix for character name changes in 0.17.35
 ---------------------------------------------------------------------------------------------------
 Version: 1.8.68 (beta 2.0)
 Date: 19.04.2019

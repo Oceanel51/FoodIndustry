@@ -214,7 +214,7 @@ data:extend({
     icon_size = 128,
     prerequisites =
     {
-      "food-energy-efficiency-8","power-armor-2"
+      "food-energy-efficiency-8","power-armor-mk2"
     },
     effects =
     {      
@@ -272,7 +272,7 @@ data:extend({
     icon_size = 128,
     prerequisites =
     {
-      "power-armor-2", "food-energy-efficiency-10", "advanced-nutrient-extraction"
+      "power-armor-mk2", "food-energy-efficiency-10", "advanced-nutrient-extraction"
     },
     effects =
     {      

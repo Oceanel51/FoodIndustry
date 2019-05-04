@@ -111,4 +111,4 @@ table.insert(data.raw["technology"]["plastics"].effects, { type = "unlock-recipe
 
 
 -- for player hand crafting
-table.insert(data.raw["player"]["player"].crafting_categories,"food-capsules")
+table.insert(data.raw["character"]["character"].crafting_categories,"food-capsules")
