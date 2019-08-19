@@ -17,12 +17,6 @@ require("prototypes.scripts.cattle-grabber")
 
 require("prototypes.drinks.get-drink")
 
-
-script.on_init(OnInit)
-script.on_load(OnLoad)
---script.on_configuration_changed(OnLoad)
-
-
 --local foods = foods_table()
 local foods = collect_all_foods_table()
 
@@ -47,7 +41,6 @@ maxtimes["Fast mining"] = 3600
 maxtimes["Invulnerability"] = 900
 maxtimes["Health buffer"] = 2700
 
-
 function setupFi()
 	if not foodi then foodi = {} end
 	if not foodi.ticks then foodi.ticks = {} end
@@ -68,45 +61,19 @@ function setupFi()
 	end
 end
 
-
-function OnInit()
-	setupFi()
-	
-	initFishingInserter()
-	initFishingBoatNet()
-	initFoodPicker()
-	initFruitTrees()
-	initFruitScissors()
-	initCattle()
-	initCattleGrabber()
-	initGetDrink()
-	initShovel()
-
-	for index,player in pairs(game.players) do
-		if player.connected then
-			fi_global_variables_init()
-			fi_global_variables_set(index) -- set global variables default data of connected players
-			if settings.global["food-industry-calculate"].value then
-				figui.create(index, player)
-			else
-				local leftGui = player.gui.left
-				if not leftGui then
-					if not leftGui.frame then
-						leftGui.frame.destroy()
-					end
-				end
-			end
-		end
-	end
-end
-function OnLoad()
-	OnInit()
-end
-
-
+setupFi()
+fi_global_variables_init()
+initFishingInserter()
+initFishingBoatNet()
+initFoodPicker()
+initFruitTrees()
+initFruitScissors()
+initCattle()
+initCattleGrabber()
+initGetDrink()
+initShovel()
 
 script.on_event({defines.events.on_tick}, function (e)
-	OnInit() -- TODO Why do you need to perform this function every tick?
 	for k=1, #foodi.ticks do
 		local v = foodi.ticks[k]
 		v(e)
@@ -115,6 +82,19 @@ script.on_event({defines.events.on_tick}, function (e)
 	-- TODO добавить сюда sleep modifier, это основной блок по которому считаются все расходы
 	if e.tick % 5 == 0 and settings.global["food-industry-calculate"].value then
 		for index,player in pairs(game.connected_players) do
+			fi_global_variables_set(index) -- set global variables default data of connected players
+			if player.connected then
+				if settings.global["food-industry-calculate"].value then
+					figui.create(index, player)
+				else
+					local leftGui = player.gui.left
+					if not leftGui then
+						if not leftGui.frame then
+							leftGui.frame.destroy()
+						end
+					end
+				end
+			end
 			--if player.connected then
 				
 				--fi_global_variables_set(index) -- set global variables default data of connected players
