@@ -14,7 +14,8 @@ function figui.mod_init()
 
     --if not global.settings then global.settings = {} end
     --if not global.settings.update_delay then global.settings.update_delay = 60 end
-	for index,player in pairs(game.players) do
+	for _, player in pairs(game.players) do
+		index = player.index
 		if player.connected then
 			fi_global_variables_init()
 			figui.create(index, player)

@@ -1,6 +1,7 @@
 
 function eatoutFood()
-	for index,player in pairs(game.players) do
+	for _, player in pairs(game.players) do
+		index = player.index
 		if player.connected then
 			-------------------------------------------------------------------------
 			local foundFood = false;
