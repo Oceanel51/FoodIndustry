@@ -127,6 +127,7 @@ script.on_event({defines.events.on_tick}, function (e)
 					
 					local slots = 0
 					local durability = 0
+					local usage = 1
 					if player.walking_state.walking then -- if walking
 						if player.get_inventory(defines.inventory.character_armor) and player.get_inventory(defines.inventory.character_armor).valid then
 							if player.get_inventory(defines.inventory.character_armor).get_item_count() > 0 and player.get_inventory(defines.inventory.character_armor)[1] and player.get_inventory(defines.inventory.character_armor)[1].valid then
@@ -145,8 +146,9 @@ script.on_event({defines.events.on_tick}, function (e)
 								end
 							end
 						end
-						global.usage[index] = 1.5 + settings.global["food-industry-slots"].value * slots + settings.global["food-industry-durability"].value * durability * 0.001 -- calculate usage data
-					elseif player.mining_state.mining then -- if mining, if player have mining-tool in player_tools - get it mining speed
+						usage = 1.5 + settings.global["food-industry-slots"].value * slots + settings.global["food-industry-durability"].value * durability * 0.001 -- calculate usage data
+					end
+					if player.mining_state.mining then -- if mining, if player have mining-tool in player_tools - get it mining speed
 						mining_speed = 1.6
 						--if player.get_inventory(defines.inventory.player_tools) and player.get_inventory(defines.inventory.player_tools).valid then
 						--	if player.get_inventory(defines.inventory.player_tools).get_item_count() > 0 and player.get_inventory(defines.inventory.player_tools)[1] and player.get_inventory(defines.inventory.player_tools)[1].valid then
@@ -157,11 +159,12 @@ script.on_event({defines.events.on_tick}, function (e)
 						--	end
 						--end
 						--global.usage[index] = math.ceil((0.125 * mining_speed + 1) / 0.01) / 100
-						global.usage[index] = math.ceil(mining_speed)
+						usage = math.ceil(mining_speed)
 						-- player.print("mining with speed " .. mining_speed)
 					--elseif player.riding_state.riding.acceleration then ---- if riding
-					elseif player.driving then -- if driving
-						global.usage[index] = 0.4
+					end
+					if player.driving then -- if driving
+						usage = 0.4
 						--player.print("driving...")
 					-- TODO make shooting_state
 					--@ https://lua-api.factorio.com/latest/LuaControl.html#LuaControl.shooting_state
@@ -169,7 +172,8 @@ script.on_event({defines.events.on_tick}, function (e)
 					--elseif player.shooting_state.state and player.shooting_state.state(defines.shooting.shooting_enemies).valid then ---- if shooting enemies
 						--defines.shooting.not_shooting	
 						--player.print("shooting enemy...")
-					elseif player.picking_state then -- if picking
+					end
+					if player.picking_state then -- if picking
 						if player.get_inventory(defines.inventory.character_armor) and player.get_inventory(defines.inventory.character_armor).valid then
 							if player.get_inventory(defines.inventory.character_armor).get_item_count() > 0 and player.get_inventory(defines.inventory.character_armor)[1] and player.get_inventory(defines.inventory.character_armor)[1].valid then
 								local armor = player.get_inventory(defines.inventory.character_armor)[1]
@@ -187,9 +191,10 @@ script.on_event({defines.events.on_tick}, function (e)
 								end
 							end
 						end
-						global.usage[index] = 1.4 + settings.global["food-industry-slots"].value * slots + settings.global["food-industry-durability"].value * durability * 0.001
+						usage = 1.4 + settings.global["food-industry-slots"].value * slots + settings.global["food-industry-durability"].value * durability * 0.001
 						-- player.print("picking...")
-					elseif player.repair_state.repairing then -- if repairing
+					end
+					if player.repair_state.repairing then -- if repairing
 						if player.get_inventory(defines.inventory.character_armor) and player.get_inventory(defines.inventory.character_armor).valid then
 							if player.get_inventory(defines.inventory.character_armor).get_item_count() > 0 and player.get_inventory(defines.inventory.character_armor)[1] and player.get_inventory(defines.inventory.character_armor)[1].valid then
 								local armor = player.get_inventory(defines.inventory.character_armor)[1]
@@ -207,9 +212,10 @@ script.on_event({defines.events.on_tick}, function (e)
 								end
 							end
 						end
-						global.usage[index] = 1.6 + settings.global["food-industry-slots"].value * slots + settings.global["food-industry-durability"].value * durability * 0.001
+						usage = 1.6 + settings.global["food-industry-slots"].value * slots + settings.global["food-industry-durability"].value * durability * 0.001
 						-- player.print("repairing...")
-					elseif  player.crafting_queue_size > 0 then -- if manual crafting
+					end
+					if  player.crafting_queue_size > 0 then -- if manual crafting
 						-- также увеличивается дополнительно в зависимости от количества предметов в очереди крафта, не сильно +0.05% за единицу
 						local crafting_counts = 0
 						--writeDebug(dump(player.crafting_queue))
@@ -218,14 +224,14 @@ script.on_event({defines.events.on_tick}, function (e)
 						for craft_index,craft_item in pairs(player.crafting_queue) do
 							crafting_counts = crafting_counts + ( craft_item["count"] * 0.02 )
 						end
-						global.usage[index] = 1.5 + crafting_counts
+						usage = 1.5 + crafting_counts
 						-- TODO в идеале извлечь время текущего рецепта и от него вычислять расход Энергии
 						--writeDebug(data.raw.recipe[player.crafting_queue[1].recipe].energy_required)
 						--global.usage[index] = 1.5 + ( data.raw.recipe[player.crafting_queue[1].recipe].energy_required / 10 )
 						--player.print("manual crafting "..player.crafting_queue_size.." items")
-					else
-						global.usage[index] = 1
 					end
+					global.usage[index] = usage
+				
 					
 					---------------------- fullness calculation ---------------------
 					fullness_calc_on_tick(index)
