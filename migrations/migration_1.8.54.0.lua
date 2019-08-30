@@ -1,6 +1,6 @@
 -- add migration for global.energy_max[index] with researched technology 
-for index, player in pairs(game.players) do
-	
+for _, player in pairs(game.players) do
+	index = player.index
 	if player.valid and player.connected then
 		local leftGui = player.gui.left
 		
