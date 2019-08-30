@@ -101,6 +101,7 @@ data:extend({
         category = "food-cattle",
         order = "w-d-b",
         main_product = "biter-meat",
+        energy_required = 30,
         ingredients =
         {
             {"cattle", 1}
@@ -218,9 +219,13 @@ data:extend({
         type = "recipe",
         name = "cattle-spawner",
         enabled = false,
+        energy_required = 300,
         ingredients =
         {
-            {"iron-plate", 1}
+            {"iron-plate", 100},
+            {"wood", 100},
+            {"raw-fish", 100},
+            {"electronic-circuit", 20}
         },
         result = "cattle-spawner"
     },
@@ -278,7 +283,8 @@ data:extend({
         enabled = false,
         ingredients =
         {
-            {"iron-plate", 1}
+            {"iron-plate", 10},
+            {"electronic-circuit", 5}
         },
         result = "cattle-feeder"
     },
@@ -292,7 +298,9 @@ data:extend({
     energy_required = 10,
     enabled = false,
     ingredients = {
-        {"iron-plate", 1}
+        {"iron-plate", 9},
+        {"iron-gear-wheel", 5},
+        {"electronic-circuit", 3}
     },
     results = {
         {"cattle-butcher", 1}

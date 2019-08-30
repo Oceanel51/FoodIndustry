@@ -5,7 +5,7 @@ data:extend({
         category = "crafting",
         enabled = false,
         ingredients = {
-            {type = "item", name = "wood", amount = 1}
+            {type = "item", name = "wood", amount = 10}
         },
         results = {
             {"cattle-wood-fence", 1}
@@ -33,7 +33,7 @@ data:extend({
         selection_box = {{-0.5, -0.5}, {0.5, 0.5}},
         minable = {mining_time = 0.2, result = "cattle-wood-fence"},
         fast_replaceable_group = "wall",
-        max_health = 350,
+        max_health = 100,
         repair_speed_modifier = 2,
         corpse = "wall-remnants",
         repair_sound = { filename = "__base__/sound/manual-repair-simple.ogg" },
@@ -310,10 +310,11 @@ data:extend({
         category = "crafting",
         enabled = false,
         ingredients = {
-            {type = "item", name = "wood", amount = 1}
+            {type = "item", name = "wood", amount = 10},
+            {"electronic-circuit", 2}
         },
         results = {
-            {"cattle-wood-gate", 1}
+            {"cattle-wood-gate", 10}
         }
     },
     {
@@ -336,7 +337,7 @@ data:extend({
         flags = {"placeable-neutral","placeable-player", "player-creation"},
         fast_replaceable_group = "wall",
         minable = {mining_time = 0.1, result = "cattle-wood-gate"},
-        max_health = 350,
+        max_health = 50,
         corpse = "small-remnants",
         collision_box = {{-0.29, -0.29}, {0.29, 0.29}},
         selection_box = {{-0.5, -0.5}, {0.5, 0.5}},
