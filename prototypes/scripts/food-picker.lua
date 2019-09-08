@@ -5,7 +5,6 @@ if not util then require("prototypes.scripts.util") end
 local treeDistance = 5
 local catchDistance = 2
 local getFruitEveryXTicks = 60 * 5
-local minimumFruitsPerTree = 100
 local randomFruitsPerTree = 100
 local treeMax = 10
 
@@ -13,9 +12,9 @@ local ORANGE_TREE = "orange-tree"
 local APPLE_TREE = "apple-tree"
 
 
-local function createFruitTree(tree)
+local function createFruitTree(tree, amount)
     local fruitTree = nil
-    for _, r in ipairs(global.foodi.fruittrees) do
+    for index, r in ipairs(global.foodi.fruittrees) do
         if r.entity == tree then
             fruitTree = r
             break
@@ -23,13 +22,14 @@ local function createFruitTree(tree)
     end
     if fruitTree == nil then
         fruitTree = {
-            entity == tree,
-            fruits = minimumFruitsPerTree
+            entity = tree,
+            fruits = amount
         }
         table.insert(global.foodi.fruittrees, fruitTree)
+        index = #(global.foodi.fruittrees)
     end
 
-    return fruitTree
+    return fruitTree,index
 
 end
 
@@ -59,11 +59,11 @@ local local_food_picker_process = function(picker)
         y = tree.position.y
     }
 
-    if tree.name == ORANGE_TREE or tree.name == APPLE_TREE then
+    if tree.name ~= ORANGE_TREE and tree.name ~= APPLE_TREE then
         return
     end
-
 --    picker.direction = picker.direction
+
 
     if tree.prototype.mineable_properties.products == nil then
         return
@@ -73,17 +73,22 @@ local local_food_picker_process = function(picker)
     for _, r in ipairs(tree.prototype.mineable_properties.products) do
         if r.name == "apple" or r.name == "orange" then
             fruit = r.name
+            -- TODO get amount from entity
+            amount = r.amount_min
             break
         end
     end
 
-    if fruit ~= nil then
+    if fruit ~= nil and amount ~= nil then
         picker.held_stack.set_stack({name=fruit, count=1})
-        local fruitTree = createFruitTree(tree)
-        if fruitTree.fruits == 0 then
+        local fruitTree,i = createFruitTree(tree,amount)
+        fruitTree.fruits = fruitTree.fruits - 1
+        table.insert(global.foodi.fruittrees, i,fruitTree)
+        if fruitTree.fruits <= 0 then
+            fruitTree.entity.destroy()
+            table.remove(global.foodi.fruittrees,i)
             return
         end
-        fruitTree.fruits = fruitTree.fruits - 1
     end
 end
 

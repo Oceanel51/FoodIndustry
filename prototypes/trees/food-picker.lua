@@ -250,7 +250,7 @@ data:extend(
             minable = {hardness = 0.2, mining_time = 0.5, result = "food-picker"},
             max_health = 160,
             corpse = "small-remnants",
-            filter_count = 1,
+            filter_count = 2,
             allow_custom_vectors = true,
             resistances =
             {
