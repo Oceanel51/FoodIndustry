@@ -12,27 +12,6 @@ local ORANGE_TREE = "orange-tree"
 local APPLE_TREE = "apple-tree"
 
 
-local function createFruitTree(tree, amount)
-    local fruitTree = nil
-    for index, r in ipairs(global.foodi.fruittrees) do
-        if r.entity == tree then
-            fruitTree = r
-            break
-        end
-    end
-    if fruitTree == nil then
-        fruitTree = {
-            entity = tree,
-            fruits = amount
-        }
-        table.insert(global.foodi.fruittrees, fruitTree)
-        index = #(global.foodi.fruittrees)
-    end
-
-    return fruitTree,index
-
-end
-
 local local_food_picker_process = function(picker)
     if picker.held_stack.valid_for_read then
         if picker.held_stack.count > 0 then
@@ -48,7 +27,8 @@ local local_food_picker_process = function(picker)
     if trees_count == 0 then
         return
     end
-    local index = math.random(1, trees_count)
+    global.generator = global.generator or game.create_random_generator()
+    local index = global.generator(1, trees_count)
     local tree = trees[index]
     if tree == nil then
         return
@@ -73,22 +53,15 @@ local local_food_picker_process = function(picker)
     for _, r in ipairs(tree.prototype.mineable_properties.products) do
         if r.name == "apple" or r.name == "orange" then
             fruit = r.name
-            -- TODO get amount from entity
-            amount = r.amount_min
+            amount = r.amount_max
             break
         end
     end
 
-    if fruit ~= nil and amount ~= nil then
+    if fruit ~= nil then
         picker.held_stack.set_stack({name=fruit, count=1})
-        local fruitTree,i = createFruitTree(tree,amount)
-        fruitTree.fruits = fruitTree.fruits - 1
-        table.insert(global.foodi.fruittrees, i,fruitTree)
-        if fruitTree.fruits <= 0 then
-            fruitTree.entity.destroy()
-            table.remove(global.foodi.fruittrees,i)
-            return
-        end
+        damage = 150 / amount
+        tree.damage(damage,'neutral')
     end
 end
 
