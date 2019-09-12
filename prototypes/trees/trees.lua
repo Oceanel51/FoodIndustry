@@ -267,6 +267,8 @@ for index, crop in pairs(trees) do
 			icon = "__FoodIndustry__/graphics/icons/trees/"..crop[1].."-tree.png",
 			icon_size = 32,
 			max_health = 150,
+			healing_per_tick = 0,
+			repair_speed_modifier = 0,
 			minable = {
 				count = crop[17],
 				mining_hardness = 1,
