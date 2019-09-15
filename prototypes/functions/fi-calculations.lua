@@ -573,6 +573,47 @@ function effects_time_reduction(index) -- after -60 ticks
 		
 	end
 end
+
+function to_array(effect_table)
+	local effect_array = {}
+	local i = 1
+	for _,v in pairs(effect_table) do
+		effect_array[i] = v
+		i = i + 1
+	end
+	return effect_array
+end
+
+-- code = 'code_vmcf_above_40'
+-- effect_table = {name='speed',modifier=0.2,time=1000(-100000=infinity)}
+function add_effect_with_condition(index, code, effect_table, condition)
+	if condition then
+		if table.maxn(global.effects[index][effect_table.name][5]) == 0 then
+			effects_add(index, code, to_array(effect_table))
+		else
+			local founded = false
+			for i,ef in pairs(global.effects[index][effect_table.name][5]) do
+				if ef[1] == code then
+					founded = true
+				end
+			end
+			if founded then
+				effects_add(index, code, to_array(effect_table))
+			else
+				effects_add_insert(index, code, to_array(effect_table))
+			end
+		end
+	else
+		if table.maxn(global.effects[index][effect_table.name][5]) > 0 then
+			for i,ef in pairs(global.effects[index][effect_table.name][5]) do
+				if ef[1] == code then
+					effects_remove(index, i, effect_table.name, -effect_table.modifier)
+				end
+			end
+		end
+	end
+end
+
 -- calculate effect usages
 --@ table contents is:
 --@ effect_name_key={item or event, modifier, action time}
@@ -844,6 +885,8 @@ function effects_calc_on_tick(index, player)
 			end
 		end
 	end
+
+	add_effect_with_condition(index, 'code_vmcf_above_10', {name='speed',modifier=0.1,time=-100000}, math.min(global.substances[index]["v"], global.substances[index]["m"], global.substances[index]["c"], global.substances[index]["f"]) > 10)
 	--writeDebug("global.effects[digestion] is:")
 	--writeDebug(dump(global.effects[index]["digestion"]))
 	
