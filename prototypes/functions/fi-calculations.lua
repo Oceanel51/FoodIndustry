@@ -446,7 +446,6 @@ function effects_add_insert(index, item_name, effect_data)
 	end
 
 	-- add 1 effect count
-	effects_counter_add_or_remove(true, index, 1)
 	-- add 1 effect sprite
 	figui.reserveUpdateEffectsGUI(index)
 end
@@ -465,7 +464,6 @@ function effects_remove(index, effect_index, effect_name, effect_modifier)
 	end
 
 	-- remove 1 effect count
-	effects_counter_add_or_remove(false, index, 1)
 	figui.reserveUpdateEffectsGUI(index)
 end
 function effects_remove_last(index, effect_name)
@@ -485,25 +483,6 @@ function effects_remove_last(index, effect_name)
 		writeDebug("[Debug]: Data for effect: "..effect_name.." is reset.")
 	end
 end
-
-
--- add data of effects count to GUI
-function effects_counter_add_or_remove(add_bool, index, value)
-	-- remove counter
-	local leftGui = game.players[index].gui.left
-	if leftGui.frame.flow3.flow34.flow341.label_effects_count then
-		if add_bool then
-			leftGui.frame.flow3.flow34.flow341.label_effects_count.caption = leftGui.frame.flow3.flow34.flow341.label_effects_count.caption + value
-		else
-			if leftGui.frame.flow3.flow34.flow341.label_effects_count.caption - value < 0 then
-				leftGui.frame.flow3.flow34.flow341.label_effects_count.caption = 0
-			else
-				leftGui.frame.flow3.flow34.flow341.label_effects_count.caption = leftGui.frame.flow3.flow34.flow341.label_effects_count.caption - value
-			end
-		end
-	end
-end
-
 
 function effects_vanilla_add_or_remove(add_bool, index, effect_name, effect_modifier)
 	if effect_name == "speed" then

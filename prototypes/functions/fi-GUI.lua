@@ -592,16 +592,19 @@ function figui.sync_effects_to_gui(index)
 	'regeneration',
 	'invulnerability',
 	'digestion'}
+	local effect_count = 0
 	for i, effect_name in ipairs(showEffects) do
 		local playerEffect = model.playerEffects.get(index, effect_name)
 		if playerEffect then
 			if playerEffect.isEnabled then
 				figui.add_effect_to_gui(index, playerEffect)
+				effect_count = effect_count + 1
 			else
 				figui.remove_effect_from_gui(index,playerEffect.name)
 			end
 		end
 	end
+	figui.effects_counter_add_or_remove(index, effect_count)
 end
 
 function figui.add_effect_to_gui(index, playerEffect)
@@ -620,6 +623,17 @@ function figui.add_effect_to_gui(index, playerEffect)
 	end
 	
 end
+
+-- add data of effects count to GUI
+function figui.effects_counter_add_or_remove(index, value)
+	-- remove counter
+	local leftGui = game.players[index].gui.left
+	if leftGui.frame.flow3.flow34.flow341.label_effects_count then
+		leftGui.frame.flow3.flow34.flow341.label_effects_count.caption = value
+	end
+end
+
+
 function figui.remove_effect_from_gui(index, effect_name)
 	local player = game.players[index]
 	local leftGui = player.gui.left
