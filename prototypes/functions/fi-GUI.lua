@@ -240,7 +240,7 @@ function figui.create(index, player)
 		end
 		-- TODO Add Effects icons function
 		if not leftGui.frame.flow3.flow34.flow342 then
-			leftGui.frame.flow3.flow34.add{type="flow", name="flow342", direction="horizontal"}
+			leftGui.frame.flow3.flow34.add{type="flow", name="flow342", direction="vertical"}
 			leftGui.frame.flow3.flow34.flow342.style.maximal_width=80
 		end
 		
@@ -582,8 +582,8 @@ function figui.add_effect_to_gui(index, player, effect_name)
 		--leftGui.frame.flow3.flow34.flow342.speed.add({type="sprite", name="unknown_gray", tooltip=""})
 		--leftGui.frame.flow3.flow34.flow342.speed.add({type="label", name="label_"..effect_name, caption="--:--", style="fi-substances-bar"})
 	end
-	if not leftGui.frame.flow3.flow34.flow342.effect_name then
-		--leftGui.frame.flow3.flow34.flow342.add{type="flow", name=effect_name, direction="vertical"}
+	if not leftGui.frame.flow3.flow34.flow342[effect_name] then
+		leftGui.frame.flow3.flow34.flow342.add({type="label", name=effect_name, caption=effect_name, style = "fi-label", align="right",})
 
 		-- добавить иконку в зависимости от типа эфекта
 		--new_flow = 'leftGui.frame.flow3.flow34.flow342.'..effect_name..'.add({type="sprite", name="unknown_gray", tooltip=""})'
