@@ -417,7 +417,7 @@ function figui.update(index, player)
 		--	return
 		end
 	end
-	
+	figui.sync_effects_to_gui(index)
 end
 
 
@@ -571,19 +571,52 @@ function figui.update_substances(index, player)
 	
 
 end
+figui.needUpdateEffectsGUI = figui.needUpdateEffectsGUI or {}
+function figui.reserveUpdateEffectsGUI(index)
+	figui.needUpdateEffectsGUI[index] = true
+end
 
-
-function figui.add_effect_to_gui(index, effect_data)
+function figui.sync_effects_to_gui(index) 
+	if not figui.needUpdateEffectsGUI[index] then 
+		return
+	end
+	figui.needUpdateEffectsGUI[index] = false
 	local player = game.players[index]
 	local leftGui = player.gui.left
-	local effect_name = effect_data[1]
-	local effect_value = effect_data[2] * 100
+
+	local showEffects = {'speed',
+	'mining',
+	'crafting',
+	'long_reach',
+	'health_buffer',
+	'regeneration',
+	'invulnerability',
+	'digestion'}
+	for i, effect_name in ipairs(showEffects) do
+		local playerEffect = model.playerEffects.get(index, effect_name)
+		if playerEffect then
+			if playerEffect.isEnabled then
+				figui.add_effect_to_gui(index, playerEffect)
+			else
+				figui.remove_effect_from_gui(index,playerEffect.name)
+			end
+		end
+	end
+end
+
+function figui.add_effect_to_gui(index, playerEffect)
+	local player = game.players[index]
+	local leftGui = player.gui.left
+	local effect_name = playerEffect.name
+	local effect_value = playerEffect.modifier * 100
 	local effect_minus = effect_value > 0 and '+' or ''
 
 	if not leftGui.frame.flow3.flow34.flow342[effect_name] then
 		leftGui.frame.flow3.flow34.flow342.add{type="flow", name=effect_name, direction="horizontal"}		
 		leftGui.frame.flow3.flow34.flow342[effect_name].add({type="label", name='effect_name', caption=effect_name..':', style = "fi-label", align="left",})
 		leftGui.frame.flow3.flow34.flow342[effect_name].add({type="label", name='effect_value', caption=effect_minus..effect_value..'%', style = "fi-label", align="left",})
+	else
+		leftGui.frame.flow3.flow34.flow342[effect_name]['effect_value'].caption = effect_minus..effect_value..'%'
 	end
 	
 end
@@ -597,6 +630,7 @@ end
 
 -- Update GUI gadgets: Effects
 function figui.update_effects(index, player)
+	figui.reserveUpdateEffectsGUI(index)
 	local leftGui = player.gui.left
 	
 	local active_effects_count = 0
