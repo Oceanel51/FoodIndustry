@@ -448,8 +448,7 @@ function effects_add_insert(index, item_name, effect_data)
 	-- add 1 effect count
 	effects_counter_add_or_remove(true, index, 1)
 	-- add 1 effect sprite
-	local player = game.players[index]
-	figui.add_effect_to_gui(index, player, effect_data)
+	figui.add_effect_to_gui(index, effect_data)
 end
 
 
@@ -467,6 +466,7 @@ function effects_remove(index, effect_index, effect_name, effect_modifier)
 
 	-- remove 1 effect count
 	effects_counter_add_or_remove(false, index, 1)
+	figui.remove_effect_from_gui(index, effect_name)
 end
 function effects_remove_last(index, effect_name)
 	-- reset effects values to:

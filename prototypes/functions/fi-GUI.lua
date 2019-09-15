@@ -573,7 +573,8 @@ function figui.update_substances(index, player)
 end
 
 
-function figui.add_effect_to_gui(index, player, effect_data)
+function figui.add_effect_to_gui(index, effect_data)
+	local player = game.players[index]
 	local leftGui = player.gui.left
 	local effect_name = effect_data[1]
 	local effect_value = effect_data[2] * 100
@@ -585,7 +586,10 @@ function figui.add_effect_to_gui(index, player, effect_data)
 	end
 	
 end
-function figui.remove_effect_from_gui(index, player)
+function figui.remove_effect_from_gui(index, effect_name)
+	local player = game.players[index]
+	local leftGui = player.gui.left
+	leftGui.frame.flow3.flow34.flow342[effect_name].destroy()
 end
 
 -- Update GUI gadgets: Effects
