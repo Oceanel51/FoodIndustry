@@ -797,11 +797,18 @@ function effects_calc_on_tick(index, player)
 		{name='digestion', modifier=0.25, time=-100000},
 		minSubstances(index) > 40)
 
-	add_effect_with_condition(index,
-		'code_vmcf_above_10',
-		{name='speed', modifier=0.1, time=-100000},
-		 minSubstances(index) > 10)
-		 
+
+	
+	for i=1 ,9 do
+		add_effect_with_condition(index,
+		'code_vmcf_above_'..i,
+		{name='speed', modifier=0.1 * i, time=-100000},
+		 minSubstances(index) >= 10 * i
+	)
+	end
+ 
+	
+	
 	--writeDebug("global.effects[digestion] is:")
 	--writeDebug(dump(global.effects[index]["digestion"]))
 	
