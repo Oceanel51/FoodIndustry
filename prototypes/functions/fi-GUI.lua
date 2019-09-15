@@ -578,11 +578,12 @@ function figui.add_effect_to_gui(index, effect_data)
 	local leftGui = player.gui.left
 	local effect_name = effect_data[1]
 	local effect_value = effect_data[2] * 100
+	local effect_minus = effect_value > 0 and '+' or ''
 
 	if not leftGui.frame.flow3.flow34.flow342[effect_name] then
 		leftGui.frame.flow3.flow34.flow342.add{type="flow", name=effect_name, direction="horizontal"}		
 		leftGui.frame.flow3.flow34.flow342[effect_name].add({type="label", name='effect_name', caption=effect_name..':', style = "fi-label", align="left",})
-		leftGui.frame.flow3.flow34.flow342[effect_name].add({type="label", name='effect_value', caption='+'..effect_value..'%', style = "fi-label", align="left",})
+		leftGui.frame.flow3.flow34.flow342[effect_name].add({type="label", name='effect_value', caption=effect_minus..effect_value..'%', style = "fi-label", align="left",})
 	end
 	
 end
