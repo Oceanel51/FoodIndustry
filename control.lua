@@ -106,7 +106,7 @@ script.on_event({defines.events.on_tick}, function (e)
 					-- player in dead on multiplayer
 					global.energy[index] = global.energy_max[index] / 2
 					global.drinks[index] = 50
-					global.foods_eaten[index] = {}
+					global.foods_eaten[index] = {0,		0,				0,		0,				{v=0,m=0,c=0,f=0},	{}}
 					global.fullness_stomach[index] = {}
 					global.fullness[index] = 0
 					global.used[index] = 0
