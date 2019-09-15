@@ -589,7 +589,9 @@ end
 function figui.remove_effect_from_gui(index, effect_name)
 	local player = game.players[index]
 	local leftGui = player.gui.left
-	leftGui.frame.flow3.flow34.flow342[effect_name].destroy()
+	if leftGui.frame.flow3.flow34.flow342[effect_name] then
+		leftGui.frame.flow3.flow34.flow342[effect_name].destroy()
+	end
 end
 
 -- Update GUI gadgets: Effects
