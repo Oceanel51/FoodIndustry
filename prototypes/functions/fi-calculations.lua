@@ -383,7 +383,7 @@ function effects_add(index, item_name, effect_data)
 				--writeDebug("update "..effect_data[1])
 				effects_add_update(index, item_name, effect_data, i5)
 			
-			elseif string.match(e5[1], "%w+%-%w+$") == string.match(item_name, "%w+%-%w+$") then -- update effect if capsule
+			elseif string.match(e5[1], "%w+%-%w+$") and string.match(e5[1], "%w+%-%w+$") == string.match(item_name, "%w+%-%w+$") then -- update effect if capsule
 				founded = true
 				--writeDebug("update capsule "..effect_data[1])
 				
@@ -799,12 +799,45 @@ function effects_calc_on_tick(index, player)
 
 
 	
-	for i=1 ,9 do
+	for i=1 ,10 do
 		add_effect_with_condition(index,
 		'code_vmcf_above_'..i,
 		{name='speed', modifier=0.1 * i, time=-100000},
-		 minSubstances(index) >= 10 * i
-	)
+		 minSubstances(index) >= 10 * i 
+		 and  minSubstances(index) < 10 * (i + 1)
+		)
+	end
+	function substanceRange(key, i)
+		return global.substances[index][key] >= 10 * i 
+		and global.substances[index][key] < 10 * (i + 1)
+	end
+	for i=1 ,10 do
+		add_effect_with_condition(index,
+		'code_v_above_'..i,
+		{name='mining', modifier=0.1 * i, time=-100000},
+		substanceRange('v',i)
+		)
+	end
+	for i=1 ,10 do
+		add_effect_with_condition(index,
+		'code_m_above_'..i,
+		{name='crafting', modifier=0.1 * i, time=-100000},
+		substanceRange('m',i)
+		)
+	end
+	for i=1 ,10 do
+		add_effect_with_condition(index,
+		'code_c_above_'..i,
+		{name='health_buffer', modifier=0.1 * i, time=-100000},
+		substanceRange('c',i)
+		)
+	end
+	for i=1 ,10 do
+		add_effect_with_condition(index,
+		'code_f_above_'..i,
+		{name='health_buffer', modifier=0.1 * i, time=-100000},
+		substanceRange('f',i)
+		)
 	end
  
 	
