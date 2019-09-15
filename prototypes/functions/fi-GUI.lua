@@ -573,22 +573,15 @@ function figui.update_substances(index, player)
 end
 
 
-function figui.add_effect_to_gui(index, player, effect_name)
+function figui.add_effect_to_gui(index, player, effect_data)
 	local leftGui = player.gui.left
-	local new_flow = ''
-	-- new sub flow of current effect
-	if effect_name == "speed" then
-		--leftGui.frame.flow3.flow34.flow342.add{type="flow", name="speed", direction="vertical"}
-		--leftGui.frame.flow3.flow34.flow342.speed.add({type="sprite", name="unknown_gray", tooltip=""})
-		--leftGui.frame.flow3.flow34.flow342.speed.add({type="label", name="label_"..effect_name, caption="--:--", style="fi-substances-bar"})
-	end
-	if not leftGui.frame.flow3.flow34.flow342[effect_name] then
-		leftGui.frame.flow3.flow34.flow342.add({type="label", name=effect_name, caption=effect_name, style = "fi-label", align="right",})
+	local effect_name = effect_data[1]
+	local effect_value = effect_data[2] * 100
 
-		-- добавить иконку в зависимости от типа эфекта
-		--new_flow = 'leftGui.frame.flow3.flow34.flow342.'..effect_name..'.add({type="sprite", name="unknown_gray", tooltip=""})'
-		-- добавить время действия эфекта
-		--new_flow = 'leftGui.frame.flow3.flow34.flow342.'..effect_name..'.add({type="label", name="label_"..effect_name, caption="--:--", style="fi-substances-bar"})'
+	if not leftGui.frame.flow3.flow34.flow342[effect_name] then
+		leftGui.frame.flow3.flow34.flow342.add{type="flow", name=effect_name, direction="horizontal"}		
+		leftGui.frame.flow3.flow34.flow342[effect_name].add({type="label", name='effect_name', caption=effect_name..':', style = "fi-label", align="left",})
+		leftGui.frame.flow3.flow34.flow342[effect_name].add({type="label", name='effect_value', caption='+'..effect_value..'%', style = "fi-label", align="left",})
 	end
 	
 end
