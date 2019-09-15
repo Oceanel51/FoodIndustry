@@ -103,24 +103,18 @@ script.on_event({defines.events.on_tick}, function (e)
 				-----------------------------------------------------
 				
 				if not player.character then -- for sandbox mode
-					--global.energy_max[index] = 100
-					global.energy[index] = 50
-					--global.drinks_max[index] = 100
-					global.drinks[index] = 0
-					--global.foods_eaten[index] = {}
+					-- player in dead on multiplayer
+					global.energy[index] = global.energy_max[index] / 2
+					global.drinks[index] = 50
+					global.foods_eaten[index] = {}
+					global.fullness_stomach[index] = {}
 					global.fullness[index] = 0
 					global.used[index] = 0
-					global.usage[index] = 0
+					global.usage[index] = 1
+					global.fi_energy_ussage_modifier[index] = 1
 					global.substances[index] = {v=0,m=0,c=0,f=0}
-					--for effect,t in pairs(global.effects[index]) do
-					--	global.effects[index][effect] = 0
-					--end
-					if player.gui.left.frame.flow1.flow12.usagelabel then
-						player.gui.left.frame.flow1.flow11.energylabel.caption = global.energy[index]
-						player.gui.left.frame.energybar.value = global.energy[index]/100
-						player.gui.left.frame.flow1.flow12.usagelabel.caption = "---"
-						player.gui.left.frame.flow22.drinkslabel.caption = "0"
-						player.gui.left.frame.drinksbar.value = global.drinks[index]/100
+					for effect,t in pairs(global.effects[index]) do
+						global.effects[index][effect] = {false,0,0,0,{}}
 					end
 
 				else ---- calculate character Energy usage data
