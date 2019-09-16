@@ -1034,7 +1034,7 @@ data:extend(
 ---------------------- fi-electric-composter
 
   {
-    type = "furnace",
+    type = "assembling-machine",
     name = "fi-electric-composter",
     icon = "__FoodIndustry__/graphics/icons/entities/fi-electric-composter-icon.png",
     icon_size = 64,
