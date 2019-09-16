@@ -6,6 +6,7 @@ require "prototypes.functions.fi-calculations"
 require "libs.helper-functions"
 
 require("prototypes.scripts.fishing-inserter")
+require("prototypes.scripts.fish-spawner")
 require("prototypes.fish.fishing-boat-control")
 require("prototypes.fish.shovel-control")
 
@@ -64,6 +65,7 @@ end
 setupFi()
 fi_global_variables_init()
 initFishingInserter()
+initFishSpawner()
 initFishingBoatNet()
 initFoodPicker()
 initFruitTrees()

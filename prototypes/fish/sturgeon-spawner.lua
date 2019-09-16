@@ -13,12 +13,12 @@ data:extend({
     },
 
     {
-        type = "unit-spawner",
+        type = "furnace",
         name = "sturgeon-farm",
         icon = "__FoodIndustry__/graphics/icons/entities/fishfarm.png",
         icon_size = 32,
         flags = {"placeable-player", "placeable-enemy", "not-repairable"},
-        minable = {hardness = 0.2, mining_time = 2.0, result = "sturgeon-farm"},
+        minable = {hardness = 0.2, mining_time = 2.0, result = "fish-farm"},
         max_health = 50,
         order="b-b-h",
         subgroup="food-machines-fish",
@@ -63,47 +63,49 @@ data:extend({
             }
         },
         healing_per_tick = 0.02,
-        collision_mask = {'object-layer'},
+        collision_mask = {'object-layer',"ground-tile", "train-layer"},
         collision_box = {{-0.7, -0.7}, {0.7, 0.7}},
         selection_box = {{-0.9, -0.9}, {0.9, 0.9}},
-        pollution_absorption_absolute = 20,
-        pollution_absorption_proportional = 0.01,
+        crafting_categories = {"auto-composting"},
         corpse = "spitter-spawner-corpse",
         dying_explosion = "blood-explosion-huge",
-        max_count_of_owned_units = 7,
-        max_friends_around_to_spawn = 15,
-        animations =
+        crafting_speed = 1,
+        energy_source =
         {
-            layers =
-            {
-                {
-                    filename = "__FoodIndustry__/graphics/entity/fishfarm/fishfarm.png",
-                    line_length = 1,
-                    width = 76,
-                    height = 46,
-                    frame_count = 1,
-                    animation_speed = 0.1,
-                    direction_count = 1,
-                    shift = {0.28, 0}
-                },
-            }
+            type = "electric",
+            usage_priority = "secondary-input",
+            drain = "45kW",
+            --emissions = 0.004
+            emissions_per_minute = 0.4 / 100 * 30
         },
-        result_units = (function()
-            local res = {}
-            res[1] = {"fi-sturgeon", {{0.0, 0.3}, {0.35, 0}}}
-            res[2] = {"fi-sturgeon", {{0.25, 0.0}, {0.5, 0.3}, {0.7, 0.0}}}
-            res[3] = {"fi-sturgeon", {{0.4, 0.0}, {0.7, 0.3}, {0.9, 0.1}}}
-            res[4] = {"fi-sturgeon", {{0.5, 0.0}, {1.0, 0.4}}}
-            res[5] = {"fi-sturgeon", {{0.9, 0.0}, {1.0, 0.3}}}
-            return res
-        end)(),
-        -- With zero evolution the spawn rate is 12 seconds, with max evolution it is 6 seconds
-        spawning_cooldown = {3 * 5 * 60, 3 * 5 * 6*60},
-        spawning_radius = 15,
-        spawning_spacing = 3,
-        max_spawn_shift = 0,
-        max_richness_for_spawn_shift = 100,
-        call_for_help_radius = 1
+        energy_usage = "800kW",
+        module_specification =
+        {
+          module_slots = 4,
+          module_info_icon_shift = {0, 0.5},
+          module_info_multi_row_initial_height_modifier = -0.3
+        },
+        order = "d-e",
+        allowed_effects = {"speed", "consumption", "pollution"},
+        animation =
+        {
+          layers =
+          {
+            {
+                filename = "__FoodIndustry__/graphics/entity/fishfarm/fishfarm.png",
+                frame_count = 1,
+                width = 76,
+                height = 46,
+                priority = "extra-high",
+                shift = {
+                 0.515625,
+                  0.0625
+                },
+              },
+          }
+        },
+        source_inventory_size = 1,
+        result_inventory_size = 1,	
     },
     {
         type = "recipe",
