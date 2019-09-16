@@ -244,7 +244,31 @@ for index, crop in pairs(trees) do
 			always_show_made_in = true,
 			allow_decomposition = false,
 		},
-		
+		{
+			type = "recipe",
+			name = "advanced-"..crop[1].."-seedling",
+			icon = "__FoodIndustry__/graphics/icons/trees/"..crop[1].."-seedling-icon.png",
+			icon_size = 32,
+			category = "fi-tree-greenhouse2",
+			subgroup = crop[1],
+			energy_required = crop[2] / 1.8,
+			ingredients =
+			{
+				{type="item", name=crop[1].."-seeds", amount=crop[3]},
+				{type = "fluid", name = "compost-water", amount = 1000},
+			},
+			results=
+			{
+				{type="item", name=crop[1].."-seedling", amount=crop[4]+2},
+				{type="item", name=crop[1].."-seedling", amount=1, probability=0.4},
+				{type="item", name=crop[1].."-seedling", amount=1, probability=0.4},
+				{type="item", name=crop[1].."-seedling", amount=1, probability=0.4},
+			},
+			enabled = false,
+			always_show_made_in = true,
+			allow_decomposition = false,
+		},
+				
 	})
 
 	-- trees

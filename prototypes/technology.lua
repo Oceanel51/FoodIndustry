@@ -466,6 +466,8 @@ data:extend({
     effects =
     {
       {type = "unlock-recipe", recipe = "fi-hydroponics-building"},
+      {type = "unlock-recipe", recipe = "advanced-apple-seedling"},
+      {type = "unlock-recipe", recipe = "advanced-orange-seedling"},
     },
     unit =
     {
