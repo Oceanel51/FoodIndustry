@@ -572,7 +572,7 @@ function add_effect_with_condition(index, code, effect_table, condition)
 		if table.maxn(global.effects[index][effect_table.name][5]) > 0 then
 			for i,ef in pairs(global.effects[index][effect_table.name][5]) do
 				if ef[1] == code then
-					effects_remove(index, i, effect_table.name, -effect_table.modifier)
+					effects_remove(index, i, effect_table.name, effect_table.modifier)
 				end
 			end
 		end
