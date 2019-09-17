@@ -13,7 +13,7 @@ data:extend({
     },
 
     {
-        type = "furnace",
+        type = "assembling-machine",
         name = "fish-farm",
         icon = "__FoodIndustry__/graphics/icons/entities/fishfarm.png",
         icon_size = 32,

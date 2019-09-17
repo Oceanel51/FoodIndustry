@@ -1,17 +1,17 @@
 ﻿if not util then require("prototypes.scripts.util") end
 
-local fishDistance = 10
-
 local local_fish_spawner_process = function(entity)
+	local fishDistance = 10
+	local maxFishCounts = 3
 	if not entity.is_crafting then
 		return
 	end
 
 	local fish = get_entities_around(entity, fishDistance, "fish")
 	local fish_count = #fish
-
+	-- 6 fishes per min
 	if game.tick % (1) == 0 then
-		if fish_count < 10 then
+		if fish_count < maxFishCounts then
 			entity.surface.create_entity({name="fish", amount=1, position=entity.position})	
 		end
 	end
