@@ -1,4 +1,24 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.8.93 (beta 2.0)
+Date: 18.09.2019
+  Features:
+    - Added label of effects values to GUI (not finished)
+    - Added some food locales
+  Balances:
+    - Balances for fruit trees
+  Fixes:
+    - Refactored and fixed effects code
+    - Refactored nutrients bonus
+    - Initial compatibility for "IndustrialRevolution" mod does not work again!
+    - Compatibility hot fix for Space Exploration mods, when there is no player character in game.
+    - Fixed food-picker (not finished)
+    - Fixed recipes for growing trees
+---------------------------------------------------------------------------------------------------
+Version: 1.8.89 (beta 2.0)
+Date: 15.09.2019
+  Fixes:
+    - Initial compatibility for "IndustrialRevolution" mod by Villfuk02
+---------------------------------------------------------------------------------------------------
 Version: 1.8.87 (beta 2.0)
 Date: 30.08.2019
   Features:

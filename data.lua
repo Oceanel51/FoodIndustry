@@ -67,3 +67,8 @@ require("prototypes.sounds")
 
 require("changes")
 
+-- IR compatibility
+if mods["IndustrialRevolution"] then
+    require("compatibilities.ir-compatibility-recipes")
+    -- TODO also redo technologies
+end

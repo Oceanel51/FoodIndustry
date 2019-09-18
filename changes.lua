@@ -77,9 +77,11 @@ for index,d in pairs(biter_drops) do
 end
 
 
-table.insert(data.raw.technology["automation"].effects,{recipe = "compressed-straw", type = "unlock-recipe"})
-table.insert(data.raw.technology["automation"].effects,{recipe = "burner-fishing-inserter", type = "unlock-recipe"})
-table.insert(data.raw.technology["automation"].effects,{recipe = "burner-food-picker", type = "unlock-recipe"})
+if not mods["IndustrialRevolution"] then -- IR compatibility
+	table.insert(data.raw.technology["automation"].effects,{recipe = "compressed-straw", type = "unlock-recipe"})
+	table.insert(data.raw.technology["automation"].effects,{recipe = "burner-fishing-inserter", type = "unlock-recipe"})
+	table.insert(data.raw.technology["automation"].effects,{recipe = "burner-food-picker", type = "unlock-recipe"})
+end
 
 --table.insert(data.raw.technology["logistics"].effects,{recipe = "fishing-inserter", type = "unlock-recipe"})
 --table.insert(data.raw.technology["logistics"].effects,{recipe = "food-picker", type = "unlock-recipe"})
