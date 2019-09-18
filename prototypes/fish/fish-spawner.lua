@@ -66,7 +66,7 @@ data:extend({
         collision_mask = {'object-layer',"ground-tile", "train-layer"},
         collision_box = {{-0.5, -0.5}, {1.0, 0.6}},
         selection_box = {{-0.7, -0.7}, {1.2, 0.8}},
-        crafting_categories = {"composting"},
+        crafting_categories = {"fish-feeding"},
         corpse = "spitter-spawner-corpse",
         dying_explosion = "blood-explosion-huge",
         crafting_speed = 1,
@@ -78,7 +78,7 @@ data:extend({
             --emissions = 0.004
             emissions_per_minute = 0.4 / 100 * 30
         },
-        energy_usage = "800kW",
+        energy_usage = "20kW",
         order = "d-e",
         animation =
         {

@@ -78,3 +78,43 @@ data:extend({
         stack_size = 100
     },
 })
+
+
+local ingredients = {
+	--1						2				3				4
+	--plant					ingredients,	energy/water,	result	?
+	{"raw-straw",			10,				60.0,			25},		--basic
+	{"straw",				100,			60.0,			2},			--0
+	{"compressed-straw",	1,				60.0,			6},			--0
+	--{"lettuce",				0,				3.0,			6},		--5.4
+	--{"cucumber",			0,				4.5,			6},		--5.1
+	--{"tomato",				0,				2.0,			4},		--3.6
+	--{"potato",				0,				5.0,			8},		--7.0
+	--{"corn",				0,				4.0,			8},		--7.2
+	--{"soy",					0,				0.5,			1},		--0.9
+	--{"rapeseed",			0,				0.4,			0.4}	--0.32
+}
+
+
+for index, ingredient in pairs(ingredients) do
+	data:extend({
+		{
+			type = "recipe",
+			name = "fish-feeding-"..ingredient[1],
+			enabled = false,
+			icon = "__base__/graphics/icons/fish.png",
+			icon_size = 32,
+			category = "fish-feeding",
+			subgroup = "fish-feeding",
+			energy_required = ingredient[3],
+			ingredients = {
+				{ ingredient[1], ingredient[2] }
+			},
+			results = {
+			},
+		},
+        table.insert(data.raw.technology["fish-breeding"].effects,
+        {recipe = "fish-feeding-"..ingredient[1], type = "unlock-recipe"}
+    )
+	})
+end

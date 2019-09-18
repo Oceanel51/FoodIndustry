@@ -1,18 +1,27 @@
 ﻿if not util then require("prototypes.scripts.util") end
+local fish_table = {}
+	fish_table['fish-farm']={count_per_min=1, max_fish_around=5, name="fish"}
+	fish_table['sturgeon-farm']={count_per_min=1, max_fish_around=2, name="fi-sturgeon"}
 
 local local_fish_spawner_process = function(entity)
 	local fishDistance = 10
-	local maxFishCounts = 3
-	if not entity.is_crafting then
+	local maxFishCounts = 10
+	if not entity.is_crafting() then
 		return
 	end
 
-	local fish = get_entities_around(entity, fishDistance, "fish")
+	local fish = get_entities_around(entity, fishDistance, fish_table[entity.name].name)
 	local fish_count = #fish
+	
 	-- 6 fishes per min
-	if game.tick % (1) == 0 then
-		if fish_count < maxFishCounts then
-			entity.surface.create_entity({name="fish", amount=1, position=entity.position})	
+	-- 1 sturgeon per min
+	if game.tick % (60 * 60 / fish_table[entity.name].count_per_min) == 0 then
+		-- print all
+		for index,player in pairs(game.connected_players) do
+			player.print(serpent.block(fish_count))
+		end
+		if fish_count < fish_table[entity.name].max_fish_around then
+			entity.surface.create_entity({name=fish_table[entity.name].name, amount=1, position=entity.position})	
 		end
 	end
 end
