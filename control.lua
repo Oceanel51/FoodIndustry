@@ -1,4 +1,5 @@
 require "prototypes.functions.fi-GUI"
+require "prototypes.functions.fi-effects"
 require "prototypes.tables.fi-foods-table"
 require "prototypes.functions.fi-global-variables"
 require "prototypes.functions.fi-calculations"
@@ -102,28 +103,9 @@ script.on_event({defines.events.on_tick}, function (e)
 				
 				--fi_global_variables_set(index) -- set global variables default data of connected players
 				-----------------------------------------------------
-				
+        
 				if not player.character then -- for sandbox mode
-					--global.energy_max[index] = 100
-					global.energy[index] = 50
-					--global.drinks_max[index] = 100
-					global.drinks[index] = 0
-					--global.foods_eaten[index] = {}
-					global.fullness[index] = 0
-					global.used[index] = 0
-					global.usage[index] = 0
-					global.substances[index] = {v=0,m=0,c=0,f=0}
-					--for effect,t in pairs(global.effects[index]) do
-					--	global.effects[index][effect] = 0
-					--end
-					if player.gui.left.frame.flow1.flow12.usagelabel then
-						player.gui.left.frame.flow1.flow11.energylabel.caption = global.energy[index]
-						player.gui.left.frame.energybar.value = global.energy[index]/100
-						player.gui.left.frame.flow1.flow12.usagelabel.caption = "---"
-						player.gui.left.frame.flow22.drinkslabel.caption = "0"
-						player.gui.left.frame.drinksbar.value = global.drinks[index]/100
-					end
-
+					-- This will come in when player are in space map mode with space-exploration, so do nothing 
 				else ---- calculate character Energy usage data
 					--figui.create(index, player)
 					
@@ -148,10 +130,10 @@ script.on_event({defines.events.on_tick}, function (e)
 								end
 							end
 						end
-						usage = 1.5 + settings.global["food-industry-slots"].value * slots + settings.global["food-industry-durability"].value * durability * 0.001 -- calculate usage data
+						usage = usage + 0.5 + settings.global["food-industry-slots"].value * slots + settings.global["food-industry-durability"].value * durability * 0.001 -- calculate usage data
 					end
 					if player.mining_state.mining then -- if mining, if player have mining-tool in player_tools - get it mining speed
-						mining_speed = 1.6
+						mining_speed = 0.6
 						--if player.get_inventory(defines.inventory.player_tools) and player.get_inventory(defines.inventory.player_tools).valid then
 						--	if player.get_inventory(defines.inventory.player_tools).get_item_count() > 0 and player.get_inventory(defines.inventory.player_tools)[1] and player.get_inventory(defines.inventory.player_tools)[1].valid then
 						--		local tool = player.get_inventory(defines.inventory.player_tools)[1]
@@ -161,12 +143,12 @@ script.on_event({defines.events.on_tick}, function (e)
 						--	end
 						--end
 						--global.usage[index] = math.ceil((0.125 * mining_speed + 1) / 0.01) / 100
-						usage = math.ceil(mining_speed)
+						usage = usage + 0.6
 						-- player.print("mining with speed " .. mining_speed)
 					--elseif player.riding_state.riding.acceleration then ---- if riding
 					end
 					if player.driving then -- if driving
-						usage = 0.4
+						usage = usage - 0.6
 						--player.print("driving...")
 					-- TODO make shooting_state
 					--@ https://lua-api.factorio.com/latest/LuaControl.html#LuaControl.shooting_state
@@ -193,7 +175,7 @@ script.on_event({defines.events.on_tick}, function (e)
 								end
 							end
 						end
-						usage = 1.4 + settings.global["food-industry-slots"].value * slots + settings.global["food-industry-durability"].value * durability * 0.001
+						usage = usage + 0.4 + settings.global["food-industry-slots"].value * slots + settings.global["food-industry-durability"].value * durability * 0.001
 						-- player.print("picking...")
 					end
 					if player.repair_state.repairing then -- if repairing
@@ -214,7 +196,7 @@ script.on_event({defines.events.on_tick}, function (e)
 								end
 							end
 						end
-						usage = 1.6 + settings.global["food-industry-slots"].value * slots + settings.global["food-industry-durability"].value * durability * 0.001
+						usage = usage + 0.6 + settings.global["food-industry-slots"].value * slots + settings.global["food-industry-durability"].value * durability * 0.001
 						-- player.print("repairing...")
 					end
 					if  player.crafting_queue_size > 0 then -- if manual crafting
@@ -226,7 +208,7 @@ script.on_event({defines.events.on_tick}, function (e)
 						for craft_index,craft_item in pairs(player.crafting_queue) do
 							crafting_counts = crafting_counts + ( craft_item["count"] * 0.02 )
 						end
-						usage = 1.5 + crafting_counts
+						usage = usage + 0.5 + crafting_counts
 						-- TODO в идеале извлечь время текущего рецепта и от него вычислять расход Энергии
 						--writeDebug(data.raw.recipe[player.crafting_queue[1].recipe].energy_required)
 						--global.usage[index] = 1.5 + ( data.raw.recipe[player.crafting_queue[1].recipe].energy_required / 10 )
@@ -343,6 +325,23 @@ script.on_event({defines.events.on_tick}, function (e)
 	end
 end)
 
+script.on_event({defines.events.on_player_respawned}, function(event)
+	local index = event.player_index 
+	-- player in dead on multiplayer
+	global.energy[index] = global.energy_max[index] / 2
+	global.drinks[index] = 50
+	global.foods_eaten[index] = {0,		0,				0,		0,				{v=0,m=0,c=0,f=0},	{}}
+	global.fullness_stomach[index] = {}
+	global.fullness[index] = 0
+	global.used[index] = 0
+	global.usage[index] = 1
+	global.fi_energy_ussage_modifier[index] = 1
+	global.substances[index] = {v=0,m=0,c=0,f=0}
+	for effect,t in pairs(global.effects[index]) do
+		global.effects[index][effect] = {false,0,0,0,{}}
+	end
+	figui.reserveUpdateEffectsGUI(index)
+end)
 
 local local_on_added = function(event)
 	local entity = event.created_entity

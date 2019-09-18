@@ -383,7 +383,7 @@ function effects_add(index, item_name, effect_data)
 				--writeDebug("update "..effect_data[1])
 				effects_add_update(index, item_name, effect_data, i5)
 			
-			elseif string.match(e5[1], "%w+%-%w+$") == string.match(item_name, "%w+%-%w+$") then -- update effect if capsule
+			elseif string.match(e5[1], "%w+%-%w+$") and string.match(e5[1], "%w+%-%w+$") == string.match(item_name, "%w+%-%w+$") then -- update effect if capsule
 				founded = true
 				--writeDebug("update capsule "..effect_data[1])
 				
@@ -446,10 +446,8 @@ function effects_add_insert(index, item_name, effect_data)
 	end
 
 	-- add 1 effect count
-	effects_counter_add_or_remove(true, index, 1)
 	-- add 1 effect sprite
-	local player = game.players[index]
-	figui.add_effect_to_gui(index, player, effect_data[1])
+	figui.reserveUpdateEffectsGUI(index)
 end
 
 
@@ -466,7 +464,7 @@ function effects_remove(index, effect_index, effect_name, effect_modifier)
 	end
 
 	-- remove 1 effect count
-	effects_counter_add_or_remove(false, index, 1)
+	figui.reserveUpdateEffectsGUI(index)
 end
 function effects_remove_last(index, effect_name)
 	-- reset effects values to:
@@ -485,25 +483,6 @@ function effects_remove_last(index, effect_name)
 		writeDebug("[Debug]: Data for effect: "..effect_name.." is reset.")
 	end
 end
-
-
--- add data of effects count to GUI
-function effects_counter_add_or_remove(add_bool, index, value)
-	-- remove counter
-	local leftGui = game.players[index].gui.left
-	if leftGui.frame.flow3.flow34.flow341.label_effects_count then
-		if add_bool then
-			leftGui.frame.flow3.flow34.flow341.label_effects_count.caption = leftGui.frame.flow3.flow34.flow341.label_effects_count.caption + value
-		else
-			if leftGui.frame.flow3.flow34.flow341.label_effects_count.caption - value < 0 then
-				leftGui.frame.flow3.flow34.flow341.label_effects_count.caption = 0
-			else
-				leftGui.frame.flow3.flow34.flow341.label_effects_count.caption = leftGui.frame.flow3.flow34.flow341.label_effects_count.caption - value
-			end
-		end
-	end
-end
-
 
 function effects_vanilla_add_or_remove(add_bool, index, effect_name, effect_modifier)
 	if effect_name == "speed" then
@@ -573,22 +552,43 @@ function effects_time_reduction(index) -- after -60 ticks
 		
 	end
 end
+
+function to_array(effect_table)
+	local effect_array = {}
+	local i = 1
+	for _,v in pairs(effect_table) do
+		effect_array[i] = v
+		i = i + 1
+	end
+	return effect_array
+end
+
+-- code = 'code_vmcf_above_40'
+-- effect_table = {name='speed',modifier=0.2,time=1000(-100000=infinity)}
+function add_effect_with_condition(index, code, effect_table, condition)
+	if condition then
+		effects_add(index, code, to_array(effect_table))
+	else
+		if table.maxn(global.effects[index][effect_table.name][5]) > 0 then
+			for i,ef in pairs(global.effects[index][effect_table.name][5]) do
+				if ef[1] == code then
+					effects_remove(index, i, effect_table.name, effect_table.modifier)
+				end
+			end
+		end
+	end
+end
+
 -- calculate effect usages
 --@ table contents is:
 --@ effect_name_key={item or event, modifier, action time}
 function effects_calc_on_tick(index, player)
 	
 	-- reduce speed when Energy is below 20%
-	if global.energy[index] <= global.energy_max[index] * 0.20 then -- energy <= 20%
-		effects_add(index, "code_energy_below_20%", {"speed",-0.3,-100000})
-	else
-		for i,ef in pairs(global.effects[index]["speed"][5]) do
-			if ef[1] == "code_energy_below_20%" then
-				effects_remove(index, i,"speed", -0.3)
-			end
-		end
-	end
-	
+	add_effect_with_condition(index,
+	'code_energy_below_20%',
+	{name='speed', modifier=-0.3, time=-100000},
+	global.energy[index] <= global.energy_max[index] * 0.20)
 	
 	----------------- consider the effect Drinks fullness on the Energy consumption ---------------
 	local drinks_for_energy_ussage_modifier = -1 * (settings.global["food-industry-drinks-modifier"].value / 100)
@@ -641,75 +641,41 @@ function effects_calc_on_tick(index, player)
 		end
 	end
 
-		-- ----------------------- Thirst effects -------------------------------
-	if global.effects[index]["thirst"][1] and global.effects[index]["thirst"][2] == 2 and math.ceil(math.abs(global.effects[index]["thirst"][3])/108000*100) >= 20 then
-		-- speed -0.2, crafting -0.2, mining -0.4
-		effects_add(index, "code_thirst_above_20%", {"speed",-0.2,-100000})
-		effects_add(index, "code_thirst_above_20%", {"crafting",-0.2,-100000})
-		effects_add(index, "code_thirst_above_20%", {"mining",-0.4,-100000})
-	else
-		for i,ef in pairs(global.effects[index]["speed"][5]) do
-			if ef[1] == "code_thirst_above_20%" then
-				effects_remove(index, i,"speed", -0.2)
-			end
-		end
-		for i,ef in pairs(global.effects[index]["crafting"][5]) do
-			if ef[1] == "code_thirst_above_20%" then
-				effects_remove(index, i,"crafting", -0.2)
-			end
-		end
-		for i,ef in pairs(global.effects[index]["mining"][5]) do
-			if ef[1] == "code_thirst_above_20%" then
-				effects_remove(index, i,"mining", -0.4)
-			end
-		end
+	-- ----------------------- Thirst effects -------------------------------
+	local thirstLevel = function(value)  
+		return global.effects[index]["thirst"][1] and
+		 global.effects[index]["thirst"][2] == 2 and
+		  math.ceil(math.abs(global.effects[index]["thirst"][3])/108000*100) >= value 
 	end
-	if global.effects[index]["thirst"][1] and global.effects[index]["thirst"][2] == 2 and math.ceil(math.abs(global.effects[index]["thirst"][3])/108000*100) >= 80 then
-		-- TODO add when ready - energy_usage +2
-		effects_add(index, "code_thirst_above_80%", {"digestion",-0.5,-100000})
-	else
-		for i,ef in pairs(global.effects[index]["digestion"][5]) do
-			if ef[1] == "code_thirst_above_80%" then
-				effects_remove(index, i,"digestion", -0.5)
-			end
-		end
-	end
+	add_effect_with_condition(index,
+		'code_thirst_above_20%',
+		{name='speed', modifier=-0.2, time=-100000},
+		thirstLevel(20)
+	)
+	add_effect_with_condition(index,
+		'code_thirst_above_20%',
+		{name='crafting', modifier=-0.2, time=-100000},
+		thirstLevel(20)
+	)
+	add_effect_with_condition(index,
+		'code_thirst_above_20%',
+		{name='mining', modifier=-0.4, time=-100000},
+		thirstLevel(20)
+	)
+	add_effect_with_condition(index,
+		'code_thirst_above_80%',
+		{name='mining', modifier=-0.5, time=-100000},
+		thirstLevel(80)
+	)
 
 
 	-- more speed when drinks >= 90%!
-	if global.drinks[index] >= global.drinks_max[index] * 0.9 then -- >= 90%
-		-- activate speed effect to 0.1
-		if global.effects[index]["speed"] and global.effects[index]["speed"][2] >= 0 then
-			if table.maxn(global.effects[index]["speed"][5]) > 0 then
-				local founded = false
-				for i,ef in pairs(global.effects[index]["speed"][5]) do
-					if ef[1] == "code_drinks_above_90%" then
-						founded = true
-					end
-				end
-				if founded then
-					--effects_add_update(index, "code_drinks_above_90%", {"speed",0.1,-100000}, i)
-					effects_add(index, "code_drinks_above_90%", {"speed",0.1,-100000})
-					--writeDebug("[Debug]: update global.effects["..index.."][speed] by +"..global.effects[index]["speed"][2])
-				else
-					effects_add_insert(index, "code_drinks_above_90%", {"speed",0.1,-100000})
-					--writeDebug("[Debug]: activate global.effects["..index.."][speed] by +"..global.effects[index]["speed"][2])
-				end
-			else
-				effects_add_insert(index, "code_drinks_above_90%", {"speed",0.1,-100000})
-				--writeDebug("[Debug]: activate first global.effects["..index.."][speed] by +"..global.effects[index]["speed"][2])
-			end
-		end
-	elseif global.drinks[index] < global.drinks_max[index] * 0.9 then -- < 90%
-		if global.effects[index]["speed"] and global.effects[index]["speed"][2] > 0 then
-			for i,ef in pairs(global.effects[index]["speed"][5]) do
-				if ef[1] == "code_drinks_above_90%" then
-					effects_remove(index, i,"speed", 0.1)
-					--writeDebug("[Debug]: deactivate global.effects["..index.."][speed] ="..global.effects[index]["speed"][2])
-				end
-			end
-		end
-	end
+	add_effect_with_condition(index,
+	'code_drinks_above_90%',
+	{name='speed', modifier=0.1, time=-100000},
+	global.drinks[index] >= global.drinks_max[index] * 0.9
+	)
+
 
 
     ----------------- consider the effect Substances fullness on the Energy consumption ---------------
@@ -795,55 +761,66 @@ function effects_calc_on_tick(index, player)
 	end
 	--writeDebug("[Debug] global.fi_energy_ussage_modifier["..index.."] ="..global.fi_energy_ussage_modifier[index])
 	
-
+	-- nutrient balance bonus
+	local minSubstances = function(index)
+		return math.min(global.substances[index]["v"],
+		global.substances[index]["m"],
+		global.substances[index]["c"],
+		global.substances[index]["f"])
+	end
+	
 	------------------- consider the digestion effect ----------------
 	-- TODO check effects substances on digestion speed
-	--local substances_to_digestion = 0.25
-	if math.min(global.substances[index]["v"], global.substances[index]["m"], global.substances[index]["c"], global.substances[index]["f"]) > 40 then
-		--writeDebug(" > 10")
-		if table.maxn(global.effects[index]["digestion"][5]) == 0 then
-			-- add substances_to_digestion
-			---global.effects[index]["digestion"][1] = true
-			---global.effects[index]["digestion"][2] = global.effects[index]["digestion"][2] + substances_to_digestion
-			---table.insert(global.effects[index]["digestion"][5], {"code_vmcf_above_40",substances_to_digestion,60*60})
-			effects_add(index, "code_vmcf_above_40", {"digestion",0.25,-100000})
-		else
-			-- check if present digestion effect influenses
-			-- check effects substances on digestion speed
-			local founded = false
-			for i,ef in pairs(global.effects[index]["digestion"][5]) do
-				--writeDebug(" i "..i..", ef "..ef)
-				if ef[1] == "code_vmcf_above_40" then
-					--writeDebug(" if not")
-					founded = true
-				end
-			end
-			if founded then
-				---global.effects[index]["digestion"][1] = true
-				---global.effects[index]["digestion"][2] = global.effects[index]["digestion"][2] + substances_to_digestion
-				---table.insert(global.effects[index]["digestion"][5], {"code_vmcf_above_40",substances_to_digestion,60*60})
-				-- update digestion effect
-				effects_add(index, "code_vmcf_above_40", {"digestion",0.25,-100000})
-			else
-				effects_add_insert(index, "code_vmcf_above_40", {"digestion",0.25,-100000})
-			end
-		end
-		
-	elseif math.min(global.substances[index]["v"], global.substances[index]["m"], global.substances[index]["c"], global.substances[index]["f"]) <= 40 then
-		--writeDebug(" <= 10")
-		if table.maxn(global.effects[index]["digestion"][5]) > 0 then
-			for i,ef in pairs(global.effects[index]["digestion"][5]) do
-				if ef[1] == "code_vmcf_above_40" then
-					---global.effects[index]["digestion"][2] = global.effects[index]["digestion"][2] - substances_to_digestion
-					---table.remove(global.effects[index]["digestion"][5], i)
-					--writeDebug(" remove substances_to_digestion")
-					-- off digestion effect
-					---if table.maxn(global.effects[index]["digestion"][5]) == 0 then global.effects[index]["digestion"][1] = false end
-					effects_remove(index, i,"digestion", -0.25)
-				end
-			end
-		end
+	add_effect_with_condition(index,
+		'code_vmcf_above_40',
+		{name='digestion', modifier=0.25, time=-100000},
+		minSubstances(index) > 40)
+
+
+	
+	for i=1 ,10 do
+		add_effect_with_condition(index,
+		'code_vmcf_above_'..i,
+		{name='speed', modifier=0.1 * i, time=-100000},
+		 minSubstances(index) >= 10 * i 
+		 and  minSubstances(index) < 10 * (i + 1)
+		)
 	end
+	function substanceRange(key, i)
+		return global.substances[index][key] >= 10 * i 
+		and global.substances[index][key] < 10 * (i + 1)
+	end
+	for i=1 ,10 do
+		add_effect_with_condition(index,
+		'code_v_above_'..i,
+		{name='mining', modifier=0.1 * i, time=-100000},
+		substanceRange('v',i)
+		)
+	end
+	for i=1 ,10 do
+		add_effect_with_condition(index,
+		'code_m_above_'..i,
+		{name='crafting', modifier=0.1 * i, time=-100000},
+		substanceRange('m',i)
+		)
+	end
+	for i=1 ,10 do
+		add_effect_with_condition(index,
+		'code_c_above_'..i,
+		{name='health_buffer', modifier=0.1 * i, time=-100000},
+		substanceRange('c',i)
+		)
+	end
+	for i=1 ,10 do
+		add_effect_with_condition(index,
+		'code_f_above_'..i,
+		{name='health_buffer', modifier=0.1 * i, time=-100000},
+		substanceRange('f',i)
+		)
+	end
+ 
+	
+	
 	--writeDebug("global.effects[digestion] is:")
 	--writeDebug(dump(global.effects[index]["digestion"]))
 	
