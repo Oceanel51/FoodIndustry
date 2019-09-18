@@ -205,6 +205,14 @@ data:extend(
   } ,
   {
     type = "recipe-category",
+    name = "fi-tree-greenhouse",
+  } ,
+  {
+    type = "recipe-category",
+    name = "fi-tree-greenhouse2",
+  } ,
+  {
+    type = "recipe-category",
     name = "advanced-crop-growth",
   },
   {
