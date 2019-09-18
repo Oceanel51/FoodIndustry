@@ -104,9 +104,12 @@ data:extend({
         type = "recipe",
         name = "fish-farm",
         enabled = false,
+        energy_required = 60,
         ingredients =
         {
-            {"iron-plate", 1}
+            {"iron-plate", 25},
+            {"stone-brick", 80},
+            {"electronic-circuit", 10}
         },
         result = "fish-farm"
     },

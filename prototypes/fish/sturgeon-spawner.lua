@@ -111,9 +111,13 @@ data:extend({
         type = "recipe",
         name = "sturgeon-farm",
         enabled = false,
+        energy_required = 60,
         ingredients =
         {
-            {"iron-plate", 1}
+            {"steel-plate", 25},
+            {"plastic-bar", 80},
+            {"stone-brick", 80},
+            {"electronic-circuit", 10}
         },
         result = "sturgeon-farm"
     },
