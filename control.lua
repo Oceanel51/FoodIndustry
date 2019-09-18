@@ -1,4 +1,5 @@
 require "prototypes.functions.fi-GUI"
+require "prototypes.functions.fi-effects"
 require "prototypes.tables.fi-foods-table"
 require "prototypes.functions.fi-global-variables"
 require "prototypes.functions.fi-calculations"
@@ -100,8 +101,7 @@ script.on_event({defines.events.on_tick}, function (e)
 				
 				--fi_global_variables_set(index) -- set global variables default data of connected players
 				-----------------------------------------------------
-				
-
+        
 				if not player.character then -- for sandbox mode
 					-- This will come in when player are in space map mode with space-exploration, so do nothing 
 				else ---- calculate character Energy usage data
@@ -128,10 +128,10 @@ script.on_event({defines.events.on_tick}, function (e)
 								end
 							end
 						end
-						usage = 1.5 + settings.global["food-industry-slots"].value * slots + settings.global["food-industry-durability"].value * durability * 0.001 -- calculate usage data
+						usage = usage + 0.5 + settings.global["food-industry-slots"].value * slots + settings.global["food-industry-durability"].value * durability * 0.001 -- calculate usage data
 					end
 					if player.mining_state.mining then -- if mining, if player have mining-tool in player_tools - get it mining speed
-						mining_speed = 1.6
+						mining_speed = 0.6
 						--if player.get_inventory(defines.inventory.player_tools) and player.get_inventory(defines.inventory.player_tools).valid then
 						--	if player.get_inventory(defines.inventory.player_tools).get_item_count() > 0 and player.get_inventory(defines.inventory.player_tools)[1] and player.get_inventory(defines.inventory.player_tools)[1].valid then
 						--		local tool = player.get_inventory(defines.inventory.player_tools)[1]
@@ -141,12 +141,12 @@ script.on_event({defines.events.on_tick}, function (e)
 						--	end
 						--end
 						--global.usage[index] = math.ceil((0.125 * mining_speed + 1) / 0.01) / 100
-						usage = math.ceil(mining_speed)
+						usage = usage + 0.6
 						-- player.print("mining with speed " .. mining_speed)
 					--elseif player.riding_state.riding.acceleration then ---- if riding
 					end
 					if player.driving then -- if driving
-						usage = 0.4
+						usage = usage - 0.6
 						--player.print("driving...")
 					-- TODO make shooting_state
 					--@ https://lua-api.factorio.com/latest/LuaControl.html#LuaControl.shooting_state
@@ -173,7 +173,7 @@ script.on_event({defines.events.on_tick}, function (e)
 								end
 							end
 						end
-						usage = 1.4 + settings.global["food-industry-slots"].value * slots + settings.global["food-industry-durability"].value * durability * 0.001
+						usage = usage + 0.4 + settings.global["food-industry-slots"].value * slots + settings.global["food-industry-durability"].value * durability * 0.001
 						-- player.print("picking...")
 					end
 					if player.repair_state.repairing then -- if repairing
@@ -194,7 +194,7 @@ script.on_event({defines.events.on_tick}, function (e)
 								end
 							end
 						end
-						usage = 1.6 + settings.global["food-industry-slots"].value * slots + settings.global["food-industry-durability"].value * durability * 0.001
+						usage = usage + 0.6 + settings.global["food-industry-slots"].value * slots + settings.global["food-industry-durability"].value * durability * 0.001
 						-- player.print("repairing...")
 					end
 					if  player.crafting_queue_size > 0 then -- if manual crafting
@@ -206,7 +206,7 @@ script.on_event({defines.events.on_tick}, function (e)
 						for craft_index,craft_item in pairs(player.crafting_queue) do
 							crafting_counts = crafting_counts + ( craft_item["count"] * 0.02 )
 						end
-						usage = 1.5 + crafting_counts
+						usage = usage + 0.5 + crafting_counts
 						-- TODO в идеале извлечь время текущего рецепта и от него вычислять расход Энергии
 						--writeDebug(data.raw.recipe[player.crafting_queue[1].recipe].energy_required)
 						--global.usage[index] = 1.5 + ( data.raw.recipe[player.crafting_queue[1].recipe].energy_required / 10 )
