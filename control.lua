@@ -101,22 +101,9 @@ script.on_event({defines.events.on_tick}, function (e)
 				
 				--fi_global_variables_set(index) -- set global variables default data of connected players
 				-----------------------------------------------------
-				
+        
 				if not player.character then -- for sandbox mode
-					-- player in dead on multiplayer
-					global.energy[index] = global.energy_max[index] / 2
-					global.drinks[index] = 50
-					global.foods_eaten[index] = {0,		0,				0,		0,				{v=0,m=0,c=0,f=0},	{}}
-					global.fullness_stomach[index] = {}
-					global.fullness[index] = 0
-					global.used[index] = 0
-					global.usage[index] = 1
-					global.fi_energy_ussage_modifier[index] = 1
-					global.substances[index] = {v=0,m=0,c=0,f=0}
-					for effect,t in pairs(global.effects[index]) do
-						global.effects[index][effect] = {false,0,0,0,{}}
-					end
-
+					-- This will come in when player are in space map mode with space-exploration, so do nothing 
 				else ---- calculate character Energy usage data
 					--figui.create(index, player)
 					
@@ -336,6 +323,23 @@ script.on_event({defines.events.on_tick}, function (e)
 	end
 end)
 
+script.on_event({defines.events.on_player_respawned}, function(event)
+	local index = event.player_index 
+	-- player in dead on multiplayer
+	global.energy[index] = global.energy_max[index] / 2
+	global.drinks[index] = 50
+	global.foods_eaten[index] = {0,		0,				0,		0,				{v=0,m=0,c=0,f=0},	{}}
+	global.fullness_stomach[index] = {}
+	global.fullness[index] = 0
+	global.used[index] = 0
+	global.usage[index] = 1
+	global.fi_energy_ussage_modifier[index] = 1
+	global.substances[index] = {v=0,m=0,c=0,f=0}
+	for effect,t in pairs(global.effects[index]) do
+		global.effects[index][effect] = {false,0,0,0,{}}
+	end
+	figui.reserveUpdateEffectsGUI(index)
+end)
 
 local local_on_added = function(event)
 	local entity = event.created_entity
