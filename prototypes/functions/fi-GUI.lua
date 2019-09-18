@@ -240,7 +240,7 @@ function figui.create(index, player)
 		end
 		-- TODO Add Effects icons function
 		if not leftGui.frame.flow3.flow34.flow342 then
-			leftGui.frame.flow3.flow34.add{type="flow", name="flow342", direction="horizontal"}
+			leftGui.frame.flow3.flow34.add{type="flow", name="flow342", direction="vertical"}
 			leftGui.frame.flow3.flow34.flow342.style.maximal_width=80
 		end
 		
@@ -417,7 +417,7 @@ function figui.update(index, player)
 		--	return
 		end
 	end
-	
+	figui.sync_effects_to_gui(index)
 end
 
 
@@ -571,32 +571,80 @@ function figui.update_substances(index, player)
 	
 
 end
+figui.needUpdateEffectsGUI = figui.needUpdateEffectsGUI or {}
+function figui.reserveUpdateEffectsGUI(index)
+	figui.needUpdateEffectsGUI[index] = true
+end
 
-
-function figui.add_effect_to_gui(index, player, effect_name)
-	local leftGui = player.gui.left
-	local new_flow = ''
-	-- new sub flow of current effect
-	if effect_name == "speed" then
-		--leftGui.frame.flow3.flow34.flow342.add{type="flow", name="speed", direction="vertical"}
-		--leftGui.frame.flow3.flow34.flow342.speed.add({type="sprite", name="unknown_gray", tooltip=""})
-		--leftGui.frame.flow3.flow34.flow342.speed.add({type="label", name="label_"..effect_name, caption="--:--", style="fi-substances-bar"})
+function figui.sync_effects_to_gui(index) 
+	if not figui.needUpdateEffectsGUI[index] then 
+		return
 	end
-	if not leftGui.frame.flow3.flow34.flow342.effect_name then
-		--leftGui.frame.flow3.flow34.flow342.add{type="flow", name=effect_name, direction="vertical"}
+	figui.needUpdateEffectsGUI[index] = false
+	local player = game.players[index]
+	local leftGui = player.gui.left
 
-		-- добавить иконку в зависимости от типа эфекта
-		--new_flow = 'leftGui.frame.flow3.flow34.flow342.'..effect_name..'.add({type="sprite", name="unknown_gray", tooltip=""})'
-		-- добавить время действия эфекта
-		--new_flow = 'leftGui.frame.flow3.flow34.flow342.'..effect_name..'.add({type="label", name="label_"..effect_name, caption="--:--", style="fi-substances-bar"})'
+	local showEffects = {'speed',
+	'mining',
+	'crafting',
+	'long_reach',
+	'health_buffer',
+	'regeneration',
+	'invulnerability',
+	'digestion'}
+	local effect_count = 0
+	for i, effect_name in ipairs(showEffects) do
+		local playerEffect = model.playerEffects.get(index, effect_name)
+		if playerEffect then
+			if playerEffect.isEnabled then
+				figui.add_effect_to_gui(index, playerEffect)
+				effect_count = effect_count + 1
+			else
+				figui.remove_effect_from_gui(index,playerEffect.name)
+			end
+		end
+	end
+	figui.effects_counter_add_or_remove(index, effect_count)
+end
+
+function figui.add_effect_to_gui(index, playerEffect)
+	local player = game.players[index]
+	local leftGui = player.gui.left
+	local effect_name = playerEffect.name
+	local effect_value = playerEffect.modifier * 100
+	local effect_minus = effect_value > 0 and '+' or ''
+
+	if not leftGui.frame.flow3.flow34.flow342[effect_name] then
+		leftGui.frame.flow3.flow34.flow342.add{type="flow", name=effect_name, direction="horizontal"}		
+		leftGui.frame.flow3.flow34.flow342[effect_name].add({type="label", name='effect_name', caption=effect_name..':', style = "fi-label", align="left",})
+		leftGui.frame.flow3.flow34.flow342[effect_name].add({type="label", name='effect_value', caption=effect_minus..effect_value..'%', style = "fi-label", align="left",})
+	else
+		leftGui.frame.flow3.flow34.flow342[effect_name]['effect_value'].caption = effect_minus..effect_value..'%'
 	end
 	
 end
-function figui.remove_effect_from_gui(index, player)
+
+-- add data of effects count to GUI
+function figui.effects_counter_add_or_remove(index, value)
+	-- remove counter
+	local leftGui = game.players[index].gui.left
+	if leftGui.frame.flow3.flow34.flow341.label_effects_count then
+		leftGui.frame.flow3.flow34.flow341.label_effects_count.caption = value
+	end
+end
+
+
+function figui.remove_effect_from_gui(index, effect_name)
+	local player = game.players[index]
+	local leftGui = player.gui.left
+	if leftGui.frame.flow3.flow34.flow342[effect_name] then
+		leftGui.frame.flow3.flow34.flow342[effect_name].destroy()
+	end
 end
 
 -- Update GUI gadgets: Effects
 function figui.update_effects(index, player)
+	figui.reserveUpdateEffectsGUI(index)
 	local leftGui = player.gui.left
 	
 	local active_effects_count = 0
