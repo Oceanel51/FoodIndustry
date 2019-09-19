@@ -16,10 +16,6 @@ local local_fish_spawner_process = function(entity)
 	-- 6 fishes per min
 	-- 1 sturgeon per min
 	if game.tick % (60 * 60 / fish_table[entity.name].count_per_min) == 0 then
-		-- print all
-		for index,player in pairs(game.connected_players) do
-			player.print(serpent.block(fish_count))
-		end
 		if fish_count < fish_table[entity.name].max_fish_around then
 			entity.surface.create_entity({name=fish_table[entity.name].name, amount=1, position=entity.position})	
 		end
