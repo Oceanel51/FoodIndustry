@@ -13,7 +13,7 @@ data:extend({
     energy_required = 30.0,
     ingredients =
     {
-        {"raw-fish", 1},
+        {"raw-fish", 5},
         {type = "fluid", name = "water", amount = 20},
     },
     results = 
@@ -59,7 +59,7 @@ data:extend({
     energy_required = 40.0,
     ingredients =
     {
-        {"raw-fish", 1},
+        {"raw-fish", 5},
         {type = "fluid", name = "pure-water", amount = 20},
     },
     results = 
