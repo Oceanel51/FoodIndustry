@@ -518,7 +518,11 @@ function effects_vanilla_add_or_remove(add_bool, index, effect_name, effect_modi
 		if add_bool then
 			game.players[index].character_health_bonus = game.players[index].character_health_bonus + effect_modifier
 		else
-			game.players[index].character_health_bonus = game.players[index].character_health_bonus - effect_modifier
+			if game.players[index].character_health_bonus - effect_modifier then
+				game.players[index].character_health_bonus = 0
+			else
+				game.players[index].character_health_bonus = game.players[index].character_health_bonus - effect_modifier
+			end
 		end
 	end
 end
