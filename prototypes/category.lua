@@ -44,6 +44,12 @@ data:extend(
     name = "food-composting",
     group = "food-industry",
     order = "w-j",
+  },  
+  {
+    type = "item-subgroup",
+    name = "fish-feeding",
+    group = "food-industry",
+    order = "w-k",
   },
   {
     type = "item-subgroup",
@@ -226,6 +232,10 @@ data:extend(
   {
     type = "recipe-category",
     name = "auto-composting",
+  },
+  {
+    type = "recipe-category",
+    name = "fish-feeding",
   },
   {
     type = "recipe-category",

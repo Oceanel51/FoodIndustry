@@ -36,19 +36,19 @@ local local_fishing_inserter_process = function(entity)
 	end
 
 	local fish = get_entities_around(entity, 10, "fish")
-	local fish_count = 0
-	local spawner = nil
+	-- local fish_count = 0
+	-- local spawner = nil
 	local target = nil
 	local current_dist = 0
 	local target_dist = 100
 	if fish ~= nil then
 		for i, ent in pairs(fish) do
 			if ent.prototype.type == "fish" then
-				fish_count = fish_count + 1	
+				-- fish_count = fish_count + 1	
 				local dist = distance(entity.held_stack_position.x,entity.held_stack_position.y,ent.position.x,ent.position.y)
 				if dist > current_dist then
 					current_dist = dist
-					spawner = ent
+					-- spawner = ent
 				end
 				if dist < target_dist then
 					target_dist = dist
@@ -60,13 +60,15 @@ local local_fishing_inserter_process = function(entity)
 	if target ~= nil then	
 		local_try_pickup_fish_at_position(entity,target)
 	end
-	if spawner ~= nil and fish_count < 10 then
-		local r = math.random()
-		if r < 0.05 then
-			entity.surface.create_entity({name="fish", amount=1, position=spawner.position})
-			--player_print(r)
-		end
-	end
+	-- if game.tick % 3600 == 0 then
+	-- 	if spawner ~= nil and fish_count < 10 then
+	-- 		local r = math.random()
+	-- 		if r < 0.05 then
+	-- 			entity.surface.create_entity({name="fish", amount=1, position=spawner.position})
+	-- 			--player_print(r)
+	-- 		end
+	-- 	end
+	-- end
 end
 
 local local_fishing_inserter_tick = function()
