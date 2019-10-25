@@ -64,3 +64,25 @@ if data.raw.recipe["flask-recycle"] then
 	}
 end
 
+-- Cattles
+if data.raw.recipe["cattle-spawner"] then
+  data.raw.recipe["cattle-spawner"].ingredients = {
+    {"iron-plate", 100},
+    {"wood", 100},
+    {"raw-fish", 100},
+    {"electronic-circuit", 20}
+  }
+end
+if data.raw.recipe["cattle-feeder"] then
+  data.raw.recipe["cattle-feeder"].ingredients = {
+    {"iron-plate", 10},
+    {"electronic-circuit", 5}
+  }
+end
+if data.raw.recipe["cattle-butcher"] then
+  data.raw.recipe["cattle-butcher"].ingredients = {
+    {"iron-plate", 9},
+    {"iron-gear-wheel", 5},
+    {"electronic-circuit", 3}
+  }
+end

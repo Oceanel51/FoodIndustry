@@ -35,8 +35,8 @@ local productivity_recipes = {
 	"canola-oil-processing",
 	"canola-oil-lubricant",
 	"sulfuric-acid",
-    "basic-oil-processing",
-    "advanced-oil-processing"
+	"basic-oil-processing",
+	"advanced-oil-processing"
 }
 for i, recipe in pairs(productivity_recipes) do
 	table.insert(data.raw.module["productivity-module"].limitation, recipe)
