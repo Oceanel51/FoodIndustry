@@ -10,7 +10,7 @@ local local_fish_spawner_process = function(entity)
 		return
 	end
 
-	local fish = get_entities_around(entity, fishDistance, fish_table[entity.name].name)
+	local fish = get_entities_around(entity, fishDistance, "fish")
 	local fish_count = #fish
 	
 	-- 6 fishes per min

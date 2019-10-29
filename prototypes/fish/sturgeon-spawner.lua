@@ -18,7 +18,7 @@ data:extend({
         icon = "__FoodIndustry__/graphics/icons/entities/fishfarm.png",
         icon_size = 32,
         flags = {"placeable-player", "placeable-enemy", "not-repairable"},
-        minable = {hardness = 0.2, mining_time = 2.0, result = "fish-farm"},
+        minable = {hardness = 0.2, mining_time = 2.0, result = "sturgeon-farm"},
         max_health = 50,
         order="b-b-h",
         subgroup="food-machines-fish",
