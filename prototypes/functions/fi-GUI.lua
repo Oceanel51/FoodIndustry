@@ -377,44 +377,46 @@ function figui.update(index, player)
 	end
 
 
-	if leftGui.frame.flow2.fullnesslabel then
-		--player.print("[Debug] fullness: "..global.fullness[index])
-		-- here Overeating
-		local fullness_storage = global.fullness[index]
-		if global.fullness[index] > 100 then
-			--writeDebug("fullnesslabel "..global.fullness[index])
-			--leftGui.frame.flow2.label_fullness.caption = ({'label.label-overeating', ": "})
-			leftGui.frame.flow2.fullnesslabel.caption = {'label.label-overeating', math.ceil(global.fullness[index]), "%", math.ceil(global.effects[index]["overeating"][4])}
-			leftGui.frame.flow2.fullnesslabel.style.font_color = {r=1, g=38/255, b=45/255, a=1}
-			leftGui.frame.flow2.label_percent.style.font_color = {r=1, g=38/255, b=45/255, a=1}
-			leftGui.frame.fullnessbar.value = (global.fullness[index] - 100)/100
-			leftGui.frame.fullnessbar.style.color = {r=1, a=1}
-		-- here normal Fullness
-		elseif global.fullness[index] <= 100 then
-			if global.effects[index]["overeating"][4] > 0 then
+	if leftGui.frame.flow2 then
+		if leftGui.frame.flow2.fullnesslabel then
+			--player.print("[Debug] fullness: "..global.fullness[index])
+			-- here Overeating
+			local fullness_storage = global.fullness[index]
+			if global.fullness[index] > 100 then
+				--writeDebug("fullnesslabel "..global.fullness[index])
+				--leftGui.frame.flow2.label_fullness.caption = ({'label.label-overeating', ": "})
 				leftGui.frame.flow2.fullnesslabel.caption = {'label.label-overeating', math.ceil(global.fullness[index]), "%", math.ceil(global.effects[index]["overeating"][4])}
-				leftGui.frame.flow2.fullnesslabel.style.font_color = {r=255/255, g=76/255, b=82/255, a=1}
-				leftGui.frame.flow2.label_percent.style.font_color = {r=255/255, g=76/255, b=82/255, a=1}
-			else
-				leftGui.frame.flow2.fullnesslabel.caption = math.ceil(math.abs(global.fullness[index]))
-				leftGui.frame.flow2.fullnesslabel.style.font_color = {r=1, g=1, b=1, a=1}
-				leftGui.frame.flow2.label_percent.style.font_color = {r=1, g=1, b=1, a=1}
+				leftGui.frame.flow2.fullnesslabel.style.font_color = {r=1, g=38/255, b=45/255, a=1}
+				leftGui.frame.flow2.label_percent.style.font_color = {r=1, g=38/255, b=45/255, a=1}
+				leftGui.frame.fullnessbar.value = (global.fullness[index] - 100)/100
+				leftGui.frame.fullnessbar.style.color = {r=1, a=1}
+			-- here normal Fullness
+			elseif global.fullness[index] <= 100 then
+				if global.effects[index]["overeating"][4] > 0 then
+					leftGui.frame.flow2.fullnesslabel.caption = {'label.label-overeating', math.ceil(global.fullness[index]), "%", math.ceil(global.effects[index]["overeating"][4])}
+					leftGui.frame.flow2.fullnesslabel.style.font_color = {r=255/255, g=76/255, b=82/255, a=1}
+					leftGui.frame.flow2.label_percent.style.font_color = {r=255/255, g=76/255, b=82/255, a=1}
+				else
+					leftGui.frame.flow2.fullnesslabel.caption = math.ceil(math.abs(global.fullness[index]))
+					leftGui.frame.flow2.fullnesslabel.style.font_color = {r=1, g=1, b=1, a=1}
+					leftGui.frame.flow2.label_percent.style.font_color = {r=1, g=1, b=1, a=1}
+				end
+				leftGui.frame.fullnessbar.value = global.fullness[index]/100
+				leftGui.frame.fullnessbar.style.color = {r=1, g=0.6, a=1}
+				if global.fullness[index] < 20 then
+					--writeDebug("fullness "..global.fullness[index].." < 20")
+					leftGui.frame.fullnessbar.style.color = {r=127/255, g=76/255, a=1}
+				elseif global.fullness[index] < 40 then
+					leftGui.frame.fullnessbar.style.color = {r=153/255, g=91/255, a=1}
+				elseif global.fullness[index] < 60 then
+					leftGui.frame.fullnessbar.style.color = {r=188/255, g=113/255, a=1}
+				elseif global.fullness[index] < 80 then
+					leftGui.frame.fullnessbar.style.color = {r=229/255, g=137/255, a=1}
+				end
+			--else
+			--	game.players[index].print("[Debug] Warning: Fullness "..fullness_storage.." - is not good!")
+			--	return
 			end
-			leftGui.frame.fullnessbar.value = global.fullness[index]/100
-			leftGui.frame.fullnessbar.style.color = {r=1, g=0.6, a=1}
-			if global.fullness[index] < 20 then
-				--writeDebug("fullness "..global.fullness[index].." < 20")
-				leftGui.frame.fullnessbar.style.color = {r=127/255, g=76/255, a=1}
-			elseif global.fullness[index] < 40 then
-				leftGui.frame.fullnessbar.style.color = {r=153/255, g=91/255, a=1}
-			elseif global.fullness[index] < 60 then
-				leftGui.frame.fullnessbar.style.color = {r=188/255, g=113/255, a=1}
-			elseif global.fullness[index] < 80 then
-				leftGui.frame.fullnessbar.style.color = {r=229/255, g=137/255, a=1}
-			end
-		--else
-		--	game.players[index].print("[Debug] Warning: Fullness "..fullness_storage.." - is not good!")
-		--	return
 		end
 	end
 	figui.sync_effects_to_gui(index)

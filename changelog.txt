@@ -1,11 +1,15 @@
 ---------------------------------------------------------------------------------------------------
-Version: 1.8.93 (beta 2.0)
-Date: 18.09.2019
+Version: 1.8.105 (beta 2.0)
+Date: 14.04.2020
   Features:
+    - New fish generator code by iida-hayato
     - Added label of effects values to GUI (not finished)
+    - Changed some decorations in EN locale (not finished)
     - Added some food locales
+    - New pure-water and soy-milk icons
   Balances:
     - Balances for fruit trees
+    - Balances for all fish
   Fixes:
     - Refactored and fixed effects code
     - Refactored nutrients bonus
@@ -13,6 +17,7 @@ Date: 18.09.2019
     - Compatibility hot fix for Space Exploration mods, when there is no player character in game.
     - Fixed food-picker (not finished)
     - Fixed recipes for growing trees
+    - Fix GUI when no character mode
 ---------------------------------------------------------------------------------------------------
 Version: 1.8.89 (beta 2.0)
 Date: 15.09.2019

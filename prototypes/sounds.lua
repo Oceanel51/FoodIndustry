@@ -17,11 +17,11 @@ data:extend({
 		variations =
 		{
 			{
-				filename = "__FoodIndustry__/sounds/���� ������� ����, ���������.ogg",
+				filename = "__FoodIndustry__/sounds/<sounf eat meat, potato>.ogg",
 				volume = 0.9
 			},
 			{
-				filename = "__FoodIndustry__/sounds/���� ������� ����, ���������.ogg",
+				filename = "__FoodIndustry__/sounds/<sounf eat meat, potato>.ogg",
 				volume = 0.9
 			},
 		},
@@ -32,11 +32,11 @@ data:extend({
 		variations =
 		{
 			{
-				filename = "__FoodIndustry__/sounds/���� ������� ��������, ������.ogg",
+				filename = "__FoodIndustry__/sounds/<sounf eat carrot, salad>.ogg",
 				volume = 0.9
 			},
 			{
-				filename = "__FoodIndustry__/sounds/���� ������� ��������, ���������.ogg",
+				filename = "__FoodIndustry__/sounds/<sounf eat carrot, salad>.ogg",
 				volume = 0.9
 			},
 		},
