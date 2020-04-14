@@ -5,7 +5,7 @@
     "author": "Villfuk02, Oceanel, jonkeda, iida-hayato",
     "contact": "",
     "homepage": "https://github.com/Oceanel51/FoodIndustry",
-    "factorio_version": "0.17",
+    "factorio_version": "0.18",
     "dependencies": ["base >= 0.17.35",
                      "? bobmining >= 0.17.3",
                      "? bobplates >= 0.17.4",

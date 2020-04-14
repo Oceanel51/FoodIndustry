@@ -3,6 +3,7 @@ require ("prototypes.cattle.cattle-spawner-animation")
 
 local cattlescale = 0.5
 local calfscale = 0.25
+local sounds = require("__base__.prototypes.entity.demo-sounds")
 
 -- spawner
 -- feeder
@@ -40,7 +41,7 @@ data:extend({
             cooldown = 35,
             ammo_category = "melee",
             ammo_type = make_unit_melee_ammo_type(0),
-            sound = make_biter_roars(0.4),
+            sound = sounds.biter_roars(0.4),
             animation = biterattackanimation(cattlescale, small_biter_tint1, small_biter_tint2)
         },
         vision_distance = 30,
@@ -52,8 +53,8 @@ data:extend({
         max_pursue_distance = 50,
         corpse = "small-biter-corpse",
         dying_explosion = "blood-explosion-small",
-        dying_sound =  make_biter_dying_sounds(0.4),
-        working_sound =  make_biter_calls(0.3),
+        dying_sound = sounds.biter_dying(0.43),
+        working_sound = sounds.biter_calls(0.87),
         run_animation = biterrunanimation(cattlescale, small_biter_tint1, small_biter_tint2)
     },
     {
@@ -75,7 +76,7 @@ data:extend({
             cooldown = 35,
             ammo_category = "melee",
             ammo_type = make_unit_melee_ammo_type(0),
-            sound = make_biter_roars(0.4),
+            sound = sounds.biter_roars(0.4),
             animation = biterattackanimation(calfscale, small_biter_tint1, small_biter_tint2)
         },
         vision_distance = 30,
@@ -87,8 +88,8 @@ data:extend({
         max_pursue_distance = 50,
         corpse = "small-biter-corpse",
         dying_explosion = "blood-explosion-small",
-        dying_sound =  make_biter_dying_sounds(0.4),
-        working_sound =  make_biter_calls(0.3),
+        dying_sound = sounds.biter_dying(0.43),
+        working_sound = sounds.biter_calls(0.87),
         run_animation = biterrunanimation(calfscale, small_biter_tint1, small_biter_tint2)
     },
     {
