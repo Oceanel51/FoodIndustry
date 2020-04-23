@@ -313,7 +313,7 @@ data:extend(
       idle_sound = { filename = "__base__/sound/idle1.ogg", volume = 0.4 },
       apparent_volume = 0.9,
     },
-    crafting_categories = {"advanced-crop-growth"},
+    crafting_categories = {"advanced-crop-growth", "basic-tree-growth"},
     crafting_speed = 1,
 	energy_source =
     {
@@ -1349,7 +1349,7 @@ data:extend(
       idle_sound = { filename = "__base__/sound/idle1.ogg", volume = 0.0 },
       apparent_volume = 1.0,
     },
-    crafting_categories = {"cooking"},
+    crafting_categories = {"cooking", "food-capsules"},
     crafting_speed = 0.75,
 	energy_source =
     {
@@ -1483,7 +1483,7 @@ working_visualisations =
       idle_sound = { filename = "__base__/sound/idle1.ogg", volume = 0.0 },
       apparent_volume = 1.0,
     },
-    crafting_categories = {"cooking", "advanced-cooking", "mixing"},
+    crafting_categories = {"cooking", "advanced-cooking", "food-capsules", "mixing"},
     crafting_speed = 1,
 	energy_source =
     {

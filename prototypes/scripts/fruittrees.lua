@@ -2,8 +2,8 @@ local TICKS_TO_GROW_MIN = 30 * 60
 local TICKS_TO_GROW_MAX = 2 * 60 * 60
 
 
-local ORANGE_SEEDLING = "orange-seedling"
-local APPLE_SEEDLING = "apple-seedling"
+local ORANGE_SEEDLING = "orange-basic-growth-seedling"
+local APPLE_SEEDLING = "apple-basic-growth-seedling"
 
 local ORANGE_TREE = "orange-tree"
 local APPLE_TREE = "apple-tree"

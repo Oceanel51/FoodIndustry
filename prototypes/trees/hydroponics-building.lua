@@ -83,7 +83,7 @@ data:extend({
                 }
             }
         },
-        crafting_categories = {"fi-tree-greenhouse2"},
+        crafting_categories = {"advanced-tree-growth"},
         crafting_speed = 5,
         energy_source =
         {

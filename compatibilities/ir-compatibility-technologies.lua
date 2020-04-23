@@ -441,8 +441,8 @@ data:extend({
     {
       {type = "unlock-recipe", recipe = "food-picker"},
       {type = "unlock-recipe", recipe = "fi_recipe_tree_greenhouse"},
-      {type = "unlock-recipe", recipe = "apple-seedling"},
-      {type = "unlock-recipe", recipe = "orange-seedling"},
+      {type = "unlock-recipe", recipe = "apple-basic-growth-seedling"},
+      {type = "unlock-recipe", recipe = "orange-basic-growth-seedling"},
   },
     unit =
     {
@@ -466,8 +466,8 @@ data:extend({
     effects =
     {
       {type = "unlock-recipe", recipe = "fi-hydroponics-building"},
-      {type = "unlock-recipe", recipe = "advanced-apple-seedling"},
-      {type = "unlock-recipe", recipe = "advanced-orange-seedling"},
+      {type = "unlock-recipe", recipe = "apple-advanced-growth-seedling"},
+      {type = "unlock-recipe", recipe = "orange-advanced-growth-seedling"},
     },
     unit =
     {
@@ -718,13 +718,14 @@ data:extend({
   },
   {
     type = "technology",
-    name = "crystal-extraction",
-    icon = "__FoodIndustry__/graphics/technology/crystal-extraction.png",
+    name = "crystal-extraction-1",
+    icon = "__FoodIndustry__/graphics/technology/crystal-extraction-1.png",
     icon_size = 128,
     prerequisites = {"electric-heating", "fluid-handling"},
     effects =
     {  
-		{type = "unlock-recipe", recipe = "crystal"},
+      {type = "unlock-recipe", recipe = "crystal-extraction-stone"},
+      {type = "unlock-recipe", recipe = "pure-water-boiled"},
     },
     unit =
     {
@@ -741,12 +742,12 @@ data:extend({
   {
     type = "technology",
     name = "crystal-extraction-2",
-    icon = "__FoodIndustry__/graphics/technology/crystal-extraction.png",
+    icon = "__FoodIndustry__/graphics/technology/crystal-extraction-2.png",
     icon_size = 128,
-    prerequisites = {"crystal-extraction", "oil-processing"},
+    prerequisites = {"crystal-extraction-1", "oil-processing"},
     effects =
     {  
-		{type = "unlock-recipe", recipe = "crystal-steam"},
+		{type = "unlock-recipe", recipe = "crystal-extraction-steam"},
     },
     unit =
     {

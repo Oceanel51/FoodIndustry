@@ -11,36 +11,6 @@ data:extend({
 			},
 		},
 	},
-	--[[{
-		type = "sound",
-		name = "use-food-sound",
-		variations =
-		{
-			{
-				filename = "__FoodIndustry__/sounds/<sounf eat meat, potato>.ogg",
-				volume = 0.9
-			},
-			{
-				filename = "__FoodIndustry__/sounds/<sounf eat meat, potato>.ogg",
-				volume = 0.9
-			},
-		},
-	},
-	{
-		type = "sound",
-		name = "use-vegan-food-sound",
-		variations =
-		{
-			{
-				filename = "__FoodIndustry__/sounds/<sounf eat carrot, salad>.ogg",
-				volume = 0.9
-			},
-			{
-				filename = "__FoodIndustry__/sounds/<sounf eat carrot, salad>.ogg",
-				volume = 0.9
-			},
-		},
-	},]]
 	{
 		type = "sound",
 		name = "use-food-capsule-sound",
@@ -84,6 +54,44 @@ data:extend({
 	},
 	{
 		type = "sound",
+		name = "use-tomato-sound",
+		variations =
+		{
+			{
+				filename = "__FoodIndustry__/sounds/eating/tomato-eating1.ogg",
+				volume = 0.8
+			},
+			{
+				filename = "__FoodIndustry__/sounds/eating/tomato-eating2.ogg",
+				volume = 1.0
+			},
+			{
+				filename = "__FoodIndustry__/sounds/eating/tomato-eating3.ogg",
+				volume = 0.9
+			}
+		},
+	},
+	{
+		type = "sound",
+		name = "use-meat-sound",
+		variations =
+		{
+			{
+				filename = "__FoodIndustry__/sounds/eating/meat-eating1.ogg",
+				volume = 1.0
+			},
+			{
+				filename = "__FoodIndustry__/sounds/eating/meat-eating2.ogg",
+				volume = 1.0
+			},
+			{
+				filename = "__FoodIndustry__/sounds/eating/meat-eating3.ogg",
+				volume = 1.0
+			}
+		},
+	},
+	{
+		type = "sound",
 		name = "use-basic-salad-sound",
 		variations =
 		{
@@ -112,6 +120,37 @@ data:extend({
 			}
 		},
 	},
+	-- complex food
+	--[[{
+		type = "sound",
+		name = "use-food-sound",
+		variations =
+		{
+			{
+				filename = "__FoodIndustry__/sounds/<sounf eat meat, potato>.ogg",
+				volume = 0.9
+			},
+			{
+				filename = "__FoodIndustry__/sounds/<sounf eat meat, potato>.ogg",
+				volume = 0.9
+			},
+		},
+	},
+	{
+		type = "sound",
+		name = "use-vegan-food-sound",
+		variations =
+		{
+			{
+				filename = "__FoodIndustry__/sounds/<sounf eat carrot, salad>.ogg",
+				volume = 0.9
+			},
+			{
+				filename = "__FoodIndustry__/sounds/<sounf eat carrot, salad>.ogg",
+				volume = 0.9
+			},
+		},
+	},]]
 
 	-- drinks
 	{
@@ -126,6 +165,8 @@ data:extend({
 		},
 	},
 })
+
+
 function make_heavy_gunshot_sounds()
 	return
 	{

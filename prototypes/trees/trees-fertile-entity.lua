@@ -1,7 +1,7 @@
 data:extend(
 {
 
--------------------------------------- Farms ----------------------------------------
+-------------------------------------- Fertile Trees ----------------------------------------
 
   {
     type = "assembling-machine",
@@ -18,8 +18,8 @@ data:extend(
         percent = 2
       }
     },  
-    selection_box = {{-0.75, -0.75}, {0.75, 0.75}}, 
-    collision_box = {{-0.75, -0.75}, {0.75, 0.75}},    
+    selection_box = {{-0.75, -0.75}, {0.75, 0.75}},
+    collision_box = {{-0.35, -0.35}, {0.35, 0.35}},
 	collision_mask = {"item-layer", "object-layer", "water-tile", "resource-layer", "player-layer"},
 	animation =
 	{

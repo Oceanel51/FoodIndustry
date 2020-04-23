@@ -30,7 +30,7 @@ data:extend({
         max_health = 250,
         corpse = "medium-remnants",
         dying_explosion = "medium-explosion",
-        crafting_categories = {"fi-tree-greenhouse"},
+        crafting_categories = {"basic-tree-growth"},
         crafting_speed = 1,
         energy_source =
         {

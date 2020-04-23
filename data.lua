@@ -41,6 +41,7 @@ require("prototypes.storages.storage-item")
 -- drinks
 require("prototypes.drinks.drinks-item")
 require("prototypes.pure-water.fluid")
+require("prototypes.pure-water.pure-water-recipe")
 require("prototypes.drinks.drinks-item-recipe")
 require("prototypes.drinks.drinks-recipe")
 require("prototypes.drinks.drinks-fluid")

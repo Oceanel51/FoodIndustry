@@ -1,7 +1,8 @@
 data:extend({
 	
-	{
-    type = "recipe",
+-------------------- recipe["straw"] -------------------------
+{
+	type = "recipe",
     name = "straw",
     enabled = true,
 	icon = "__FoodIndustry__/graphics/icons/items/straw.png",
@@ -13,13 +14,13 @@ data:extend({
     {
 		{"raw-straw", 5}
     },
-      results = 
+    results = 
 	{
 		{"straw", 16}
 	}
-	},
-
-  {
+},
+-------------------- recipe["compressed-straw"] -------------------------
+{
 	type = "recipe",
 	name = "compressed-straw",
 	enabled = false,
@@ -36,9 +37,9 @@ data:extend({
 	{
 		{"compressed-straw", 1}
 	}
-  },
-
-  {
+},
+-------------------- recipe["fish-to-meat"] -------------------------
+{
 	type = "recipe",
 	name = "fish-to-meat",
 	enabled = true,
@@ -46,23 +47,63 @@ data:extend({
 	icon_size = 32,
 	category = "crafting",
 	subgroup = "foods-meat",
-	order = "w-d-a",
+	order = "w-d-a1",
 	energy_required = 0.5,
 	main_product = "biter-meat",
 	ingredients =
 	{
-		{"raw-fish", 5}
+		{"raw-fish", 1}
 	},
 	results = 
 	{
 		{type = "item", name = "biter-meat", amount = 1, probability = 0.25},
-		{type = "item", name = "fish-bone", amount = 2},
-		{type = "item", name = "raw-mince", amount = 1},
+		{type = "item", name = "fish-bone", amount = 1},
+		{type = "item", name = "raw-mince", amount = 2},
 	}
+},
+-- мясо и рыба в фарш, тоже но с примесью костей.
+{
+	type = "recipe",
+	name = "biter-meat-to-raw-mince",
+	enabled = false,
+	icon = "__FoodIndustry__/graphics/icons/items/raw-mince.png",
+	icon_size = 64,
+	category = "advanced-crafting",
+	subgroup = "foods-meat",
+	order = "w-d-a2",
+	energy_required = 4.0,
+	ingredients =
+	{
+		{"biter-meat", 1},
+	},
+	results = 
+	{
+		{type = "item", name = "raw-mince", amount_min=3, amount_max=4},
+	},
   },
-	
-	
   {
+	type = "recipe",
+	name = "biter-meat-bone-to-raw-mince",
+	enabled = false,
+	icon = "__FoodIndustry__/graphics/icons/items/raw-mince.png",
+	icon_size = 64,
+	category = "advanced-crafting",
+	subgroup = "foods-meat",
+	order = "w-d-a3",
+	energy_required = 5.0,
+	ingredients =
+	{
+		{"biter-meat", 1},
+		{"bone", 1},
+	},
+	results = 
+	{
+		{type = "item", name = "raw-mince", amount_min=4, amount_max=7},
+	},
+  },
+  
+-------------------- recipe["compost-2"] -------------------------
+{
 	type = "recipe",
 	name = "compost-2",
 	enabled = false,
@@ -79,10 +120,10 @@ data:extend({
 	{
 		{"compost", 60}
 	},
-	allow_as_intermediate = false,	
-  },
-
-  {
+	allow_as_intermediate = false,
+},
+-------------------- recipe["compost-cracking"] -------------------------
+{
     type = "recipe",
     name = "compost-cracking",
     enabled = false,
@@ -104,9 +145,9 @@ data:extend({
 		{type = "fluid", name = "fertilizer-oil", amount = 480}
 	},
 	crafting_machine_tint = { primary = {r=0.5,g=0.3,b=0.3,a=1}, secondary = {r=0.8,g=0,b=0.7,a=1}, tertiary = {r=0.6,g=0,b=0.5,a=1}}	
-  },
-
-  {
+},
+-------------------- recipe["fertilizer"] -------------------------
+{
 	type = "recipe",
 	name = "fertilizer",
 	enabled = false,
@@ -128,8 +169,8 @@ data:extend({
 	},
 	crafting_machine_tint = { primary = {r=0.8,g=0.6,b=0.7,a=1}, secondary = {r=0.8,g=0,b=0.7,a=1}, tertiary = {r=0.8,g=0,b=0.7,a=1}}	
   },
-
-  {
+-------------------------------------------------
+{
     type = "recipe",
     name = "fertilizer-oil-cracking",
     enabled = false,
@@ -150,12 +191,15 @@ data:extend({
 		{type = "fluid", name = "petroleum-gas", amount = 5}
 	},
 	allow_as_intermediate = false,
-		},
-	
-	-- species
-	{
+},
+
+
+-------------------------------------------------
+----------------------- species
+-------------------------------------------------
+{
     type = "recipe",
-    name = "crystal",
+    name = "crystal-extraction-stone",
     enabled = false,
 	icon = "__FoodIndustry__/graphics/icons/foods/crystal.png",
 	icon_size = 32,
@@ -176,10 +220,10 @@ data:extend({
 	},
 	allow_decomposition = true
 },
-
+-------------------------------------------------
 {
     type = "recipe",
-    name = "crystal-steam",
+    name = "crystal-extraction-steam",
 	order = "w-b-2",
     enabled = false,
 	icon = "__FoodIndustry__/graphics/icons/recipes/crystal-steam.png",
@@ -201,7 +245,7 @@ data:extend({
 	crafting_machine_tint = { primary = {r=0.8,g=0.8,b=1,a=1}, secondary = {r=0.9,g=0.9,b=0.9,a=1}, tertiary = {r=0.8,g=0.8,b=0.8,a=1}},
 	allow_as_intermediate = false,
 },
-
+-------------------------------------------------
 {
 	type = "recipe",
 	name = "canola-oil",
@@ -223,7 +267,7 @@ data:extend({
 		{type = "fluid", name = "canola-oil", amount = 40}
 	},
 },
-
+-------------------------------------------------
 {
     type = "recipe",
     name = "canola-oil-processing",
@@ -244,8 +288,9 @@ data:extend({
 		{type = "fluid", name = "light-oil", amount = 60},
 		{type = "fluid", name = "petroleum-gas", amount = 10},
 	},
-    },
-	{
+},
+-------------------------------------------------
+{
     type = "recipe",
     name = "canola-oil-lubricant",
     enabled = false,
@@ -263,15 +308,11 @@ data:extend({
 		{type = "fluid", name = "lubricant", amount = 15},
 	},
     },
-	
-	
-	
-	
-	
-	
-	
-	
-	{
+-------------------------------------------------
+
+
+-------------------------------------------------
+{
     type = "recipe",
     name = "compost-water",
     enabled = false,
@@ -285,12 +326,13 @@ data:extend({
 		{type = "fluid", name = "water", amount = 55},
 		{ "compost", 1 }
     },
-      results = 
+	results = 
 	{
 		{type = "fluid", name = "compost-water", amount = 50}
 	},
-    },
-	{
+},
+-------------------------------------------------
+{
     type = "recipe",
     name = "fertilizer-water",
     enabled = false,
@@ -310,13 +352,14 @@ data:extend({
 		{type = "fluid", name = "fertilizer-water", amount = 50}
 	},
 	crafting_machine_tint = { primary = {r=0,g=0.8,b=1,a=1}, secondary = {r=0,g=0.34,b=0.6,a=1}, tertiary = {r=0.34,g=0.2,b=0.6,a=1}}	
-    },
-	
-	
-	
-	
-	
-	{
+},
+
+
+-------------------------------------------------
+------------------- entity
+-------------------------------------------------
+
+{
     type = "recipe",
     name = "fi-basic-farmland",
     enabled = true,
@@ -334,8 +377,9 @@ data:extend({
 	{
 		{"fi-basic-farmland", 2}
 	}
-    },
-	{
+},
+-------------------------------------------------
+{
     type = "recipe",
     name = "fi-composter",
     enabled = false,
@@ -353,8 +397,9 @@ data:extend({
 	{
 		{"fi-composter", 1}
 	}
-    },
-	{
+},
+-------------------------------------------------
+{
     type = "recipe",
     name = "fi-electric-composter",
     enabled = false,
@@ -376,8 +421,9 @@ data:extend({
 	{
 		{"fi-electric-composter", 1}
 	}
-    },
-	{
+},
+-------------------------------------------------
+{
     type = "recipe",
     name = "fi-greenhouse",
     enabled = false,
@@ -397,8 +443,9 @@ data:extend({
 	{
 		{"fi-greenhouse", 1}
 	}
-    },
-	{
+},
+---------------------------------------------
+{
     type = "recipe",
     name = "fi-big-greenhouse",
     enabled = false,
@@ -418,8 +465,9 @@ data:extend({
 	{
 		{"fi-big-greenhouse", 1}
 	}
-    },
-	{
+},
+-------------------------------------------------
+{
     type = "recipe",
     name = "fi-incubator",
     enabled = false,
@@ -440,8 +488,9 @@ data:extend({
 	{
 		{"fi-incubator", 1}
 	}
-    },	
-	{
+},
+-------------------------------------------------
+{
     type = "recipe",
     name = "burner-cooker",
     enabled = false,
@@ -460,9 +509,9 @@ data:extend({
 	{
 		{"burner-cooker", 1}
 	}
-	},
-
-  {
+},
+-------------------------------------------------
+{
 	type = "recipe",
 	name = "electric-cooker",
 	enabled = false,
@@ -482,10 +531,13 @@ data:extend({
 	{
 		{"electric-cooker", 1}
 	}
-  },
-	
-	
-  {
+},
+
+
+-------------------------------------------------
+---------------- food materials
+-------------------------------------------------
+{
 	type = "recipe",
 	name = "corn-flour",
 	enabled = false,
@@ -503,7 +555,7 @@ data:extend({
 	{
 		{"corn-flour", 3}
 	}
-  },
+},
 	
   {
     type = "recipe",
@@ -748,8 +800,10 @@ data:extend({
 	}
   },
 
-  -- food capsules
-  {
+-------------------------------------------------
+----------------- food capsules
+-------------------------------------------------
+{
 	type = "recipe",
 	name = "food-16-to-12-capsule",
 	enabled = false,
@@ -768,8 +822,9 @@ data:extend({
 	{
 		{"food-12-capsule", 1}
 	}
-  },
-  {
+},
+-------------------------------------------------
+{
 	type = "recipe",
 	name = "food-12-to-16-capsule",
 	enabled = true,
@@ -787,8 +842,9 @@ data:extend({
 	{
 		{"food-16-capsule", 3}
 	}
-  },
-  {
+},
+-------------------------------------------------
+{
 	type = "recipe",
 	name = "food-12-to-1-capsule",
 	enabled = false,
@@ -807,8 +863,9 @@ data:extend({
 	{
 		{"food-1-capsule", 1}
 	}
-  },
-  {
+},
+-------------------------------------------------
+{
 	type = "recipe",
 	name = "food-1-to-12-capsule",
 	enabled = true,
@@ -826,9 +883,11 @@ data:extend({
 	{
 		{"food-12-capsule", 2}
 	}
-  },
-  -- food capsules to substances
-  {
+},
+-------------------------------------------------
+------------ food capsules to substances
+-------------------------------------------------
+{
 	type = "recipe",
 	name = "food-16-to-substances",
 	enabled = false,
@@ -852,8 +911,9 @@ data:extend({
 		{type = "item", name = "substance-c", amount = 1, probability = 0.2},
 		{type = "item", name = "substance-f", amount = 1, probability = 0.85},
 	}
-  },
-  {
+},
+-------------------------------------------------
+{
 	type = "recipe",
 	name = "food-12-to-substances",
 	enabled = false,
@@ -880,8 +940,9 @@ data:extend({
 		{type = "item", name = "substance-f", amount = 1, probability = 0.55},
 		{type = "fluid", name = "pure-water", amount = 20},
 	}
-  },
-  {
+},
+-------------------------------------------------
+{
 	type = "recipe",
 	name = "food-1-to-substances",
 	enabled = false,
@@ -904,6 +965,7 @@ data:extend({
 		{"substance-f", 7},
 		{type = "fluid", name = "pure-water", amount = 40},
 	}
-  },
+},
+-------------------------------------------------
 
 })

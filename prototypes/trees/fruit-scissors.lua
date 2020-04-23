@@ -26,7 +26,7 @@ data:extend({
     enabled = false,
     ingredients =
     {
-        {"iron-plate", 2},
+        {"iron-plate", 20},
     },
     result = "fruit-scissor"
   },

@@ -225,6 +225,7 @@ data:extend({
 	ingredients = {
 		{type="fluid", name="raw-tomato-juice", amount=10},
 		{type="fluid", name="pure-water", amount=8},
+		-- TODO add "crystal" item or salt, then balancing
 	},
 	results = {
 		{type="fluid", name="tomato-juice", amount=18},

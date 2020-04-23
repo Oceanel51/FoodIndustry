@@ -205,38 +205,44 @@ data:extend(
   },
 
   -------------------- recipes --------------------
+
+  -- crop growth
   {
     type = "recipe-category",
     name = "basic-crop-growth",
-  } ,
-  {
-    type = "recipe-category",
-    name = "fi-tree-greenhouse",
-  } ,
-  {
-    type = "recipe-category",
-    name = "fi-tree-greenhouse2",
-  } ,
+  },
   {
     type = "recipe-category",
     name = "advanced-crop-growth",
   },
+  -- tree growth
+  {
+    type = "recipe-category",
+    name = "basic-tree-growth",
+  },
+  {
+    type = "recipe-category",
+    name = "advanced-tree-growth",
+  },
+  -- composting
   {
     type = "recipe-category",
     name = "composting",
   },
   {
     type = "recipe-category",
-    name = "food-cattle",
+    name = "auto-composting",
   },
+  --
   {
     type = "recipe-category",
-    name = "auto-composting",
+    name = "food-cattle",
   },
   {
     type = "recipe-category",
     name = "fish-feeding",
   },
+  -- cooking
   {
     type = "recipe-category",
     name = "cooking",	
@@ -247,19 +253,21 @@ data:extend(
   },
   {
     type = "recipe-category",
+    name = "food-capsules",  -- for player hand crafting
+  },
+  --
+  {
+    type = "recipe-category",
     name = "beverages",	-- напитки
   },
   {
     type = "recipe-category",
     name = "juicing",	-- приготовление соков
   },
+  --
   {
     type = "recipe-category",
     name = "mixing",	
-  },
-  {
-    type = "recipe-category",
-    name = "food-capsules",  -- for player hand crafting
   },
   {
     type = "fuel-category",

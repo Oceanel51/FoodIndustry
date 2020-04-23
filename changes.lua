@@ -20,7 +20,7 @@ if data.raw["assembling-machine"]["chemical-plant"] then
 	table.insert(data.raw["assembling-machine"]["chemical-plant"].crafting_categories, "mixing")
 end
 if data.raw.recipe["chemical-plant"] then
-	table.insert(data.raw.recipe["chemical-plant"].ingredients, {"crystal", 1})
+	--table.insert(data.raw.recipe["chemical-plant"].ingredients, {"crystal", 1})
 end
 if data.raw["assembling-machine"]["electric-cooker"] then
 	table.insert(data.raw["assembling-machine"]["electric-cooker"].crafting_categories, "food-capsules")
@@ -30,7 +30,8 @@ end
 local productivity_recipes = {
 	"fertilizer-oil-cracking",
 	"food-science-pack",
-	"crystal",
+	"crystal-extraction-stone",
+	"crystal-extraction-steam",
 	"canola-oil",
 	"canola-oil-processing",
 	"canola-oil-lubricant",
@@ -46,24 +47,25 @@ end
 
 
 local biter_drops = {
-	{"unit",		"small-biter",		 "biter-meat",	0.15,	1,	1},
-	{"unit",		"small-spitter",	 "biter-meat",	0.15,	1,	1},
+	--1 type,		2 name,				3 item,				4 probability,	5 count_min,	6 count_max
+	{"unit",		"small-biter",		"biter-meat",		0.15,			1,				1},
+	{"unit",		"small-spitter",	"biter-meat",		0.15,			1,				1},
 	
-	{"unit",		"medium-biter",		 "biter-meat",	0.15,	1,	1},
-	{"unit",		"medium-spitter",	 "biter-meat",	0.15,	1,	1},
+	{"unit",		"medium-biter",		"biter-meat",		0.15,			1,				1},
+	{"unit",		"medium-spitter",	"biter-meat",		0.15,			1,				1},
 	
-	{"unit",		"big-biter",		 "biter-meat",	0.2,	1,	1},
-	{"unit",		"big-spitter",		 "biter-meat",	0.2,	1,	1},
+	{"unit",		"big-biter",		"biter-meat",		0.2,			1,				1},
+	{"unit",		"big-spitter",		"biter-meat",		0.2,			1,				1},
 	
-	{"unit",		"behemoth-biter",	 "biter-meat",	0.15,	1,	2},
-	{"unit",		"behemoth-spitter",	 "biter-meat",	0.15,	1,	2},
+	{"unit",		"behemoth-biter",	"biter-meat",		0.15,			1,				2},
+	{"unit",		"behemoth-spitter",	"biter-meat",		0.15,			1,				2},
 	
-	{"turret",		"little-worm-turret","biter-meat",	1,		1,	2},
-	{"turret",		"medium-worm-turret","biter-meat",	1,		1,	3},
-	{"turret",		"big-worm-turret",	 "biter-meat",	1,		1,	4},
+	{"turret",		"little-worm-turret","biter-meat",		1,				1,				2},
+	{"turret",		"medium-worm-turret","biter-meat",		1,				1,				3},
+	{"turret",		"big-worm-turret",	"biter-meat",		1,				1,				4},
 	
-	{"unit-spawner", "biter-spawner",	 "biter-meat",	1,	 	2,	4},
-	{"unit-spawner", "spitter-spawner",	 "biter-meat",	1,		2,	4},
+	{"unit-spawner","biter-spawner",	"biter-meat",		1,	 			2,				4},
+	{"unit-spawner","spitter-spawner",	"biter-meat",		1,				2,				4},
 }
 for index,d in pairs(biter_drops) do
 	if data.raw[d[1]] then
@@ -94,7 +96,7 @@ if data.raw.armor["light-armor"] then
 end
 
 if data.raw.technology["oil-processing"] then
-	table.insert(data.raw.technology["oil-processing"].prerequisites,"crystal-extraction")
+	--table.insert(data.raw.technology["oil-processing"].prerequisites,"crystal-extraction-1")
 end
 
 -- open recipe after research technology "optics"
