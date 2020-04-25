@@ -18,7 +18,7 @@ for index, crop in pairs(trees) do
 			order = "w-e-"..index.."-y",
 			stack_size = 10
 		},
-		-- Fruit seeds recipe
+		-- recipe when click on -fertile-tree
 		{
 			type = "recipe",
 			name = crop[1].."-pick",
@@ -43,7 +43,7 @@ for index, crop in pairs(trees) do
 		},
 	})
 
-	-- Fruit seeds
+	-- Fruit seeds item, recipe
 	data:extend({
 		{
 			type = "item",
@@ -74,11 +74,11 @@ for index, crop in pairs(trees) do
 			{
 				{type = "item", name = crop[1].."-seeds", amount_min = math.floor(crop[6]-0.4), amount_max = math.floor(crop[6]+1.4)}
 			}
-		},
+	},
 	})
 
 
-	-- Fruit as food
+	-- Fruit capsule (as food)
 	data:extend({
 		{
 			type = "capsule",
@@ -268,7 +268,7 @@ for index, crop in pairs(trees) do
 			always_show_made_in = true,
 			allow_decomposition = false,
 		},
-				
+		
 	})
 
 	-- trees

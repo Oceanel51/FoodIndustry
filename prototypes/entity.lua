@@ -143,16 +143,17 @@ data:extend(
     },
     order = "d-a",
     allowed_effects = {}
-  },  
+  },
 
----------------------- fi-greenhouse
-
+  ---------------------------------------------------------------------------------------------------
+  ----------------------              fi-greenhouse               -----------------------------------
+  ---------------------------------------------------------------------------------------------------
 	{
     type = "assembling-machine",
     name = "fi-greenhouse",
     icon = "__FoodIndustry__/graphics/icons/entities/fi-greenhouse-icon.png",
     icon_size = 64,
-	flags = {"placeable-neutral", "placeable-player", "player-creation"},
+	  flags = {"placeable-neutral", "placeable-player", "player-creation"},
     minable = {hardness = 0.5, mining_time = 3, result = "fi-greenhouse"},
     max_health = 400,
     resistances =
@@ -180,9 +181,9 @@ data:extend(
     },
     selection_box = {{-2.25, -2.25}, {2.25, 2.25}},
     collision_box = {{-2.25, -2.25}, {2.25, 2.25}},
-	collision_mask = {"item-layer", "object-layer", "water-tile", "player-layer"},
-	animation =
-	{
+  	collision_mask = {"item-layer", "object-layer", "water-tile", "player-layer"},
+  	animation =
+	  {
       layers =
       {
         {
@@ -222,15 +223,15 @@ data:extend(
             }
         },
         {
-			draw_as_shadow = true,
-            filename = "__FoodIndustry__/graphics/entity/farms/fi-greenhouse-shadow.png",
-			priority = "high",
-			width = 302,
-			height = 218,
-			scale = 0.351*2,
-			frame_count = 1,
-			shift = {0.992, 0.012},
-            hr_version = {
+        draw_as_shadow = true,
+        filename = "__FoodIndustry__/graphics/entity/farms/fi-greenhouse-shadow.png",
+        priority = "high",
+        width = 302,
+        height = 218,
+        scale = 0.351*2,
+        frame_count = 1,
+        shift = {0.992, 0.012},
+        hr_version = {
 			  draw_as_shadow = true,
 			  filename = "__FoodIndustry__/graphics/entity/farms/hr-fi-greenhouse-shadow.png",
 			  priority = "high",

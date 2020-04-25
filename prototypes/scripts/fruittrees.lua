@@ -18,7 +18,7 @@ local function local_fruittree_tick(event)
         for index, fruitSeedling in ipairs(global.foodi.fruitSeedlings) do
             if fruitSeedling ~= nil
                and fruitSeedling.fullgrowntick < event.tick then
-
+                
                 table.remove(global.foodi.fruitSeedlings, index)
 
                 local surface = fruitSeedling.seedling.surface
@@ -70,7 +70,7 @@ function initFruitTrees()
     if global ~= nil then
         if not global.foodi then global.foodi = {} end
         if not global.foodi.fruittrees then global.foodi.fruittrees = {} end
-        if not global.foodi.fruitSeedlings then global.foodi.fruitSeedlings = {} end
+        if not global.foodi.fruitSeedlings then global.foodi.fruitSeedlings = {} end   -- tree seedlings
     end
 
     table.insert(foodi.ticks,local_fruittree_tick)

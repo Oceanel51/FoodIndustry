@@ -71,7 +71,7 @@ data:extend({
 	category = "advanced-crafting",
 	subgroup = "foods-meat",
 	order = "w-d-a2",
-	energy_required = 4.0,
+	energy_required = 3.2,
 	ingredients =
 	{
 		{"biter-meat", 1},
@@ -90,7 +90,7 @@ data:extend({
 	category = "advanced-crafting",
 	subgroup = "foods-meat",
 	order = "w-d-a3",
-	energy_required = 5.0,
+	energy_required = 3.4,
 	ingredients =
 	{
 		{"biter-meat", 1},
@@ -769,7 +769,7 @@ data:extend({
 	category = "cooking",
 	subgroup = "foods-species",
 	order = "w-b-7",
-	energy_required = 20.0,
+	energy_required = 10.0,
 	ingredients =
 	{
 		{"gelatine-granules", 1},

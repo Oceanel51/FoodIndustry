@@ -5,7 +5,7 @@ data:extend({
         category = "crafting",
         enabled = false,
         ingredients = {
-            {type = "item", name = "wood", amount = 10}
+            {type = "item", name = "wood", amount = 5}
         },
         results = {
             {"cattle-wood-fence", 1}
@@ -20,7 +20,7 @@ data:extend({
         subgroup = "food-machines-cattle",
         order = "e",
         place_result = "cattle-wood-fence",
-        stack_size = 500
+        stack_size = 200
     },
 
     {
@@ -310,11 +310,12 @@ data:extend({
         category = "crafting",
         enabled = false,
         ingredients = {
-            {type = "item", name = "wood", amount = 10},
+            {"cattle-wood-fence", 1},
+            {type = "item", name = "iron-plate", amount = 2},
             {"electronic-circuit", 2}
         },
         results = {
-            {"cattle-wood-gate", 10}
+            {"cattle-wood-gate", 1}
         }
     },
     {

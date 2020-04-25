@@ -105,7 +105,7 @@ data:extend({
   category = "advanced-crafting",
   subgroup = "foods-fish",
   order = "w-b-3",
-  energy_required = 4.0,
+  energy_required = 2.8,
   ingredients =
   {
       {"fish-meat-red", 1},
@@ -124,7 +124,7 @@ data:extend({
   category = "advanced-crafting",
   subgroup = "foods-fish",
   order = "w-b-4",
-  energy_required = 5.0,
+  energy_required = 3.2,
   ingredients =
   {
       {"fish-meat-red", 1},
