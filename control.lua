@@ -103,7 +103,7 @@ script.on_event({defines.events.on_tick}, function (e)
 				
 				--fi_global_variables_set(index) -- set global variables default data of connected players
 				-----------------------------------------------------
-        
+				
 				if not player.character then -- for sandbox mode
 					-- This will come in when player are in space map mode with space-exploration, so do nothing 
 				else ---- calculate character Energy usage data
@@ -215,11 +215,11 @@ script.on_event({defines.events.on_tick}, function (e)
 						--player.print("manual crafting "..player.crafting_queue_size.." items")
 					end
 					global.usage[index] = usage
-				
+					
 					
 					---------------------- fullness calculation ---------------------
 					fullness_calc_on_tick(index)
-
+					
 					------------------------- sleep marking -------------------------
 					if e.tick % 1200 == 0 then
 						sleep_trg_on_tick(index, player) -- start or reset Sleep
@@ -276,8 +276,6 @@ script.on_event({defines.events.on_tick}, function (e)
 					end
 					
 					
-
-
 					-- for achievement "overweight" > 90% for 30 minutes
 					if global.energy[index] > global.energy_max[index] * 0.9 then
 						global.fi_achievements[index]["overweight"][3] = global.fi_achievements[index]["overweight"][3] + 5
@@ -289,6 +287,12 @@ script.on_event({defines.events.on_tick}, function (e)
 						global.fi_achievements[index]["overweight"][3] = 0
 					end
 					
+					
+					-- debug
+					--if e.tick % 240 == 0 then
+						--player.print("fruitSeedlings "..global.foodi.fruitSeedlings)
+						--writeDebug(dump(global.foodi.fruitSeedlings))
+					--end
 				end
 			--end
 			figui.update(index, player)

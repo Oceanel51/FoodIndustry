@@ -278,7 +278,7 @@ for index, crop in pairs(trees) do
 			name = crop[1].."-tree",
 			order = "w",
 			collision_box = {{-0.2,-0.2},{0.2,0.2}},
-			collision_mask = {"item-layer", "object-layer", "water-tile"},
+			collision_mask = {"item-layer", "object-layer", "water-tile", "player-layer"},
 			darkness_of_burnt_tree = 0.5,
 			emissions_per_second = -0.001 * 60,
 			flags = {
@@ -294,25 +294,17 @@ for index, crop in pairs(trees) do
 			healing_per_tick = 0,
 			repair_speed_modifier = 0,
 			minable = {
-				count = crop[17],
+				mining_particle = "wooden-particle",
 				mining_hardness = 1,
 				mining_time = 2.5,
+				count = crop[17],
 				results = {
 					{type = "item", name = "wood", amount_min = 8, amount_max = 15},
 					{type = "item", name = "raw-straw", amount = 3, probability = 0.8},
 					{type = "item", name = crop[1], amount_min = math.floor(crop[17]), amount_max = math.floor(crop[17]*2.2) }
 				},
 			},
-			selection_box = {
-				{
-					-0.4,
-					-0.4
-				},
-				{
-					0.4,
-					0.4
-				}
-			},
+			selection_box = { { -0.4, -0.4 }, { 0.4, 0.4 } },
 			subgroup = "trees",
 			pictures = {
 				{

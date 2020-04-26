@@ -63,6 +63,8 @@ for index, crop in pairs(crops) do
 				order = "w-d-"..index.."-z",
 				stack_size = crop[13]
 			},
+			-- TODO seed like tree
+			
 			{
 				type = "recipe",
 				name = crop[1].."-seeds",
@@ -84,7 +86,7 @@ for index, crop in pairs(crops) do
 					{type = "item", name = "straw", amount_min = 1, amount_max = crop[11]*2-1},
 				}
 			},
-		})	
+		})
 	end
 	if crop[10] then
 		data:extend({

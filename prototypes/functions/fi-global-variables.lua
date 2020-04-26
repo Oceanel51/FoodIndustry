@@ -193,10 +193,11 @@ function fi_global_variables_set(index)
 	
 	if not global.fi_achievements[index] then
 		global.fi_achievements[index] = {}                           -- variable for achievements
-		--								key					unlock,		count/stage,	time,	table
+		--								key					unlock,		count/stage,		timeall,	table
 		-- TODO implement achievements
-		global.fi_achievements[index]["gourmet"]		 = {false,		0,				0,		{}}
-		global.fi_achievements[index]["overweight"]		 = {false,		0,				0,		0}		-- values achievement "overweight"
+		global.fi_achievements[index]["gourmet"]			 = {false,		0,				0,			{}		}
+		global.fi_achievements[index]["overweight"]			 = {false,		0,				0,			{}		} -- values achievement "overweight"
+		global.fi_achievements[index]["trees-gardener"]		 = {false,		0,				0,			nil		} -- init empty value of trees-gardener
 	end
 	--------------------------------------------------
 	if not global.fi_debug[index] then
