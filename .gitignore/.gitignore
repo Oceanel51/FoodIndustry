@@ -45,8 +45,7 @@ luac.out
 *.code-workspace
 
 # Devs directories
-Food-Industry/.development/
 .development/
-.dev/
-.dev\
+/.dev/
 .idea/
+/.vscode/
