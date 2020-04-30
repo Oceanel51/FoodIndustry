@@ -46,6 +46,6 @@ luac.out
 
 # Devs directories
 .development/
-*.dev/
+*/.dev/
 .idea/
-*.vscode/
+*/.vscode/
