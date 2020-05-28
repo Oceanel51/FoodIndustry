@@ -441,8 +441,8 @@ data:extend({
     {
       {type = "unlock-recipe", recipe = "food-picker"},
       {type = "unlock-recipe", recipe = "fi_recipe_tree_greenhouse"},
-      {type = "unlock-recipe", recipe = "apple-basic-growth-seedling"},
-      {type = "unlock-recipe", recipe = "orange-basic-growth-seedling"},
+      --{type = "unlock-recipe", recipe = "apple-basic-growth-seedling"},
+      --{type = "unlock-recipe", recipe = "orange-basic-growth-seedling"},
   },
     unit =
     {
@@ -1000,6 +1000,8 @@ data:extend({
     {  
 		{type = "unlock-recipe", recipe = "corn-flour"},
 		{type = "unlock-recipe", recipe = "corn-bread"},
+		{type = "unlock-recipe", recipe = "wheat-flour"},
+		{type = "unlock-recipe", recipe = "bread"},
     },
     unit =
     {

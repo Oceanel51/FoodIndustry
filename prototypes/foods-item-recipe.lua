@@ -5,6 +5,7 @@ local foods = {
 --1									2					3		4		5						6		7		8				9			11
 --name,								subgroup,			stack,	cool,	crafting category,		time,	amount,	order,			recipe_version,	ingredients
 {"cooked-corn",						"foods-vegan",		10,		0.5,	"cooking",				4.0,	1,		"w-d-a",		nil,		{{"corn", 1}, {type="fluid", name="pure-water", amount=5}} },
+{"bread",							"foods-vegan",		10,		0.5,	"cooking",				7.0,	1,		"w-d-c",		nil,		{{"wheat-flour", 2}, {type="fluid", name="pure-water", amount=6}} },
 {"corn-bread",						"foods-vegan",		10,		0.5,	"cooking",				8.0,	1,		"w-d-c",		nil,		{{"corn-flour", 2}, {type="fluid", name="pure-water", amount=10}} },
 {"popcorn",							"foods-vegan",		50,		0.2,	"cooking",				1.5,	1,		"w-d-d",		nil,		{{"corn-seeds", 1}, {type="fluid", name="canola-oil", amount=1}} },
 {"basic-salad",						"foods-vegan",		10,		0.5,	"cooking",				1.5,	1,		"w-d-b",		nil,		{{"tomato", 2}, {"cucumber", 1}, {"lettuce", 3}} },
@@ -86,10 +87,39 @@ local foods = {
 }
 
 
+local function generateFoodCapsule(name, subgroup, file, wrappedEntity, size)
+	--local subgroup = subgroup.."-signpost-icons"
+	--if not data.raw["item-subgroup"][subgroup] then
+	--
+	--	subgroups = subgroups + 1
+	--	order = 0
+	--	
+	--	data:extend{{
+	--		type = "item-subgroup",
+	--		name = subgroup,
+	--		group = "signpost-icons",
+	--		order = string.rep("a", subgroups)
+	--	}}
+	--end
+
+	data:extend{
+		{
+			type = "virtual-signal",
+			name = "signpost-icon-"..name,
+			--	localised_name = wrappedEntity and {"entity-name."..name} or nil,
+			--icon = file or "__attach-notes__/graphics/signpost-icons/"..name.."-icon.png",
+			--icon_size = size or 32,
+			subgroup = subgroup,
+			order = string.rep("a", order),
+		}
+	}
+end
+
+
 for i, f in pairs(foods) do
 	--local sg = "foods"
 	local rname = f[1]
-	local iconsize = 32
+	local iconsize = 64
 	if f[9] then
 		rname = f[1].."-"..f[9]
 	end
@@ -98,13 +128,15 @@ for i, f in pairs(foods) do
 	--else
 	--	sg = f[2]
 	--end
+
+	-- for icon dir path
 	local type = "foods"
 	if string.match(f[1], ".+capsule$") then
 		type = "capsules"
-		iconsize = 64
+		--iconsize = 64
 	else
 		type = "foods"
-		iconsize = 32
+		--iconsize = 64
 	end
 	
 	data:extend({

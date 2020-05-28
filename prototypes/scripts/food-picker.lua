@@ -106,7 +106,7 @@ function initFoodPicker()
     if global ~= nil then
         if not global.foodi then global.foodi = {} end
         if not global.foodi.food_pickers then global.foodi.food_pickers = {} end
-        if not global.foodi.fruittrees then global.foodi.fruittrees = {} end
+        --if not global.foodi.fruittrees then global.foodi.fruittrees = {} end
     end
 
     if foodi.ticks ~= nil then

@@ -1,7 +1,7 @@
+require "prototypes.functions.fi-global-variables"
 require "prototypes.functions.fi-GUI"
 require "prototypes.functions.fi-effects"
 require "prototypes.tables.fi-foods-table"
-require "prototypes.functions.fi-global-variables"
 require "prototypes.functions.fi-calculations"
 --require "prototypes.functions.fi-modifiers"
 require "libs.helper-functions"
@@ -12,7 +12,7 @@ require("prototypes.fish.fishing-boat-control")
 require("prototypes.fish.shovel-control")
 
 require("prototypes.scripts.food-picker")
-require("prototypes.scripts.fruittrees")
+require("prototypes.scripts.trees_control")
 require("prototypes.scripts.fruit-scissors")
 require("prototypes.scripts.cattle")
 require("prototypes.scripts.cattle-grabber")
@@ -43,6 +43,28 @@ maxtimes["Fast mining"] = 3600
 maxtimes["Invulnerability"] = 900
 maxtimes["Health buffer"] = 2700
 
+
+-- TODO make entity filter from "fruittreestable" prototypes\scripts\trees_control.lua
+-- local validEntityName = {
+-- 	['nixie-tube']       = 1,
+-- 	['nixie-tube-alpha'] = 1,
+-- 	['nixie-tube-small'] = 2
+-- }
+--local filters = global.foodi.event_entity_filter
+local filters = require("prototypes.tables.fi-entity-filter")
+-- local names = {}
+-- for name in pairs(validEntityName) do
+--   filters[#filters+1] = {filter="name",name=name}
+--   filters[#filters+1] = {filter="ghost_name",name=name}
+--   names[#names+1] = name
+-- end
+-- EXample
+-- filters = {
+-- 	{ filter = "name", name = "apple-seedling" },
+-- 	{ filter = "ghost_name", name = "apple-seedling" },
+-- }
+
+
 function setupFi()
 	if not foodi then foodi = {} end
 	if not foodi.ticks then foodi.ticks = {} end
@@ -60,6 +82,9 @@ function setupFi()
 		if not global.foodi then global.foodi = {} end
 		if not global.players then global.players = {} end
 		if not global.foodi.players then global.foodi.players = {} end
+		--if not global.foodi.fruittrees then global.foodi.fruittrees = {} end
+		if not global.foodi.fruitSeedlings then global.foodi.fruitSeedlings = {} end   -- tree seedlings
+		if not global.foodi.tilefertility then global.foodi.tilefertility = {} end   -- tile fertility
 	end
 end
 
@@ -333,14 +358,16 @@ script.on_event({defines.events.on_player_respawned}, function(event)
 	local index = event.player_index 
 	-- player in dead on multiplayer
 	global.energy[index] = global.energy_max[index] / 2
-	global.drinks[index] = 50
+	global.drinks[index] = global.drinks_max[index] / 4
 	global.foods_eaten[index] = {0,		0,				0,		0,				{v=0,m=0,c=0,f=0},	{}}
 	global.fullness_stomach[index] = {}
 	global.fullness[index] = 0
 	global.used[index] = 0
 	global.usage[index] = 1
-	global.fi_energy_ussage_modifier[index] = 1
 	global.substances[index] = {v=0,m=0,c=0,f=0}
+	global.fi_energy_ussage_modifier[index] = 0
+	global.fi_drinks_ussage_modifier[index] = 0
+	global.fi_character_fat_modifier[index] = 0
 	for effect,t in pairs(global.effects[index]) do
 		global.effects[index][effect] = {false,0,0,0,{}}
 	end
@@ -375,7 +402,7 @@ script.on_event(defines.events.on_built_entity, function(event)
 		event.created_entity.burner.currently_burning="wood"
 		event.created_entity.burner.remaining_burning_fuel=2000000
 	end
-end
+end, filters
 )
 
 
@@ -463,13 +490,18 @@ script.on_event(defines.events.on_player_used_capsule, function(event)
 					-- количество единиц еды в сумме
 					global.foods[event.player_index][i] = global.foods[event.player_index][i] + 1
 					
+					
 					-- TODO перенести в effects_add
 					-- activate effect timer
 					--if food[5] then
 					--	global.effects[event.player_index][food[5]] = maxtimes[food[5]]
 					--end
 					
-					--TODO перенести в eat_food(
+					
+					-- TODO перенести в eat_food() или отдельную функцию с таблицей:
+					-- food_name, chance_%, result_table
+					-- проценты добавить согласно https://stackoverflow.com/a/2986573
+					-- TODO fix when player inventory is full
 					--local player = game.players[event.player_index]
 					local item_count = 0
 					if string.match(event.item.name, "flask") == "flask" then
@@ -530,6 +562,9 @@ script.on_event(defines.events.on_player_used_capsule, function(event)
 					elseif string.match(event.item.name, "flask%-pure%-water") == "flask-pure-water" or string.match(event.item.name, "plastic%-bottle%-pure%-water") == "plastic-bottle-pure-water" then
 						player.play_sound({path = "drink-water-sound",volume_modifier = 0.8}) -- play sound when drink water
 					end
+					-- for effect capsules
+					-- kit-06.ogg, kit-15.ogg, kit-16.ogg, or
+					-- gui-forward-button-click.ogg, gui-green-button.ogg, gui-green-confirm.ogg
 
 					-- TODO сделать "gourmet"
 					-- for achievement "gourmet"
@@ -984,7 +1019,7 @@ end
 
 local remove_events = {defines.events.on_entity_died,defines.events.on_robot_pre_mined,defines.events.on_robot_mined_entity,defines.events.on_pre_player_mined_entity,defines.events.on_player_mined_entity}
 
-script.on_event(defines.events.on_robot_built_entity, local_on_added)
+script.on_event(defines.events.on_robot_built_entity, local_on_added, filters)
 script.on_event(remove_events, local_on_removed)
 script.on_event(defines.events.on_mod_item_opened, mod_item_opened)
 

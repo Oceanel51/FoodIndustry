@@ -75,6 +75,17 @@ function fi_global_variables_init()
 		global.fi_debug = {}
 	end
 
+	------------------- foodi vars -------------------
+--	if global ~= nil then
+	if not global.foodi then global.foodi = {} end
+	if not global.players then global.players = {} end
+	if not global.foodi.players then global.foodi.players = {} end
+	--if not global.foodi.fruittrees then global.foodi.fruittrees = {} end
+	if not global.foodi.fruitSeedlings then global.foodi.fruitSeedlings = {} end	-- tree seedlings
+	if not global.foodi.tilefertility then global.foodi.tilefertility = {} end		-- tile fertility
+	if not global.foodi.event_entity_filter then global.foodi.event_entity_filter = {} end		-- event entity filter
+--	end
+
 end
 
 

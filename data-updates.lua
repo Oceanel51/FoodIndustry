@@ -4,3 +4,5 @@ if mods["bobplates"] then
 end
 
 require("compatibilities.bob-compatibility-recipes") -- Bob compatibility
+
+require ("compatibilities.bi-compatibility") -- Bio_Industries compatibility

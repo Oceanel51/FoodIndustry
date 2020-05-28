@@ -23,7 +23,7 @@ function eat_food(player, index, food, food_item)
 			-- TODO тут будет инфо о съеденой пище если есть "Eating" button или food-feeder equipment
 			
 		else
-			player.print("[Debug] Warning: "..food[1].." is not a table!")
+			player.print("[Debug] [color=1,0,0]Warning[/color]: "..food[1].." is not a table!")
 		end
 	end
 	-----------------------
@@ -162,14 +162,15 @@ end
 
 
 function energy_reduction(index, player)
-	local default_delay = 10000 / settings.global["food-industry-hunger-speed"].value -- default 10000 / 100 = 100%
+	local settings_delay = 10000 / settings.global["food-industry-hunger-speed"].value -- default 10000 / 100 = 100%
+	local default_factor = 0.1 -- 0.1 is reduce additionaly for 10% (it is needed for a global change in Energy usage)
     
     global.used[index] = global.used[index] + global.usage[index]
 	--writeDebug("global.used["..index.."] "..global.used[index])
 
-    --								100%	*		1					-				0							+	(reduce additionaly for 10%)
-    if global.used[index] >= (default_delay * (global.update_delay[index] - global.fi_energy_ussage_modifier[index] + 0.1)) then
-        global.used[index] = global.used[index] - (default_delay * (global.update_delay[index] - global.fi_energy_ussage_modifier[index] + 0.1))
+    --								100%	*		1					-				0							+	(reduce of default_factor)
+    if global.used[index] >= (settings_delay * (global.update_delay[index] - global.fi_energy_ussage_modifier[index] + default_factor)) then
+        global.used[index] = global.used[index] - (settings_delay * (global.update_delay[index] - global.fi_energy_ussage_modifier[index] + default_factor))
         if global.energy[index] > -50 then
             global.energy[index] = global.energy[index] - 1
             --writeDebug("global.energy["..index.."] "..global.energy[index])
@@ -182,14 +183,14 @@ end
 
 -- Drinks usage
 function drinks_reduction(index, player)
-	local default_delay = 10000 / settings.global["food-industry-hunger-speed"].value -- default 10000 / 100 = 100%
+	local settings_delay = 10000 / settings.global["food-industry-hunger-speed"].value -- default 10000 / 100 = 100%
 	
 	global.drinks_used[index] = global.drinks_used[index] + global.usage[index]
 	
 	-- drinks ussage в отличии от energy usage не зависит от global.update_delay, который исследуется с помощью technology
 	-- depends only from global.usage
-	if global.drinks_used[index] >= (default_delay * (1 - global.fi_drinks_ussage_modifier[index])) then
-		global.drinks_used[index] = global.drinks_used[index] - (default_delay * (1 - global.fi_drinks_ussage_modifier[index]))
+	if global.drinks_used[index] >= (settings_delay * (1 - global.fi_drinks_ussage_modifier[index])) then
+		global.drinks_used[index] = global.drinks_used[index] - (settings_delay * (1 - global.fi_drinks_ussage_modifier[index]))
 		if global.drinks[index] <= 0 then
 			if global.effects[index]["thirst"][1] and global.effects[index]["thirst"][2] == 1 then -- if thirst preparation (6 min)
 				global.drinks[index] = global.drinks[index] - 0.55
@@ -210,7 +211,7 @@ function drinks_reduction(index, player)
 			end
 		else
 			if global.drinks[index] > global.drinks_max[index] * -1 then
-				global.drinks[index] = global.drinks[index] - 1
+				global.drinks[index] = global.drinks[index] - 0.9 -- normal drinks usage
 				if global.drinks[index] < 0 then
 					global.drinks[index] = 0
 				end

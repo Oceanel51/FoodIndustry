@@ -1,5 +1,5 @@
 data:extend({
-  
+
   {
     type = "technology",
     name = "paper-packaging-tara",

@@ -292,4 +292,11 @@ data:extend(
     order = "w",
     richness = false,
 	},
+	{
+    type = "autoplace-control",
+    category = "resource",
+    name = "cereal-plant",
+    order = "w",
+    richness = true,
+	},
 })

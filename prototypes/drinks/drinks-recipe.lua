@@ -60,13 +60,36 @@ data:extend({
 	category = "food-capsules",
 	subgroup = "drinks-pure-water",
 	order = "w-d0",
-	energy_required = 2.0,
+	energy_required = 1.9,
 	ingredients = {
 		--{"flask", 1},
 		--{type="fluid", name="pure-water", amount=30}
 	},
 	results = {
 		{"flask-pure-water", 1},
+	},
+	allow_decomposition = true
+  },
+  {
+	type = "recipe",
+	name = "hand-plastic-bottle-pure-water",
+	enabled = true,
+	hidden = true,
+	icons = {
+		{ icon = "__FoodIndustry__/graphics/icons/drinks/plastic-bottle-full.png", },
+		{
+			icon = "__FoodIndustry__/graphics/icons/drinks/plastic-bottle-full-mask.png",
+			tint = {r=0.0,g=0.5,b=1.0,a=0.5},
+		},
+	},
+	icon_size = 64,
+	category = "food-capsules",
+	subgroup = "drinks-pure-water",
+	order = "w-d0",
+	energy_required = 3.5,
+	ingredients = {},
+	results = {
+		{"plastic-bottle-pure-water", 1},
 	},
 	allow_decomposition = true
   },

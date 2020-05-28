@@ -18,5 +18,11 @@ for i=1,4 do
 	end
 end
 
+
+if data.raw.capsule["raw-fish"] then
+	if data.raw.capsule["raw-fish"].capsule_action.attack_parameters.ammo_type.action.action_delivery.target_effects.damage ~= nil then
+		data.raw.capsule["raw-fish"].capsule_action.attack_parameters.ammo_type.action.action_delivery.target_effects.damage.amount = 0
+	end
+end
 data.raw["fish"]["fish"].autoplace.min_influence = 0.01
 data.raw["fish"]["fish"].autoplace.max_influence = 0.02

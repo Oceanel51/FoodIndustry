@@ -26,6 +26,7 @@ local function fruittree_on_FruitScissorClick(event)
         if fruitTree ~= nil then
             player.begin_crafting{ count = 1, recipe = fruitTree.result.."-pick" }
             -- player.insert({ name = fruitTree.result, count = 1 })
+            -- TODO remove fruits from "prototypes/scripts/trees_control" fruittreestable
         end
     end
 end

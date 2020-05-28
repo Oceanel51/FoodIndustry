@@ -1,5 +1,5 @@
 if data.raw.capsule["raw-fish"] then
-	data.raw.capsule["raw-fish"].capsule_action.attack_parameters.ammo_type.action.action_delivery.target_effects.damage.amount = 0
+	--data.raw.capsule["raw-fish"].capsule_action.attack_parameters.ammo_type.action.action_delivery.target_effects.damage.amount = 0
 end
 
 -- add new type of science-pack to labs

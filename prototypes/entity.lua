@@ -588,7 +588,7 @@ data:extend(
         type = "acid",
         percent = 80
       },
-	  {
+      {
         type = "fire",
         percent = 60
       }
@@ -1262,6 +1262,7 @@ data:extend(
     icon = "__FoodIndustry__/graphics/icons/entities/burner-cooker.png",
     icon_size = 32,
     flags = {"placeable-neutral", "placeable-player", "player-creation"},
+    fast_replaceable_group = "cooker",
     minable = {hardness = 0.3, mining_time = 1, result = "burner-cooker"},
     max_health = 200,
     resistances =
@@ -1269,8 +1270,8 @@ data:extend(
     },    
     selection_box = {{-0.95, -0.95}, {0.95, 0.95}}, 
     collision_box = {{-0.95, -0.95}, {0.95, 0.95}},    
-	collision_mask = {"item-layer", "object-layer", "water-tile", "player-layer"},
-	fluid_boxes =
+    collision_mask = {"item-layer", "object-layer", "water-tile", "player-layer"},
+    fluid_boxes =
     {
       {
         production_type = "input",
@@ -1282,21 +1283,20 @@ data:extend(
       },
       off_when_no_fluid_recipe = true
     },
-	animation = {
+    animation = {
         layers = {
           {
             filename = "__FoodIndustry__/graphics/entity/machines/fi-burner-cooker.png",
             priority = "extra-high",
             width = 150,
             height = 171,
-			scale = 0.45,
-			frame_count = 1,
-			line_length = 1,
+            scale = 0.45,
+            frame_count = 1,
+            line_length = 1,
             shift = {-0.01, -0.09},
           },
         }
     },
-	
     working_visualisations =
       {
         {
@@ -1314,9 +1314,9 @@ data:extend(
             frame_count = 48,
             axially_symmetrical = false,
             direction_count = 1,
-            shift = util.by_pixel(2, 5.5),
+            shift = util.by_pixel(14.4, 8.0),
             hr_version =
-        {
+            {
               filename = "__base__/graphics/entity/stone-furnace/hr-stone-furnace-fire.png",
               priority = "extra-high",
               line_length = 8,
@@ -1325,7 +1325,7 @@ data:extend(
               frame_count = 48,
               axially_symmetrical = false,
               direction_count = 1,
-              shift = util.by_pixel(-0.75, 5.5),
+              shift = util.by_pixel(14.4, 8.0),
               scale = 0.5
             }
           },
@@ -1352,27 +1352,27 @@ data:extend(
     },
     crafting_categories = {"cooking", "food-capsules"},
     crafting_speed = 0.75,
-	energy_source =
+    energy_source =
     {
-		type = "burner",
-		usage_priority = "secondary-input",	
-		fuel_categories = {"chemical"},
-		fuel_inventory_size = 1,
-		light_flicker = { intensity = 0, size = 0}, color = { r = 1.0, g = 0.9, b = 0.8 },
-		--emissions = 0.015,
-		emissions_per_minute = 1.5 / 100 * 30,
-		smoke =
-		{
-			{
-			name = "smoke",
-			deviation = {0.1, 0.1},
-			frequency = 5,
-			position = {0.42, 0.0},
-			starting_vertical_speed = 0.08,
-			starting_frame_deviation = 60
-			}
-		  }
-	},
+      type = "burner",
+      usage_priority = "secondary-input",	
+      fuel_categories = {"chemical"},
+      fuel_inventory_size = 1,
+      light_flicker = { intensity = 0, size = 0}, color = { r = 1.0, g = 0.9, b = 0.8 },
+      --emissions = 0.015,
+      emissions_per_minute = 1.5 / 100 * 30,
+      smoke =
+      {
+        {
+        name = "smoke",
+        deviation = {0.1, 0.1},
+        frequency = 5,
+        position = {0.42, 0.0},
+        starting_vertical_speed = 0.08,
+        starting_frame_deviation = 60
+        }
+      }
+    },
     energy_usage = "30kW",
     ingredient_count = 8,
     module_specification =
@@ -1393,6 +1393,7 @@ data:extend(
     icon = "__FoodIndustry__/graphics/icons/entities/electric-cooker.png",
     icon_size = 32,
     flags = {"placeable-neutral", "placeable-player", "player-creation"},
+    fast_replaceable_group = "cooker",
     minable = {hardness = 0.3, mining_time = 1, result = "electric-cooker"},
     max_health = 200,
     resistances =
@@ -1400,8 +1401,8 @@ data:extend(
     },    
     selection_box = {{-0.95, -0.95}, {0.95, 0.95}}, 
     collision_box = {{-0.95, -0.95}, {0.95, 0.95}},    
-	collision_mask = {"item-layer", "object-layer", "water-tile", "player-layer"},
-	fluid_boxes =
+    collision_mask = {"item-layer", "object-layer", "water-tile", "player-layer"},
+    fluid_boxes =
     {
       {
         production_type = "input",
@@ -1411,7 +1412,7 @@ data:extend(
         base_level = -2,
         pipe_connections = {{ type="input", position = {1.5, 0.5}}}
       },
-	  {
+      {
         production_type = "output",
         pipe_picture = assembler2pipepictures(),
         pipe_covers = pipecoverspictures(),
@@ -1421,52 +1422,51 @@ data:extend(
       },
       off_when_no_fluid_recipe = true
     },
-	animation =
-	{
+    animation =
+    {
       layers =
       {
         {
-            filename = "__FoodIndustry__/graphics/entity/machines/electric-cooker.png",
-            frame_count = 1,
-            height = 64,            
-            priority = "extra-high",
-            shift = {
-             0.515625,
-              0.0625
-            },
-            width = 81
+          filename = "__FoodIndustry__/graphics/entity/machines/electric-cooker.png",
+          frame_count = 1,
+          height = 64,
+          priority = "extra-high",
+          shift = {
+            0.515625,
+            0.0625
           },
+          width = 81
+        },
       }
     },
-
-working_visualisations =
-	{ 
-		{
-			animation =
-			{
-				filename = "__base__/graphics/entity/electric-furnace/electric-furnace-heater.png",
-				priority = "high",
-				width = 25,
-				height = 15,
-				frame_count = 12,
-				animation_speed = 0.5,
-				shift = {0.037, 0.59},
-				scale = 1*0.7,
-				hr_version =
-				{
-					filename = "__base__/graphics/entity/electric-furnace/hr-electric-furnace-heater.png",
-					priority = "high",
-					width = 60,
-					height = 56,
-					frame_count = 12,
-					animation_speed = 0.5,
-					shift = util.by_pixel(1.75, 25.75),
-					scale = 0.5*0.7
-				}
-			},
-			light = {intensity = 0.34, size = 5, shift = {0.0, 1.0}, color = {r = 1.0, g = 1.0, b = 1.0}}
-		}, 
-	},
+    working_visualisations =
+    {
+      {
+      animation =
+      {
+        filename = "__base__/graphics/entity/electric-furnace/electric-furnace-heater.png",
+        priority = "high",
+        width = 25,
+        height = 15,
+        frame_count = 12,
+        animation_speed = 0.5,
+        shift = {0.037, 0.59},
+        scale = 1*0.7,
+        hr_version =
+        {
+          filename = "__base__/graphics/entity/electric-furnace/hr-electric-furnace-heater.png",
+          priority = "high",
+          width = 60,
+          height = 56,
+          frame_count = 12,
+          animation_speed = 0.5,
+          shift = util.by_pixel(1.75, 25.75),
+          scale = 0.5*0.7
+        }
+      },
+      light = {intensity = 0.34, size = 5, shift = {0.0, 1.0}, color = {r = 1.0, g = 1.0, b = 1.0}}
+      },
+    },
     open_sound = { filename = "__base__/sound/machine-open.ogg", volume = 0.85 },
     close_sound = { filename = "__base__/sound/machine-close.ogg", volume = 0.75 },
     working_sound =
@@ -1486,12 +1486,12 @@ working_visualisations =
     },
     crafting_categories = {"cooking", "advanced-cooking", "food-capsules", "mixing"},
     crafting_speed = 1,
-	energy_source =
+  	energy_source =
     {
-		type = "electric",
-		usage_priority = "secondary-input",
-		--emissions = 0.004
-		emissions_per_minute = 0.4 / 100 * 30
+    type = "electric",
+    usage_priority = "secondary-input",
+    --emissions = 0.004
+    emissions_per_minute = 0.4 / 100 * 30
     },
     energy_usage = "50kW",
     ingredient_count = 8,

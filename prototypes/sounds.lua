@@ -164,6 +164,39 @@ data:extend({
 			}
 		},
 	},
+	{
+		type = "sound",
+		name = "bottle-big-full",
+		variations =
+		{
+			{
+				filename = "__FoodIndustry__/sounds/liquids/bottle-big-full.ogg",
+				volume = 0.7
+			}
+		},
+	},
+	{
+		type = "sound",
+		name = "bottle-mid-full",
+		variations =
+		{
+			{
+				filename = "__FoodIndustry__/sounds/liquids/bottle-mid-full.ogg",
+				volume = 0.75
+			}
+		},
+	},
+	{
+		type = "sound",
+		name = "bottle-small-full",
+		variations =
+		{
+			{
+				filename = "__FoodIndustry__/sounds/liquids/bottle-small-full.ogg",
+				volume = 0.8
+			}
+		},
+	},
 })
 
 

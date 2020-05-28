@@ -1,7 +1,8 @@
+require "prototypes.functions.fi-global-variables"
+
 -- main data and foods
 require("prototypes.item")
 require("prototypes.fluids")
-require("prototypes.crop")
 require("prototypes.recipe")
 require("prototypes.foods-item-recipe")
 require("prototypes.composting-recipe")
@@ -10,7 +11,9 @@ require("prototypes.entity")
 require("prototypes.technology")
 require("prototypes.category")
 require("prototypes.achievements")
-require("prototypes.plants")
+require("prototypes.plants-item-recipe")
+require("prototypes.plants-entity")
+require("prototypes.plants") -- all plants are collects here
 
 -- fishes
 require("prototypes.fish.fish")
@@ -54,7 +57,7 @@ require("prototypes.substances.substances-item")
 require("prototypes.substances.substances-recipe")
 
 -- trees
-require("prototypes.trees.trees")
+require("prototypes.trees.trees-entity")
 require("prototypes.trees.food-picker")
 require("prototypes.trees.tree-greenhouse")
 require("prototypes.trees.hydroponics-building")
@@ -67,6 +70,11 @@ require("prototypes.styles.fi-sprites")
 require("prototypes.sounds")
 
 require("changes")
+
+-- TODO add requirements for normal game mode
+if not data.is_demo then
+
+end
 
 -- IR compatibility
 if mods["IndustrialRevolution"] then

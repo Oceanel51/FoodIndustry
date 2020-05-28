@@ -9,15 +9,15 @@ data:extend({
     category = "advanced-cooking",
     subgroup = "drinks-pure-water",
     order = "w-c",
-    energy_required = 50.0,
+    energy_required = 60.0,
     ingredients =
     {
       {type="fluid", name="water", amount=100},
     },
     results =
     {
-      {type="fluid", name="pure-water", amount=70},
-      {type = "item", name = "crystal", amount = 1, probability = 0.15},
+      {type="fluid", name="pure-water", amount=60},
+      {type = "item", name = "crystal", amount = 1, probability = 0.13},
     }
   },
 

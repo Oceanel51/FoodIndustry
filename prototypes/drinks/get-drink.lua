@@ -9,7 +9,7 @@ local PURE_WATER = "pure-water"
 
 local isDrink = {
     [FLASK] = { result = "hand-flask-pure-water" },
-    [PLASTIC_BOTTLE] = { result = "plastic-bottle-pure-water" },
+    [PLASTIC_BOTTLE] = { result = "hand-plastic-bottle-pure-water" },
     [GLASS_BOTTLE] = { result = "glass-bottle-pure-water" },
 }
 
@@ -27,19 +27,24 @@ local function getDrink_on_Click(event)
     local getDrink = isDrink[player.cursor_stack.name]
 
     if getDrink ~= nil then
-       if player.selected.name == PURE_WATER then
+        if player.selected.name == PURE_WATER then
+            -- TODO учитывать расстояние до pure-water ресурса в пару тайлов
             -- take away some amount resource of pure-water
             if player.cursor_stack.name == "flask" and player.selected.amount - 30 > 0 then
                 player.selected.amount = player.selected.amount - 30
+                player.play_sound({path = "bottle-small-full",volume_modifier = 1.0})
             elseif player.cursor_stack.name == "plastic-bottle" and player.selected.amount - 60 > 0 then
                 player.selected.amount = player.selected.amount - 60
+                player.play_sound({path = "bottle-big-full",volume_modifier = 1.0})
             elseif player.cursor_stack.name == "glass-bottle" and player.selected.amount - 50 > 0 then
                 player.selected.amount = player.selected.amount - 50
+                player.play_sound({path = "bottle-mid-full",volume_modifier = 1.0})
             else
                 player.print({'print.not-enough-pure-water', "__ITEM__"..player.cursor_stack.name.."__"})
                 return
             end
             player.begin_crafting{ count = 1, recipe = getDrink.result }
+            --player.play_sound({path = "__core__/sound/mine-fish",volume_modifier = 1.0})
 
             local inv = player.get_main_inventory()
 
@@ -52,7 +57,7 @@ local function getDrink_on_Click(event)
             else
                 player.cursor_stack.clear()
             end
-      end
+        end
     end
 end
 

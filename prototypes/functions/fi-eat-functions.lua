@@ -8,7 +8,7 @@ function eatoutFood()
 			local inv = player.get_inventory(defines.inventory.character_main)
 			for trys=1,2 do
 				for i,d in pairs(inv.get_contents()) do
-					if gives_saturation[i] then -- ��� ����� ��������� ���� ��� ��� � ��� ��������� Energy
+					if gives_saturation[i] then -- тут нужно прописать если это еда и она добавляет Energy
 						if foundFood == false or foundFoodValue < gives_saturation[i] then
 							foundFoodValue = gives_saturation[i]
 							foundFood = i
