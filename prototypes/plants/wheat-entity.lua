@@ -176,11 +176,11 @@ for index, plant in pairs(plants) do
 		collision_box = plant[7],
 		collision_mask = {"item-layer", "object-layer", "water-tile"},
 		selection_box = plant[8],
-		darkness_of_burnt_tree = 0.5,
+		darkness_of_burnt_tree = 0.0,
 		emissions_per_second = wheatstagestable["seed"][2],
 		flags = {
 			"placeable-neutral",
-			"breaths-air",
+			"placeable-off-grid",
 			"placeable-player",
 			"player-creation"
 		},
@@ -207,6 +207,15 @@ for index, plant in pairs(plants) do
 					scale = plant[6],
 					shift = plant[9],
 					tint = {r=0.17,g=0.13,b=0.1,a=1.0}
+				},
+				{
+					filename = "__FoodIndustry__/graphics/entity/plants/"..plant[1].."/"..plant[1].."-seed.png",
+					priority = "high",
+					width = 256,
+					height = 256,
+					scale = plant[6],
+					shift = plant[9],
+					tint = {r=0.85,g=0.64,b=0.06,a=0.9}
 				},
 			},
 		},

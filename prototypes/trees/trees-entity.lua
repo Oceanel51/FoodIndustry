@@ -265,9 +265,9 @@ for index, crop in pairs(trees) do
 			},
 			  results = 
 			{
-				{type="item", name=crop[1].."-seedling", amount=1, probability = 0.35},
-				{type="item", name=crop[1].."-seedling", amount=1, probability = 0.35},
-				{type="item", name=crop[1].."-seedling", amount=1, probability = 0.35},
+				{type="item", name=crop[1].."-seedling", amount=1, probability = 0.5},
+				{type="item", name=crop[1].."-seedling", amount=1, probability = 0.4},
+				{type="item", name=crop[1].."-seedling", amount=1, probability = 0.3},
 				{type="item", name="straw", amount_min=crop[11]*9, amount_max=crop[11]*17},
 				{type="item", name="raw-straw", amount_min=crop[11]*2.8, amount_max=crop[11]*4.2},
 			},
@@ -289,8 +289,8 @@ for index, crop in pairs(trees) do
 			results=
 			{
 				{type="item", name=crop[1].."-seedling", amount=crop[4]-2},
-				{type="item", name=crop[1].."-seedling", amount=1, probability=0.55},
-				{type="item", name=crop[1].."-seedling", amount=1, probability=0.55},
+				{type="item", name=crop[1].."-seedling", amount=1, probability=0.5},
+				{type="item", name=crop[1].."-seedling", amount=1, probability=0.4},
 				{type="item", name="raw-straw", amount_min=crop[11]*1.8, amount_max=crop[11]*3.2},
 			},
 			enabled = false,
@@ -884,6 +884,7 @@ for index, crop in pairs(trees) do
 				},
 			},
 			map_color={r=1, g=0.533333333, b=0},
+			build_effect_smoke = false,
 		},
 	})
 

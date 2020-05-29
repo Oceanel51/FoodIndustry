@@ -26,3 +26,6 @@ if data.raw.capsule["raw-fish"] then
 end
 data.raw["fish"]["fish"].autoplace.min_influence = 0.01
 data.raw["fish"]["fish"].autoplace.max_influence = 0.02
+
+
+require("compatibilities/data-final-fixes/Krastorio2")
