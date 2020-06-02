@@ -1,7 +1,3 @@
-local TICKS_TO_GROW_MIN = 30 * 60
-local TICKS_TO_GROW_MAX = 2 * 60 * 60
-
-
 local ORANGE_SEEDLING = "orange-seedling"
 local APPLE_SEEDLING = "apple-seedling"
 local WHEAT_SEEDLING = "wheat-seed"
@@ -16,38 +12,72 @@ local isFruitSeedlings = {
     [WHEAT_SEEDLING] = { result = WHEAT_TREE },
 }
 
+local times = {
+    --name,        time_min,   time_max
+    ["apple"] =  { 1.6*60*60,  2.0*60*60 },
+    ["orange"] = { 1.8*60*60,  2.2*60*60 },
+    ["wheat"] =  { 1.0*30*60,  1.0*60*60 },
+}
+
+
+
+local function addSeedling(seedling, event, time)
+    --writeDebug("foodi.add "..seedling.name.."") -- DEBUG
+    --if seedling.valid and isFruitSeedlings[seedling.name] ~= nil then
+    local time_min = 1.6 * 60 * 10
+    local time_max = 2.0 * 60 * 10
+    if time ~= nil then
+        time_min = time[1]
+        time_max = time[2]
+    end
+    if seedling.valid then
+        table.insert(global.foodi.fruitSeedlings,
+        {
+            seedling = seedling,
+            fullgrowntick = event.tick + math.random(time_min, time_max)
+        })
+        --writeDebug("foodi.fruitSeedlings "..seedling.name.." [color=0,1,0]added[/color]") -- DEBUG
+        return true
+    end
+    return false
+end
+
 local function local_fruittree_tick(event)
     if #global.foodi.fruitSeedlings > 0 then
         for index, fruitSeedling in ipairs(global.foodi.fruitSeedlings) do
             if fruitSeedling ~= nil
                and fruitSeedling.fullgrowntick < event.tick then
 
-                table.remove(global.foodi.fruitSeedlings, index)
-
                 local surface = fruitSeedling.seedling.surface
                 local position = fruitSeedling.seedling.position
-                local isFruitSeedling = isFruitSeedlings[fruitSeedling.seedling.name]
+                local time = {}
+                --local isFruitSeedling = isFruitSeedlings[fruitSeedling.seedling.name]
+                local treetype = string.match(fruitSeedling.seedling.name, "(.*)-")
+                if string.match(fruitSeedling.seedling.name, ".+seed") == fruitSeedling.seedling.name then
+                    table.remove(global.foodi.fruitSeedlings, index)
+                    fruitSeedling.seedling.destroy()
+                    local fruitSeedlingNew = surface.create_entity{name = treetype.."-seedling", position = position}
+                    addSeedling(fruitSeedlingNew, event, times.treetype)
+                elseif string.match(fruitSeedling.seedling.name, ".+seedling") == fruitSeedling.seedling.name then
+                    table.remove(global.foodi.fruitSeedlings, index)
+                    fruitSeedling.seedling.destroy()
+                    local fruitSeedlingNew = surface.create_entity{name = treetype.."-sapling", position = position}
+                    addSeedling(fruitSeedlingNew, event, times.treetype)
+                elseif string.match(fruitSeedling.seedling.name, ".+sapling") == fruitSeedling.seedling.name then
+                    table.remove(global.foodi.fruitSeedlings, index)
+                    fruitSeedling.seedling.destroy()
+                    local fruitSeedlingNew = surface.create_entity{name = treetype.."-young", position = position}
+                    addSeedling(fruitSeedlingNew, event, times.treetype)
+                elseif string.match(fruitSeedling.seedling.name, ".+young") == fruitSeedling.seedling.name then
+                    table.remove(global.foodi.fruitSeedlings, index)
+                    fruitSeedling.seedling.destroy()
+                    local fruitSeedlingNew = surface.create_entity{name = treetype.."-tree", position = position}
+                end
 
                 --writeDebug("foodi.fruitSeedlings "..fruitSeedling.seedling.name.." grown up!") -- DEBUG
-                fruitSeedling.seedling.destroy()
-                surface.create_entity{name = isFruitSeedling.result, position = position}
             end
         end
     end
-end
-
-local function addSeedling(seedling, event)
-    --writeDebug("foodi.add "..seedling.name.."") -- DEBUG
-    if seedling.valid and isFruitSeedlings[seedling.name] ~= nil then
-        table.insert(global.foodi.fruitSeedlings,
-        {
-            seedling = seedling,
-            fullgrowntick = event.tick + math.random(TICKS_TO_GROW_MIN, TICKS_TO_GROW_MAX)
-        })
-        --writeDebug("foodi.fruitSeedlings "..seedling.name.." [color=0,1,0]added[/color]") -- DEBUG
-        return true
-    end
-    return false
 end
 
 local local_fruittree_added = function(entity, event)

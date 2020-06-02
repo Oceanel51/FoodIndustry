@@ -47,6 +47,26 @@ local treestagestable = {
 	-- "old-tree".
 }
 
+
+local sounds = require("__base__.prototypes.entity.demo-sounds")
+local leaf_sound = sounds.tree_leaves
+local leaf_sound_trigger = 
+{
+  {
+    type = "play-sound",
+    sound = leaf_sound,
+    damage_type_filters = "fire"
+  }
+}
+local axe_hitting_wood_trigger =
+{
+  {
+    type = "play-sound",
+    sound = data.raw["utility-sounds"].default.mining_wood
+  }
+}
+
+
 for index, crop in pairs(trees) do
 	data:extend({
 		-- Fruits
@@ -329,11 +349,40 @@ for index, crop in pairs(trees) do
 	data:extend({
 		-- wild tree
 		{
+			type = "corpse",
+			name = crop[1].."-wild-tree-stump",
+			icon = "__FoodIndustry__/graphics/icons/trees/"..crop[1].."-wild-tree-stump-icon.png",
+			icon_size = 64, icon_mipmaps = 4,
+			flags = tree_corpse_flags,
+			collision_box = {{-0.2, -0.2}, {0.2, 0.2}},
+			selection_box = {{-0.4, -0.4}, {0.4, 0.4}},
+			tile_width = 1,
+			tile_height = 1,
+			selectable_in_game = false,
+			time_before_removed = 60 * 60 * 3, -- 3 minutes
+			final_render_layer = "remnants",
+			subgroup = "remnants",
+			order = crop[1].."-o-wild",
+			animation = {
+				{
+					filename = "__FoodIndustry__/graphics/entity/trees/"..crop[1].."/"..crop[1].."-tree-stump.png",
+					priority = "high",
+					width = 945,
+					height = 771,
+					frame_count = 1,
+					direction_count = 1,
+					scale = crop[16],
+					shift = {0.89, -1.71},
+					--hr_version = util.table.deepcopy(variation.stump.hr_version)
+				},
+			}
+		},
+		{
 			type = "tree",
 			name = crop[1].."-wild-tree",
 			icon = "__FoodIndustry__/graphics/icons/trees/"..crop[1].."-tree.png",
 			icon_size = 32,
-			order = "w",
+			order = crop[1].."-o-wild",
 			autoplace = {
 				control = "food-plant",
 				max_probability = 0.006,
@@ -363,9 +412,10 @@ for index, crop in pairs(trees) do
 			healing_per_tick = 0.001,
 			repair_speed_modifier = 0,
 			minable = {
-				count = crop[17],
+				mining_particle = "wooden-particle",
 				mining_hardness = 1,
 				mining_time = 3.5,
+				count = crop[17],
 				results = {
 					{type = "item", name = "wood", amount_min = 6, amount_max = 12},
 					--{type = "item", name = "raw-straw", amount = 3, probability = 0.8},
@@ -373,11 +423,24 @@ for index, crop in pairs(trees) do
 					{type = "item", name = crop[1], amount_min = math.floor(crop[17]), amount_max = math.floor(crop[17]*1.6) }
 				},
 			},
+			corpse = crop[1].."-wild-tree-stump",
+			damaged_trigger_effect = leaf_sound_trigger,
+			mined_sound = leaf_sound,
+			remains_when_mined = crop[1].."-wild-tree-stump",
 			selection_box = { {-0.4,-0.4}, {0.4,0.4} },
 			subgroup = "trees",
 			pictures = {
 				{
 					filename = "__FoodIndustry__/graphics/entity/trees/"..crop[1].."/"..crop[1].."-wild-tree.png",
+					priority = "high",
+					width = 945,
+					height = 771,
+					scale = crop[16],
+					shift = {0.89, -1.71},
+				},
+				{
+					draw_as_shadow = true,
+					filename = "__FoodIndustry__/graphics/entity/trees/"..crop[1].."/"..crop[1].."-wild-tree-shadow.png",
 					priority = "high",
 					width = 945,
 					height = 771,
@@ -685,7 +748,7 @@ for index, crop in pairs(trees) do
 		--------------------- young trees
 		{
 			type = "tree",
-			name = crop[1].."-young-tree",
+			name = crop[1].."-young",
 			order = "w",
 			collision_box = {{-0.4,-0.4},{0.4,0.4}},
 			collision_mask = {"item-layer", "object-layer", "water-tile", "player-layer"},
@@ -749,48 +812,25 @@ for index, crop in pairs(trees) do
 			},
 			map_color={r=1, g=0.533333333, b=0},
 		},
+		
+		--------------------- adult trees
 		{
-			type = "tree",
-			name = crop[1].."-young-old-tree",
-			order = "w",
-			collision_box = {{-0.4,-0.4},{0.4,0.4}},
-			collision_mask = {"item-layer", "object-layer", "water-tile", "player-layer"},
-			selection_box = { { -0.4, -0.4 }, { 0.4, 0.4 } },
-			darkness_of_burnt_tree = 0.5,
-			emissions_per_second = -0.0012,
-			flags = {
-				"placeable-neutral",
-				"placeable-off-grid",
-				--"breaths-air",
-				"placeable-player",
-				"player-creation"
-			},
-			icon = "__FoodIndustry__/graphics/icons/trees/"..crop[1].."-young-old-tree-icon.png",
-			icon_size = 64,
-			icon_mipmaps = 4,
-			max_health = 100,
-			healing_per_tick = 0,
-			repair_speed_modifier = 0,
-			minable = {
-				mining_particle = "wooden-particle",
-				mining_hardness = 1,
-				mining_time = 1.5,
-				results = {
-					{type = "item", name = "wood", amount_min = 2, amount_max = 4},
-				},
-			},
-			subgroup = "trees",
+			type = "corpse",
+			name = crop[1].."-tree-stump",
+			icon = "__FoodIndustry__/graphics/icons/trees/"..crop[1].."-tree-stump-icon.png",
+			icon_size = 64, icon_mipmaps = 4,
+			flags = tree_corpse_flags,
+			collision_box = {{-0.2, -0.2}, {0.2, 0.2}},
+			selection_box = {{-0.4, -0.4}, {0.4, 0.4}},
+			tile_width = 1,
+			tile_height = 1,
+			selectable_in_game = false,
+			time_before_removed = 60 * 60 * 3, -- 3 minutes
+			final_render_layer = "remnants",
+			subgroup = "remnants",
+			order = crop[1].."-h",
 			pictures = {
 				layers = {
-					{
-						draw_as_shadow = true,
-						filename = "__FoodIndustry__/graphics/entity/trees/"..crop[1].."/"..crop[1].."-young-old-tree-shadow.png",
-						priority = "high",
-						width = 945,
-						height = 771,
-						scale = crop[16],
-						shift = {0.89, -1.71},
-					},
 					{
 						filename = "__FoodIndustry__/graphics/entity/trees/"..crop[1].."/"..crop[1].."-dirt.png",
 						priority = "high",
@@ -800,23 +840,22 @@ for index, crop in pairs(trees) do
 						shift = {0.89, -1.71},
 					},
 					{
-					filename = "__FoodIndustry__/graphics/entity/trees/"..crop[1].."/"..crop[1].."-young-old-tree.png",
-					priority = "high",
-					width = 945,
-					height = 771,
-					scale = crop[16],
-					shift = {0.89, -1.71},
-					}
+						filename = "__FoodIndustry__/graphics/entity/trees/"..crop[1].."/"..crop[1].."-tree-stump.png",
+						priority = "high",
+						width = 945,
+						height = 771,
+						scale = crop[16],
+						shift = {0.89, -1.71},
+					},
 				},
-			},
-			map_color={r=0.5, g=0.5, b=0.5},
+			}
 		},
-		
-		--------------------- adult trees
 		{
 			type = "tree",
 			name = crop[1].."-tree",
-			order = "w",
+			order = crop[1].."g",
+			subgroup = "trees",
+			selection_box = { { -0.4, -0.4 }, { 0.4, 0.4 } },
 			collision_box = {{-0.2,-0.2},{0.2,0.2}},
 			collision_mask = {"item-layer", "object-layer", "water-tile", "player-layer"},
 			darkness_of_burnt_tree = 0.5,
@@ -843,18 +882,36 @@ for index, crop in pairs(trees) do
 					{type = "item", name = "raw-straw", amount = 3, probability = 0.8},
 					{type = "item", name = crop[1], amount_min = math.floor(crop[17]), amount_max = math.floor(crop[17]*2.2) }
 				},
-			},
-			selection_box = { { -0.4, -0.4 }, { 0.4, 0.4 } },
-			subgroup = "trees",
-			pictures = {
-				{
-					filename = "__FoodIndustry__/graphics/entity/trees/"..crop[1].."/"..crop[1].."-fertile-tree.png",
-					priority = "high",
-					width = 945,
-					height = 771,
-					scale = crop[16],
-					shift = {0.89, -1.71},
+				mining_trigger = {
+					{
+						type = "direct",
+						action_delivery =
+						{
+							{
+								type = "instant",
+								target_effects = leaf_sound_trigger
+							},
+							{
+								type = "instant",
+								target_effects = axe_hitting_wood_trigger
+							}
+						}
+					}
 				},
+			},
+			corpse = crop[1].."-tree-stump",
+			damaged_trigger_effect = leaf_sound_trigger,
+			mined_sound = leaf_sound,
+			remains_when_mined = crop[1].."-tree-stump",
+			pictures = {
+				-- {
+				-- 	filename = "__FoodIndustry__/graphics/entity/trees/"..crop[1].."/"..crop[1].."-fertile-tree.png",
+				-- 	priority = "high",
+				-- 	width = 945,
+				-- 	height = 771,
+				-- 	scale = crop[16],
+				-- 	shift = {0.89, -1.71},
+				-- },
 				layers = {
 					{
 						draw_as_shadow = true,
@@ -874,7 +931,7 @@ for index, crop in pairs(trees) do
 						shift = {0.89, -1.71},
 					},
 					{
-					filename = "__FoodIndustry__/graphics/entity/trees/"..crop[1].."/"..crop[1].."-tree.png",
+					filename = "__FoodIndustry__/graphics/entity/trees/"..crop[1].."/"..crop[1].."-fertile-tree-1.png",
 					priority = "high",
 					width = 945,
 					height = 771,
@@ -883,7 +940,7 @@ for index, crop in pairs(trees) do
 					}
 				},
 			},
-			map_color={r=1, g=0.533333333, b=0},
+			map_color={r=1, g=0.53, b=0},
 			build_effect_smoke = false,
 		},
 	})
