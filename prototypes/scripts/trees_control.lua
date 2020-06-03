@@ -1,26 +1,26 @@
 local times = {
     --name
     --    type,         time_min,   time_max
-    ["apple"] =  {
-        ["seed"]     = {1.0*10*60,  1.0*10*60},
-        ["seedling"] = {1.0*10*60,  1.0*10*60},
-        ["sapling"]  = {1.0*10*60,  1.0*10*60},
-        ["young-1"]  = {2.0*10*60,  2.0*10*60},
-        ["adult-1"]  = {2.0*10*60,  2.0*10*60}
+    ["apple"] =  {                                  -- default 1300 (21 Minutes and 40 Seconds) / 0.6 = 2166
+        ["seed"]     = {390*60,  390*60*1.2},
+        ["seedling"] = {200*60,  200*60*1.1},
+        ["sapling"]  = {330*60,  330*60*1.3},
+        ["young-1"]  = {380*60,  380*60*1.4},
+        ["adult-1"]  = {  5*60,    5*60}
     },
-    ["orange"] = {
-        ["seed"]     = {1.0*10*60,  1.0*10*60},
-        ["seedling"] = {1.0*10*60,  1.0*10*60},
-        ["sapling"]  = {1.0*10*60,  1.0*10*60},
-        ["young-1"]  = {2.0*10*60,  2.0*10*60},
-        ["adult-1"]  = {2.0*10*60,  2.0*10*60}
+    ["orange"] = {                                  -- default 1570 (26 Minutes and 10 Seconds) / 0.6 = 2616
+        ["seed"]     = {440*60,  440*60*1.3},
+        ["seedling"] = {290*60,  290*60*1.2},
+        ["sapling"]  = {380*60,  380*60*1.2},
+        ["young-1"]  = {460*60,  460*60*1.4},
+        ["adult-1"]  = {  6*60,    6*60}
     },
-    ["wheat"] =  {
-        ["seed"]     = {0.5*10*60,  0.5*10*60},
-        ["seedling"] = {1.0*10*60,  1.0*10*60},
-        ["sapling"]  = {1.0*10*60,  1.0*10*60},
-        ["young-1"]  = {2.0*10*60,  2.0*10*60},
-        ["adult-1"]  = {2.0*10*60,  2.0*10*60}
+    ["wheat"] =  {                                  -- default 600 (10 Minutes and 0 Seconds) / 0.6 = 1000
+        ["seed"]     = {130*60,  130*60*1.2},
+        ["seedling"] = {160*60,  160*60*1.1},
+        ["sapling"]  = {130*60,  130*60*1.2},
+        ["young-1"]  = {180*60,  180*60*1.4},
+        ["adult-1"]  = {  4*60,    4*60}
     }
 }
 local treetypes = {"seed", "seedling", "sapling", "young", "adult"}
@@ -101,7 +101,7 @@ local function local_fruittree_tick(event)
                 --writeDebug("FI: match "..string.match(fruitSeedling.seedling.name, ".+"..treetype)) -- DEBUG
                 if string.match(fruitSeedling.seedling.name, ".*"..treetype..".*") == fruitSeedling.seedling.name then
                     table.remove(global.foodi.fruitSeedlings, index)
-                    writeDebug("foodi.fruitSeedlings "..fruitSeedling.seedling.name.." #"..index.." [color=1,0,0]removed[/color] on_tick") -- DEBUG
+                    --writeDebug("foodi.fruitSeedlings "..fruitSeedling.seedling.name.." #"..index.." [color=1,0,0]removed[/color] on_tick") -- DEBUG
 
                     if treetypenext ~= nil then
                         fruitSeedling.seedling.destroy()
@@ -112,7 +112,7 @@ local function local_fruittree_tick(event)
                 --writeDebug("FI: treename = "..treename..", treetype = "..treetype.. " [color=0,1,0]growed[/color] to --> "..treetypenext) -- DEBUG
 
                 --writeDebug("foodi.fruitSeedlings "..fruitSeedling.seedling.name.." grown up!") -- DEBUG
-                writeDebug(dump(global.foodi.fruitSeedlings)) -- DEBUG
+                --writeDebug(dump(global.foodi.fruitSeedlings)) -- DEBUG
             end
         end
     end

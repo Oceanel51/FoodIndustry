@@ -5,8 +5,10 @@ local entity_names = {
 }
 local validEntityName = {
 	["fi-basic-farmland"]	= 1,
+	["apple-seed"]			= 1,
 	["apple-seedling"]		= 1,
 	["apple-sapling"]		= 1,
+	["orange-seed"]			= 1,
 	["orange-seedling"]		= 1,
 	["orange-sapling"]		= 1,
 	["wheat-seed"]			= 1,
