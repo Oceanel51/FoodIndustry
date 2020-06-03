@@ -24,20 +24,20 @@ local plants = {
 local wheatstagestable = {
 	-- 					1				2				3				4				5					6		
 	-- stage,			mining_time,	emissions sec,	max_health,		mesh_rezult,	minable_count,		stack
-	["wild-plant"]	=	{0.4,			0,				5,				0,				2,					50		},
+	["wild-plant"]	=	{0.4,			0,				5,				2,				2,					50		},
 
 	["seed"]		=	{0.2,			0,				40,				0,				1,					50		},
-	["seedling"]	=	{0.2,			-0.00002,		30,				0,				1,					20		},
-	["sapling"]		=	{0.3,			-0.00006,		6,				0,				2,					10		},
+	["seedling"]	=	{0.3,			-0.00012,		30,				6,				0,					20		},
+	["sapling"]		=	{0.5,			-0.00018,		6,				14,				0,					10		},
 
-	["young-1"]		=	{2,				-0.00012,		10,				5,				4,					10		},
-	["young-2"]		=	{2,				-0.00012,		10,				5,				3,					10		},
-	["young-3"]		=	{2,				-0.00012,		10,				5,				2,					10		},
-	["young-old"]	=	{0.45,			0,				5,				0,				1,					10		},
+	["young-1"]		=	{2,				-0.00015,		10,				4,				3,					10		},
+	["young-2"]		=	{2,				-0.00012,		10,				5,				2,					10		},
+	["young-3"]		=	{2,				-0.00008,		10,				6,				1,					10		},
+	["young-old"]	=	{0.45,			0,				5,				0,				0,					10		},
 	
-	["adult-1"]		=	{2.5,			-0.002,			15,				10,				8,					10		},
-	["adult-2"]		=	{2.5,			-0.002,			15,				10,				6,					10		},
-	["adult-3"]		=	{2.5,			-0.002,			15,				10,				5,					10		},
+	["adult-1"]		=	{2.5,			-0.00008,		15,				6,				8,					10		},
+	["adult-2"]		=	{2.5,			-0.00006,		15,				8,				6,					10		},
+	["adult-3"]		=	{2.5,			-0.00004,		15,				10,				5,					10		},
 	["adult-old"]	=	{0.9,			0,				10,				0,				2,					10		},
 }
 
@@ -100,6 +100,7 @@ for index, plant in pairs(plants) do
 			--result = plant[1],
 			results = {
 				{type = "item", name = plant[1], amount = wheatstagestable["wild-plant"][5]},
+				{type = "item", name = "straw", amount = wheatstagestable["wild-plant"][4]*6, probability = 0.9},
 			},
 		},
 		selection_box = plant[8],
@@ -258,6 +259,7 @@ for index, plant in pairs(plants) do
 		flags = {
 			"placeable-neutral",
 			"breaths-air",
+			"placeable-off-grid",
 			"placeable-player",
 			"player-creation"
 		},
@@ -271,8 +273,12 @@ for index, plant in pairs(plants) do
 			mining_particle = "wooden-particle",
 			mining_hardness = 1,
 			mining_time = wheatstagestable["seedling"][1],
-			result = plant[1].."-seedling",
-			count = wheatstagestable["seedling"][5],
+			--result = plant[1].."-seedling",
+			--count = wheatstagestable["seedling"][5],
+			results = {
+				{type = "item", name = "raw-straw", amount = wheatstagestable["seedling"][4]},
+				{type = "item", name = "straw", amount_min = wheatstagestable["seedling"][4]*2, amount_max = wheatstagestable["seedling"][4]*3},
+			},
 		},
 		subgroup = "trees",
 		pictures = {
@@ -344,6 +350,7 @@ for index, plant in pairs(plants) do
 		flags = {
 			"placeable-neutral",
 			"breaths-air",
+			"placeable-off-grid",
 			"placeable-player",
 			"player-creation"
 		},
@@ -357,8 +364,12 @@ for index, plant in pairs(plants) do
 			mining_particle = "wooden-particle",
 			mining_hardness = 1,
 			mining_time = wheatstagestable["sapling"][1],
-			result = plant[1].."-sapling",
-			count = wheatstagestable["sapling"][5],
+			--result = plant[1].."-sapling",
+			--count = wheatstagestable["sapling"][5],
+			results = {
+				{type = "item", name = "raw-straw", amount = wheatstagestable["sapling"][4]},
+				{type = "item", name = "straw", amount_min = wheatstagestable["sapling"][4]*2, amount_max = wheatstagestable["seedling"][4]*3},
+			},
 		},
 		subgroup = "trees",
 		pictures = {
@@ -431,6 +442,7 @@ for index, plant in pairs(plants) do
 			flags = {
 				"placeable-neutral",
 				"breaths-air",
+				"placeable-off-grid",
 				"placeable-player",
 				"player-creation"
 			},
@@ -444,8 +456,13 @@ for index, plant in pairs(plants) do
 				mining_particle = "wooden-particle",
 				mining_hardness = 1,
 				mining_time = wheatstagestable["young-"..vi][1],
-				result = plant[1],
-				count = wheatstagestable["young-"..vi][5],
+				--result = plant[1],
+				--count = wheatstagestable["young-"..vi][5],
+				results = {
+					{type = "item", name = plant[1], amount = wheatstagestable["young-"..vi][5]},
+					{type = "item", name = "raw-straw", amount = wheatstagestable["young-"..vi][4]},
+					{type = "item", name = "straw", amount_min = wheatstagestable["young-"..vi][4]*1, amount_max = wheatstagestable["young-"..vi][4]*2},
+				},
 			},
 			subgroup = "trees",
 			pictures = {
@@ -516,6 +533,7 @@ for index, plant in pairs(plants) do
 		flags = {
 			"placeable-neutral",
 			"breaths-air",
+			"placeable-off-grid",
 			"placeable-player",
 			"player-creation"
 		},
@@ -605,6 +623,7 @@ for index, plant in pairs(plants) do
 			flags = {
 				"placeable-neutral",
 				"breaths-air",
+				"placeable-off-grid",
 				"placeable-player",
 				"player-creation"
 			},
@@ -618,8 +637,13 @@ for index, plant in pairs(plants) do
 				mining_particle = "wooden-particle",
 				mining_hardness = 1,
 				mining_time = wheatstagestable["adult-"..vi][1],
-				result = plant[1],
-				count = wheatstagestable["adult-"..vi][5],
+				--result = plant[1],
+				--count = wheatstagestable["adult-"..vi][5],
+				results = {
+					{type = "item", name = plant[1], amount = wheatstagestable["adult-"..vi][5]},
+					{type = "item", name = "raw-straw", amount = wheatstagestable["adult-"..vi][4]},
+					{type = "item", name = "straw", amount_min = wheatstagestable["adult-"..vi][4]*4, amount_max = wheatstagestable["adult-"..vi][4]*6},
+				},
 			},
 			subgroup = "trees",
 			pictures = {
@@ -691,6 +715,7 @@ for index, plant in pairs(plants) do
 		flags = {
 			"placeable-neutral",
 			"breaths-air",
+			"placeable-off-grid",
 			"placeable-player",
 			"player-creation"
 		},

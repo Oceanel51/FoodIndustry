@@ -748,7 +748,7 @@ for index, crop in pairs(trees) do
 		--------------------- young trees
 		{
 			type = "tree",
-			name = crop[1].."-young",
+			name = crop[1].."-young-1",
 			order = "w",
 			collision_box = {{-0.4,-0.4},{0.4,0.4}},
 			collision_mask = {"item-layer", "object-layer", "water-tile", "player-layer"},
@@ -852,7 +852,7 @@ for index, crop in pairs(trees) do
 		},
 		{
 			type = "tree",
-			name = crop[1].."-tree",
+			name = crop[1].."-adult-1",
 			order = crop[1].."g",
 			subgroup = "trees",
 			selection_box = { { -0.4, -0.4 }, { 0.4, 0.4 } },
