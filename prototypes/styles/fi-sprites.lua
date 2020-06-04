@@ -169,3 +169,30 @@ for i = 0, 5 do
 	})
 end
 data:extend(drinks_icon)
+
+-- extends fullness sprites
+fullness_icon = {}
+for i = 0, 7 do
+	table.insert(fullness_icon, {
+		type = "sprite",
+    name = "fullness_icon" .. tostring(i),
+    filename = "__FoodIndustry__/graphics/gui/fullness/fullness-" .. tostring(i) .. ".png",
+    priority = "medium",
+    width = 16,
+    height = 16,
+	})
+end
+data:extend(fullness_icon)
+
+-- overeating
+data:extend({
+  {
+    type = "sprite",
+    name = "overeating",
+    filename = "__FoodIndustry__/graphics/gui/fullness/overeating.png",
+    priority = "extra-high",
+    width = 16,
+    height = 16,
+    flags = {"icon"},
+  },
+})

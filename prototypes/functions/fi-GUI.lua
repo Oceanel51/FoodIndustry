@@ -158,17 +158,20 @@ function figui.create(index, player)
 		end
 		if not leftGui.frame.flow2.fullnesslabel then
 			--"Fullness: " .. fullnessbar .."%"
+			leftGui.frame.flow2.add({type="sprite", name="sprite_fullness", sprite="fullness_icon0"})
 			leftGui.frame.flow2.add({type="label", name="label_fullness", caption={'label.label-fullness', ": "},})
 			--leftGui.frame.flow2.add({type="label", name="label_fullness1", caption=": ",})
 			leftGui.frame.flow2.add({type="label", name="fullnesslabel", caption=""})
 			--leftGui.frame.flow2.add({type="label", name="label_percent", caption={'label.label-percent'},})
-			leftGui.frame.flow2.add({type="label", name="label_percent", caption="%",})
+			leftGui.frame.flow2.add({type="label", name="label_percent", caption="%"})
 			if not leftGui.frame.flow2.flow21 then
 				leftGui.frame.flow2.add{type = "flow", name = "flow21", left_padding = 4, right_padding = 0, direction = "horizontal"}
 			end
 			if not leftGui.frame.flow2.flow21.label_overeating then
+				leftGui.frame.flow2.flow21.add({type="label", name="label_overeating", caption=""})
+				leftGui.frame.flow2.flow21.add({type="label", name="overeatinglabel", caption=""})
+				leftGui.frame.flow2.flow21.add({type="label", name="label_percent", caption="%"})
 				leftGui.frame.flow2.flow21.add({type="sprite", name="sprite_overeating"})
-				leftGui.frame.flow2.flow21.add({type="label", name="label_overeating", caption="", style="fi-label"})
 			end
 		end
 		if not leftGui.frame.fullnessbar then
@@ -380,42 +383,73 @@ function figui.update(index, player)
 	if leftGui.frame.flow2 then
 		if leftGui.frame.flow2.fullnesslabel then
 			--player.print("[Debug] fullness: "..global.fullness[index])
-			-- here Overeating
+			-- here Fullness
 			local fullness_storage = global.fullness[index]
+			leftGui.frame.flow2.fullnesslabel.caption = math.ceil(math.abs(global.fullness[index]))
 			if global.fullness[index] > 100 then
 				--writeDebug("fullnesslabel "..global.fullness[index])
-				--leftGui.frame.flow2.label_fullness.caption = ({'label.label-overeating', ": "})
-				leftGui.frame.flow2.fullnesslabel.caption = {'label.label-overeating', math.ceil(global.fullness[index]), "%", math.ceil(global.effects[index]["overeating"][4])}
-				leftGui.frame.flow2.fullnesslabel.style.font_color = {r=1, g=38/255, b=45/255, a=1}
-				leftGui.frame.flow2.label_percent.style.font_color = {r=1, g=38/255, b=45/255, a=1}
+				leftGui.frame.flow2.sprite_fullness.sprite = "overeating"
+
+				leftGui.frame.flow2.fullnesslabel.style.font_color = {r=1, g=38/255, b=159/255, a=1}
+				leftGui.frame.flow2.label_percent.style.font_color = {r=1, g=38/255, b=159/255, a=1}
+				
 				leftGui.frame.fullnessbar.value = (global.fullness[index] - 100)/100
 				leftGui.frame.fullnessbar.style.color = {r=1, a=1}
-			-- here normal Fullness
+			elseif global.fullness[index] == 0 then
+				leftGui.frame.flow2.sprite_fullness.sprite = "fullness_icon0"
 			elseif global.fullness[index] <= 100 then
-				if global.effects[index]["overeating"][4] > 0 then
-					leftGui.frame.flow2.fullnesslabel.caption = {'label.label-overeating', math.ceil(global.fullness[index]), "%", math.ceil(global.effects[index]["overeating"][4])}
-					leftGui.frame.flow2.fullnesslabel.style.font_color = {r=255/255, g=76/255, b=82/255, a=1}
-					leftGui.frame.flow2.label_percent.style.font_color = {r=255/255, g=76/255, b=82/255, a=1}
-				else
-					leftGui.frame.flow2.fullnesslabel.caption = math.ceil(math.abs(global.fullness[index]))
-					leftGui.frame.flow2.fullnesslabel.style.font_color = {r=1, g=1, b=1, a=1}
-					leftGui.frame.flow2.label_percent.style.font_color = {r=1, g=1, b=1, a=1}
-				end
+				leftGui.frame.flow2.sprite_fullness.sprite = "fullness_icon7"
+				leftGui.frame.flow2.fullnesslabel.style.font_color = {r=1, g=1, b=1, a=1}
+				leftGui.frame.flow2.label_percent.style.font_color = {r=1, g=1, b=1, a=1}
 				leftGui.frame.fullnessbar.value = global.fullness[index]/100
 				leftGui.frame.fullnessbar.style.color = {r=1, g=0.6, a=1}
-				if global.fullness[index] < 20 then
+				if global.fullness[index] < 10 then
+					leftGui.frame.flow2.sprite_fullness.sprite = "fullness_icon1"
+				elseif global.fullness[index] < 35 then
 					--writeDebug("fullness "..global.fullness[index].." < 20")
+					leftGui.frame.flow2.sprite_fullness.sprite = "fullness_icon2"
 					leftGui.frame.fullnessbar.style.color = {r=127/255, g=76/255, a=1}
-				elseif global.fullness[index] < 40 then
+				elseif global.fullness[index] < 42 then
+					leftGui.frame.flow2.sprite_fullness.sprite = "fullness_icon3"
 					leftGui.frame.fullnessbar.style.color = {r=153/255, g=91/255, a=1}
-				elseif global.fullness[index] < 60 then
+				elseif global.fullness[index] < 58 then
+					leftGui.frame.flow2.sprite_fullness.sprite = "fullness_icon4"
 					leftGui.frame.fullnessbar.style.color = {r=188/255, g=113/255, a=1}
-				elseif global.fullness[index] < 80 then
+				elseif global.fullness[index] < 76 then
+					leftGui.frame.flow2.sprite_fullness.sprite = "fullness_icon5"
 					leftGui.frame.fullnessbar.style.color = {r=229/255, g=137/255, a=1}
+				elseif global.fullness[index] < 90 then
+					leftGui.frame.flow2.sprite_fullness.sprite = "fullness_icon6"
 				end
 			--else
 			--	game.players[index].print("[Debug] Warning: Fullness "..fullness_storage.." - is not good!")
 			--	return
+			end
+			
+			-- here Overeating
+			if global.effects[index]["overeating"][4] > 0 then
+				--leftGui.frame.flow2.fullnesslabel.caption = {'label.label-overeating', math.ceil(global.fullness[index]), "%", math.ceil(global.effects[index]["overeating"][4])}
+				-- leftGui.frame.flow2.fullnesslabel.style.font_color = {r=255/255, g=76/255, b=82/255, a=1}
+				-- leftGui.frame.flow2.label_percent.style.font_color = {r=255/255, g=76/255, b=82/255, a=1}
+				
+				leftGui.frame.flow2.flow21.label_overeating.caption = {'label.label-overeating', "%"}
+				leftGui.frame.flow2.flow21.label_overeating.style.font_color = {r=1, g=38/255, b=45/255, a=1}
+				leftGui.frame.flow2.flow21.overeatinglabel.caption = math.ceil(global.effects[index]["overeating"][4])
+				leftGui.frame.flow2.flow21.overeatinglabel.style.font_color = {r=1, g=38/255, b=45/255, a=1}
+				leftGui.frame.flow2.flow21.sprite_overeating.sprite = "overeating"
+				leftGui.frame.flow2.flow21.label_percent.caption = "%"
+				leftGui.frame.flow2.flow21.label_percent.style.font_color = {r=1, g=38/255, b=45/255, a=1}
+				
+			else
+				-- leftGui.frame.flow2.fullnesslabel.style.font_color = {r=1, g=1, b=1, a=1}
+				leftGui.frame.flow2.flow21.label_overeating.caption = ""
+				leftGui.frame.flow2.flow21.label_overeating.style.font_color = {r=1, g=1, b=1, a=1}
+				leftGui.frame.flow2.flow21.overeatinglabel.caption = ""
+				leftGui.frame.flow2.flow21.overeatinglabel.style.font_color = {r=1, g=1, b=1, a=1}
+				leftGui.frame.flow2.flow21.sprite_overeating.sprite = ""
+				leftGui.frame.flow2.flow21.label_percent.caption = ""
+				leftGui.frame.flow2.flow21.label_percent.style.font_color = {r=1, g=1, b=1, a=1}
+				
 			end
 		end
 	end

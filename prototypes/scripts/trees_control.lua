@@ -59,6 +59,19 @@ local function addSeedling(entity, event, time)
             fullgrowntick = event.tick + math.random(time_min, time_max)
         })
         --writeDebug("foodi.fruitSeedlings "..entity.name.." [color=0,1,0]added[/color]") -- DEBUG
+        
+        -- counter of landed seedlings fos statistic and achivements
+        if global.fi_achievements[index] ~= nil then
+            if global.fi_achievements[index]["trees-gardener"] then
+                -- init empty value of trees-gardener
+                global.fi_achievements[index]["trees-gardener"][1] = true
+                global.fi_achievements[index]["trees-gardener"][2] = global.fi_achievements[index]["trees-gardener"][2] + 1
+                --writeDebug(dump(global.fi_achievements[index]["trees-gardener"]))
+            else
+                writeDebug("[A bug]: global.fi_achievements[trees-gardener] does not exist! Contact the developer.")
+            end
+        end
+        
         return true
     end
     return false

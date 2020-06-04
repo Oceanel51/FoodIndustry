@@ -1,19 +1,27 @@
 ---------------------------------------------------------------------------------------------------
-Version: 1.8.x (beta 2.0)
-Date: x.04.2020
+Version: 1.8.115 (beta 2.0)
+Date: 04.06.2020
   Features:
     - New recipe pure-water-boiled
     - New technology meat-grind-processing
-    - 
-    - Added some locales
-    - New some item, recipe and technology icons
+    - New plant - wheat
+    - New eating sounds
+    - Added new locales
+    - New x64 icons for items, recipes and technology
+    - Added "trees-gardener" - counter of landed plants/trees fos statistic and achivements
+    - Added basic growing system for plants/trees: seed -> seedling -> sapling -> young -> adult
+    - Added icons to fullnes state
   Balances:
     - Balances for fish recipes
     - Balances for food
+    - Balances for trees growing time
     - 
   Fixes:
-    - ?Refactored label-overeating
-    - 
+    - Refactored overeating state
+    - Compatibility hot fix for Factorio 0.18.27
+    - Reorganized some lua files requirements
+    - Deleted old unused migration files
+    - Added event entity filter for plants/trees placement
 ---------------------------------------------------------------------------------------------------
 Version: 1.8.105 (beta 2.0)
 Date: 14.04.2020
