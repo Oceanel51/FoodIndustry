@@ -396,7 +396,11 @@ end
 script.on_event(defines.events.on_built_entity, function(event)
 	-- ignoring entity filters
 	-- TODO add ignoring entity filters when on_robot_built
-	if (event.created_entity.name ~= "fi-basic-farmland" and event.created_entity.ghost_name ~= "fi-basic-farmland") then
+	if (event.created_entity.name == "entity-ghost") then
+		if (event.created_entity.ghost_name ~= "fi-basic-farmland") then
+			local_on_added(event)
+		end
+	elseif (event.created_entity.name ~= "fi-basic-farmland") then
 		local_on_added(event)
 	end
 	
