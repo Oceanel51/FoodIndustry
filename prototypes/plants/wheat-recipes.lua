@@ -62,7 +62,7 @@ data:extend({
     },
       results = 
     {
-        {type = "item", name = "wheat-flour", amount_min = 1, amount_max = 2},
+        {type = "item", name = "wheat-flour", amount_min = 1, amount_max = 2}
     }
 },
 

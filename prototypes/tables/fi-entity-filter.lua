@@ -1,8 +1,3 @@
---local filters = {}
-local entity_names = {
-	["wheat-seed"] = nil,
-	["wheat-seedling"] = nil
-}
 local validEntityName = {
 	["fi-basic-farmland"]	= 1,
 	["apple-seed"]			= 1,
@@ -13,7 +8,7 @@ local validEntityName = {
 	["orange-sapling"]		= 1,
 	["wheat-seed"]			= 1,
 	["wheat-seedling"]		= 1,
-	['nixie-tube-small']	= 2
+	--['nixie-tube-small']	= 2
 }
 
 local function create_filters()

@@ -394,7 +394,9 @@ local local_on_removed = function(event)
 end
 
 script.on_event(defines.events.on_built_entity, function(event)
-	if (event.created_entity.name ~= "fi-basic-farmland") then
+	-- ignoring entity filters
+	-- TODO add ignoring entity filters when on_robot_built
+	if (event.created_entity.name ~= "fi-basic-farmland" and event.created_entity.ghost_name ~= "fi-basic-farmland") then
 		local_on_added(event)
 	end
 	
