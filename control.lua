@@ -394,7 +394,9 @@ local local_on_removed = function(event)
 end
 
 script.on_event(defines.events.on_built_entity, function(event)
-	local_on_added(event)
+	if (event.created_entity.name ~= "fi-basic-farmland") then
+		local_on_added(event)
+	end
 	
 	-- TODO Fix this! removed this as it seems to be buggy
 	local entity = event.created_entity
@@ -980,7 +982,6 @@ script.on_event(defines.events.on_gui_click, function(event)
 				--player_index
 				player.print(event.player_index .. " " .. player.name .. " - Click Eat button!")
 				--debug_print("version cut = ")
-				--writeDebug("Drill has been built")
 			end
 		end
 	end
