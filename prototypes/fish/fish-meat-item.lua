@@ -16,8 +16,8 @@ data:extend({
     type = "capsule",
     name = "fish-meat-red",
     icon = "__FoodIndustry__/graphics/icons/items/fish-meat-red.png",
-    icon_size = 32,
-
+	icon_size = 64,
+	icon_mipmaps = 4,
     subgroup = "foods-fish",
     order = "w-a-a",
     stack_size = 10,
@@ -54,8 +54,8 @@ data:extend({
     type = "capsule",
     name = "fish-caviar-red",
     icon = "__FoodIndustry__/graphics/icons/foods/fish-caviar-red.png",
-    icon_size = 32,
-
+	icon_size = 64,
+	icon_mipmaps = 4,
     subgroup = "foods-fish",
     order = "w-a-b",
     stack_size = 20,

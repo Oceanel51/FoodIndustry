@@ -1,11 +1,20 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.8.    (beta 2.0)
+Date:   .06.2020
+  Features:
+    - Added few "to-substances-1" recipes
+    - New x64 icons for items and recipes
+    - Changed x64 icons for fishes
+  Balances:
+    - Balanced "tomato-seeds" recipe
+  Fixes:
+    - Fix many locales
+    - Fix "to-substances-1" recipes
+  TODO:
+    - 
+---------------------------------------------------------------------------------------------------
 Version: 1.8.121 (beta 2.0)
 Date: 06.06.2020
-  Fixes:
-    - Hot fix on_built filters for entity-ghost
----------------------------------------------------------------------------------------------------
-Version: 1.8.120 (beta 2.0)
-Date: 05.06.2020
   Fixes:
     - Fix young and adult tree locale
     - Hot fix on_built filters for entity-ghost

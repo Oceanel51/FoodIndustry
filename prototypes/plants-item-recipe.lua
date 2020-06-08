@@ -3,7 +3,7 @@ local crops = {
 --name,			time,	ingredients,	plants,	result,	seeds, 	stack size,	plant?,	seed?,	edible?,	straws,	fuel for compost,	stack
 {"lettuce",		300,	5,				6,		0.6, 	0.0, 	10,			false,	false,		true,	1.1,	"4J",				},
 {"cucumber",	600,	60,				4,		2.4, 	8.5, 	10,			true,	true,		true,	2.7,	"8J",				120},
-{"tomato",		800,	30,				6,		3.2, 	2.0, 	10,			true,	true,		true,	2.3,	"6J",				90},
+{"tomato",		800,	30,				6,		3.2, 	2.8, 	10,			true,	true,		true,	2.3,	"6J",				90},
 {"potato",		1200,	8,				10,		1.0, 	0.0, 	10,			true,	false,		false,	4.0,	"10J",				},
 {"corn",		1200,	35,				4,		3.7, 	4.5, 	10,			true,	true,		true,	3.5,	"10J",				35*3},
 {"soy",			2400,	50,				6,		9.8, 	0.0, 	50,			true,	false,		false,	6.0,	"3J",				},

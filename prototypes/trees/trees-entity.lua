@@ -7,8 +7,8 @@ local trees = {
 --1			2					3			4			5			6		7			8		9			10		11		12			13			14									15			16		17		18
 --name, 	energy_required,	to plant,	results,	cool(sec),	seeds, 	stack size,	plant?,	seed?,	edible?,	straws,	compost,	type,		map_color,							starting,	size,	result,	chance
 --											factor
-{"apple", 	1300,				5,			4,			0.1,		3.4, 	10,			true,	true,		true,	3.0,	"3J",		"tree",		{r=1.0, g=0.70, b=0.19, a=0.8},		20,			0.16,	6,		0.25},
-{"orange", 	1570, 				8,			5,			0.3,		2.6, 	10,			true,	true,		true,	5.0,	"2J",		"tree",		{r=1.0, g=0.70, b=0.19, a=0.8},		15,			0.16,	4,		0.12},
+{"apple", 	1300,				5,			4,			0.1,		3.4, 	10,			true,	true,		true,	3.0,	"3J",		"tree",		{r=1.0, g=0.70, b=0.19, a=0.8},		20,			0.16,	4,		0.25},
+{"orange", 	1570, 				8,			5,			0.3,		2.6, 	10,			true,	true,		true,	5.0,	"2J",		"tree",		{r=1.0, g=0.70, b=0.19, a=0.8},		15,			0.16,	6,		0.12},
 }
 
 
@@ -16,29 +16,29 @@ local extend = {}
 local tree = {}
 -- TODO add stages table example:
 local treestagestable = {
-	-- 1						2				3				4				5				6				7
-	-- stage,					mining_time,	emissions sec,	max_health,		fruit factor,	wood result,	mesh rezult
-	{"seed",					0.2,			-0.0000,		80,				0,				nil,			0},
-	{"seedling",				0.2,			-0.0002,		40,				0,				nil,			0},
-	{"sapling",					0.3,			-0.0006,		60,				0,				nil,			0},
-	{"young-tree",				2,				-0.0012,		100,			0,				{4, 4},			5},
-	{"young-tree-blooming-1",	2,				-0.0012,		100,			0,				{6, 10},		12},
-	{"young-tree-blooming-2",	2,				-0.0012,		100,			0,				{6, 10},		8},
-	{"young-tree-blooming-3",	2,				-0.0012,		100,			0,				{6, 10},		5},
-	{"young-tree-ripening-1",	2,				-0.0012,		100,			0.3,			{6, 10},		14},
-	{"young-tree-ripening-2",	2,				-0.0012,		100,			0.2,			{6, 10},		10},
-	{"young-tree-ripening-3",	2,				-0.0012,		100,			0.1,			{6, 10},		8},
-	{"young-tree-harvesting-1",	2,				-0.0012,		100,			1,				{6, 10},		15},
-	{"young-tree-harvesting-2",	2,				-0.0012,		100,			0.8,			{6, 10},		12},
-	{"young-tree-harvesting-3",	2,				-0.0012,		100,			0.6,			{6, 10},		10},
-	{"young-sick-tree",			0.45,			0,				25,				0,				{3, 4},			0},
-	{"young-sick-old-tree",		0.45,			0,				15,				0,				{3, 4},			0},
-	{"young-old-tree",			0.45,			0,				20,				0,				{2, 4},			0},
+	-- 1						2				3				4				5				6				7				8
+	-- stage,					mining_time,	emissions sec,	max_health,		fruit factor,	wood result,	mesh rezult,	order
+	{"seed",					0.2,			-0.0000,		80,				0,				nil,			0				},
+	{"seedling",				0.2,			-0.0002,		40,				0,				nil,			0				},
+	{"sapling",					0.3,			-0.0006,		60,				0,				nil,			0				},
+	{"young-tree",				2,				-0.0012,		100,			0,				{4, 4},			5				},
+	{"young-tree-blooming-1",	2,				-0.0012,		100,			0,				{6, 10},		12				},
+	{"young-tree-blooming-2",	2,				-0.0012,		100,			0,				{6, 10},		8				},
+	{"young-tree-blooming-3",	2,				-0.0012,		100,			0,				{6, 10},		5				},
+	{"young-tree-ripening-1",	2,				-0.0012,		100,			0.3,			{6, 10},		14				},
+	{"young-tree-ripening-2",	2,				-0.0012,		100,			0.2,			{6, 10},		10				},
+	{"young-tree-ripening-3",	2,				-0.0012,		100,			0.1,			{6, 10},		8				},
+	{"young-tree-harvesting-1",	2,				-0.0012,		100,			1,				{6, 10},		15				},
+	{"young-tree-harvesting-2",	2,				-0.0012,		100,			0.8,			{6, 10},		12				},
+	{"young-tree-harvesting-3",	2,				-0.0012,		100,			0.6,			{6, 10},		10				},
+	{"young-sick-tree",			0.45,			0,				25,				0,				{3, 4},			0				},
+	{"young-sick-old-tree",		0.45,			0,				15,				0,				{3, 4},			0				},
+	{"young-old-tree",			0.45,			0,				20,				0,				{2, 4},			0				},
 	
-	{"adult-tree",				2.5,			-0.002,			150,			2,				{8, 15},		15},
-	{"adult-sick-tree",			0.9,			0,				50,				0,				{6, 8},			0},
-	{"adult-sick-old-tree",		0.9,			0,				30,				0,				{3, 4},			0},
-	{"adult-old-tree",			0.9,			0,				40,				0,				{4, 4},			0},
+	{"adult-tree",				2.5,			-0.002,			150,			2,				{8, 15},		15				},
+	{"adult-sick-tree",			0.9,			0,				50,				0,				{6, 8},			0				},
+	{"adult-sick-old-tree",		0.9,			0,				30,				0,				{3, 4},			0				},
+	{"adult-old-tree",			0.9,			0,				40,				0,				{4, 4},			0				},
 	-- "blooming-tree", 1, 2, 3
 	-- "green-tree", 1, 2, 3
 	-- "fertile-tree", 1, 2, 3
@@ -204,7 +204,7 @@ for index, crop in pairs(trees) do
 			icon_mipmaps = 4,
 			icon_size = 64,
 			subgroup = crop[1],
-			order = "b",
+			order = crop[1].."-2-a",
 			place_result=crop[1].."-seedling",
 			fuel_value = "1MJ",
 			fuel_category = "chemical",
@@ -218,7 +218,7 @@ for index, crop in pairs(trees) do
 			icon_mipmaps = 4,
 			icon_size = 64,
 			subgroup = crop[1],
-			order = "b",
+			order = crop[1].."-3-a",
 			place_result=crop[1].."-sapling",
 			fuel_value = "2MJ",
 			fuel_category = "chemical",
@@ -362,7 +362,7 @@ for index, crop in pairs(trees) do
 			time_before_removed = 60 * 60 * 3, -- 3 minutes
 			final_render_layer = "remnants",
 			subgroup = "remnants",
-			order = crop[1].."-o-wild",
+			order = crop[1].."-0-p-wild",
 			animation = {
 				{
 					filename = "__FoodIndustry__/graphics/entity/trees/"..crop[1].."/"..crop[1].."-tree-stump.png",
@@ -382,7 +382,7 @@ for index, crop in pairs(trees) do
 			name = crop[1].."-wild-tree",
 			icon = "__FoodIndustry__/graphics/icons/trees/"..crop[1].."-tree.png",
 			icon_size = 32,
-			order = crop[1].."-o-wild",
+			order = crop[1].."-0-o-wild",
 			autoplace = {
 				control = "food-plant",
 				max_probability = 0.006,
@@ -572,7 +572,7 @@ for index, crop in pairs(trees) do
 		{
 			type = "tree",
 			name = crop[1].."-seed",
-			order = "w",
+			order = crop[1].."-1-a",
 			collision_box = {{-0.2,-0.2},{0.2,0.2}},
 			collision_mask = {"item-layer", "object-layer", "water-tile"},
 			selection_box = { { -0.35, -0.35 }, { 0.35, 0.35 } },
@@ -621,11 +621,13 @@ for index, crop in pairs(trees) do
 				},
 			},
 			map_color={r=0.1647, g=1, b=0},
+			created_smoke = nil,
+			-- created_effect = nil
 		},
 		{
 			type = "tree",
 			name = crop[1].."-seedling",
-			order = "w",
+			order = crop[1].."-2-a",
 			collision_box = {{-0.2,-0.2},{0.2,0.2}},
 			collision_mask = {"item-layer", "object-layer", "water-tile"},
 			selection_box = { { -0.35, -0.35 }, { 0.35, 0.35 } },
@@ -686,7 +688,7 @@ for index, crop in pairs(trees) do
 		{
 			type = "tree",
 			name = crop[1].."-sapling",
-			order = "w",
+			order = crop[1].."-3-a",
 			collision_box = {{-0.2,-0.2},{0.2,0.2}},
 			collision_mask = {"item-layer", "object-layer", "water-tile", "player-layer"},
 			selection_box = { { -0.35, -0.35 }, { 0.35, 0.35 } },
@@ -749,7 +751,7 @@ for index, crop in pairs(trees) do
 		{
 			type = "tree",
 			name = crop[1].."-young-1",
-			order = "w",
+			order = crop[1].."-4-a",
 			collision_box = {{-0.2,-0.2},{0.2,0.2}},
 			collision_mask = {"item-layer", "object-layer", "water-tile", "player-layer"},
 			selection_box = {{-0.4, -0.4}, {0.4, 0.4}},
@@ -775,7 +777,7 @@ for index, crop in pairs(trees) do
 				-- result = crop[1].."-sapling",
 				-- count = 1,
 				results = {
-					{type = "item", name = "wood", amount_min = 4, amount_max = 4},
+					{type = "item", name = "wood", amount_min = crop[4]*2, amount_max = crop[4]*4},
 					{type = "item", name = "raw-straw", amount = 5, probability = 0.9},
 					--{type = "item", name = crop[1], amount_min = math.floor(crop[17]), amount_max = math.floor(crop[17]*2.2) }
 				},
@@ -828,7 +830,7 @@ for index, crop in pairs(trees) do
 			time_before_removed = 60 * 60 * 3, -- 3 minutes
 			final_render_layer = "remnants",
 			subgroup = "remnants",
-			order = crop[1].."-h",
+			order = crop[1].."-5-h",
 			pictures = {
 				layers = {
 					{
@@ -853,7 +855,7 @@ for index, crop in pairs(trees) do
 		{
 			type = "tree",
 			name = crop[1].."-adult-1",
-			order = crop[1].."g",
+			order = crop[1].."-5-g",
 			subgroup = "trees",
 			selection_box = {{-0.4, -0.4}, {0.4, 0.4}},
 			collision_box = {{-0.2,-0.2},{0.2,0.2}},
@@ -878,9 +880,9 @@ for index, crop in pairs(trees) do
 				mining_time = 2.5,
 				count = crop[17],
 				results = {
-					{type = "item", name = "wood", amount_min = crop[4]*7.5, amount_max = crop[4]*12.4},
+					{type = "item", name = "wood", amount_min = crop[4]*3, amount_max = crop[4]*6},
 					{type = "item", name = "raw-straw", amount = 3, probability = 0.8},
-					{type = "item", name = crop[1], amount_min = math.floor(crop[17]), amount_max = math.floor(crop[17]*2.2) }
+					{type = "item", name = crop[1], amount_min = math.floor(crop[17]), amount_max = math.floor(crop[17]*3) }
 				},
 				mining_trigger = {
 					{

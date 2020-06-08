@@ -52,7 +52,7 @@ for index, food in pairs(foods) do
 		end
 
 		substancesdust1_val = (food[3] / 3 + food[4] / 12) * 0.2 + substances1_max_val * 0.8
-		rawstraw1_val = (food[3] / 3 + food[4] / 12) * 0.8
+		rawstraw1_val = math.abs((food[3] / 3 + food[4] / 12) * 0.8)
 
 		if substances1_max_val * 0.2 == math.floor(substances1_max_val * 0.2) then -- integer
 			substances_results = 
