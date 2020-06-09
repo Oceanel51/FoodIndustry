@@ -103,7 +103,7 @@ data:extend({
 	category = "crafting-with-fluid",
 	subgroup = "drinks-pure-water",
 	order = "w-d1",
-	energy_required = 1.4,
+	energy_required = 0.9,
 	ingredients = {
 		{"flask-pure-water", 1},
 	},

@@ -746,7 +746,7 @@ data:extend({
 	name = "broth-gelatine-granules",
 	enabled = false,
 	icon = "__FoodIndustry__/graphics/icons/foods/gelatine-granules.png",
-	icon_size = 32,
+	icon_size = 64,
 	category = "advanced-cooking",
 	subgroup = "foods-species",
 	order = "w-b-5",
