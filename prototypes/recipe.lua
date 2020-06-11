@@ -557,6 +557,26 @@ data:extend({
 		{"corn-flour", 3}
 	}
 },
+{
+	type = "recipe",
+	name = "corn-dough",
+	enabled = false,
+	icon = "__FoodIndustry__/graphics/icons/items/corn-dough.png",
+	icon_size = 64,
+	category = "cooking",
+	subgroup = "corn",
+	order = "w-d-c-y",
+	energy_required = 2.0,
+	ingredients =
+	{
+		{"corn-flour", 2},
+		{type="fluid", name="pure-water", amount=10}
+	},
+	results = 
+	{
+		{"corn-flour", 1}
+	}
+},
 	
   {
     type = "recipe",

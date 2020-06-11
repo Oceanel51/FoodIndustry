@@ -405,6 +405,7 @@ function figui.update(index, player)
 				leftGui.frame.fullnessbar.style.color = {r=1, g=0.6, a=1}
 				if global.fullness[index] < 10 then
 					leftGui.frame.flow2.sprite_fullness.sprite = "fullness_icon1"
+					leftGui.frame.fullnessbar.style.color = {r=86/255, g=50/255, a=1}
 				elseif global.fullness[index] < 35 then
 					--writeDebug("fullness "..global.fullness[index].." < 20")
 					leftGui.frame.flow2.sprite_fullness.sprite = "fullness_icon2"

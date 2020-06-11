@@ -63,6 +63,16 @@ data:extend({
     order = "w-d-"..group_pos.."-z",
     stack_size = 50,
 },
+{
+    type = "item",
+    name = wheat_table[1].."-dough",
+    icon = "__FoodIndustry__/graphics/icons/items/"..wheat_table[1].."-dough.png",
+    icon_size = 64,
+    icon_mipmaps = 4,
+    subgroup = wheat_table[1],
+    order = "w-d-"..group_pos.."-z",
+    stack_size = 20,
+},
 
 })
 

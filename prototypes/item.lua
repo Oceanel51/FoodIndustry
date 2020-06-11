@@ -217,8 +217,18 @@ data:extend({
     icon_size = 32,
     subgroup = "food-intermediates",
     order = "w-d-c-y",
-    stack_size = 100,
+    stack_size = 50,
   },
+  {
+    type = "item",
+    name = "corn-dough",
+    icon = "__FoodIndustry__/graphics/icons/items/corn-dough.png",
+    icon_size = 64,
+    subgroup = "food-intermediates",
+    order = "w-d-c-y",
+    stack_size = 20,
+  },
+
   {
     type = "item",
     name = "raw-fries",

@@ -5,8 +5,8 @@ local foods = {
 --1									2					3		4		5						6		7		8				9			11
 --name,								subgroup,			stack,	cool,	crafting category,		time,	amount,	order,			recipe_version,	ingredients
 {"cooked-corn",						"foods-vegan",		10,		0.5,	"cooking",				4.0,	1,		"w-d-a",		nil,		{{"corn", 1}, {type="fluid", name="pure-water", amount=5}} },
-{"bread",							"foods-vegan",		10,		0.5,	"cooking",				7.0,	1,		"w-d-c",		nil,		{{"wheat-flour", 2}, {type="fluid", name="pure-water", amount=6}} },
-{"corn-bread",						"foods-vegan",		10,		0.5,	"cooking",				8.0,	1,		"w-d-c",		nil,		{{"corn-flour", 2}, {type="fluid", name="pure-water", amount=10}} },
+{"bread",							"foods-vegan",		10,		0.5,	"cooking",				7.0,	1,		"w-d-c",		nil,		{{"wheat-dough", 1}} },
+{"corn-bread",						"foods-vegan",		10,		0.5,	"cooking",				8.0,	1,		"w-d-c",		nil,		{{"corn-dough", 1}} },
 {"popcorn",							"foods-vegan",		50,		0.2,	"cooking",				1.5,	1,		"w-d-d",		nil,		{{"corn-seeds", 1}, {type="fluid", name="canola-oil", amount=1}} },
 {"basic-salad",						"foods-vegan",		10,		0.5,	"cooking",				1.5,	1,		"w-d-b",		nil,		{{"tomato", 2}, {"cucumber", 1}, {"lettuce", 3}} },
 {"cooked-soy",						"foods-vegan",		50,		0.2,	"cooking",				3.0,	5,		"w-d-e",		nil,		{{"soy", 5}, {type="fluid", name="pure-water", amount=20}} },

@@ -4,11 +4,11 @@ local trees_variations = trees_variations()
 
 
 local trees = {
---1			2					3			4			5			6		7			8		9			10		11		12			13			14									15			16		17		18
---name, 	energy_required,	to plant,	results,	cool(sec),	seeds, 	stack size,	plant?,	seed?,	edible?,	straws,	compost,	type,		map_color,							starting,	size,	result,	chance
---											factor
-{"apple", 	1300,				5,			4,			0.1,		3.4, 	10,			true,	true,		true,	3.0,	"3J",		"tree",		{r=1.0, g=0.70, b=0.19, a=0.8},		20,			0.16,	4,		0.25},
-{"orange", 	1570, 				8,			5,			0.3,		2.6, 	10,			true,	true,		true,	5.0,	"2J",		"tree",		{r=1.0, g=0.70, b=0.19, a=0.8},		15,			0.16,	6,		0.12},
+--1			2					3			4			5			6		7			8		9			10		11		12			13			14									15			16		17		18		19
+--name, 	energy_required,	to plant,	results,	cool(sec),	seeds, 	stack size,	plant?,	seed?,	edible?,	straws,	compost,	type,		map_color,							starting,	size,	result,	chance,	energy_required
+--											factor																																											for seed/seedling
+{"apple", 	1300,				5,			4,			0.1,		3.4, 	10,			true,	true,		true,	3.0,	"3J",		"tree",		{r=1.0, g=0.70, b=0.19, a=0.8},		20,			0.16,	4,		0.25,	295},
+{"orange", 	1570, 				8,			5,			0.3,		2.6, 	10,			true,	true,		true,	5.0,	"2J",		"tree",		{r=1.0, g=0.70, b=0.19, a=0.8},		15,			0.16,	6,		0.12,	365},
 }
 
 
@@ -278,16 +278,16 @@ for index, crop in pairs(trees) do
 			icon_size = 64,
 			category = "basic-crop-growth",
 			subgroup = crop[1],
-			energy_required = crop[2],
+			energy_required = crop[19],
 			ingredients =
 			{
 				{type="item", name=crop[1].."-seeds", amount=crop[3]},
 			},
 			  results = 
 			{
+				{type="item", name=crop[1].."-seedling", amount_min=0, amount_max=crop[3]},
 				{type="item", name=crop[1].."-seedling", amount=1, probability = 0.5},
 				{type="item", name=crop[1].."-seedling", amount=1, probability = 0.4},
-				{type="item", name=crop[1].."-seedling", amount=1, probability = 0.3},
 				{type="item", name="straw", amount_min=crop[11]*9, amount_max=crop[11]*17},
 				{type="item", name="raw-straw", amount_min=crop[11]*2.8, amount_max=crop[11]*4.2},
 			},
@@ -300,7 +300,7 @@ for index, crop in pairs(trees) do
 			icon_size = 64,
 			category = "basic-tree-growth",
 			subgroup = crop[1],
-			energy_required = crop[2] / 1.6,
+			energy_required = crop[19] / 1.2,
 			ingredients =
 			{
 				{type="item", name=crop[1].."-seeds", amount=crop[3]},
@@ -308,9 +308,9 @@ for index, crop in pairs(trees) do
 			},
 			results=
 			{
-				{type="item", name=crop[1].."-seedling", amount=crop[4]-2},
+				{type="item", name=crop[1].."-seedling", amount_min=crop[3]/2, amount_max=crop[3]},
+				{type="item", name=crop[1].."-seedling", amount=1, probability=0.7},
 				{type="item", name=crop[1].."-seedling", amount=1, probability=0.5},
-				{type="item", name=crop[1].."-seedling", amount=1, probability=0.4},
 				{type="item", name="raw-straw", amount_min=crop[11]*1.8, amount_max=crop[11]*3.2},
 			},
 			enabled = false,
@@ -324,7 +324,7 @@ for index, crop in pairs(trees) do
 			icon_size = 64,
 			category = "advanced-tree-growth",
 			subgroup = crop[1],
-			energy_required = crop[2] / 1.8,
+			energy_required = crop[19] / 1.4,
 			ingredients =
 			{
 				{type="item", name=crop[1].."-seeds", amount=crop[3]},
@@ -332,10 +332,9 @@ for index, crop in pairs(trees) do
 			},
 			results=
 			{
-				{type="item", name=crop[1].."-seedling", amount=crop[4]},
-				{type="item", name=crop[1].."-seedling", amount=1, probability=0.75},
-				{type="item", name=crop[1].."-seedling", amount=1, probability=0.65},
-				{type="item", name=crop[1].."-seedling", amount=1, probability=0.45},
+				{type="item", name=crop[1].."-seedling", amount=crop[3]},
+				{type="item", name=crop[1].."-seedling", amount=1, probability=0.8},
+				{type="item", name=crop[1].."-seedling", amount=1, probability=0.6},
 			},
 			enabled = false,
 			always_show_made_in = true,

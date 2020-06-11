@@ -999,8 +999,10 @@ data:extend({
     effects =
     {  
 		{type = "unlock-recipe", recipe = "corn-flour"},
+		{type = "unlock-recipe", recipe = "corn-dough"},
 		{type = "unlock-recipe", recipe = "corn-bread"},
 		{type = "unlock-recipe", recipe = "wheat-flour"},
+		{type = "unlock-recipe", recipe = "wheat-dough"},
 		{type = "unlock-recipe", recipe = "bread"},
     },
     unit =

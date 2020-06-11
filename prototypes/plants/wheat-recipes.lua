@@ -65,5 +65,26 @@ data:extend({
         {type = "item", name = "wheat-flour", amount_min = 1, amount_max = 2}
     }
 },
+{
+    type = "recipe",
+    name = "wheat-dough",
+    enabled = false,
+    icon = "__FoodIndustry__/graphics/icons/items/wheat-dough.png",
+    icon_size = 64,
+    icon_mipmaps = 4,
+    category = "cooking",
+    subgroup = "wheat",
+    order = "w-d-c-y",
+    energy_required = 2.0,
+    ingredients =
+    {
+        {"wheat-flour", 2},
+        {type="fluid", name="pure-water", amount=6}
+    },
+      results = 
+    {
+        {type = "item", name = "wheat-dough", amount = 1}
+    }
+},
 
 })
