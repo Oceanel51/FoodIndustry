@@ -1,11 +1,12 @@
 ---------------------------------------------------------------------------------------------------
-Version: 1.8.124 (2.0 beta)
+Version: 1.8.125 (2.0 beta)
 Date:   .06.2020
   Features:
     - Added few "to-substances-1" recipes
     - New x64 icons for items and recipes
     - Changed x64 icons for fishes
     - Added corn-dough and wheat-dough, so that food from flour does not require pure-water in the future
+    - Added apple and orange eating sounds
   Balances:
     - Balanced trees recipes
     - Balanced "tomato-seeds" recipe

@@ -122,7 +122,7 @@ for index, crop in pairs(trees) do
 		{
 			type = "recipe",
 			name = crop[1].."-seeds",
-			order = "w-e-b-y",
+			order = "w-e-"..index.."-x",
 			enabled = true,
 			icon = "__FoodIndustry__/graphics/icons/trees/"..crop[1].."-seeds.png",
 			icon_size = 64,
@@ -150,7 +150,7 @@ for index, crop in pairs(trees) do
 			icon_size = 64,
 
 			subgroup = crop[1],
-			order = "w-d-"..index.."-x",
+			order = "w-d-"..index.."-y",
 			stack_size = crop[7],
 			capsule_action = {
 				attack_parameters = {

@@ -574,7 +574,7 @@ data:extend({
 	},
 	results = 
 	{
-		{"corn-flour", 1}
+		{"corn-dough", 1}
 	}
 },
 	
