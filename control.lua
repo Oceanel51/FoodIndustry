@@ -983,15 +983,24 @@ end
 
 -- TODO When eat_button is clicked
 script.on_event(defines.events.on_gui_click, function(event)
-	for _, player in pairs(game.players) do
-		if player.connected then
-			if event.element.name == "eat_button" then
-				--element
-				--player_index
-				player.print(event.player_index .. " " .. player.name .. " - Click Eat button!")
-				--debug_print("version cut = ")
-			end
-		end
+	-- for _, player in pairs(game.players) do
+	-- 	if player.connected then
+	-- 		if event.element.name == "eat_button" then
+	-- 			player.print(event.player_index .. " " .. player.name .. " - Click Eat button!")
+	-- 		end
+	-- 	end
+	-- end
+	local element = event.element
+	local name = element.name
+	local player = game.players[event.player_index]
+
+	if not name then return end
+
+	if name == "eat_button" then
+		writeDebug(event.player_index.." "..player.name.." - Click [color=0,1,0]Eat[/color] button!")
+	end
+	if name == "drink_button" then
+		writeDebug(event.player_index.." "..player.name.." - Click [color=0,0,1]Drink[/color] button!")
 	end
 end
 )

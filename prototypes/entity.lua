@@ -1266,10 +1266,10 @@ data:extend(
     minable = {hardness = 0.3, mining_time = 1, result = "burner-cooker"},
     max_health = 200,
     resistances =
-    {      
-    },    
-    selection_box = {{-0.95, -0.95}, {0.95, 0.95}}, 
-    collision_box = {{-0.95, -0.95}, {0.95, 0.95}},    
+    {
+    },
+    selection_box = {{-0.95, -0.95}, {0.95, 0.95}},
+    collision_box = {{-0.93, -0.93}, {0.93, 0.93}},
     collision_mask = {"item-layer", "object-layer", "water-tile", "player-layer"},
     fluid_boxes =
     {
@@ -1314,7 +1314,7 @@ data:extend(
             frame_count = 48,
             axially_symmetrical = false,
             direction_count = 1,
-            shift = util.by_pixel(14.4, 8.0),
+            shift = util.by_pixel(14.4, 7.8),
             hr_version =
             {
               filename = "__base__/graphics/entity/stone-furnace/hr-stone-furnace-fire.png",
@@ -1325,7 +1325,7 @@ data:extend(
               frame_count = 48,
               axially_symmetrical = false,
               direction_count = 1,
-              shift = util.by_pixel(14.4, 8.0),
+              shift = util.by_pixel(14.4, 7.8),
               scale = 0.5
             }
           },
@@ -1399,8 +1399,8 @@ data:extend(
     resistances =
     {      
     },    
-    selection_box = {{-0.95, -0.95}, {0.95, 0.95}}, 
-    collision_box = {{-0.95, -0.95}, {0.95, 0.95}},    
+    selection_box = {{-0.95, -0.95}, {0.95, 0.95}},
+    collision_box = {{-0.93, -0.93}, {0.93, 0.93}},
     collision_mask = {"item-layer", "object-layer", "water-tile", "player-layer"},
     fluid_boxes =
     {

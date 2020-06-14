@@ -1,3 +1,4 @@
+local Position = require('__stdlib__/stdlib/area/position')
 
 local FLASK = "flask"
 local PLASTIC_BOTTLE = "plastic-bottle"
@@ -29,6 +30,13 @@ local function getDrink_on_Click(event)
     if getDrink ~= nil then
         if player.selected.name == PURE_WATER then
             -- TODO учитывать расстояние до pure-water ресурса в пару тайлов
+            local reach = player.character.reach_distance
+            local distance = math.floor(Position.distance(player.position, player.selected.position))
+            --player.print("dist "..distance..", reach "..reach)
+            if distance >= reach then
+                player.print({'print.very-far-from-pure-water', "__ITEM__"..player.cursor_stack.name.."__", distance, reach})
+                return
+            end
             -- take away some amount resource of pure-water
             if player.cursor_stack.name == "flask" and player.selected.amount - 30 > 0 then
                 player.selected.amount = player.selected.amount - 30
