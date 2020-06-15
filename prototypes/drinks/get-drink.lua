@@ -1,4 +1,6 @@
+--local Position = require('stdlib/area/position')
 local Position = require('__stdlib__/stdlib/area/position')
+
 
 local FLASK = "flask"
 local PLASTIC_BOTTLE = "plastic-bottle"

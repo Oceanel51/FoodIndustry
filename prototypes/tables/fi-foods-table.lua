@@ -1,4 +1,5 @@
-require "stdlib.table"
+--require "stdlib.table"
+local table = require('__stdlib__.stdlib.utils.table')
 
 
 function collect_all_foods_table()
@@ -100,7 +101,7 @@ function foods_table()
 	{"basic-health-buffer-capsule",		"special",						40,		10,		{0,0,0,2},		80,		80,		50,		{{"health_buffer",200,10800},} },
 	{"advanced-health-buffer-capsule",	"special",						90,		25,		{0,0,0,5},		110,	110,	100,	{{"health_buffer",1250,2700},} },
 
-	{"simple-digestive-capsule",		"special",						5,		0,		{-1,0,0,0},		0,		0,		0,		{{"digestion",0.4,21600},} },
+	{"simple-digestive-capsule",		"special",						5,		0,		{-0.5,0,0,0},	5,		5,		0,		{{"digestion",0.4,21600},} },
 	{"basic-digestive-capsule",			"special",						15,		10,		{-1,2,1,0},		10,		10,		0,		{{"digestion",1,14400},} },
 	{"advanced-digestive-capsule",		"special",						35,		20,		{0,3,2,-1},		20,		20,		0,		{{"digestion",3.5,7200},} },
 	{"basic-sleep-capsule",				"special",						20,		0,		{0,2,1,0},		10,		10,		0,		{{"sleep",2,5000},} },

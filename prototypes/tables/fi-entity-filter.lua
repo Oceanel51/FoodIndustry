@@ -8,6 +8,8 @@ local validEntityName = {
 	["orange-sapling"]		= 1,
 	["wheat-seed"]			= 1,
 	["wheat-seedling"]		= 1,
+	["cattle-feeder"]		= 1,
+	["cattle-grabber"]		= 1,
 	--['nixie-tube-small']	= 2
 }
 

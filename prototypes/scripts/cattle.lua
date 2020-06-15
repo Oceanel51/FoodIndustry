@@ -1,8 +1,8 @@
 --may need to increase refresh
 if not util then require("prototypes.scripts.util") end
 
-local feedTick = 60 -- * 10
-local feedCalf = 10
+local feedTick = 60 * 2 -- * 10
+local feedCalf = 10 * 2
 
 local function getCalf(entity)
     for i,e in pairs(global.foodi.cattle) do
@@ -80,6 +80,7 @@ local local_cattle_feeder_added = function(ent)
     if ent.name == "cattle-feeder" then
         local entity = {entity = ent, countdown = 100}
         table.insert(global.foodi.cattle_feeders, entity)
+        --writeDebug("foodi.cattle_feeders "..ent.name.." [color=0,1,0]added[/color]") -- DEBUG
     end
 end
 

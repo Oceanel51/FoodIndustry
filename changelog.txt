@@ -7,11 +7,14 @@ Date:   .06.2020
     - Changed x64 icons for fishes
     - Added corn-dough and wheat-dough, so that food from flour does not require pure-water in the future
     - Added apple and orange eating sounds
+    - Added stdlib dependency
   Balances:
     - Balanced trees recipes
     - Balanced "tomato-seeds" recipe
     - Decreased and fixed food-1-capsule fullness
+    - Balanced cattles
   Fixes:
+    - Hot fix cattles production (!) Attention: need rebuild all "cattle-spawner" and "cattle-grabber" for its working!
     - Fixed many locales
     - Fixed "to-substances-1" recipes
     - Fixed changelog again, not showing ingame

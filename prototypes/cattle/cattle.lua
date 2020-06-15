@@ -212,7 +212,7 @@ data:extend({
             return res
         end)(),
         -- With zero evolution the spawn rate is 12 seconds, with max evolution it is 6 seconds
-        spawning_cooldown = {60*60, 6*60*60},
+        spawning_cooldown = {60*60*3, 6*60*60*3},
         spawning_radius = 10,
         spawning_spacing = 3,
         max_spawn_shift = 0,

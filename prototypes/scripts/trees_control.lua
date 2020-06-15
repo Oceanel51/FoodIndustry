@@ -41,6 +41,15 @@ local function addSeedling(entity, event, time)
     end
     --writeDebug("treename "..treename..", treetype "..treetype) -- DEBUG
 
+    -- second entity filter
+    if times[treename] == nil then
+        writeDebug("entity "..entity.name.." [color=1,0,0]not matched[/color]") -- DEBUG
+        return
+    else
+        writeDebug("entity "..entity.name.." [color=0,1,0]matched[/color] ") -- DEBUG
+        --writeDebug(dump(times[treename])) -- DEBUG
+    end
+
     local time_min = 1.6 * 60 * 10
     local time_max = 2.0 * 60 * 10
     if time ~= nil then
@@ -58,7 +67,7 @@ local function addSeedling(entity, event, time)
             seedling = entity,
             fullgrowntick = event.tick + math.random(time_min, time_max)
         })
-        --writeDebug("foodi.fruitSeedlings "..entity.name.." [color=0,1,0]added[/color]") -- DEBUG
+        writeDebug("foodi.fruitSeedlings "..entity.name.." [color=0,1,0]added[/color]") -- DEBUG
         
         -- counter of landed seedlings fos statistic and achivements
         if global.fi_achievements[index] ~= nil then
@@ -125,7 +134,7 @@ local function local_fruittree_tick(event)
                 --writeDebug("FI: treename = "..treename..", treetype = "..treetype.. " [color=0,1,0]growed[/color] to --> "..treetypenext) -- DEBUG
 
                 --writeDebug("foodi.fruitSeedlings "..fruitSeedling.seedling.name.." grown up!") -- DEBUG
-                --writeDebug(dump(global.foodi.fruitSeedlings)) -- DEBUG
+                writeDebug(dump(global.foodi.fruitSeedlings)) -- DEBUG
             end
         end
     end

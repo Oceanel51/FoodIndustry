@@ -19,6 +19,8 @@ require("prototypes.scripts.cattle-grabber")
 
 require("prototypes.drinks.get-drink")
 
+local table = require('__stdlib__.stdlib.utils.table')
+
 --local foods = foods_table()
 local foods = collect_all_foods_table()
 
