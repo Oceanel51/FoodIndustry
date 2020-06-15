@@ -1,13 +1,13 @@
 ---------------------------------------------------------------------------------------------------
-Version: 1.8.125 (2.0 beta)
-Date:   .06.2020
+Version: 1.8.128 (2.0 beta)
+Date: 15.06.2020
   Features:
     - Added few "to-substances-1" recipes
     - New x64 icons for items and recipes
     - Changed x64 icons for fishes
     - Added corn-dough and wheat-dough, so that food from flour does not require pure-water in the future
     - Added apple and orange eating sounds
-    - Added stdlib dependency
+    - Added stdlib mod dependency: https://mods.factorio.com/mod/stdlib
   Balances:
     - Balanced trees recipes
     - Balanced "tomato-seeds" recipe
@@ -18,8 +18,6 @@ Date:   .06.2020
     - Fixed many locales
     - Fixed "to-substances-1" recipes
     - Fixed changelog again, not showing ingame
-  TODO:
-    - ...
 ---------------------------------------------------------------------------------------------------
 Version: 1.8.121 (2.0 beta)
 Date: 06.06.2020
