@@ -43,10 +43,10 @@ local function addSeedling(entity, event, time)
 
     -- second entity filter
     if times[treename] == nil then
-        writeDebug("entity "..entity.name.." [color=1,0,0]not matched[/color]") -- DEBUG
+        --writeDebug("entity "..entity.name.." [color=1,0,0]not matched[/color]") -- DEBUG
         return
     else
-        writeDebug("entity "..entity.name.." [color=0,1,0]matched[/color] ") -- DEBUG
+        --writeDebug("entity "..entity.name.." [color=0,1,0]matched[/color] ") -- DEBUG
         --writeDebug(dump(times[treename])) -- DEBUG
     end
 
@@ -134,7 +134,7 @@ local function local_fruittree_tick(event)
                 --writeDebug("FI: treename = "..treename..", treetype = "..treetype.. " [color=0,1,0]growed[/color] to --> "..treetypenext) -- DEBUG
 
                 --writeDebug("foodi.fruitSeedlings "..fruitSeedling.seedling.name.." grown up!") -- DEBUG
-                writeDebug(dump(global.foodi.fruitSeedlings)) -- DEBUG
+                --writeDebug(dump(global.foodi.fruitSeedlings)) -- DEBUG
             end
         end
     end
