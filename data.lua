@@ -15,6 +15,9 @@ require("prototypes.plants-item-recipe")
 require("prototypes.plants-entity")
 require("prototypes.plants") -- all plants are collects here
 
+-- equipment
+require("prototypes.equipment")
+
 -- fishes
 require("prototypes.fish.fish")
 require("prototypes.fish.fish-meat-item")

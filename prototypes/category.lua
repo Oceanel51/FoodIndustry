@@ -17,9 +17,15 @@ data:extend(
   },
   {
     type = "item-subgroup",
-    name = "food-items",
+    name = "food-equipment",
     group = "food-industry",
     order = "w-c-a",
+  },
+  {
+    type = "item-subgroup",
+    name = "food-items",
+    group = "food-industry",
+    order = "w-c-b",
   },
   {
     type = "item-subgroup",

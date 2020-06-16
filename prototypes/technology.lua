@@ -1471,19 +1471,20 @@ data:extend({
     name = "fi-tech-eatout-button",
     icon = "__FoodIndustry__/graphics/technology/fi-tech-eatout-button.png",
     icon_size = 128,
-    prerequisites = {"cooking", "food-energy-efficiency-1"},
+    --prerequisites = {"cooking", "food-energy-efficiency-1"},
+    prerequisites = {"cooking", "solar-panel-equipment"},
     effects =
-    {  
-		--{type = "unlock-recipe", recipe = "simple-mining-capsule-food-capsule"},
+    {
+      {type = "unlock-recipe", recipe = "eat-drink-equipment"},
     },
     unit =
     {
       time = 30,
       count = 50,
       ingredients =
-      {        
-		{"automation-science-pack", 1},
-		{"food-science-pack", 1},
+      {
+    {"automation-science-pack", 1},
+    {"food-science-pack", 1},
       },
     },
     order = "w",
