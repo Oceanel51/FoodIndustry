@@ -536,7 +536,7 @@ script.on_event(defines.events.on_player_used_capsule, function(event)
 						if item_count ~= 0 then
 							player.insert{name = "orange-seeds", count = item_count}
 						end
-				end
+					end
 
 					---if global.energy[event.player_index] < global.energy_max[event.player_index] * 0.25 then -- if Energy level down below 25% - decrease running speed
 					---	game.players[event.player_index].character_running_speed_modifier = math.max((global.energy[event.player_index] - (global.energy_max[event.player_index] * 0.2))/global.energy_max[event.player_index],-0.99)
@@ -1003,6 +1003,66 @@ script.on_event(defines.events.on_gui_click, function(event)
 	end
 	if name == "drink_button" then
 		writeDebug(event.player_index.." "..player.name.." - Click [color=0,0,1]Drink[/color] button!")
+	end
+end
+)
+
+
+-- Placed Equipment
+script.on_event(defines.events.on_player_placed_equipment, function(event)
+	local player = game.players[event.player_index]    
+
+	-- check if we are adding an armor pocket
+	if event.equipment.name == "eat-drink-equipment" then
+		-- TODO do function create GUI
+		writeDebug(event.player_index.." "..player.name.." - need [color=0,1,0]create[/color] GUI!")
+	end
+end
+)
+
+-- Removed Equipment
+script.on_event(defines.events.on_player_removed_equipment, function(event)
+	local player = game.players[event.player_index]
+
+	-- check if we are removing an armor pocket
+	if event.equipment == "eat-drink-equipment" then
+		if event.count >= 0 then
+			-- TODO do function clear GUI
+			writeDebug(event.player_index.." "..player.name.." - need [color=1,0,0]clear[/color] GUI!")
+		end
+	end
+end
+)
+
+-- Changed Armor
+script.on_event(defines.events.on_player_armor_inventory_changed, function(event)
+	local player = game.players[event.player_index]
+	local armor = player.get_inventory(defines.inventory.character_armor)
+
+	-- check if an armor is equiped, before we do anything
+	if not armor.is_empty() then
+		local grid = armor[1].grid
+		-- check if the armor has a grid
+		if grid ~= nil then
+			-- loop through the equipment in the grid
+			for i = 1, #grid.equipment do
+				-- if the equipment item at index is a pocket, we check it name
+				if grid.equipment[i].name == "eat-drink-equipment" then
+					-- TODO do function create GUI
+					writeDebug(event.player_index.." "..player.name.." - need [color=0,1,0]create[/color] GUI!")
+				end
+				if grid.equipment[i].name == "eating-drinking-equipment" then
+					-- TODO do function create GUI
+					writeDebug(event.player_index.." "..player.name.." - need [color=0,1,0]create[/color] GUI!")
+				end
+			end
+		else
+			-- TODO do function clear GUI
+			writeDebug(event.player_index.." "..player.name.." - need [color=1,0,0]clear[/color] GUI!")
+		end
+	else
+		-- TODO do function clear GUI
+		writeDebug(event.player_index.." "..player.name.." - need [color=1,0,0]clear[/color] GUI!")
 	end
 end
 )

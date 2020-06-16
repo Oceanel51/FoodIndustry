@@ -5,6 +5,7 @@ data:extend({
     name = "eat-drink-equipment",
     icon = "__FoodIndustry__/graphics/icons/equipment/eat-drink-equipment-icon.png",
     icon_size = 64,
+    placed_as_equipment_result = "eat-drink-equipment",
     subgroup = "food-equipment",
     order = "w-a",
     stack_size = 1,

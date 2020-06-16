@@ -252,23 +252,23 @@ function figui.create(index, player)
 			leftGui.frame.add{ type = "flow", name = "flow6", direction = "horizontal", width = 200, align = "right"}
 		end
 		-- TODO "eat-button-ongui" by Oceanel
-		if player.force.technologies["fi-tech-eatout-button"] and player.force.technologies["fi-tech-eatout-button"].researched then
-			if not leftGui.frame.flow6.eat_button then
-				leftGui.frame.flow6.add{
-				type = "button",
-				name = "eat_button",
-				caption = {'button.eatout'},
-				tooltip = {'button.eatout-tooltip'},
-				align = "right",
-				vertical_align = "bottom",
-				--horizontally_stretchable = true,
-				--key_sequence = "SHIFT + E",
-				height = 20,
-				width = 25}
-			end
-			else
-			leftGui.frame.flow6.destroy()
-		end
+		-- if player.force.technologies["fi-tech-eatout-button"] and player.force.technologies["fi-tech-eatout-button"].researched then
+		-- 	if not leftGui.frame.flow6.eat_button then
+		-- 		leftGui.frame.flow6.add{
+		-- 		type = "button",
+		-- 		name = "eat_button",
+		-- 		caption = {'button.eatout'},
+		-- 		tooltip = {'button.eatout-tooltip'},
+		-- 		align = "right",
+		-- 		vertical_align = "bottom",
+		-- 		--horizontally_stretchable = true,
+		-- 		--key_sequence = "SHIFT + E",
+		-- 		height = 20,
+		-- 		width = 25}
+		-- 	end
+		-- 	else
+		-- 	leftGui.frame.flow6.destroy()
+		-- end
 	end
 
 end

@@ -67,7 +67,7 @@ local function addSeedling(entity, event, time)
             seedling = entity,
             fullgrowntick = event.tick + math.random(time_min, time_max)
         })
-        writeDebug("foodi.fruitSeedlings "..entity.name.." [color=0,1,0]added[/color]") -- DEBUG
+        --writeDebug("foodi.fruitSeedlings "..entity.name.." [color=0,1,0]added[/color]") -- DEBUG
         
         -- counter of landed seedlings fos statistic and achivements
         if global.fi_achievements[index] ~= nil then
