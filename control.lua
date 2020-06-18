@@ -116,7 +116,7 @@ script.on_event({defines.events.on_tick}, function (e)
 			fi_global_variables_set(index) -- set global variables default data of connected players
 			if player.connected then
 				if settings.global["food-industry-calculate"].value then
-					figui.create(index, player)
+					figui.create.main(index, player)
 				else
 					local leftGui = player.gui.left
 					if not leftGui then

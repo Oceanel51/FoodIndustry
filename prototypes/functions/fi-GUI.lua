@@ -1,7 +1,8 @@
 require "libs.helper-functions"
 
-
 if not figui then figui = {} end
+if not figui.create then figui.create = {} end
+
 
 function figui.mod_init()
 	if not settings.global["food-industry-calculate"].value then
@@ -18,10 +19,10 @@ function figui.mod_init()
 		index = player.index
 		if player.connected then
 			fi_global_variables_init()
-			figui.create(index, player)
+			figui.create.main(index, player)
 		end
 	end
-	writeDebug("Init ...OK")
+	writeDebug("FI gui: Init ...OK")
 	return
 	--for index, player in pairs(game.players) do
 	--	if player.valid and player.connected then
@@ -42,7 +43,7 @@ end
 
 
 -- creation or recreation FI GUI
-function figui.create(index, player)
+function figui.create.main(index, player)
 	local leftGui = player.gui.left
 	if not settings.global["food-industry-calculate"].value then
 		if not leftGui.frame then
@@ -110,8 +111,8 @@ function figui.create(index, player)
 	-- fat
 	if not leftGui.frame.flow1.flow13 then
 		leftGui.frame.flow1.add{type = "flow", name = "flow13", right_padding = 0, left_padding = 0, direction = "horizontal", horizontal_align="right"}
-		leftGui.frame.flow1.flow13.style.horizontal_align="right"
-		leftGui.frame.flow1.flow13.style.width = 20
+		--leftGui.frame.flow1.flow13.style.horizontal_align="right"
+			leftGui.frame.flow1.flow13.style.width = 40
 	end
 	if not leftGui.frame.flow1.flow13.label_fat then
 		leftGui.frame.flow1.flow13.add({type="label", name="label_fat", caption="", style="fi-label-mini"})
@@ -121,7 +122,8 @@ function figui.create(index, player)
 	
 	if not leftGui.frame.energybar then
 		leftGui.frame.add({type="progressbar", name="energybar"})
-		leftGui.frame.energybar.style.width = 230
+		leftGui.frame.energybar.style.width = 250
+		leftGui.frame.energybar.style.height = 10
 	end	
 
 
@@ -146,7 +148,7 @@ function figui.create(index, player)
 	end
 	if not leftGui.frame.drinksbar then
 		leftGui.frame.add({type="progressbar", name="drinksbar"})
-		leftGui.frame.drinksbar.style.width = 230
+		leftGui.frame.drinksbar.style.width = 250
 		leftGui.frame.drinksbar.style.color = {r=0.2, g=0.2, b=1, a=1}
 	end
 
@@ -176,7 +178,7 @@ function figui.create(index, player)
 		end
 		if not leftGui.frame.fullnessbar then
 			leftGui.frame.add({type="progressbar", name="fullnessbar"})
-			leftGui.frame.fullnessbar.style.width = 230
+			leftGui.frame.fullnessbar.style.width = 250
 			leftGui.frame.fullnessbar.style.color = {r = 1, g = 0.6, a = 1}
 		end
 		
@@ -251,50 +253,7 @@ function figui.create(index, player)
 		if not leftGui.frame.flow6 then
 			leftGui.frame.add{ type = "flow", name = "flow6", direction = "horizontal", width = 200, align = "right"}
 		end
-		-- TODO "eat-button-ongui" by Oceanel
-		-- if player.force.technologies["fi-tech-eatout-button"] and player.force.technologies["fi-tech-eatout-button"].researched then
-		-- 	if not leftGui.frame.flow6.eat_button then
-		-- 		leftGui.frame.flow6.add{
-		-- 		type = "button",
-		-- 		name = "eat_button",
-		-- 		caption = {'button.eatout'},
-		-- 		tooltip = {'button.eatout-tooltip'},
-		-- 		align = "right",
-		-- 		vertical_align = "bottom",
-		-- 		--horizontally_stretchable = true,
-		-- 		--key_sequence = "SHIFT + E",
-		-- 		height = 20,
-		-- 		width = 25}
-		-- 	end
-		-- 	else
-		-- 	leftGui.frame.flow6.destroy()
-		-- end
 	end
-
-end
-
--- early game "Eat/Drink" buttons creation
-function figui.create_eedb(index, player)
-	local leftGui = player.gui.left
-	local ScreenGui = player.gui.screen
-	
-	if not settings.global["food-industry-calculate"].value then
-		if not ScreenGui.frame then
-			ScreenGui.frame.destroy()
-		end
-		return
-	end
-
-	-- if ScreenGui.bar then
-	-- 	ScreenGui.bar.destroy()
-	-- end
-
-	-- initialize main .frame
-	if not ScreenGui.frame then
-		ScreenGui.add{type = "frame", name = "frame", direction = "horizontal"}
-	end
-
-
 
 end
 
