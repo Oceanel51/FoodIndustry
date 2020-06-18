@@ -569,8 +569,10 @@ data:extend({
     {
         {type = "unlock-recipe", recipe = "burner-cooker"},
         {type = "unlock-recipe", recipe = "cooked-corn"},
+        {type = "unlock-recipe", recipe = "whole-wheat-cookie"},
         {type = "unlock-recipe", recipe = "cooked-soy"},
         {type = "unlock-recipe", recipe = "baked-potato"},
+        {type = "unlock-recipe", recipe = "cooked-biter-meat-early"},
         {type = "unlock-recipe", recipe = "cooked-biter-meat"},
         {
         	type = "give-item",

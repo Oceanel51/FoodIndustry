@@ -2,10 +2,12 @@ require "libs.helper-functions"
 
 
 local foods = {
---1									2					3		4		5						6		7		8				9			11
---name,								subgroup,			stack,	cool,	crafting category,		time,	amount,	order,			recipe_version,	ingredients
+--1									2					3		4		5						6		7		8				9			10					11
+--name,								subgroup,			stack,	cool,	crafting category,		time,	amount,	order,			recipe_version,	ingredients,	results
 {"cooked-corn",						"foods-vegan",		10,		0.5,	"cooking",				4.0,	1,		"w-d-a",		nil,		{{"corn", 1}, {type="fluid", name="pure-water", amount=5}} },
-{"bread",							"foods-vegan",		10,		0.5,	"cooking",				7.0,	1,		"w-d-c",		nil,		{{"wheat-dough", 1}} },
+{"whole-wheat-cookie",				"wheat",			10,		0.5,	"cooking",				3.5,	1,		"w-d-c",		nil,		{{"wheat-grains", 3}} },
+--{"wheat-porridge",					"foods-vegan",		10,		0.5,	"cooking",				5.0,	1,		"w-d-cb",		nil,		{{"wheat-grains", 2}, {type="fluid", name="pure-water", amount=7}} },
+{"bread",							"foods-vegan",		10,		0.5,	"cooking",				7.0,	1,		"w-d-cc",		nil,		{{"wheat-dough", 1}} },
 {"corn-bread",						"foods-vegan",		10,		0.5,	"cooking",				8.0,	1,		"w-d-c",		nil,		{{"corn-dough", 1}} },
 {"popcorn",							"foods-vegan",		50,		0.2,	"cooking",				1.5,	1,		"w-d-d",		nil,		{{"corn-seeds", 1}, {type="fluid", name="canola-oil", amount=1}} },
 {"basic-salad",						"foods-vegan",		10,		0.5,	"cooking",				1.5,	1,		"w-d-b",		nil,		{{"tomato", 2}, {"cucumber", 1}, {"lettuce", 3}} },
@@ -30,6 +32,7 @@ local foods = {
 {"fish-pizza",						"foods-fish",		5,		0.5,	"advanced-cooking",		5.0,	1,		"w-d-b2",		nil,		{{"corn-flour", 2}, {"tomato", 3}, {"fish-steak", 1}, {type="fluid", name="ketchup", amount=2},} },
 {"fish-burger",						"foods-fish",		5,		0.5,	"advanced-cooking",		5.0,	1,		"w-d-b3",		nil,		{{"corn-bread", 1}, {"tomato", 2}, {"pickles", 2}, {"lettuce", 1}, {"fish-steak", 1}, {type="fluid", name="ketchup", amount=1},} },
 -- meat
+{"cooked-biter-meat",				"foods-meat",		10,		0.5,	"cooking",				60.0,	1,		"w-d-e",		"early",	{{"biter-meat", 2}, {"flask-pure-water", 1}}, {{"cooked-biter-meat", 2}, {"flask", 1}} },
 {"cooked-biter-meat",				"foods-meat",		10,		0.5,	"cooking",				12.0,	1,		"w-d-f",		nil,		{{"biter-meat", 1}, {type="fluid", name="pure-water", amount=7}} },
 {"biter-steak",						"foods-meat",		10,		0.5,	"cooking",				12.0,	1,		"w-d-g",		nil,		{{"biter-meat", 1}, {type="fluid", name="canola-oil", amount=2}} },
 {"schnitzel",						"foods-meat",		10,		0.5,	"cooking",				12.0,	1,		"w-d-h",		nil,		{{"biter-meat", 1}, {"corn-flour", 1}, {type="fluid", name="canola-oil", amount=5}} },
@@ -119,10 +122,10 @@ end
 for i, f in pairs(foods) do
 	--local sg = "foods"
 	local rname = f[1]
-	local iconsize = 64
 	if f[9] then
 		rname = f[1].."-"..f[9]
 	end
+	local iconsize = 64
 	--if f[8] then
 	--	sg = "effect"
 	--else
@@ -138,7 +141,15 @@ for i, f in pairs(foods) do
 		type = "foods"
 		--iconsize = 64
 	end
-	
+
+	-- add results from table
+	local results = {}
+	if f[11] ~= nil then
+		results = f[11]
+	else
+		results = {{f[1], f[7]}}
+	end
+
 	data:extend({
 		{
 			type = "capsule",
@@ -186,9 +197,10 @@ for i, f in pairs(foods) do
 			icon_size = iconsize,
 			category = f[5],
 			subgroup = f[2],
+			order = f[8],
 			energy_required = f[6],
 			ingredients = f[10],
-			results = {{f[1], f[7]}}
+			results = results
 		},
 	})
 end

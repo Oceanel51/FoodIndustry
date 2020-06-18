@@ -1,11 +1,22 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.8.xxx (2.0 beta)
+Date: xx.06.2020
+  Features:
+    - Added early game food items: whole-wheat-cookie "__ITEM__whole-wheat-cookie__"
+    - Added early game food recipes: whole-wheat-cookie, cooked-biter-meat-early
+  Balances:
+    - Balanced some food
+  Fixes:
+    - Fixed few locales
+    - Fixed food values
+---------------------------------------------------------------------------------------------------
 Version: 1.8.128 (2.0 beta)
 Date: 15.06.2020
   Features:
     - Added few "to-substances-1" recipes
     - New x64 icons for items and recipes
     - Changed x64 icons for fishes
-    - Added corn-dough and wheat-dough, so that food from flour does not require pure-water in the future
+    - Added corn-dough and wheat-dough food items, so that food from flour does not require pure-water in the future
     - Added apple and orange eating sounds
     - Added stdlib mod dependency: https://mods.factorio.com/mod/stdlib
   Balances:

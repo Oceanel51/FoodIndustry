@@ -30,8 +30,8 @@ for index, food in pairs(foods) do
 		rawstraw1_name = "raw-mince"
 	end
 
+	substances1_max_val = math.max(food[5][1],food[5][2],food[5][3],food[5][4])
 	if food[3] > food[4] and string.match(food[2], "substances1") == "substances1" then -- extract stage 1 - make dust
-		substances1_max_val = math.max(food[5][1],food[5][2],food[5][3],food[5][4])
 
 		if substances1_max_val == food[5][1] then
 			substances1_max_name = "v"
