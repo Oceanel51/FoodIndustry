@@ -7,8 +7,9 @@ Date: xx.06.2020
   Balances:
     - Balanced some food
   Fixes:
-    - Fixed few locales
+    - Fixed and improved few locales
     - Fixed food values
+    - Fixed "to-substances-2" recipe generation code
 ---------------------------------------------------------------------------------------------------
 Version: 1.8.128 (2.0 beta)
 Date: 15.06.2020

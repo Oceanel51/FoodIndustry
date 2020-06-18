@@ -448,11 +448,11 @@ script.on_event(defines.events.on_player_used_capsule, function(event)
 	if event.item.name == "raw-fish" then
 		player.insert{name = "raw-fish", count = 1}
 		--player.print("There are bones in this, you don't want to eat this.")
-		player.print({'print.dont-eat-raw-fish'})
+		player.print({'print.dont-eat-raw-fish', event.item.name})
 		return
 	elseif event.item.name == "fi-raw-sturgeon" then
 		player.insert{name = "fi-raw-sturgeon", count = 1}
-		player.print({'print.dont-eat-raw-fish'})
+		player.print({'print.dont-eat-raw-fish', event.item.name})
 		return
 	end
 	

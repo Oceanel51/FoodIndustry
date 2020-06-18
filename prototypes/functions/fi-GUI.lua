@@ -273,6 +273,31 @@ function figui.create(index, player)
 
 end
 
+-- early game "Eat/Drink" buttons creation
+function figui.create_eedb(index, player)
+	local leftGui = player.gui.left
+	local ScreenGui = player.gui.screen
+	
+	if not settings.global["food-industry-calculate"].value then
+		if not ScreenGui.frame then
+			ScreenGui.frame.destroy()
+		end
+		return
+	end
+
+	-- if ScreenGui.bar then
+	-- 	ScreenGui.bar.destroy()
+	-- end
+
+	-- initialize main .frame
+	if not ScreenGui.frame then
+		ScreenGui.add{type = "frame", name = "frame", direction = "horizontal"}
+	end
+
+
+
+end
+
 
 -- Update GUI gadgets: Energy, Drinks, Fullness
 function figui.update(index, player)
