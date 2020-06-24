@@ -1557,8 +1557,8 @@ data:extend({
         count = 50,
         ingredients =
         {
-            {"food-science-pack", 1},
             {"logistic-science-pack", 1},
+            {"food-science-pack", 1},
         },
     },
     order = "w",

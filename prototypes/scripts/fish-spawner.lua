@@ -17,7 +17,7 @@ local local_fish_spawner_process = function(entity)
 	-- 1 sturgeon per min
 	if game.tick % (60 * 60 / fish_table[entity.name].count_per_min) == 0 then
 		if fish_count < fish_table[entity.name].max_fish_around then
-			entity.surface.create_entity({name=fish_table[entity.name].name, amount=1, position=entity.position})	
+			entity.surface.create_entity({name=fish_table[entity.name].name, amount=1, position=entity.position})
 		end
 	end
 end
@@ -26,8 +26,8 @@ local local_fish_spawner_tick = function()
 	if game.tick % 30 == 0 then
 		for index, fish_spawner in ipairs(global.foodi.fish_spawners) do
 			if fish_spawner.valid then
-				if not fish_spawner.to_be_deconstructed(fish_spawner.force) then					
-				    local_fish_spawner_process(fish_spawner)				
+				if not fish_spawner.to_be_deconstructed(fish_spawner.force) then
+					local_fish_spawner_process(fish_spawner)
 				end
 			end
 		end
@@ -37,6 +37,7 @@ end
 local local_fish_spawner_added = function(ent)
 	if ent.name == "fish-farm" or ent.name == "sturgeon-farm" then
 		table.insert(global.foodi.fish_spawners, ent)
+		--eewriteDebug("foodi.fish_spawners "..ent.name.." [color=0,1,0]added[/color]") -- DEBUG
 	end
 end
 

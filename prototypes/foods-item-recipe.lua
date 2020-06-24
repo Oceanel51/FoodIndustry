@@ -32,7 +32,7 @@ local foods = {
 {"fish-pizza",						"foods-fish",		5,		0.5,	"advanced-cooking",		5.0,	1,		"w-d-b2",		nil,		{{"corn-flour", 2}, {"tomato", 3}, {"fish-steak", 1}, {type="fluid", name="ketchup", amount=2},} },
 {"fish-burger",						"foods-fish",		5,		0.5,	"advanced-cooking",		5.0,	1,		"w-d-b3",		nil,		{{"corn-bread", 1}, {"tomato", 2}, {"pickles", 2}, {"lettuce", 1}, {"fish-steak", 1}, {type="fluid", name="ketchup", amount=1},} },
 -- meat
-{"cooked-biter-meat",				"foods-meat",		10,		0.5,	"cooking",				60.0,	1,		"w-d-e",		"early",	{{"biter-meat", 2}, {"flask-pure-water", 1}}, {{"cooked-biter-meat", 2}, {"flask", 1}} },
+{"cooked-biter-meat",				"foods-meat",		10,		0.5,	"cooking",				35.0,	1,		"w-d-e",		"early",	{{"biter-meat", 2}, {"flask-pure-water", 1}}, {{"cooked-biter-meat", 2}, {"flask", 1}} },
 {"cooked-biter-meat",				"foods-meat",		10,		0.5,	"cooking",				12.0,	1,		"w-d-f",		nil,		{{"biter-meat", 1}, {type="fluid", name="pure-water", amount=7}} },
 {"biter-steak",						"foods-meat",		10,		0.5,	"cooking",				12.0,	1,		"w-d-g",		nil,		{{"biter-meat", 1}, {type="fluid", name="canola-oil", amount=2}} },
 {"schnitzel",						"foods-meat",		10,		0.5,	"cooking",				12.0,	1,		"w-d-h",		nil,		{{"biter-meat", 1}, {"corn-flour", 1}, {type="fluid", name="canola-oil", amount=5}} },

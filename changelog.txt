@@ -4,12 +4,16 @@ Date: xx.06.2020
   Features:
     - Added early game food items: whole-wheat-cookie "__ITEM__whole-wheat-cookie__"
     - Added early game food recipes: whole-wheat-cookie, cooked-biter-meat-early
+    - Changed early game "Eat/Drink" buttons to "eat-drink-equipment" (WIP)
   Balances:
     - Balanced some food
   Fixes:
     - Fixed and improved few locales
     - Fixed food values
     - Fixed "to-substances-2" recipe generation code
+    - Fixed x64 icons for fish recipes
+  TODO:
+    - еда которая повреждает ХП отбирает его сразу все
 ---------------------------------------------------------------------------------------------------
 Version: 1.8.128 (2.0 beta)
 Date: 15.06.2020

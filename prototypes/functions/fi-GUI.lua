@@ -2,6 +2,7 @@ require "libs.helper-functions"
 
 if not figui then figui = {} end
 if not figui.create then figui.create = {} end
+if not figui.destroy then figui.destroy = {} end
 
 
 function figui.mod_init()

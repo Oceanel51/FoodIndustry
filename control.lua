@@ -999,10 +999,13 @@ script.on_event(defines.events.on_gui_click, function(event)
 	if not name then return end
 
 	if name == "eat_button" then
-		writeDebug(event.player_index.." "..player.name.." - Click [color=0,1,0]Eat[/color] button!")
+		writeDebug("FI: "..event.player_index.." "..player.name.." - Click [color=0,1,0]Eat[/color] button!")
 	end
 	if name == "drink_button" then
-		writeDebug(event.player_index.." "..player.name.." - Click [color=0,0,1]Drink[/color] button!")
+		writeDebug("FI: "..event.player_index.." "..player.name.." - Click [color=0,0,1]Drink[/color] button!")
+	end
+	if name == "eating_button" then
+		writeDebug("FI: "..event.player_index.." "..player.name.." - Click [color=1,0,1]Eating[/color] button!")
 	end
 end
 )
@@ -1010,12 +1013,13 @@ end
 
 -- Placed Equipment
 script.on_event(defines.events.on_player_placed_equipment, function(event)
-	local player = game.players[event.player_index]    
+	local player = game.players[event.player_index]
 
 	-- check if we are adding an armor pocket
 	if event.equipment.name == "eat-drink-equipment" then
 		-- TODO do function create GUI
-		writeDebug(event.player_index.." "..player.name.." - need [color=0,1,0]create[/color] GUI!")
+		figui.create.eedb(event.player_index, player)
+		writeDebug("FI: "..event.player_index.." "..player.name.." - EEDB (T1) GUI [color=0,1,0]created[/color]!")
 	end
 end
 )
@@ -1028,13 +1032,14 @@ script.on_event(defines.events.on_player_removed_equipment, function(event)
 	if event.equipment == "eat-drink-equipment" then
 		if event.count >= 0 then
 			-- TODO do function clear GUI
-			writeDebug(event.player_index.." "..player.name.." - need [color=1,0,0]clear[/color] GUI!")
+			figui.destroy.eedb(event.player_index, player)
+			writeDebug("FI: "..event.player_index.." "..player.name.." - EEDB (T1) GUI [color=1,0,0]destroyed[/color]!")
 		end
 	end
 end
 )
 
--- Changed Armor
+-- Changed Armor (some way)
 script.on_event(defines.events.on_player_armor_inventory_changed, function(event)
 	local player = game.players[event.player_index]
 	local armor = player.get_inventory(defines.inventory.character_armor)
@@ -1049,20 +1054,24 @@ script.on_event(defines.events.on_player_armor_inventory_changed, function(event
 				-- if the equipment item at index is a pocket, we check it name
 				if grid.equipment[i].name == "eat-drink-equipment" then
 					-- TODO do function create GUI
-					writeDebug(event.player_index.." "..player.name.." - need [color=0,1,0]create[/color] GUI!")
+					figui.create.eedb(event.player_index, player)
+					writeDebug("FI: "..event.player_index.." "..player.name.." - EEDB (T1) GUI [color=0,1,0]created[/color] (some way)!")
 				end
 				if grid.equipment[i].name == "eating-drinking-equipment" then
-					-- TODO do function create GUI
-					writeDebug(event.player_index.." "..player.name.." - need [color=0,1,0]create[/color] GUI!")
+					-- TODO do function create EDBS GUI
+					writeDebug("FI: "..event.player_index.." "..player.name.." - EDBS (T2) GUI [color=0,1,0]created[/color] (some way)!")
 				end
+				-- TODO add two equipments - AFDS and FPFS
 			end
 		else
 			-- TODO do function clear GUI
-			writeDebug(event.player_index.." "..player.name.." - need [color=1,0,0]clear[/color] GUI!")
+			figui.destroy.eedb(event.player_index, player)
+			writeDebug("FI: "..event.player_index.." "..player.name.." - All GUI [color=1,0,0]destroyed[/color] (some way), because grid is nil!")
 		end
 	else
 		-- TODO do function clear GUI
-		writeDebug(event.player_index.." "..player.name.." - need [color=1,0,0]clear[/color] GUI!")
+		figui.destroy.eedb(event.player_index, player)
+		writeDebug("FI: "..event.player_index.." "..player.name.." - All GUI [color=1,0,0]destroyed[/color] (some way)!")
 	end
 end
 )
