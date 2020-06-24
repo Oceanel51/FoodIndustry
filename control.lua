@@ -116,7 +116,7 @@ script.on_event({defines.events.on_tick}, function (e)
 			fi_global_variables_set(index) -- set global variables default data of connected players
 			if player.connected then
 				if settings.global["food-industry-calculate"].value then
-					figui.create.main(index, player)
+					figui.main.create(index, player)
 				else
 					local leftGui = player.gui.left
 					if not leftGui then
@@ -134,7 +134,7 @@ script.on_event({defines.events.on_tick}, function (e)
 				if not player.character then -- for sandbox mode
 					-- This will come in when player are in space map mode with space-exploration, so do nothing 
 				else ---- calculate character Energy usage data
-					--figui.create(index, player)
+					--figui.main.create(index, player)
 					
 					local slots = 0
 					local durability = 0
@@ -322,7 +322,7 @@ script.on_event({defines.events.on_tick}, function (e)
 					--end
 				end
 			--end
-			figui.update(index, player)
+			figui.main.update(index, player)
 		end
 		u_gui()
 	end
@@ -549,7 +549,7 @@ script.on_event(defines.events.on_player_used_capsule, function(event)
 					
 					-- update GUI
 					---u_gui()
-					-- figui.update(index, player)
+					-- figui.main.update(index, player)
 					
 					-- play some eated food sounds
 					if string.match(event.item.name, "food") == "food" then
@@ -848,8 +848,8 @@ function u_gui()
 			if global.energy[index] and global.drinks[index] and global.fullness[index] then -- if exists values in global tables
 				if player.valid and player.connected then
 					
-					--figui.create(index, player)
-					--figui.update(index, player)
+					--figui.main.create(index, player)
+					--figui.main.update(index, player)
 					
 					
 					local leftGui = player.gui.left
@@ -1018,7 +1018,7 @@ script.on_event(defines.events.on_player_placed_equipment, function(event)
 	-- check if we are adding an armor pocket
 	if event.equipment.name == "eat-drink-equipment" then
 		-- TODO do function create GUI
-		figui.create.eedb(event.player_index, player)
+		figui.eedb.create(event.player_index, player)
 		writeDebug("FI: "..event.player_index.." "..player.name.." - EEDB (T1) GUI [color=0,1,0]created[/color]!")
 	end
 end
@@ -1032,7 +1032,7 @@ script.on_event(defines.events.on_player_removed_equipment, function(event)
 	if event.equipment == "eat-drink-equipment" then
 		if event.count >= 0 then
 			-- TODO do function clear GUI
-			figui.destroy.eedb(event.player_index, player)
+			figui.eedb.destroy(event.player_index, player)
 			writeDebug("FI: "..event.player_index.." "..player.name.." - EEDB (T1) GUI [color=1,0,0]destroyed[/color]!")
 		end
 	end
@@ -1054,7 +1054,7 @@ script.on_event(defines.events.on_player_armor_inventory_changed, function(event
 				-- if the equipment item at index is a pocket, we check it name
 				if grid.equipment[i].name == "eat-drink-equipment" then
 					-- TODO do function create GUI
-					figui.create.eedb(event.player_index, player)
+					figui.eedb.create(event.player_index, player)
 					writeDebug("FI: "..event.player_index.." "..player.name.." - EEDB (T1) GUI [color=0,1,0]created[/color] (some way)!")
 				end
 				if grid.equipment[i].name == "eating-drinking-equipment" then
@@ -1065,12 +1065,12 @@ script.on_event(defines.events.on_player_armor_inventory_changed, function(event
 			end
 		else
 			-- TODO do function clear GUI
-			figui.destroy.eedb(event.player_index, player)
+			figui.eedb.destroy(event.player_index, player)
 			writeDebug("FI: "..event.player_index.." "..player.name.." - All GUI [color=1,0,0]destroyed[/color] (some way), because grid is nil!")
 		end
 	else
 		-- TODO do function clear GUI
-		figui.destroy.eedb(event.player_index, player)
+		figui.eedb.destroy(event.player_index, player)
 		writeDebug("FI: "..event.player_index.." "..player.name.." - All GUI [color=1,0,0]destroyed[/color] (some way)!")
 	end
 end

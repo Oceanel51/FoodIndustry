@@ -2,7 +2,7 @@ require "prototypes.functions.fi-GUI"
 
 
 -- Early game "Eat/Drink" Buttons creation
-function figui.create.eedb(index, player)
+function figui.eedb.create(index, player)
 	-- local leftGui = player.gui.left
 	local ScreenGui = player.gui.screen
 	
@@ -45,7 +45,7 @@ end
 
 
 -- Early game "Eat/Drink" Buttons creation
-function figui.destroy.eedb(index, player)
+function figui.eedb.destroy(index, player)
 	-- local leftGui = player.gui.left
 	local ScreenGui = player.gui.screen
 	
@@ -59,5 +59,9 @@ function figui.destroy.eedb(index, player)
 	if ScreenGui.frame then
 		ScreenGui.frame.destroy()
 	end
+
+end
+
+function figui.eedb.update(index, player)
 
 end

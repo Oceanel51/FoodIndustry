@@ -8,7 +8,7 @@ for _, player in pairs(game.players) do
 		
 		if not leftGui.frame.flow3.flow34.flow341 then  -- destroy all old frame data of GUI (after 0.16.30)
 			leftGui.frame.destroy()
-			figui.create(index, player)
+			figui.main.create(index, player)
 			player.print("FI migration_1.8.54.0: Old frame data of GUI (after 1.8.53) sucesfuly replaced")
 		end
 

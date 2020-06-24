@@ -1,8 +1,8 @@
 require "libs.helper-functions"
 
 if not figui then figui = {} end
-if not figui.create then figui.create = {} end
-if not figui.destroy then figui.destroy = {} end
+if not figui.main then figui.main = {} end
+if not figui.eedb then figui.eedb = {} end
 
 
 function figui.mod_init()
@@ -20,7 +20,7 @@ function figui.mod_init()
 		index = player.index
 		if player.connected then
 			fi_global_variables_init()
-			figui.create.main(index, player)
+			figui.main.create(index, player)
 		end
 	end
 	writeDebug("FI gui: Init ...OK")
@@ -44,7 +44,7 @@ end
 
 
 -- creation or recreation FI GUI
-function figui.create.main(index, player)
+function figui.main.create(index, player)
 	local leftGui = player.gui.left
 	if not settings.global["food-industry-calculate"].value then
 		if not leftGui.frame then
@@ -260,7 +260,7 @@ end
 
 
 -- Update GUI gadgets: Energy, Drinks, Fullness
-function figui.update(index, player)
+function figui.main.update(index, player)
 	local leftGui = player.gui.left
 	
 	if leftGui == nil or leftGui.frame == nil then
@@ -599,7 +599,7 @@ function figui.reserveUpdateEffectsGUI(index)
 end
 
 function figui.sync_effects_to_gui(index) 
-	if not figui.needUpdateEffectsGUI[index] then 
+	if not figui.needUpdateEffectsGUI[index] then
 		return
 	end
 	figui.needUpdateEffectsGUI[index] = false
