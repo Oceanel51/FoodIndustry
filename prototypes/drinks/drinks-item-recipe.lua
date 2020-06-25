@@ -7,6 +7,7 @@ local foods = {
 	{"flask-pure-water",			10,		0.5,	"crafting-with-fluid",	3.0,	1,		"drinks-pure-water",	true,		{{"flask", 1}, {type="fluid", name="pure-water", amount=30}},				{r=0.0,g=0.6,b=1.0,a=0.6} },
 	{"plastic-bottle-pure-water",	10,		0.5,	"crafting-with-fluid",	5.0,	1,		"drinks-pure-water",	false,		{{"plastic-bottle", 1}, {type="fluid", name="pure-water", amount=60}},		{r=0.0,g=0.5,b=1.0,a=0.5} },
 	--{"glass-bottle-pure-water",		10,		0.5,	"crafting-with-fluid",	6.0,	1,		"drinks-pure-water",	false,		{{"glass-bottle", 1}, {type="fluid", name="pure-water", amount=50}},		{r=0.0,g=0.5,b=1.0,a=0.8} },
+	{"simple-capsule-pure-water",	20,		0.7,	"crafting-with-fluid",	3.0,	1,		"drinks-pure-water",	false,		{{"basic-shell-capsule", 2}, {type="fluid", name="pure-water", amount=20}},	{r=0.0,g=0.5,b=1.0,a=0.5} },
 	-- juices
 	{"plastic-bottle-apple-juice",	10,		0.8,	"crafting-with-fluid",	5.5,	1,		"drinks-apple",			false,		{{"plastic-bottle", 1}, {type="fluid", name="apple-juice", amount=60}},		{r=213/255, g=141/255, b=65/255, a=155/255} },
 	{"plastic-bottle-orange-juice",	10,		0.8,	"crafting-with-fluid",	6.5,	1,		"drinks-orange",		false,		{{"plastic-bottle", 1}, {type="fluid", name="orange-juice", amount=60}},	{r=245/255, g=161/255, b=0, a=229/255} },
@@ -46,6 +47,9 @@ for i, f in pairs(foods) do
 	elseif string.match(f[1], "glass%-bottle") == "glass-bottle" and data.raw.item["glass"] then
 		--log("[FI Debug] glass-bottle item and recipe - "..f[1])
 		-- TODO add glass tara
+	elseif string.match(f[1], "^simple%-capsule") == "simple-capsule" then
+		icon1 = "simple-capsule-pure-water"
+		icon2 = "simple-capsule-pure-water-mask"
 	end
 
 	if icon1 == "" or icon2 == "" then break end
@@ -125,6 +129,8 @@ for i, f in pairs(foods) do
 		table.insert(data.raw.technology["fruit-juicing"].effects,{recipe = f[1], type = "unlock-recipe"})
 	--elseif string.match(f[1], "^plastic") == "plastic" then
 	--	table.insert(data.raw.technology["plastics"].effects,{recipe = f[1], type = "unlock-recipe"})
+	elseif string.match(f[1], "^simple%-capsule") == "simple-capsule" then
+		table.insert(data.raw.technology["effect-capsules"].effects,{recipe = f[1], type = "unlock-recipe"})
 	end
 
 end

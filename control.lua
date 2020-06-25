@@ -1,5 +1,6 @@
 require "prototypes.functions.fi-global-variables"
 require "prototypes.functions.fi-GUI"
+require "prototypes.functions.eat-drink-equipment_control"
 require "prototypes.functions.fi-effects"
 require "prototypes.tables.fi-foods-table"
 require "prototypes.functions.fi-calculations"

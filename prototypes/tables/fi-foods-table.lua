@@ -75,6 +75,7 @@ function foods_table()
 	{"simple-food-vmf-capsule",			"vegan-special",				4,		-2,		{3,3,0,2},			35,		35,		0,		{} },
 	{"simple-food-mcf-capsule",			"meat-special",					4,		-2,		{0,3,3,2},			35,		35,		0,		{} },
 	{"simple-food-vcf-capsule",			"meat-special",					4,		-2,		{3,0,3,2},			35,		35,		0,		{} },
+	{"simple-capsule-pure-water",		"special",						0,		20,		{-0.2,0,0.4,0},		25,		25,		0,		{} },
 	{"basic-food-vm-capsule",			"vegan-special",				10,		-5,		{8,8,0,-0.3},		50,		50,		5,		{} },
 	{"basic-food-vc-capsule",			"vegan-special",				10,		-5,		{8,0,8,-0.3},		50,		50,		5,		{} },
 	{"basic-food-mc-capsule",			"vegan-special",				10,		-5,		{0,8,8,0},			50,		50,		5,		{} },
