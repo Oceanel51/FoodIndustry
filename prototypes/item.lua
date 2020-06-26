@@ -283,7 +283,7 @@ data:extend({
     icon_size = 64,
     subgroup = "food-items",
     order = "w-b-4",
-    stack_size = 100,
+    stack_size = 50,
   },
   {
     type = "item",
@@ -292,7 +292,7 @@ data:extend({
     icon_size = 64,
     subgroup = "food-items",
     order = "w-b-5",
-    stack_size = 50,
+    stack_size = 20,
   },
   
   {

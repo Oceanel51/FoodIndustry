@@ -574,6 +574,8 @@ script.on_event(defines.events.on_player_used_capsule, function(event)
 					-- drinking
 					elseif string.match(event.item.name, "flask%-pure%-water") == "flask-pure-water" or string.match(event.item.name, "plastic%-bottle%-pure%-water") == "plastic-bottle-pure-water" then
 						player.play_sound({path = "drink-water-sound",volume_modifier = 0.8}) -- play sound when drink water
+					elseif string.match(event.item.name, "simple%-capsule%-pure%-water") == "simple-capsule-pure-water" then
+						player.play_sound({path = "drink-water-sound",volume_modifier = 0.7}) -- play sound when drink water
 					end
 					-- for effect capsules
 					-- kit-06.ogg, kit-15.ogg, kit-16.ogg, or

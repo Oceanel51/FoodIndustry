@@ -1,10 +1,20 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.8.xxx (2.0 beta)
+Date: xx.07.2020
+  Features:
+    - ? Changed early game "Eat/Drink" buttons to "eat-drink-equipment", adds buttons on gui, which allow to eat one random food/drink from Player inventory. (WIP)
+    - Added use sound for simple-capsule-pure-water.
+  Balances:
+    - Reduced simple and basic capsules stack sizes by half
+  Fixes:
+    - ?
+---------------------------------------------------------------------------------------------------
 Version: 1.8.136 (2.0 beta)
 Date: 25.06.2020
   Features:
-    - Added early game food items: whole-wheat-cookie "__ITEM__whole-wheat-cookie__"
+    - Added early game food items: whole-wheat-cookie
     - Added early game food recipes: whole-wheat-cookie, cooked-biter-meat-early
-    - ? Changed early game "Eat/Drink" buttons to "eat-drink-equipment", adds buttons on gui, which allow to eat one random food/drink from Player inventory. (WIP)
+    - Changed early game "Eat/Drink" buttons to "eat-drink-equipment", adds buttons on gui, which allow to eat one random food/drink from Player inventory (WIP).
     - Added early small simple-capsule-pure-water, capacity 20, alternative to flask and water bottles that is used without remnant.
   Balances:
     - Balanced some food
