@@ -27,19 +27,21 @@ function figui.eedb.create(index, player)
 	end
 	-- TODO "eat-button-ongui" by Oceanel
 	-- if player.force.technologies["fi-tech-eatout-button"] and player.force.technologies["fi-tech-eatout-button"].researched then
-		if not ScreenGui.frame.flow1.eat_button then
-			ScreenGui.frame.flow1.add{
-			type = "button",
-			name = "eat_button",
-			caption = {'button.eatout'},
-			tooltip = {'button.eatout-tooltip'},
-			align = "right",
-			vertical_align = "bottom",
-			--horizontally_stretchable = true,
-			--key_sequence = "SHIFT + E",
-			height = 16,
-			width = 24}
-		end
+	if not ScreenGui.frame.flow1.eat_button then
+		ScreenGui.frame.flow1.add{
+		type = "sprite-button",
+		name = "eat_button",
+		--caption = {'button.eatout'},
+		tooltip = {'button.eatout-tooltip'},
+		align = "right",
+		vertical_align = "bottom",
+		--horizontally_stretchable = true,
+		--key_sequence = "SHIFT + E",
+		-- height = 14,
+		-- width = 16}
+		sprite = "item/corn",
+		style = "icon_button"}
+	end
 	-- 	else
 	-- 	ScreenGui.frame.flow6.destroy()
 	-- end
@@ -56,6 +58,17 @@ function figui.eedb.create(index, player)
 
 	if not ScreenGui.frame.flow3 then
 		ScreenGui.frame.add{type = "flow", name = "flow3", right_padding = 0, left_padding = 0, direction = "horizontal"}
+	end
+	if not ScreenGui.frame.flow3.drink_button then
+		ScreenGui.frame.flow3.add{
+		type = "sprite-button",
+		name = "drink_button",
+		--caption = {'button.eatout'},
+		tooltip = {'button.eatout-tooltip'},
+		align = "right",
+		vertical_align = "bottom",
+		sprite = "item/flask",
+		style = "icon_button"}
 	end
 
 	return true

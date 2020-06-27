@@ -90,10 +90,7 @@ data:extend({
                 width = 76,
                 height = 46,
                 priority = "extra-high",
-                shift = {
-                 0.515625,
-                  0.0625
-                },
+                shift = {0.5156, 0.0625},
               },
           }
         },
