@@ -2,12 +2,17 @@
 Version: 1.8.xxx (2.0 beta)
 Date: xx.07.2020
   Features:
-    - ? Changed early game "Eat/Drink" buttons to "eat-drink-equipment", adds buttons on gui, which allow to eat one random food/drink from Player inventory. (WIP)
     - Added use sound for simple-capsule-pure-water.
+    - Changed fi-tech-eatout-button technology prerequisites
+    - Changed compost icon
+    - ? Work on functions and gui view of early game "eat-drink-equipment" (WIP).
   Balances:
     - Reduced simple and basic capsules stack sizes by half
   Fixes:
-    - ?
+    - Fixed wild tree entity pictures.layers
+    - Fixed adult trees corpse
+    - Hot fixed crash when use button equipment and "Calculate for player" option are disabled
+    - Hot fixed crash when used deconstruction planner on a tree
 ---------------------------------------------------------------------------------------------------
 Version: 1.8.136 (2.0 beta)
 Date: 25.06.2020
