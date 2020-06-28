@@ -1466,7 +1466,7 @@ data:extend({
     },
     order = "w",
   },
-  
+
   -- TODO Button technologies
   {
     type = "technology",
@@ -1474,7 +1474,7 @@ data:extend({
     icon = "__FoodIndustry__/graphics/technology/fi-tech-eatout-button.png",
     icon_size = 128,
     --prerequisites = {"cooking", "food-energy-efficiency-1"},
-    prerequisites = {"cooking", "solar-panel-equipment"},
+    prerequisites = {"cooking", "modular-armor"},
     effects =
     {
       {type = "unlock-recipe", recipe = "eat-drink-equipment"},
@@ -1485,8 +1485,8 @@ data:extend({
       count = 50,
       ingredients =
       {
-    {"automation-science-pack", 1},
-    {"food-science-pack", 1},
+        {"automation-science-pack", 1},
+        {"food-science-pack", 1},
       },
     },
     order = "w",
@@ -1503,11 +1503,11 @@ data:extend({
       time = 60,
       count = 60,
       ingredients =
-      {        
-		{"food-science-pack", 3},
-		{"logistic-science-pack", 3},
-		{"chemical-science-pack", 2},
-		{"utility-science-pack", 1},
+      {
+        {"food-science-pack", 3},
+        {"logistic-science-pack", 3},
+        {"chemical-science-pack", 2},
+        {"utility-science-pack", 1},
       },
     },
     order = "w",

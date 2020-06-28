@@ -7,7 +7,7 @@ function figui.eedb.create(index, player)
 	local ScreenGui = player.gui.screen
 	
 	if not settings.global["food-industry-calculate"].value then
-		if not ScreenGui.frame then
+		if ScreenGui.frame then
 			ScreenGui.frame.destroy()
 		end
 		return false
@@ -79,19 +79,17 @@ end
 function figui.eedb.destroy(index, player)
 	-- local leftGui = player.gui.left
 	local ScreenGui = player.gui.screen
-	
+
 	if not settings.global["food-industry-calculate"].value then
-		if not ScreenGui.frame then
-			ScreenGui.frame.destroy()
-		end
 		return false
 	end
 
 	if ScreenGui.frame then
 		ScreenGui.frame.destroy()
 	end
-
+	return true
 end
+
 
 function figui.eedb.update(index, player)
 	

@@ -90,6 +90,11 @@ local function local_fruittree_tick(event)
     if #global.foodi.fruitSeedlings > 0 then
         for index, fruitSeedling in ipairs(global.foodi.fruitSeedlings) do
             if fruitSeedling ~= nil and fruitSeedling.fullgrowntick < event.tick then
+                if not fruitSeedling.seedling.valid then
+                    --writeDebug("FI: fruitSeedling entity is not valid  [color=1,0,0]removed[/color]!") -- DEBUG
+                    table.remove(global.foodi.fruitSeedlings, index)
+                    return
+                end
                 local surface = fruitSeedling.seedling.surface
                 local position = fruitSeedling.seedling.position
                 local time = {}

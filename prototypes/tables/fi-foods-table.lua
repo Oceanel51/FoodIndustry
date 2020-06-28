@@ -30,7 +30,7 @@ function foods_table()
 	{"soy",								"vegan-substances1",			2,		-5,		{0,2.4,1,0.4},		nil,	nil,	nil,	{} },
 	{"cooked-soy",						"vegan",						6,		-1,		{0,2,2,1},			5,		5,		5,		{} },
 	{"baked-potato",					"vegan-gourmet-substances2",	14,		-1,		{0.4,1.8,2.5,0},	26,		26,		10,		{} },
-	{"wheat-grains",					"vegan-substances1",			2,		-5,		{0,0.5,1,0.2},		nil,	nil,	nil,	{} },
+	{"wheat-grains",					"vegan-substances1",			2,		-5,		{0,0.5,1,0.2},		10,		nil,	nil,	{} },
 	{"rapeseed",						"substances1",					1,		-8,		{0,0.4,0.8,1.2},	nil,	nil,	nil,	{} },
 	{"fries",							"vegan-fat",					20,		-5,		{0,0,3,4},			55,		0,		30,		{} },
 	{"ketchup-fries",					"vegan-fat",					25,		-2,		{0,0,6,6},			70,		0,		45,		{} },

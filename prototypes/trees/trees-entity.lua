@@ -1,6 +1,7 @@
 --require "prototypes.scripts.trees_control"
 require "prototypes.tables.fi-trees-table"
 local trees_variations = trees_variations()
+local tree_corpse_flags = {"placeable-neutral", "placeable-off-grid", "not-on-map"}
 
 
 local trees = {
@@ -429,23 +430,25 @@ for index, crop in pairs(trees) do
 			selection_box = { {-0.4,-0.4}, {0.4,0.4} },
 			subgroup = "trees",
 			pictures = {
-				{
-					filename = "__FoodIndustry__/graphics/entity/trees/"..crop[1].."/"..crop[1].."-wild-tree.png",
-					priority = "high",
-					width = 945,
-					height = 771,
-					scale = crop[16],
-					shift = {0.89, -1.71},
+				layers = {
+					{
+						filename = "__FoodIndustry__/graphics/entity/trees/"..crop[1].."/"..crop[1].."-wild-tree.png",
+						priority = "high",
+						width = 945,
+						height = 771,
+						scale = crop[16],
+						shift = {0.89, -1.71},
+					},
+					{
+						draw_as_shadow = true,
+						filename = "__FoodIndustry__/graphics/entity/trees/"..crop[1].."/"..crop[1].."-wild-tree-shadow.png",
+						priority = "high",
+						width = 945,
+						height = 771,
+						scale = crop[16],
+						shift = {0.89, -1.71},
+					}
 				},
-				{
-					draw_as_shadow = true,
-					filename = "__FoodIndustry__/graphics/entity/trees/"..crop[1].."/"..crop[1].."-wild-tree-shadow.png",
-					priority = "high",
-					width = 945,
-					height = 771,
-					scale = crop[16],
-					shift = {0.89, -1.71},
-				}
 			},
 			map_color=crop[14],
 		},
@@ -826,18 +829,20 @@ for index, crop in pairs(trees) do
 			tile_width = 1,
 			tile_height = 1,
 			selectable_in_game = false,
-			time_before_removed = 60 * 60 * 3, -- 3 minutes
+			time_before_removed = 60 * 60 * 5, -- 5 minutes
 			final_render_layer = "remnants",
 			subgroup = "remnants",
 			order = crop[1].."-5-h",
-			pictures = {
+			animation = {
 				layers = {
 					{
 						filename = "__FoodIndustry__/graphics/entity/trees/"..crop[1].."/"..crop[1].."-dirt.png",
 						priority = "high",
 						width = 945,
 						height = 771,
-						scale = crop[16],
+						frame_count = 1,
+						direction_count = 1,
+							scale = crop[16],
 						shift = {0.89, -1.71},
 					},
 					{
@@ -845,7 +850,9 @@ for index, crop in pairs(trees) do
 						priority = "high",
 						width = 945,
 						height = 771,
-						scale = crop[16],
+						frame_count = 1,
+						direction_count = 1,
+							scale = crop[16],
 						shift = {0.89, -1.71},
 					},
 				},
