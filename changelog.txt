@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
-Version: 1.8.xxx (2.0 beta)
-Date: xx.07.2020
+Version: 1.8.139 (2.0 beta)
+Date: 29.06.2020
   Features:
     - Added use sound for simple-capsule-pure-water.
     - Changed fi-tech-eatout-button technology prerequisites

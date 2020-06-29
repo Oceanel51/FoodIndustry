@@ -1022,7 +1022,7 @@ script.on_event(defines.events.on_player_placed_equipment, function(event)
 	if event.equipment.name == "eat-drink-equipment" then
 		-- TODO do function create GUI
 		figui.eedb.create(event.player_index, player)
-		writeDebug("FI: "..event.player_index.." "..player.name.." - EEDB (T1) GUI [color=0,1,0]created[/color]!")
+		--writeDebug("FI: "..event.player_index.." "..player.name.." - EEDB (T1) GUI [color=0,1,0]created[/color]!")
 	end
 end
 )
@@ -1036,7 +1036,7 @@ script.on_event(defines.events.on_player_removed_equipment, function(event)
 		if event.count >= 0 then
 			-- TODO do function clear GUI
 			figui.eedb.destroy(event.player_index, player)
-			writeDebug("FI: "..event.player_index.." "..player.name.." - EEDB (T1) GUI [color=1,0,0]destroyed[/color]!")
+			--writeDebug("FI: "..event.player_index.." "..player.name.." - EEDB (T1) GUI [color=1,0,0]destroyed[/color]!")
 		end
 	end
 end
@@ -1047,6 +1047,7 @@ script.on_event(defines.events.on_player_armor_inventory_changed, function(event
 	local player = game.players[event.player_index]
 	local armor = player.get_inventory(defines.inventory.character_armor)
 
+	-- TODO if replace armor with equipment with armor without it, the buttons gui does not disappear
 	-- check if an armor is equiped, before we do anything
 	if not armor.is_empty() then
 		local grid = armor[1].grid
@@ -1058,7 +1059,7 @@ script.on_event(defines.events.on_player_armor_inventory_changed, function(event
 				if grid.equipment[i].name == "eat-drink-equipment" then
 					-- TODO do function create GUI
 					figui.eedb.create(event.player_index, player)
-					writeDebug("FI: "..event.player_index.." "..player.name.." - EEDB (T1) GUI [color=0,1,0]created[/color] (some way)!")
+					--writeDebug("FI: "..event.player_index.." "..player.name.." - EEDB (T1) GUI [color=0,1,0]created[/color] (some way)!")
 				end
 				if grid.equipment[i].name == "eating-drinking-equipment" then
 					-- TODO do function create EDBS GUI
@@ -1074,7 +1075,7 @@ script.on_event(defines.events.on_player_armor_inventory_changed, function(event
 	else
 		-- TODO do function clear GUI
 		figui.eedb.destroy(event.player_index, player)
-		writeDebug("FI: "..event.player_index.." "..player.name.." - All GUI [color=1,0,0]destroyed[/color] (some way)!")
+		--writeDebug("FI: "..event.player_index.." "..player.name.." - All GUI [color=1,0,0]destroyed[/color] (some way)!")
 	end
 end
 )
