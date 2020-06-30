@@ -1,5 +1,6 @@
 require "prototypes.functions.fi-global-variables"
 require "prototypes.functions.fi-GUI"
+require "prototypes.functions.fi-eating-functions"
 require "prototypes.functions.eat-drink-equipment_control"
 require "prototypes.functions.fi-effects"
 require "prototypes.tables.fi-foods-table"
@@ -1003,7 +1004,10 @@ script.on_event(defines.events.on_gui_click, function(event)
 
 	if name == "eat_button" then
 		writeDebug("FI: "..event.player_index.." "..player.name.." - Click [color=0,1,0]Eat[/color] button!")
-	end
+		find_random_fooditem(player, event.player_index)
+		-- TODO затем съесть с помощью
+		-- eat_food(player, index, food, food_item)
+end
 	if name == "drink_button" then
 		writeDebug("FI: "..event.player_index.." "..player.name.." - Click [color=0,0,1]Drink[/color] button!")
 	end
