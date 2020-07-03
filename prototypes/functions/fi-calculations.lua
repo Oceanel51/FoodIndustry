@@ -490,19 +490,31 @@ function effects_vanilla_add_or_remove(add_bool, index, effect_name, effect_modi
 		if add_bool then
 			game.players[index].character_running_speed_modifier = game.players[index].character_running_speed_modifier + effect_modifier
 		else
-			game.players[index].character_running_speed_modifier = game.players[index].character_running_speed_modifier - effect_modifier
+			if game.players[index].character_running_speed_modifier - effect_modifier < -1 then
+				game.players[index].character_running_speed_modifier = -1
+			else
+				game.players[index].character_running_speed_modifier = game.players[index].character_running_speed_modifier - effect_modifier
+			end
 		end
 	elseif effect_name == "crafting" then
 		if add_bool then
 			game.players[index].character_crafting_speed_modifier = game.players[index].character_crafting_speed_modifier + effect_modifier
 		else
-			game.players[index].character_crafting_speed_modifier = game.players[index].character_crafting_speed_modifier - effect_modifier
+			if game.players[index].character_crafting_speed_modifier - effect_modifier < -1 then
+				game.players[index].character_crafting_speed_modifier = -1
+			else
+				game.players[index].character_crafting_speed_modifier = game.players[index].character_crafting_speed_modifier - effect_modifier
+			end
 		end
 	elseif effect_name == "mining" then
 		if add_bool then
 			game.players[index].character_mining_speed_modifier = game.players[index].character_mining_speed_modifier + effect_modifier
 		else
-			game.players[index].character_mining_speed_modifier = game.players[index].character_mining_speed_modifier - effect_modifier
+			if game.players[index].character_mining_speed_modifier - effect_modifier < -1 then
+				game.players[index].character_mining_speed_modifier = -1
+			else
+				game.players[index].character_mining_speed_modifier = game.players[index].character_mining_speed_modifier - effect_modifier
+			end
 		end
 	elseif effect_name == "long_reach" then
 		if add_bool then

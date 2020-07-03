@@ -74,7 +74,10 @@ function figui.eedb.create(index, player)
 	--writeDebug("FI: player.display_resolution: "..player.display_resolution.width.."x"..player.display_resolution.height) -- DEBUG
 	ScreenGui.frame_eedb.style.padding = 3
 	ScreenGui.frame_eedb.style.top_padding = 6
-	ScreenGui.frame_eedb.location = {player.display_resolution.width / 2 - 400, player.display_resolution.height - 52}
+	
+	--ScreenGui.frame_eedb.style.natural_width = 114 (minimal_width, maximal_width, etc., also for height)
+
+	ScreenGui.frame_eedb.location = {player.display_resolution.width / 2 / 1.67, player.display_resolution.height - 52}
 	--/c game.player.gui.screen.frame_eedb.style.top_padding = 100
 	--/c game.player.gui.screen.frame_eedb.location = {575, 968}
 	
