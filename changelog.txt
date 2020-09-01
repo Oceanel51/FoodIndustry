@@ -1,8 +1,8 @@
 ---------------------------------------------------------------------------------------------------
-Version: 1.8.142 (2.0 beta)
+Version: 1.8.141 (2.0 beta)
 Date: 02.09.2020
   Features:
-    - Added apple-peeled and orange-peeled foods.
+    - Added apple-peeled and orange-peeled foods (this will prevent you from clogging up Player inventory with seeds and raw-straw).
     - Something changed in the mod code, see the github for details (WIP)
   Balances:
     - Reduced and balanced apples and oranges food values.
