@@ -810,15 +810,15 @@ data:extend({
 	category = "advanced-cooking",
 	subgroup = "foods-species",
 	order = "w-b-8",
-	energy_required = 30.0,
+	energy_required = 15.0,
 	ingredients =
 	{
-		{"basic-shell-capsule", 10},
-		{"iron-plate", 1},
+		{"basic-shell-capsule", 4},
+		{"electronic-circuit", 1},
 	},
 	results = 
 	{
-		{"advanced-shell-capsule", 4}
+		{"advanced-shell-capsule", 2}
 	}
   },
 

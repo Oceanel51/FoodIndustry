@@ -562,9 +562,9 @@ script.on_event(defines.events.on_player_used_capsule, function(event)
 						player.play_sound({path = "use-lettuce-sound",volume_modifier = 0.7}) -- play sound when eat lettuce
 					elseif string.match(event.item.name, "cucumber") == "cucumber" or string.match(event.item.name, "corn") == "corn" then
 						player.play_sound({path = "use-cucumber-sound",volume_modifier = 0.7}) -- play sound when eat cucumbers
-					elseif string.match(event.item.name, "tomato") == "tomato" or string.match(event.item.name, "orange") == "orange" then
+					elseif string.match(event.item.name, "tomato") == "tomato" or string.match(event.item.name, "orange") == "orange" or string.match(event.item.name, "orange-peeled") == "orange-peeled" then
 						player.play_sound({path = "use-tomato-sound",volume_modifier = 1.0}) -- play sound when eat tomatoes
-					elseif string.match(event.item.name, "apple") == "apple" then
+					elseif string.match(event.item.name, "apple") == "apple" or string.match(event.item.name, "apple-peeled") == "apple-peeled" then
 						player.play_sound({path = "use-cucumber-sound",volume_modifier = 0.7}) -- play sound when eat cucumbers
 					elseif string.match(event.item.name, "meat") == "meat" then
 						player.play_sound({path = "use-meat-sound",volume_modifier = 0.9}) -- play sound when eat any meat

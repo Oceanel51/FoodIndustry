@@ -106,6 +106,16 @@ for index, crop in pairs(trees) do
 		},
 	})
 
+	-- item subgroup
+	data:extend({
+		{
+			type = "item-subgroup",
+			name = crop[1],
+			group = "food-industry-foods",
+			order = "w-f-"..index,
+		},
+	})
+
 	-- Fruit seeds item, recipe
 	data:extend({
 		{
@@ -115,7 +125,7 @@ for index, crop in pairs(trees) do
 			icon_size = 64,
 
 			subgroup = crop[1],
-			order = "w-e-"..index.."-y",
+			order = "w-d-"..crop[1].."-x",
 			place_result=crop[1].."-seed",
 			stack_size = 50
 		},
@@ -123,7 +133,7 @@ for index, crop in pairs(trees) do
 		{
 			type = "recipe",
 			name = crop[1].."-seeds",
-			order = "w-e-"..index.."-x",
+			order = "w-d-"..crop[1].."-x",
 			enabled = true,
 			icon = "__FoodIndustry__/graphics/icons/trees/"..crop[1].."-seeds.png",
 			icon_size = 64,
@@ -141,7 +151,6 @@ for index, crop in pairs(trees) do
 	},
 	})
 
-
 	-- Fruit capsule (as food)
 	data:extend({
 		{
@@ -151,7 +160,7 @@ for index, crop in pairs(trees) do
 			icon_size = 64,
 
 			subgroup = crop[1],
-			order = "w-d-"..index.."-y",
+			order = "w-d-"..crop[1].."-y",
 			stack_size = crop[7],
 			capsule_action = {
 				attack_parameters = {
@@ -181,16 +190,6 @@ for index, crop in pairs(trees) do
 			},
 			fuel_category = "plant",
 			fuel_value = crop[12],
-		},
-	})
-
-	-- item subgroup
-	data:extend({
-		{
-			type = "item-subgroup",
-			name = crop[1],
-			group = "food-industry-foods",
-			order = "w-f-"..index,
 		},
 	})
 
@@ -273,12 +272,12 @@ for index, crop in pairs(trees) do
 		{
 			type = "recipe",
 			name = crop[1].."-growth-seedling",
-			order = "w-d-a-a",
 			enabled = false,
 			icon = "__FoodIndustry__/graphics/icons/trees/"..crop[1].."-seedling-icon.png",
 			icon_size = 64,
 			category = "basic-crop-growth",
 			subgroup = crop[1],
+			order = "w-d-"..crop[1].."-a",
 			energy_required = crop[19],
 			ingredients =
 			{
@@ -301,6 +300,7 @@ for index, crop in pairs(trees) do
 			icon_size = 64,
 			category = "basic-tree-growth",
 			subgroup = crop[1],
+			order = "w-d-"..crop[1].."-b",
 			energy_required = crop[19] / 1.2,
 			ingredients =
 			{
@@ -325,6 +325,7 @@ for index, crop in pairs(trees) do
 			icon_size = 64,
 			category = "advanced-tree-growth",
 			subgroup = crop[1],
+			order = "w-d-"..crop[1].."-c",
 			energy_required = crop[19] / 1.4,
 			ingredients =
 			{

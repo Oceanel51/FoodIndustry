@@ -19,7 +19,7 @@ function foods_table()
 	--name,								type,							energy,	drinks,	{V,M,C,F},			fullness, c_f,	health,	effect/s
 	{"corn",							"vegan-substances1",			3,		-2,		{0,1.6,0,0.8},		24,		24,		-1,		{} },
 	{"cucumber",						"vegan-substances1",			5,		4,		{2,2.2,0,-0.2},		20,		20,		7,		{} },
-	{"tomato",							"vegan-substances1",			5,		2,		{2.8,1.6,0,-0.2},	16,		16,		8,		{} },
+	{"tomato",							"vegan-substances1",			6,		2,		{2.8,1.6,0,-0.2},	16,		16,		8,		{} },
 	{"lettuce",							"vegan-substances1",			3,		1,		{1.5,1.1,0,-0.2},	8,		8,		2,		{} },
 	{"cooked-corn",						"vegan",						12,		3,		{0,2.4,1.6,0},		26,		26,		10,		{} },
 	{"whole-wheat-cookie",				"vegan-fat",					7,		-1.5,	{0,0.7,2.1,0.2},	12,		12,		5,		{} },
@@ -40,8 +40,10 @@ function foods_table()
 	{"tofu-pizza",						"vegan",						65,		-7,		{1,2,11,7},			95,		0,		70,		{} },
 	{"tofu-burger",						"vegan-gourmet",				60,		-8,		{1,2,13,9},			100,	0,		70,		{} },
 	--fruit
-	{"apple",							"fruit-vegan-substances1",		4,		2,		{1.6,2.2,0,-0.2},	14,		14,		3,		{{"add_more_drinks",0.2,360},} },
-	{"orange",							"fruit-vegan-substances1",		5,		1,		{2.4,1.2,0,-0.2},	18,		18,		5,		{{"add_more_energy",0.2,180},} },
+	{"apple",							"fruit-vegan-substances1",		6,		2,		{1.4,2.1,0,-0.2},	15,		15,		3,		{{"add_more_drinks",0.2,360},} },
+	{"apple-peeled",					"fruit-vegan-substances1",		4,		2,		{1.0,1.7,0,-0.2},	14,		14,		2,		{{"add_more_drinks",0.2,240},} },
+	{"orange",							"fruit-vegan-substances1",		7,		1,		{2.1,1.1,0,-0.2},	20,		20,		5,		{{"add_more_energy",0.2,180},} },
+	{"orange-peeled",					"fruit-vegan-substances1",		5,		1,		{1.7,0.8,0,-0.2},	18,		18,		4,		{{"add_more_energy",0.2,80},} },
 	--meat
 	{"biter-meat",						"meat-substances1",				10,		-12,	{-0.4,0,2.2,3},		35,		35,		-60,	{} },
 	{"cooked-biter-meat",				"meat-substances2",				21,		-6,		{-0.4,0.5,2.2,3.6},	38,		38,		-25,	{} },

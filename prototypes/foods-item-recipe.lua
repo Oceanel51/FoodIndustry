@@ -7,6 +7,8 @@ local foods = {
 {"cooked-corn",						"foods-vegan",		10,		0.5,	"cooking",				4.0,	1,		"w-d-a",		nil,		{{"corn", 1}, {type="fluid", name="pure-water", amount=5}} },
 {"whole-wheat-cookie",				"wheat",			10,		0.5,	"cooking",				3.5,	1,		"w-d-c",		nil,		{{"wheat-grains", 3}} },
 --{"wheat-porridge",					"foods-vegan",		10,		0.5,	"cooking",				5.0,	1,		"w-d-cb",		nil,		{{"wheat-grains", 2}, {type="fluid", name="pure-water", amount=7}} },
+{"apple-peeled",					"apple",			10,		0.5,	"crafting",				3.0,	1,		"w-d-apple-y",	nil,		{{"apple", 1}}, {{"apple-peeled", 1}, {type = "item", name = "raw-straw", amount_min=0, amount_max=2}} },
+{"orange-peeled",					"orange",		 	10,		0.5,	"crafting",				3.0,	1,		"w-d-orange-y",	nil,		{{"orange", 1}}, {{"orange-peeled", 1}, {type = "item", name = "raw-straw", amount_min=1, amount_max=2}} },
 {"bread",							"foods-vegan",		10,		0.5,	"cooking",				7.0,	1,		"w-d-cc",		nil,		{{"wheat-dough", 1}} },
 {"corn-bread",						"foods-vegan",		10,		0.5,	"cooking",				8.0,	1,		"w-d-c",		nil,		{{"corn-dough", 1}} },
 {"popcorn",							"foods-vegan",		50,		0.2,	"cooking",				1.5,	1,		"w-d-d",		nil,		{{"corn-seeds", 1}, {type="fluid", name="canola-oil", amount=1}} },
@@ -23,7 +25,7 @@ local foods = {
 -- species see in prototypes\recipe.lua
 --{"salt",							"foods-species",	100,	0.6,	"mixing",				20.0,	10,		false,		"w-a-a",		{{"crystal", 1}} },
 --{"sugar",							"foods-species",	100,	0.6,	"cooking",				30.0,	5,		false,		"w-b-a",		{{"sugarcane", 2},} },
-{"gelatine-granules",				"foods-species",	100,	0.6,	"advanced-cooking",		80.0,	10,		"w-b-6",		nil,		{{"substance-c", 3},} },
+{"gelatine-granules",				"foods-species",	100,	0.6,	"cooking",				80.0,	10,		"w-b-6",		nil,		{{"substance-c", 3},} },
 -- fish
 {"cooked-fish-meat",				"foods-fish",		10,		0.3,	"cooking",				3.0,	1,		"w-d-a1",		nil,		{{"fish-meat-red", 1}, {"corn-flour", 1},} },
 {"fish-salad",						"foods-fish",		5,		0.5,	"cooking",				1.5,	1,		"w-d-a2",		nil,		{{"tomato", 2}, {"cucumber", 1}, {"lettuce", 4}, {"corn-seeds", 2}, {"cooked-fish-meat", 1},} },

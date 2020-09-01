@@ -1,11 +1,22 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.8.142 (2.0 beta)
+Date: 02.09.2020
+  Features:
+    - Added apple-peeled and orange-peeled foods.
+    - Something changed in the mod code, see the github for details (WIP)
+  Balances:
+    - Reduced and balanced apples and oranges food values.
+  Fixes:
+    - Fixed apple and orange subgroup orders
+    - Fixed character modifiers when: Given value has to be larger than or equal to: -1 (WIP)
+---------------------------------------------------------------------------------------------------
 Version: 1.8.139 (2.0 beta)
 Date: 29.06.2020
   Features:
     - Added use sound for simple-capsule-pure-water.
     - Changed fi-tech-eatout-button technology prerequisites
     - Changed compost icon
-    - ? Work on functions and gui view of early game "eat-drink-equipment" (WIP).
+    - Work on functions and gui view of early game "eat-drink-equipment" (WIP).
   Balances:
     - Reduced simple and basic capsules stack sizes by half
   Fixes:

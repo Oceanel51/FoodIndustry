@@ -419,6 +419,8 @@ data:extend({
     effects =
     {
         {type = "unlock-recipe", recipe = "fruit-scissor"},
+        {type = "unlock-recipe", recipe = "apple-peeled"},
+        {type = "unlock-recipe", recipe = "orange-peeled"},
     },
     unit =
     {
