@@ -216,7 +216,7 @@ data:extend({
     icon = "__FoodIndustry__/graphics/icons/items/corn-flour.png",
     icon_size = 32,
     subgroup = "food-intermediates",
-    order = "w-d-c-y",
+    order = "w-d-c-x",
     stack_size = 50,
   },
   {

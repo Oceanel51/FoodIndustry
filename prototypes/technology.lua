@@ -359,7 +359,7 @@ data:extend({
     unit =
     {
       time = 40,
-      count = 10,
+      count = 20,
       ingredients =
       {        
 		{"food-science-pack", 1},
@@ -684,12 +684,12 @@ data:extend({
 },
     unit =
     {
-      time = 60,
-      count = 25,
+      time = 30,
+      count = 100,
       ingredients =
       {        
-		{"automation-science-pack", 2},
-		{"logistic-science-pack", 2},
+		{"automation-science-pack", 1},
+		{"logistic-science-pack", 1},
 		{"food-science-pack", 1},
       },
     },
@@ -707,8 +707,8 @@ data:extend({
     },
     unit =
     {
-      time = 30,
-      count = 150,
+      time = 40,
+      count = 200,
       ingredients =
       {        
 		{"automation-science-pack", 1},
@@ -1012,7 +1012,7 @@ data:extend({
     unit =
     {
       time = 20,
-      count = 20,
+      count = 30,
       ingredients =
       {        
 		{"food-science-pack", 1},
@@ -1095,8 +1095,9 @@ data:extend({
     count = 50,
     ingredients =
         {
-            {"food-science-pack", 1},
             {"automation-science-pack", 1},
+            {"logistic-science-pack", 1},
+            {"food-science-pack", 1},
         },
     },
     order = "w",
@@ -1534,7 +1535,7 @@ data:extend({
     unit =
     {
         time = 20,
-        count = 20,
+        count = 50,
         ingredients =
         {
             {"food-science-pack", 1},

@@ -54,7 +54,7 @@ data:extend({
     icon_mipmaps = 4,
     category = "advanced-crafting",
     subgroup = "wheat",
-    order = "w-d-c-y",
+    order = "w-d-c-x",
     energy_required = 1.0,
     ingredients =
     {

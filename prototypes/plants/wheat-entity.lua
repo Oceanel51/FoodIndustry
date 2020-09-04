@@ -24,7 +24,7 @@ local plants = {
 local wheatstagestable = {
 	-- 					1				2				3				4				5					6		
 	-- stage,			mining_time,	emissions sec,	max_health,		mesh_rezult,	minable_count,		stack
-	["wild-plant"]	=	{0.4,			0,				5,				2,				2,					50		},
+	["wild-plant"]	=	{0.4,			0,				5,				2,				1,					50		},
 
 	["seed"]		=	{0.2,			0,				40,				0,				1,					50		},
 	["seedling"]	=	{0.3,			-0.00012,		30,				6,				0,					20		},
@@ -35,10 +35,10 @@ local wheatstagestable = {
 	["young-3"]		=	{2,				-0.00008,		10,				6,				1,					10		},
 	["young-old"]	=	{0.45,			0,				5,				0,				0,					10		},
 	
-	["adult-1"]		=	{2.5,			-0.00008,		15,				6,				8,					10		},
-	["adult-2"]		=	{2.5,			-0.00006,		15,				8,				6,					10		},
-	["adult-3"]		=	{2.5,			-0.00004,		15,				10,				5,					10		},
-	["adult-old"]	=	{0.9,			0,				10,				0,				2,					10		},
+	["adult-1"]		=	{2.5,			-0.00008,		15,				6,				4,					10		},
+	["adult-2"]		=	{2.5,			-0.00006,		15,				8,				3,					10		},
+	["adult-3"]		=	{2.5,			-0.00004,		15,				10,				2,					10		},
+	["adult-old"]	=	{0.9,			0,				10,				0,				1,					10		},
 }
 
 local extend = {}
