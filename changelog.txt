@@ -1,4 +1,15 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.8.143 (2.0 beta)
+Date: 10.09.2020
+  Features:
+    - Changed fish-salad icon and recipe
+  Balances:
+    - Balanced wheat
+    - Balanced bread and corn-bread
+    - Balanced basic-salad and fish-salad
+  Fixes:
+    - Fixed and improved few locales
+---------------------------------------------------------------------------------------------------
 Version: 1.8.141 (2.0 beta)
 Date: 02.09.2020
   Features:
