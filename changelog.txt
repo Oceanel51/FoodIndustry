@@ -1,4 +1,12 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.8.1xx (2.0 beta)
+Date: xx.09.2020
+  Features:
+    - Added second cooked-fish-meat recipe
+  Balances:
+    - Balanced bread and corn-bread
+  Fixes:
+---------------------------------------------------------------------------------------------------
 Version: 1.8.143 (2.0 beta)
 Date: 10.09.2020
   Features:

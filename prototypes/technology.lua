@@ -1626,6 +1626,7 @@ data:extend({
     {
         {type = "unlock-recipe", recipe = "fish-meat-fish-caviar-red"},
         {type = "unlock-recipe", recipe = "cooked-fish-meat"},
+        {type = "unlock-recipe", recipe = "cooked-fish-meat-2"},
         },
     unit =
     {
