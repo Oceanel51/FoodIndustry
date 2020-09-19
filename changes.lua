@@ -16,8 +16,11 @@ for i,p in pairs(data.raw.lab) do
 end
 
 -- add new crafting_categories for chemical-plants
-if data.raw["assembling-machine"]["chemical-plant"] then
-	table.insert(data.raw["assembling-machine"]["chemical-plant"].crafting_categories, "mixing")
+-- TODO Bob's chemical-plants - проверить и записать в лог
+if mods["bobplates"] then
+	if data.raw["assembling-machine"]["chemical-plant"] then
+		table.insert(data.raw["assembling-machine"]["chemical-plant"].crafting_categories, "mixing")
+	end
 end
 if data.raw.recipe["chemical-plant"] then
 	--table.insert(data.raw.recipe["chemical-plant"].ingredients, {"crystal", 1})

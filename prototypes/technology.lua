@@ -504,7 +504,7 @@ data:extend({
     unit =
     {
         time = 40,
-        count = 15,
+        count = 75,
         ingredients =
         {
             {"food-science-pack", 1},
@@ -528,7 +528,7 @@ data:extend({
     unit =
     {
       time = 40,
-      count = 50,
+      count = 150,
       ingredients =
       {
         {"logistic-science-pack", 1},
@@ -546,17 +546,20 @@ data:extend({
     icon_size = 128,
     prerequisites = {"composting", "landfill"},
     effects =
-    {  
-		{type = "unlock-recipe", recipe = "compost-2"},
+    {
+      {type = "unlock-recipe", recipe = "compost-2"},
+      {type = "unlock-recipe", recipe = "straw-briquettes"},
+      {type = "unlock-recipe", recipe = "compressed-straw-disassemble"},
+      {type = "unlock-recipe", recipe = "compost-to-landfill"},
     },
     unit =
     {
       time = 20,
       count = 25,
       ingredients =
-      {        
-		{"logistic-science-pack", 1},
-		{"food-science-pack", 1},
+      {
+        {"logistic-science-pack", 1},
+        {"food-science-pack", 1},
       },
     },
     order = "w",

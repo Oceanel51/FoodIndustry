@@ -24,7 +24,7 @@ data:extend({
 	type = "recipe",
 	name = "compressed-straw",
 	enabled = false,
-	icon = "__FoodIndustry__/graphics/icons/items/compressed-straw.png",
+	icon = "__FoodIndustry__/graphics/icons/recipes/compressed-straw.png",
 	icon_size = 64,
 	category = "advanced-crafting",
 	subgroup = "food-items",
@@ -36,6 +36,44 @@ data:extend({
 	results = 
 	{
 		{"compressed-straw", 1}
+	}
+},
+{
+	type = "recipe",
+	name = "compressed-straw-disassemble",
+	enabled = false,
+	icon = "__FoodIndustry__/graphics/icons/recipes/compressed-straw-disassemble.png",
+	icon_size = 64,
+	category = "advanced-crafting",
+	subgroup = "food-items",
+	order = "w-b-d",
+	energy_required = 1.5,
+	ingredients =
+	{
+		{"compressed-straw", 1}
+	},
+	results = 
+	{
+		{"straw", 60}
+	}
+},
+{
+	type = "recipe",
+	name = "straw-briquettes",
+	enabled = false,
+	icon = "__FoodIndustry__/graphics/icons/items/straw-briquettes.png",
+	icon_size = 64,
+	category = "advanced-crafting",
+	subgroup = "food-items",
+	order = "w-b-e",
+	energy_required = 2.0,
+	ingredients =
+	{
+		{"compressed-straw", 2}
+	},
+	results = 
+	{
+		{"straw-briquettes", 1}
 	}
 },
 -------------------- recipe["fish-to-meat"] -------------------------
@@ -109,7 +147,7 @@ data:extend({
 	name = "compost-2",
 	enabled = false,
 	icon = "__FoodIndustry__/graphics/icons/recipes/compost-2.png",
-	icon_size = 32,
+	icon_size = 64,
 	category = "composting",
 	subgroup = "food-items",
 	energy_required = 200.0,
@@ -117,11 +155,30 @@ data:extend({
 	{
 		{"landfill", 1},
 	},
-		results = 
+	results = 
 	{
 		{"compost", 60}
 	},
 	allow_as_intermediate = false,
+},
+{
+	type = "recipe",
+	name = "compost-to-landfill",
+	enabled = false,
+	icon = "__FoodIndustry__/graphics/icons/recipes/compost-to-landfill.png",
+	icon_size = 64,
+	category = "crafting",
+	subgroup = "food-items",
+	order = "w-b-f",
+	energy_required = 15.0,
+	ingredients =
+	{
+		{"compost", 60}
+	},
+	results = 
+	{
+		{"landfill", 1},
+	},
 },
 -------------------- recipe["compost-cracking"] -------------------------
 {

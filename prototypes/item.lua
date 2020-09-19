@@ -33,10 +33,24 @@ data:extend({
     order = "w-b-c",
     stack_size = 50,
 	fuel_category = "chemical",
-	fuel_value = "16MJ",
+	fuel_value = "12MJ",
 	fuel_acceleration_multiplier = 0.8,
-  fuel_top_speed_multiplier = 0.9,
+  fuel_top_speed_multiplier = 0.6,
   fuel_emission_multiplier = 0.4,
+  },
+  {
+    type = "item",
+    name = "straw-briquettes",
+    icon = "__FoodIndustry__/graphics/icons/items/straw-briquettes.png",
+    icon_size = 64,
+    subgroup = "food-items",
+    order = "w-b-d",
+    stack_size = 50,
+	fuel_category = "chemical",
+	fuel_value = "20MJ",
+	fuel_acceleration_multiplier = 1.0,
+  fuel_top_speed_multiplier = 0.9,
+  fuel_emission_multiplier = 0.5,
   },
   {
     type = "item",
@@ -46,7 +60,7 @@ data:extend({
     fuel_category = "humus", -- changed by Oceanel
     fuel_value = "9000J", 
     subgroup = "food-items",
-    order = "w-b-d",
+    order = "w-b-g",
     stack_size = 200
   },
   
