@@ -1,11 +1,15 @@
 ---------------------------------------------------------------------------------------------------
-Version: 1.8.1xx (2.0 beta)
-Date: xx.09.2020
+Version: 1.8.146 (2.0 beta)
+Date: 25.09.2020
   Features:
     - Added second cooked-fish-meat recipe
+    - Added straw-briquettes
+    - Added compressed-straw-disassemble recipe (this will allow the straw to be stored in bales for later use)
+    - Changed some recipe icons
   Balances:
     - Balanced bread and corn-bread
   Fixes:
+    - Fixed and improved few locales
 ---------------------------------------------------------------------------------------------------
 Version: 1.8.143 (2.0 beta)
 Date: 10.09.2020
