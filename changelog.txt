@@ -1,4 +1,12 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.8.147 (2.0 beta)
+Date: xx.10.2020
+  Features:
+  Balances:
+    - Balanced simple-capsule-pure-water
+    - Balanced four simple-food-xxx-capsules
+  Fixes:
+---------------------------------------------------------------------------------------------------
 Version: 1.8.146 (2.0 beta)
 Date: 25.09.2020
   Features:
