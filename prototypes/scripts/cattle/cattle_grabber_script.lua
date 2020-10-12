@@ -1,12 +1,12 @@
 if not util then require("prototypes.scripts.util") end
 
-local fish_inserter = {}
-fish_inserter.metatable = {__index = fish_inserter}
+local cattle_grabber = {}
+cattle_grabber.metatable = {__index = cattle_grabber}
 
 local fishingDistance = 10
 local catchDistance = 5
 
-function fish_inserter.new(entity, parameter)
+function cattle_grabber.new(entity, parameter)
 
   local force = entity.force
   local surface = entity.surface
@@ -26,13 +26,13 @@ function fish_inserter.new(entity, parameter)
     -- eggName = parameter.eggName
   }
 
-  setmetatable(farm, fish_inserter.metatable)
+  setmetatable(farm, cattle_grabber.metatable)
 
   return farm
 
 end
 
-function fish_inserter:try_pickup_fish_at_position(entity)
+function cattle_grabber:try_pickup_cattle_at_position(entity)
 
   local inserter = self.entity
 
@@ -43,18 +43,13 @@ function fish_inserter:try_pickup_fish_at_position(entity)
 		}
 		inserter.direction = inserter.direction
 		if distance(inserter.held_stack_position.x,inserter.held_stack_position.y,entity.position.x,entity.position.y) <= catchDistance then
-			if entity.prototype.mineable_properties.products ~= nil then
-				for _, r in ipairs(entity.prototype.mineable_properties.products) do
-					inserter.held_stack.set_stack({name=r.name, count=1})
-					break
-				end
-			end
+			inserter.held_stack.set_stack({name=entity.name, count=1})
 			entity.destroy()
 		end
 	end
 end
 
-function fish_inserter:update()
+function cattle_grabber:update()
   
   local entity = self.entity
 	if entity.held_stack.valid_for_read then
@@ -67,7 +62,7 @@ function fish_inserter:update()
 		return
 	end
 
-	local fish = get_entities_around_by_name(entity, 10, { "fish", "fi-sturgeon" })
+	local fish = get_entities_around_by_name(entity, 10, { "cattle" })
 	local target = nil
 	local current_dist = 0
 	local target_dist = 100
@@ -84,23 +79,23 @@ function fish_inserter:update()
 		end
 	end
 	if target then	
-		self:try_pickup_fish_at_position(target)
+		self:try_pickup_cattle_at_position(target)
 	end
 
 end
 
-function fish_inserter:say(string)
+function cattle_grabber:say(string)
   self.entity.surface.create_entity{name = "tutorial-flying-text", position = self.entity.position, text = string}
 end
 
-function fish_inserter:on_removed(event)
+function cattle_grabber:on_removed(event)
   if event.name == defines.events.on_entity_died then
     self.entity.destroy()
   else
   end
 end
 
-function fish_inserter:on_config_changed()
+function cattle_grabber:on_config_changed()
 end
 
-return fish_inserter
+return cattle_grabber
