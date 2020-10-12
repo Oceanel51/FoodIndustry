@@ -72,11 +72,7 @@ data:extend({
         crafting_speed = 1,
         energy_source =
         {
-            type = "electric",
-            usage_priority = "secondary-input",
-            drain = "45kW",
-            --emissions = 0.004
-            emissions_per_minute = 0.4 / 100 * 30
+          type = "void",
         },
         energy_usage = "20kW",
         order = "d-e",

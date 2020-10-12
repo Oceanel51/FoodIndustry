@@ -1,3 +1,9 @@
+local handler = require("event_handler")
+
+handler.add_lib(require("prototypes.scripts.fish.fish_spawners_script"))
+handler.add_lib(require("prototypes.scripts.fish.fishing_inserters_script"))
+
+
 require "prototypes.functions.fi-global-variables"
 require "prototypes.functions.fi-GUI"
 require "prototypes.functions.fi-eating-functions"
@@ -8,9 +14,9 @@ require "prototypes.functions.fi-calculations"
 --require "prototypes.functions.fi-modifiers"
 require "libs.helper-functions"
 
-require("prototypes.scripts.fishing-inserter")
-require("prototypes.scripts.fish-spawner")
-require("prototypes.fish.fishing-boat-control")
+-- require("prototypes.scripts.fishing-inserter")
+-- require("prototypes.scripts.fish-spawner")
+-- require("prototypes.fish.fishing-boat-control")
 require("prototypes.fish.shovel-control")
 
 require("prototypes.scripts.food-picker")
@@ -94,9 +100,9 @@ end
 
 setupFi()
 fi_global_variables_init()
-initFishingInserter()
-initFishSpawner()
-initFishingBoatNet()
+-- initFishingInserter()
+-- initFishSpawner()
+-- initFishingBoatNet()
 initFoodPicker()
 initFruitTrees()
 initFruitScissors()
