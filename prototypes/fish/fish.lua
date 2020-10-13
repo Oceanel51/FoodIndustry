@@ -1,3 +1,5 @@
+local utils = require("__FoodIndustry__/libs/util")
+
 data:extend({
     {
         type = "autoplace-control",
@@ -153,7 +155,7 @@ local ingredients = {
 	--{"rapeseed",			0,				0.4,			0.4}	--0.32
 }
 
-local function createFeedRecipes(fishName, eggName, tech, amount)
+local function createFeedRecipes(fishName, eggName, tech, amount, icon)
     for index, ingredient in pairs(ingredients) do
         data:extend({
             {
@@ -161,8 +163,7 @@ local function createFeedRecipes(fishName, eggName, tech, amount)
                 name = fishName.."-"..ingredient[1],
                 localised_name = {"description."..fishName, {"item-name." .. ingredient[1]}},
                 enabled = false,
-                icon = "__base__/graphics/icons/fish.png",
-                icon_size = 64,
+                icons = utils.mergeIcons(icon, 64, "__FoodIndustry__/graphics/icons/items/"..ingredient[1]..".png", 64),
                 category = fishName,
                 subgroup = fishName,
                 energy_required = ingredient[3],
@@ -182,5 +183,5 @@ local function createFeedRecipes(fishName, eggName, tech, amount)
     end
 end
 
-createFeedRecipes("fish-feeding", "fi-fish-egg", "fish-breeding", 6)
-createFeedRecipes("sturgeon-feeding", "fi-sturgeon-egg", "fish-breeding-2", 2)
+createFeedRecipes("fish-feeding", "fi-fish-egg", "fish-breeding", 6, "__base__/graphics/icons/fish.png")
+createFeedRecipes("sturgeon-feeding", "fi-sturgeon-egg", "fish-breeding-2", 2, "__FoodIndustry__/graphics/icons/entities/sturgeon.png")

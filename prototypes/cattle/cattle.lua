@@ -1,3 +1,6 @@
+local utils = require("__FoodIndustry__/libs/util")
+require "util"
+
 require ("prototypes.cattle.cattle-autoplace")
 require ("prototypes.cattle.cattle-spawner-animation")
 
@@ -442,6 +445,7 @@ data:extend({
                     enabled = false,
                     icon = "__FoodIndustry__/graphics/icons/items/straw.png",
                     icon_size = 64,
+                    icons = utils.mergeIcons("__base__/graphics/icons/small-biter.png", 64, "__FoodIndustry__/graphics/icons/items/"..ingredient[1]..".png", 64),
                     category = name,
                     subgroup = name,
                     energy_required = ingredient[3],
