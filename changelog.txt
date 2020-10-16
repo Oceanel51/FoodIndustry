@@ -1,12 +1,16 @@
 ---------------------------------------------------------------------------------------------------
-Version: 1.8.148 (2.0 beta)
-Date: xx.10.2020
+Version: 1.8.149 (2.0 beta)
+Date: 16.10.2020
   Features:
+    - Fish scripting redone by jonkeda on https://github.com/Oceanel51/FoodIndustry/pull/42
+    - Changed fish and cattle recipe icons
   Balances:
     - Balanced simple-capsule-pure-water
     - Balanced four simple-food-xxx-capsules
     - Balanced some fish foods
   Fixes:
+    - Fixed cattles
+    - Fixed and improved few locales
 ---------------------------------------------------------------------------------------------------
 Version: 1.8.146 (2.0 beta)
 Date: 25.09.2020
