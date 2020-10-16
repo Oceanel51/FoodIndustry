@@ -52,10 +52,10 @@ function foods_table()
 	{"pizza",							"meat",							70,		-9,		{1,2,6,12},			95,		95,		50,		{} },
 	{"burger",							"meat-gourmet",					75,		-10,	{1,1,10,14},		100,	100,	50,		{} },
 	-- fishes
-	{"fish-caviar-red",					"fish-gourmet-healthy",			37,		-1,		{6.8,0,5.7,3.6},	28,		28,		100,	{} },
+	{"fish-caviar-red",					"fish-gourmet-healthy",			51,		-1,		{6.8,0,5.7,3.6},	28,		28,		60,		{} },
 	{"fish-meat-red",					"fish-substances1",				12,		-10,	{0,0,2.8,1.5},		30,		30,		-20,	{} },
 	{"cooked-fish-meat",				"fish-substances2",				22,		-2,		{0,0,3.5,2.2},		34,		34,		15,		{} },
-	{"fish-salad",						"fish",							30,		5,		{4.2,3.8,2.6,0},	51,		51,		25,		{} },
+	{"fish-salad",						"fish",							30,		5,		{4.2,3.8,2.6,0},	48,		48,		25,		{} },
 	{"fish-steak",						"fish",							28,		1,		{0,1,3.5,3},		70,		70,		30,		{} },
 	{"fish-and-chips",					"fish",							40,		-4,		{0,2,6,5},			65,		65,		45,		{} },
 	{"fish-pizza",						"fish",							65,		-1,		{0,2,6,8},			95,		95,		45,		{} },
