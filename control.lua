@@ -1,3 +1,11 @@
+local handler = require("event_handler")
+
+handler.add_lib(require("prototypes.scripts.fish.fish_spawners_script"))
+handler.add_lib(require("prototypes.scripts.fish.fishing_inserters_script"))
+handler.add_lib(require("prototypes.scripts.cattle.cattle_grabbers_script"))
+handler.add_lib(require("prototypes.scripts.cattle.cattle_feeders_script"))
+
+
 require "prototypes.functions.fi-global-variables"
 require "prototypes.functions.fi-GUI"
 require "prototypes.functions.fi-eating-functions"
@@ -8,16 +16,16 @@ require "prototypes.functions.fi-calculations"
 --require "prototypes.functions.fi-modifiers"
 require "libs.helper-functions"
 
-require("prototypes.scripts.fishing-inserter")
-require("prototypes.scripts.fish-spawner")
-require("prototypes.fish.fishing-boat-control")
+-- require("prototypes.scripts.fishing-inserter")
+-- require("prototypes.scripts.fish-spawner")
+-- require("prototypes.fish.fishing-boat-control")
 require("prototypes.fish.shovel-control")
 
 require("prototypes.scripts.food-picker")
 require("prototypes.scripts.trees_control")
 require("prototypes.scripts.fruit-scissors")
-require("prototypes.scripts.cattle")
-require("prototypes.scripts.cattle-grabber")
+-- require("prototypes.scripts.cattle")
+-- require("prototypes.scripts.cattle-grabber")
 
 require("prototypes.drinks.get-drink")
 
@@ -94,14 +102,14 @@ end
 
 setupFi()
 fi_global_variables_init()
-initFishingInserter()
-initFishSpawner()
-initFishingBoatNet()
+-- initFishingInserter()
+-- initFishSpawner()
+-- initFishingBoatNet()
 initFoodPicker()
 initFruitTrees()
 initFruitScissors()
-initCattle()
-initCattleGrabber()
+-- initCattle()
+-- initCattleGrabber()
 initGetDrink()
 initShovel()
 

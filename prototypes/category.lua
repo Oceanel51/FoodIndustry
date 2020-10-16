@@ -59,6 +59,18 @@ data:extend(
   },
   {
     type = "item-subgroup",
+    name = "sturgeon-feeding",
+    group = "food-industry",
+    order = "w-k-1",
+  },  
+  {
+    type = "item-subgroup",
+    name = "cattle-feeding",
+    group = "food-industry",
+    order = "w-k-2",
+  },
+  {
+    type = "item-subgroup",
     name = "food-cattle",
     group = "food-industry",
     order = "w-e",
@@ -248,6 +260,14 @@ data:extend(
     type = "recipe-category",
     name = "fish-feeding",
   },
+  {
+    type = "recipe-category",
+    name = "cattle-feeding",
+  },
+  {
+    type = "recipe-category",
+    name = "sturgeon-feeding",
+  },  
   -- cooking
   {
     type = "recipe-category",

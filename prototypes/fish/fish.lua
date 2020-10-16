@@ -1,3 +1,5 @@
+local utils = require("__FoodIndustry__/libs/util")
+
 data:extend({
     {
         type = "autoplace-control",
@@ -5,6 +7,64 @@ data:extend({
         name = "fish",
         order = "w",
         richness = false,
+    },
+
+    {
+        type = "item",
+        name = "fi-fish-egg",
+        icon = "__base__/graphics/icons/fish.png",
+        icon_size = 64,
+        subgroup = "creatures",
+        order = "b-a",
+        collision_box = {{-0.75, -0.75}, {0.75, 0.75}},
+        selection_box = {{-0.5, -0.3}, {0.5, 0.3}},
+        pictures =
+        {
+            {
+                filename = "__base__/graphics/entity/fish/fish-1.png",
+                priority = "extra-high",
+                width = 22,
+                height = 36,
+                scale = 2
+            },
+            {
+                filename = "__base__/graphics/entity/fish/fish-2.png",
+                priority = "extra-high",
+                width = 32,
+                height = 32,
+                scale = 2
+            }
+        },
+        stack_size = 6
+    },
+
+    {
+        type = "item",
+        name = "fi-sturgeon-egg",
+        icon = "__base__/graphics/icons/fish.png",
+        icon_size = 64,
+        subgroup = "creatures",
+        order = "b-a",
+        collision_box = {{-0.75, -0.75}, {0.75, 0.75}},
+        selection_box = {{-0.5, -0.3}, {0.5, 0.3}},
+        pictures =
+        {
+            {
+                filename = "__base__/graphics/entity/fish/fish-1.png",
+                priority = "extra-high",
+                width = 22,
+                height = 36,
+                scale = 2
+            },
+            {
+                filename = "__base__/graphics/entity/fish/fish-2.png",
+                priority = "extra-high",
+                width = 32,
+                height = 32,
+                scale = 2
+            }
+        },
+        stack_size = 1
     },
 
     {
@@ -95,26 +155,33 @@ local ingredients = {
 	--{"rapeseed",			0,				0.4,			0.4}	--0.32
 }
 
-
-for index, ingredient in pairs(ingredients) do
-	data:extend({
-		{
-			type = "recipe",
-			name = "fish-feeding-"..ingredient[1],
-			enabled = false,
-			icon = "__base__/graphics/icons/fish.png",
-			icon_size = 64,
-			category = "fish-feeding",
-			subgroup = "fish-feeding",
-			energy_required = ingredient[3],
-			ingredients = {
-				{ ingredient[1], ingredient[2] }
-			},
-			results = {
-			},
-		},
-        table.insert(data.raw.technology["fish-breeding"].effects,
-        {recipe = "fish-feeding-"..ingredient[1], type = "unlock-recipe"}
-    )
-	})
+local function createFeedRecipes(fishName, eggName, tech, amount, icon)
+    for index, ingredient in pairs(ingredients) do
+        data:extend({
+            {
+                type = "recipe",
+                name = fishName.."-"..ingredient[1],
+                localised_name = {"description."..fishName, {"item-name." .. ingredient[1]}},
+                enabled = false,
+                icons = utils.mergeIcons(icon, 64, "__FoodIndustry__/graphics/icons/items/"..ingredient[1]..".png", 64),
+                category = fishName,
+                subgroup = fishName,
+                energy_required = ingredient[3],
+                ingredients = {
+                    { ingredient[1], ingredient[2] }
+                },
+                results = 
+                    {
+                        {type = "item", name = eggName, amount=amount },
+                    }
+            },
+            table.insert(data.raw.technology[tech].effects,
+            {recipe = fishName.."-"..ingredient[1], type = "unlock-recipe"}
+        )
+        })
+        
+    end
 end
+
+createFeedRecipes("fish-feeding", "fi-fish-egg", "fish-breeding", 6, "__base__/graphics/icons/fish.png")
+createFeedRecipes("sturgeon-feeding", "fi-sturgeon-egg", "fish-breeding-2", 2, "__FoodIndustry__/graphics/icons/entities/sturgeon.png")

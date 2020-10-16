@@ -332,6 +332,26 @@ function get_entities_around(entity, tiles,type)
 	return entities	
 end
 
+function get_entities_around_by_name(entity, tiles,name)	
+	local wh = get_entity_size(entity)
+	local w = wh[1]/2
+	local h = wh[2]/2	
+	local entities
+	if name ~= nil then
+		entities = entity.surface.find_entities_filtered{area = {{entity.position.x-(w+tiles), entity.position.y-(h+tiles)}, {entity.position.x+(w+tiles), entity.position.y+(h+tiles)}}, name = name}
+	else
+
+		entities = entity.surface.find_entities({{entity.position.x-(w+tiles), entity.position.y-(h+tiles)}, {entity.position.x+(w+tiles), entity.position.y+(h+tiles)}})
+	end
+	for i, ent in pairs(entities) do	
+		if ent == entity then
+			table.remove(entities,i)
+			break
+		end	
+	end
+	return entities	
+end
+
 function distance( x1, y1, x2, y2 ) return math.sqrt( (x2-x1)^2 + (y2-y1)^2 ) end
 
 function entity_contains_point(entity,position)

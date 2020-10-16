@@ -1,3 +1,5 @@
+local utils = require("__FoodIndustry__/libs/util")
+
 local crops = {
 --1				2		3				4		5		6		7			8		9			10		11		12					13
 --name,			time,	ingredients,	plants,	result,	seeds, 	stack size,	plant?,	seed?,	edible?,	straws,	fuel for compost,	stack
@@ -183,8 +185,7 @@ for index, crop in pairs(crops) do
 			name = crop[1].."-growth-w",
 			order = "w-d-a-b",
 			enabled = false,
-			icon = "__FoodIndustry__/graphics/icons/plants/"..crop[1]..str..".png",
-			icon_size = 32,
+			icons = utils.mergeIcons("__FoodIndustry__/graphics/icons/plants/"..crop[1]..str..".png", 32, "__base__/graphics/icons/fluid/water.png", 64, 0.25),
 			category = "advanced-crop-growth",
 			subgroup = crop[1],
 			energy_required = crop[2],
@@ -206,8 +207,7 @@ for index, crop in pairs(crops) do
 			name = crop[1].."-growth-c",
 			order = "w-d-a-c",
 			enabled = false,
-			icon = "__FoodIndustry__/graphics/icons/plants/"..crop[1]..str..".png",
-			icon_size = 32,
+			icons = utils.mergeIcons("__FoodIndustry__/graphics/icons/plants/"..crop[1]..str..".png", 32, "__FoodIndustry__/graphics/icons/fluids/compost-water.png", 32),
 			category = "advanced-crop-growth",
 			subgroup = crop[1],
 			energy_required = crop[2]*0.9,
@@ -229,8 +229,7 @@ for index, crop in pairs(crops) do
 			name = crop[1].."-growth-f",
 			order = "w-d-a-d",
 			enabled = false,
-			icon = "__FoodIndustry__/graphics/icons/plants/"..crop[1]..str..".png",
-			icon_size = 32,
+			icons = utils.mergeIcons("__FoodIndustry__/graphics/icons/plants/"..crop[1]..str..".png", 32, "__FoodIndustry__/graphics/icons/fluids/fertilizer-water.png", 32),
 			category = "advanced-crop-growth",
 			subgroup = crop[1],
 			energy_required = crop[2]*0.625,

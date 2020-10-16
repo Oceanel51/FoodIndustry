@@ -21,7 +21,7 @@ data:extend(
             minable = {hardness = 0.2, mining_time = 0.5, result = "cattle-grabber"},
             max_health = 160,
             corpse = "small-remnants",
-            filter_count = 1,
+            filter_count = 0,
            allow_custom_vectors = true,
            resistances =
             {
@@ -33,7 +33,7 @@ data:extend(
             collision_box = {{-0.15, -0.15}, {0.15, 0.15}},
             selection_box = {{-0.4, -0.35}, {0.4, 0.45}},
             pickup_position = {0, -2},
-            insert_position = {0, 2.2},
+            insert_position = {0, 1.2},
            energy_per_movement = "5KJ",
            energy_per_rotation = "5KJ",
            rotation_speed = 0.02,

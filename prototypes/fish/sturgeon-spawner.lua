@@ -66,17 +66,13 @@ data:extend({
         collision_mask = {'object-layer',"ground-tile", "train-layer"},
         collision_box = {{-0.5, -0.5}, {1.0, 0.6}},
         selection_box = {{-0.7, -0.7}, {1.2, 0.8}},
-        crafting_categories = {"fish-feeding"},
+        crafting_categories = {"sturgeon-feeding"},
         corpse = "spitter-spawner-corpse",
         dying_explosion = "blood-explosion-huge",
         crafting_speed = 1,
         energy_source =
         {
-            type = "electric",
-            usage_priority = "secondary-input",
-            drain = "45kW",
-            --emissions = 0.004
-            emissions_per_minute = 0.4 / 100 * 30
+          type = "void",
         },
         energy_usage = "40kW",
         module_specification =

@@ -508,7 +508,8 @@ data:extend({
         ingredients =
         {
             {"food-science-pack", 1},
-        },
+            {"logistic-science-pack", 1},
+          },
     },
     order = "w",
   },
@@ -532,6 +533,7 @@ data:extend({
       ingredients =
       {
         {"logistic-science-pack", 1},
+        {"chemical-science-pack", 1},
         {"food-science-pack", 1},
       },
     },
