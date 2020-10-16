@@ -1159,7 +1159,7 @@ lib.on_init = function()
 end
 
 lib.on_load = function()
-
+	init_fi()
 end
 
 lib.on_configuration_changed = function()
