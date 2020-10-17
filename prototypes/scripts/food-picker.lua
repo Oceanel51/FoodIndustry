@@ -8,8 +8,8 @@ local getFruitEveryXTicks = 60 * 5
 local randomFruitsPerTree = 100
 local treeMax = 10
 
-local ORANGE_TREE = "orange-tree"
-local APPLE_TREE = "apple-tree"
+local ORANGE_TREE = "orange-adult-1"
+local APPLE_TREE = "apple-adult-1"
 
 
 local local_food_picker_process = function(picker)

@@ -1,9 +1,9 @@
 
 local WILDE_ORANGE_TREE = "orange-wild-tree"
-local ORANGE_TREE = "orange-tree"
+local ORANGE_TREE = "orange-adult-1"
 
 local WILDE_APPLE_TREE = "apple-wild-tree"
-local APPLE_TREE = "apple-tree"
+local APPLE_TREE = "apple-adult-1"
 
 local isFruitTrees = {
     [WILDE_ORANGE_TREE] = { result = "orange" },

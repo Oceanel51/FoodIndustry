@@ -12,6 +12,8 @@ local validEntityName = {
 	["cattle-grabber"]		= 1,
 	["fish-farm"]			= 1,
 	["sturgeon-farm"]		= 1,
+	["food-picker"]		    = 1,
+	["burner-food-picker"]  = 1,
 	--['nixie-tube-small']	= 2
 }
 
