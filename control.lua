@@ -6,4 +6,3 @@ handler.add_lib(require("prototypes.scripts.cattle.cattle_grabbers_script"))
 handler.add_lib(require("prototypes.scripts.cattle.cattle_feeders_script"))
 
 handler.add_lib(require("calculate"))
-
