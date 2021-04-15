@@ -1309,6 +1309,7 @@ data:extend({
             type = "nothing",
             effect_description = {'technology-effect.fi-tech-more-energy-bonus', "50"},
             icon = "__FoodIndustry__/graphics/technology/fi-tech-more-energy-bonus-1.png",
+            icon_size = 32,
             modifier = 50
         },
         {

@@ -6,7 +6,7 @@ require ("prototypes.cattle.cattle-spawner-animation")
 
 local cattlescale = 0.5
 local calfscale = 0.25
-local sounds = require("__base__.prototypes.entity.demo-sounds")
+local sounds = require("__base__.prototypes.entity.sounds")
 
 -- spawner
 -- feeder

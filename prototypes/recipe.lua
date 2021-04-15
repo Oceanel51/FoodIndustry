@@ -223,7 +223,7 @@ data:extend({
 	},
 	results = 
 	{
-		{"fertilizer", 10}
+		{type="item", name="fertilizer", amount=10}
 	},
 	crafting_machine_tint = { primary = {r=0.8,g=0.6,b=0.7,a=1}, secondary = {r=0.8,g=0,b=0.7,a=1}, tertiary = {r=0.8,g=0,b=0.7,a=1}}	
   },

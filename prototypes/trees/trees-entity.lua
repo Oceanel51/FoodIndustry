@@ -49,7 +49,7 @@ local treestagestable = {
 }
 
 
-local sounds = require("__base__.prototypes.entity.demo-sounds")
+local sounds = require("__base__.prototypes.entity.sounds")
 local leaf_sound = sounds.tree_leaves
 local leaf_sound_trigger = 
 {
