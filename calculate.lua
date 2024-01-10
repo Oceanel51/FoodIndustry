@@ -372,39 +372,38 @@ end
 
 local local_on_added = function(event)
 	local entity = event.created_entity
-	if entity ~= nil then
-		for k=1, #foodi.on_added do
-			local v = foodi.on_added[k]
-			v(entity, event)
-		end
+	if not entity then return end
+	for k=1, #foodi.on_added do
+		local v = foodi.on_added[k]
+		v(entity, event)
 	end
 end
 local local_on_removed = function(event)
 	local entity = event.entity
-	if entity ~= nil then
-		for k=1, #foodi.on_remove do
-			local v = foodi.on_remove[k]
-			v(entity, event)
-		end
+	if not entity then return end
+	for k=1, #foodi.on_remove do
+		local v = foodi.on_remove[k]
+		v(entity, event)
 	end
 end
 
 local on_built_entity =  function(event)
+	local entity = event.created_entity
+	if not entity then return end
 	-- ignoring entity filters
 	-- TODO add ignoring entity filters when on_robot_built
-	if (event.created_entity.name == "entity-ghost") then
-		if (event.created_entity.ghost_name ~= "fi-basic-farmland") then
+	if (entity.name == "entity-ghost") then
+		if (entity.ghost_name ~= "fi-basic-farmland") then
 			local_on_added(event)
 		end
-	elseif (event.created_entity.name ~= "fi-basic-farmland") then
+	elseif (entity.name ~= "fi-basic-farmland") then
 		local_on_added(event)
 	end
 	
 	-- TODO Fix this! removed this as it seems to be buggy
-	local entity = event.created_entity
 	if (entity.name == "fi-basic-farmland") and entity.burner and entity.burner.remaining_burning_fuel then 
-		event.created_entity.burner.currently_burning="wood"
-		event.created_entity.burner.remaining_burning_fuel=2000000
+		entity.burner.currently_burning="wood"
+		entity.burner.remaining_burning_fuel=2000000
 	end
 end --, filters
 
